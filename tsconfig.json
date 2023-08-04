@@ -13,8 +13,10 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./app/*"],
+      "@styles/*": ["./app/styles/*"]
     },
+    "jsxImportSource": "@emotion/react",
 
     // Remix takes care of building everything in `remix build`.
     "noEmit": true
