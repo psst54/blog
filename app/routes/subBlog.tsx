@@ -58,9 +58,11 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
 function buildTree(items: any[]) {
   const itemMap = {};
+  const isOpen = {};
 
   for (const item of items) {
     itemMap[item.id] = { ...item, children: [] };
+    isOpen[item.id] = false;
   }
 
   const rootNodes = [];
@@ -75,13 +77,21 @@ function buildTree(items: any[]) {
     }
   }
 
-  return rootNodes;
+  return { data: rootNodes, dataOpen: isOpen };
 }
 
 export default function SubBlog() {
   const [isCategoryOpen, setIsCategoryOpen] = react.useState(true);
   const { rawData } = useLoaderData<typeof loader>();
   const params = useParams();
+
+  const [data, setData] = react.useState(buildTree(rawData));
+
+  const setDataOpen = (id: number) => {
+    const newData = { ...data.dataOpen };
+    newData[id] = !newData[id];
+    setData({ ...data, dataOpen: { ...newData } });
+  };
 
   return (
     <main css={background}>
@@ -90,7 +100,9 @@ export default function SubBlog() {
       <div css={categoryContainer}>
         <CategoryList
           isOpen={isCategoryOpen}
-          data={buildTree(rawData)}
+          data={data.data}
+          setDataOpen={setDataOpen}
+          dataOpen={data.dataOpen}
           postId={Number(params?.postId)}
         />
 

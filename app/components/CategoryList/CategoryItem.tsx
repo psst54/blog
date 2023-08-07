@@ -25,26 +25,45 @@ const postCountStyle = {
 };
 
 export default function CategoryItem({
-  href = "/",
+  id = 0,
   title = "",
   postCount = 0,
   isSelected = false,
+  isOpen = false,
   indent = 0,
+  setDataOpen,
 }: {
-  href: string;
+  id: number;
   title: string;
   postCount: number;
   isSelected: boolean;
+  isOpen: boolean;
   indent: number;
+  setDataOpen: Function;
 }) {
+  const handleAnchorClick = (event) => {
+    if (
+      event.target.tagName.toLowerCase() === "button" ||
+      event.target.tagName.toLowerCase() === "svg" ||
+      event.target.tagName.toLowerCase() === "path"
+    ) {
+      event.preventDefault();
+    }
+  };
+
+  const handleButtonClick = () => {
+    setDataOpen(id);
+  };
+
   return (
     <Link
-      to={href}
+      to={`/subBlog/${id}`}
       css={{
         textDecoration: "none",
         color: "black",
         "&:active": { color: "black" },
       }}
+      onClick={handleAnchorClick}
     >
       <div
         css={[
@@ -55,6 +74,7 @@ export default function CategoryItem({
         ]}
       >
         <button
+          onClick={handleButtonClick}
           css={{
             display: "flex",
             alignItems: "center",
@@ -67,6 +87,8 @@ export default function CategoryItem({
             borderRadius: "0.5rem",
             border: "none",
             outline: "none",
+
+            transform: isOpen ? "rotate(90deg)" : "",
 
             "&:hover": { background: "#FFFFFFB2" },
             cursor: "pointer",
