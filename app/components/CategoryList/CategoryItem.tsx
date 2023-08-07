@@ -25,14 +25,12 @@ const postCountStyle = {
 };
 
 export default function CategoryItem({
-  key,
   href = "/",
   title = "",
   postCount = 0,
   isSelected = false,
   indent = 0,
 }: {
-  key: number | null;
   href: string;
   title: string;
   postCount: number;
@@ -49,7 +47,6 @@ export default function CategoryItem({
       }}
     >
       <div
-        key={key}
         css={[
           itemContainer(indent),
           isSelected && {
