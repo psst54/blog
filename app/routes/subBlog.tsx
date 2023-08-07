@@ -1,6 +1,7 @@
 import react from "react";
 import type { LoaderArgs } from "@remix-run/cloudflare";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useParams } from "@remix-run/react";
+import { Outlet } from "@remix-run/react";
 
 import MenuBar from "@components/MenuBar";
 import CategoryList from "@components/CategoryList";
@@ -32,7 +33,7 @@ const contentContainer = {
   background: "#FFFFFF7F",
 };
 
-export const loader = async ({ context }: LoaderArgs) => {
+export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
     context.env.SUPABASE_URL,
     context.env.SUPABASE_KEY
@@ -50,7 +51,9 @@ export const loader = async ({ context }: LoaderArgs) => {
     }
   };
 
-  return loadData();
+  const data = await loadData();
+
+  return { rawData: data, postId: Number(params.postId), index: params };
 };
 
 function buildTree(items: any[]) {
@@ -76,18 +79,24 @@ function buildTree(items: any[]) {
 }
 
 export default function SubBlog() {
-  const rawData = useLoaderData<typeof loader>();
   const [isCategoryOpen, setIsCategoryOpen] = react.useState(true);
+  const { rawData } = useLoaderData<typeof loader>();
+  const params = useParams();
 
   return (
     <main css={background}>
       <MenuBar />
 
       <div css={categoryContainer}>
-        <CategoryList isOpen={isCategoryOpen} data={buildTree(rawData)} />
+        <CategoryList
+          isOpen={isCategoryOpen}
+          data={buildTree(rawData)}
+          postId={Number(params?.postId)}
+        />
 
         <div css={contentContainer}>
           <div css={headerContainer} />
+          <Outlet />
         </div>
       </div>
     </main>

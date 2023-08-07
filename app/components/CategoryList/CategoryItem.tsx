@@ -8,13 +8,13 @@ const itemContainer = (indent: number) => {
 
     height: "2.25rem",
     paddingRight: "0.5rem",
-    paddingLeft: `calc(${indent} * 1rem + 0.5rem)`,
+    paddingLeft: `calc(${indent} * 1rem + 0.2rem)`,
 
     borderRadius: "0.75rem",
   };
 };
 const titleStyle = {
-  marginLeft: "0.5rem",
+  marginLeft: "0.1rem",
   fontSize: "1.25rem",
   fontWeight: 400,
 };
@@ -54,7 +54,27 @@ export default function CategoryItem({
           },
         ]}
       >
-        <RightChevronIcon size="1rem" color="#000" />
+        <button
+          css={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+
+            width: "1.8rem",
+            height: "1.8rem",
+            background: "transparent",
+
+            borderRadius: "0.5rem",
+            border: "none",
+            outline: "none",
+
+            "&:hover": { background: "#FFFFFFB2" },
+            cursor: "pointer",
+          }}
+        >
+          <RightChevronIcon size="1rem" color="#000" />
+        </button>
+
         <h4 css={titleStyle}>{title}</h4>
         <p css={postCountStyle}>· {postCount}</p>
       </div>

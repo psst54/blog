@@ -1,18 +1,17 @@
 import CategoryItem from "./CategoryItem";
-import { headerContainer } from "@styles/styles";
 
-const renderTreeItem = (item, idx: number, depth: number) => {
+const renderTreeItem = (item, idx: number, depth: number, postId) => {
   return (
     <div key={idx}>
       <CategoryItem
-        href={`/subBlog/posts/${item.id}`}
+        href={`/subBlog/${item.id}`}
         title={item.title}
         postCount={item.postCount}
         indent={depth}
-        isSelected={false}
+        isSelected={postId === item.id}
       />
       {item?.children.map((child, childIdx: number) =>
-        renderTreeItem(child, childIdx, depth + 1)
+        renderTreeItem(child, childIdx, depth + 1, postId)
       )}
     </div>
   );
@@ -21,6 +20,7 @@ const renderTreeItem = (item, idx: number, depth: number) => {
 export default function CategoryList({
   isOpen,
   data,
+  postId,
 }: {
   isOpen: boolean;
   data: any;
@@ -32,7 +32,7 @@ export default function CategoryList({
       {isOpen && (
         <div css={{ padding: "1rem" }}>
           {data.map((datum, datumIdx: number) => {
-            return renderTreeItem(datum, datumIdx, 0);
+            return renderTreeItem(datum, datumIdx, 0, postId);
           })}
         </div>
       )}
