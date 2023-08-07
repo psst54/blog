@@ -33,30 +33,7 @@ const contentContainer = {
   background: "#FFFFFF7F",
 };
 
-export const loader = async ({ context, params }: LoaderArgs) => {
-  const supabase = createClient<Database>(
-    context.env.SUPABASE_URL,
-    context.env.SUPABASE_KEY
-  );
-
-  const loadData = async () => {
-    try {
-      const { data, error } = await supabase.from("posts").select();
-      if (error) throw new Error();
-
-      return data;
-    } catch (err) {
-      alert("데이터를 불러오지 못했습니다");
-      return null;
-    }
-  };
-
-  const data = await loadData();
-
-  return { rawData: data, postId: Number(params.postId), index: params };
-};
-
-function buildTree(items: any[]) {
+function buildTree(items: any) {
   const itemMap = {};
   const isOpen = {};
 
@@ -80,12 +57,33 @@ function buildTree(items: any[]) {
   return { data: rootNodes, dataOpen: isOpen };
 }
 
+export const loader = async ({ context }: LoaderArgs) => {
+  const supabase = createClient<Database>(
+    context.env.SUPABASE_URL,
+    context.env.SUPABASE_KEY
+  );
+
+  const loadData = async () => {
+    try {
+      const { data, error } = await supabase.from("posts").select();
+      if (error) throw new Error();
+
+      return data;
+    } catch (err) {
+      alert("데이터를 불러오지 못했습니다");
+      return null;
+    }
+  };
+
+  const rawData = await loadData();
+  return buildTree(rawData);
+};
+
 export default function SubBlog() {
   const [isCategoryOpen, setIsCategoryOpen] = react.useState(true);
-  const { rawData } = useLoaderData<typeof loader>();
-  const params = useParams();
 
-  const [data, setData] = react.useState(buildTree(rawData));
+  const [data, setData] = react.useState(useLoaderData<typeof loader>());
+  const params = useParams();
 
   const setDataOpen = (id: number) => {
     const newData = { ...data.dataOpen };
