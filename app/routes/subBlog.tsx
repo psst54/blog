@@ -2,6 +2,8 @@ import react from "react";
 import MenuBar from "@components/MenuBar";
 import CategoryList from "@components/CategoryList";
 
+import { headerContainer } from "@styles/styles";
+
 const background = {
   display: "flex",
   width: "100vw",
@@ -25,7 +27,7 @@ const contentContainer = {
   background: "#FFFFFF7F",
 };
 
-export default function CategoryPage() {
+export default function SubBlog() {
   const [isCategoryOpen, setIsCategoryOpen] = react.useState(true);
 
   return (
@@ -36,8 +38,7 @@ export default function CategoryPage() {
         <CategoryList isOpen={isCategoryOpen} />
 
         <div css={contentContainer}>
-          <div css={{ height: "4rem", borderBottom: "2px solid #95E8BB" }} />
-          <div css={{ padding: "1rem" }}></div>
+          <div css={headerContainer} />
         </div>
       </div>
     </main>

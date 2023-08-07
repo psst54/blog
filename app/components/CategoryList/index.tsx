@@ -1,4 +1,5 @@
 import CategoryItem from "./CategoryItem";
+import { headerContainer } from "@styles/styles";
 
 const tmpCategoryList = [
   {
@@ -30,7 +31,6 @@ export default function CategoryList({ isOpen }: { isOpen: boolean }) {
           <div>
             {tmpCategoryList.map(
               (categoryItem: any, categoryItemIdx: number) => {
-                const isSelected = categoryItemIdx === 1;
                 return (
                   <div key={categoryItemIdx}>
                     <CategoryItem
