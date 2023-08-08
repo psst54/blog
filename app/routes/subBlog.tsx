@@ -81,8 +81,6 @@ export const loader = async ({ context }: LoaderArgs) => {
   };
 
   const rawData = await loadData();
-
-  console.log("rawData", rawData);
   return buildTree(rawData);
 };
 
