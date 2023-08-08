@@ -65,10 +65,15 @@ export const loader = async ({ context }: LoaderArgs) => {
 
   const loadData = async () => {
     try {
-      const { data, error } = await supabase.from("posts").select();
-      if (error) throw new Error();
+      const { data: postData, error: postError } = await supabase
+        .from("posts")
+        .select();
+      const { data: databaseData, error: databaseError } = await supabase
+        .from("databases")
+        .select();
+      if (postError || databaseError) throw new Error();
 
-      return data;
+      return [...postData, ...databaseData];
     } catch (err) {
       alert("데이터를 불러오지 못했습니다");
       return null;
@@ -76,6 +81,8 @@ export const loader = async ({ context }: LoaderArgs) => {
   };
 
   const rawData = await loadData();
+
+  console.log("rawData", rawData);
   return buildTree(rawData);
 };
 
@@ -101,7 +108,7 @@ export default function SubBlog() {
           data={data.data}
           setDataOpen={setDataOpen}
           dataOpen={data.dataOpen}
-          postId={Number(params?.postId)}
+          postId={params?.postId}
         />
 
         <div css={contentContainer}>
