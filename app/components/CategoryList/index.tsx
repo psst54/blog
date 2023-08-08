@@ -43,6 +43,7 @@ export default function CategoryList({
 }: {
   isOpen: boolean;
   data: any;
+  postId: string;
 }) {
   return (
     <div css={{ width: isOpen ? "18rem" : "4rem", flexShrink: 0 }}>
