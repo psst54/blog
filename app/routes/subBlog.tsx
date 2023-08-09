@@ -68,14 +68,11 @@ export const loader = async ({ context }: LoaderArgs) => {
       const { data: postData, error: postError } = await supabase
         .from("posts")
         .select();
-      const { data: databaseData, error: databaseError } = await supabase
-        .from("databases")
-        .select();
-      if (postError || databaseError) throw new Error();
 
-      return [...postData, ...databaseData];
+      if (postError) throw new Error();
+
+      return postData;
     } catch (err) {
-      alert("데이터를 불러오지 못했습니다");
       return null;
     }
   };

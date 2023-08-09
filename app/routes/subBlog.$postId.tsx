@@ -14,8 +14,8 @@ export const loader = async ({ context, params }: LoaderArgs) => {
   const loadData = async (id: string) => {
     try {
       const { data: postData, error: postError } = await supabase
-        .from("postContent")
-        .select()
+        .from("posts")
+        .select("content")
         .eq("id", id)
         .single();
 
