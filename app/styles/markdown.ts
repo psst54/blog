@@ -18,14 +18,12 @@ export const styledA = {
   lineHeight: "1.4rem",
 };
 export const styledCode = {
-  padding: "0.1rem 0.2rem",
-  margin: "0 0.2rem",
+  padding: "0 0.2rem",
   borderRadius: "0.3rem",
-  background: "#2f343f",
+  background: "#70E3E366",
 
   fontFamily: "Pretendard Variable",
-  fontWeight: 600,
-  color: "#fff",
+  fontWeight: 500,
 };
 export const styledLi = {
   marginLeft: "1.5rem",

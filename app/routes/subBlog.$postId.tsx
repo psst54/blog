@@ -1,7 +1,8 @@
-import react from "react";
 import type { LoaderArgs } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
@@ -12,6 +13,7 @@ import {
   styledH3,
   styledP,
   styledA,
+  styledCode,
   styledLi,
   styledOl,
   styledUl,
@@ -88,18 +90,17 @@ export default function PostPage() {
             ),
             pre: (props: any) => <pre css={{ overflow: "auto" }} {...props} />,
             code: (props: any) => {
-              const match = /language-(\w+)/.exec(String(props.className));
-              return match ? (
+              const match = /language-(\w+)/.exec(props.className || "");
+              return !props.inline && match ? (
                 <SyntaxHighlighter
+                  children={String(props.children).replace(/\n$/, "")}
                   style={nord}
                   language={match[1]}
                   PreTag="div"
                   {...props}
-                >
-                  {String(props.children).replace(/\n$/, "")}
-                </SyntaxHighlighter>
+                />
               ) : (
-                <code className={styles.styledCode} {...props}>
+                <code css={styledCode} {...props}>
                   {props.children}
                 </code>
               );
