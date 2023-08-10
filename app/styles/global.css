@@ -134,6 +134,32 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: KaTeX_Math;
+  src: url("/includes/cssjs/katex/fonts/KaTeX_Math-Italic.woff2") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: KaTeX_Math;
+  src: url("/includes/cssjs/katex/fonts/KaTeX_Math-Italic.woff2") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: KaTeX_Main;
+  src: url("/includes/cssjs/katex/fonts/KaTeX_Main-Regular.woff2")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: KaTeX_Main;
+  src: url("/includes/cssjs/katex/fonts/KaTeX_Main-Italic.woff2") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+
 body,
 * {
   box-sizing: border-box;
