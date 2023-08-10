@@ -3,11 +3,8 @@ import type { LoaderArgs } from "@remix-run/cloudflare";
 import { useLoaderData, useParams } from "@remix-run/react";
 import { Outlet } from "@remix-run/react";
 
-import loadable from "@loadable/component";
 import MenuBar from "@components/MenuBar";
-const CategoryList = loadable(() => import("@components/CategoryList"), {
-  fallback: <div css={{ width: "2rem" }} />,
-});
+import CategoryList from "@components/CategoryList";
 import { headerContainer } from "@styles/styles";
 
 import { createClient } from "@supabase/supabase-js";
