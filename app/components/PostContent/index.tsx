@@ -19,7 +19,7 @@ import {
   styledBlockquote,
 } from "@styles/markdown";
 
-export default function Content({ content }) {
+export default function Content({ content }: { content: string }) {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkMath, remarkGfm]}
