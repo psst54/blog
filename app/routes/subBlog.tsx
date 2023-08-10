@@ -28,6 +28,9 @@ const categoryContainer = {
   borderRadius: "2rem 0 0 0",
 };
 const contentContainer = {
+  display: "flex",
+  flexDirection: "column" as "column",
+
   width: "100%",
   height: "100%",
   background: "#FFFFFF7F",
