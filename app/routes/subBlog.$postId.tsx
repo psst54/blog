@@ -3,6 +3,12 @@ import { useLoaderData } from "@remix-run/react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import styles from "katex/dist/katex.min.css";
+export function links() {
+  return [{ rel: "stylesheet", href: styles }];
+}
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
@@ -62,6 +68,8 @@ export default function PostPage() {
           height: "100%",
           padding: "1rem 1.5rem",
 
+          wordBreak: "keep-all",
+
           overflowY: "auto",
           "::-webkit-scrollbar": {
             width: "8px",
@@ -73,6 +81,8 @@ export default function PostPage() {
         }}
       >
         <ReactMarkdown
+          remarkPlugins={[remarkMath]}
+          rehypePlugins={[rehypeKatex]}
           components={{
             h1: (props: any) => <h1 css={styledH1} {...props} />,
             h2: (props: any) => <h2 css={styledH2} {...props} />,

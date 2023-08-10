@@ -22,7 +22,7 @@ export const styledCode = {
   borderRadius: "0.3rem",
   background: "#70E3E366",
 
-  fontFamily: "Pretendard Variable",
+  fontFamily: "Pretendard",
   fontWeight: 500,
 };
 export const styledLi = {
