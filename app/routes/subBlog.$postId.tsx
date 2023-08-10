@@ -54,8 +54,22 @@ export default function PostPage() {
   const content = useLoaderData<typeof loader>();
 
   return (
-    <div>
-      <div>
+    <div css={{ height: "calc(100% - 4rem)" }}>
+      <div
+        css={{
+          height: "100%",
+          padding: "1rem 1.5rem",
+
+          overflowY: "auto",
+          "::-webkit-scrollbar": {
+            width: "8px",
+          },
+          "::-webkit-scrollbar-thumb": {
+            borderRadius: "4px",
+            background: "#53A8E2",
+          },
+        }}
+      >
         <ReactMarkdown
           components={{
             h1: (props: any) => <h1 css={styledH1} {...props} />,
@@ -73,6 +87,23 @@ export default function PostPage() {
               <blockquote css={styledBlockquote} {...props} />
             ),
             pre: (props: any) => <pre css={{ overflow: "auto" }} {...props} />,
+            code: (props: any) => {
+              const match = /language-(\w+)/.exec(String(props.className));
+              return match ? (
+                <SyntaxHighlighter
+                  style={nord}
+                  language={match[1]}
+                  PreTag="div"
+                  {...props}
+                >
+                  {String(props.children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
+              ) : (
+                <code className={styles.styledCode} {...props}>
+                  {props.children}
+                </code>
+              );
+            },
           }}
         >
           {content}
