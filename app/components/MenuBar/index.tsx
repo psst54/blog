@@ -59,6 +59,7 @@ export default function MenuBar() {
         <div css={iconList}>
           {mainMenu.map((menuItem, menuItemIdx) => (
             <Link
+              aria-label={menuItem.href}
               key={menuItemIdx}
               to={menuItem.href}
               css={{ cursor: "pointer" }}
@@ -71,6 +72,7 @@ export default function MenuBar() {
         <div css={iconList}>
           {bottomMenu.map((menuItem, menuItemIdx) => (
             <Link
+              aria-label={menuItem.href}
               key={menuItemIdx}
               to={menuItem.href}
               css={{ cursor: "pointer" }}
