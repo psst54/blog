@@ -1,6 +1,7 @@
 import type { LoaderArgs } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
-import Content from "@components/PostContent";
+import loadable from "@loadable/component";
+const Content = loadable(() => import("@components/PostContent"));
 import styles from "katex/dist/katex.min.css";
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
