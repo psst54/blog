@@ -2,10 +2,6 @@ import type { LoaderArgs } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import loadable from "@loadable/component";
 const Content = loadable(() => import("@components/PostContent"));
-import styles from "katex/dist/katex.min.css";
-export function links() {
-  return [{ rel: "stylesheet", href: styles }];
-}
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
