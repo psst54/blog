@@ -1,4 +1,4 @@
-import react from "react";
+import { useState } from "react";
 import type { LoaderArgs } from "@remix-run/cloudflare";
 import { useLoaderData, useParams } from "@remix-run/react";
 import { Outlet } from "@remix-run/react";
@@ -85,9 +85,9 @@ export const loader = async ({ context }: LoaderArgs) => {
 };
 
 export default function SubBlog() {
-  const [isCategoryOpen, setIsCategoryOpen] = react.useState(true);
+  const [isCategoryOpen, setIsCategoryOpen] = useState(true);
 
-  const [data, setData] = react.useState(useLoaderData<typeof loader>());
+  const [data, setData] = useState(useLoaderData<typeof loader>());
   const params = useParams();
 
   const setDataOpen = (id: number) => {

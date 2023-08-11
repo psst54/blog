@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
+    "@loadable/component": "^5.15.3",
     "@remix-run/cloudflare": "^1.19.1",
     "@remix-run/cloudflare-pages": "^1.19.1",
     "@remix-run/css-bundle": "^1.19.1",
@@ -36,5 +37,13 @@
   },
   "engines": {
     "node": ">=16.13.0"
-  }
+  },
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ]
+  ]
 }
