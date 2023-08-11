@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { LoaderArgs } from "@remix-run/cloudflare";
+import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData, useParams } from "@remix-run/react";
 import { Outlet } from "@remix-run/react";
 
@@ -9,6 +9,13 @@ import { headerContainer } from "@styles/styles";
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
+
+export const meta: V2_MetaFunction = () => {
+  return [
+    { title: "PSST54's log | sub blog" },
+    { name: "description", content: "여기는 서브 블로그" },
+  ];
+};
 
 const background = {
   display: "flex",

@@ -75,6 +75,7 @@ export default function CategoryItem({
         ]}
       >
         <button
+          aria-label="toggle menu"
           onClick={handleButtonClick}
           css={{
             display: "flex",
