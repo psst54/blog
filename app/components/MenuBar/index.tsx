@@ -29,7 +29,8 @@ export default function MenuBar() {
   return (
     <div
       css={{
-        width: "fit-content",
+        flexShrink: 0,
+        width: "6rem",
         height: "100%",
         paddingBottom: "1rem",
       }}
@@ -39,16 +40,16 @@ export default function MenuBar() {
           display: "flex",
           flexDirection: "column" as "column",
           gap: "1rem",
+          alignItems: "center",
           justifyContent: "space-between",
 
-          width: "fit-content",
           height: "100%",
-          padding: "0 1rem",
 
-          overflowY: "scroll",
+          overflowY: "auto",
 
           "::-webkit-scrollbar": {
             width: "8px",
+            height: "8px",
           },
           "::-webkit-scrollbar-thumb": {
             borderRadius: "4px",

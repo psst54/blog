@@ -35,10 +35,11 @@ const categoryContainer = {
   borderRadius: "2rem 0 0 0",
 };
 const contentContainer = {
+  flexGrow: 1,
+  width: "0px",
   display: "flex",
   flexDirection: "column" as "column",
 
-  width: "100%",
   height: "100%",
   background: "#FFFFFF7F",
 };
@@ -77,7 +78,7 @@ export const loader = async ({ context }: LoaderArgs) => {
     try {
       const { data: postData, error: postError } = await supabase
         .from("posts")
-        .select();
+        .select("id, title, parent_id, type");
 
       if (postError) throw new Error();
 
@@ -88,13 +89,13 @@ export const loader = async ({ context }: LoaderArgs) => {
   };
 
   const rawData = await loadData();
-  return buildTree(rawData);
+  return rawData;
 };
 
 export default function SubBlog() {
   const [isCategoryOpen, setIsCategoryOpen] = useState(true);
 
-  const [data, setData] = useState(useLoaderData<typeof loader>());
+  const [data, setData] = useState(buildTree(useLoaderData<typeof loader>()));
   const params = useParams();
 
   const setDataOpen = (id: number) => {
@@ -113,7 +114,7 @@ export default function SubBlog() {
           data={data.data}
           setDataOpen={setDataOpen}
           dataOpen={data.dataOpen}
-          postId={params?.postId}
+          postId={params?.postId || ""}
         />
 
         <div css={contentContainer}>
