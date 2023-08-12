@@ -1,10 +1,14 @@
 import type { LoaderArgs } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
-import loadable from "@loadable/component";
-const Content = loadable(() => import("@components/PostContent"));
+import Content from "@components/PostContent";
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
+
+import styles from "@styles/katex.css";
+export function links() {
+  return [{ rel: "stylesheet", href: styles }];
+}
 
 export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
@@ -42,17 +46,19 @@ export default function PostPage() {
   const content = useLoaderData<typeof loader>();
 
   return (
-    <div css={{ height: "calc(100% - 4rem)" }}>
+    <div css={{ width: "100%", height: "calc(100% - 4rem)" }}>
       <div
         css={{
+          width: "100%",
           height: "100%",
           padding: "1rem 1.5rem",
 
-          wordBreak: "keep-all",
+          wordBreak: "break-word",
 
           overflowY: "auto",
           "::-webkit-scrollbar": {
             width: "8px",
+            height: "8px",
           },
           "::-webkit-scrollbar-thumb": {
             borderRadius: "4px",
