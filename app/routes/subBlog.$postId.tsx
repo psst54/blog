@@ -20,24 +20,19 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     try {
       const { data: postData, error: postError } = await supabase
         .from("posts")
-        .select("content")
+        .select("title, sub_title, content, tags")
         .eq("id", id)
         .single();
 
       if (postError) throw new Error();
 
-      return postData?.content;
+      return postData;
     } catch (err) {
       return null;
     }
   };
 
-  const postId = params.postId;
-  if (!postId) {
-    return null;
-  }
-
-  const data = await loadData(postId);
+  const data = await loadData(params.postId || "");
 
   return data;
 };
@@ -66,7 +61,47 @@ export default function PostPage() {
           },
         }}
       >
-        <Content content={content} />
+        {content?.tags && (
+          <div
+            css={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "0.25rem",
+              marginBottom: "1rem",
+            }}
+          >
+            {content?.tags.map((tag: string) => (
+              <div
+                css={{
+                  padding: "0.25rem 0.75rem",
+                  background: "#4D4D4D",
+                  borderRadius: "0.5rem",
+                  color: "#ffffff",
+                }}
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
+        )}
+        <h1 css={{ fontSize: "2rem", fontWeight: 800 }}>{content?.title}</h1>
+        {content?.sub_title && (
+          <h2
+            css={{
+              marginTop: "0.5rem",
+              color: "#555555",
+              fontSize: "1rem",
+              fontWeight: 500,
+            }}
+          >
+            {content?.sub_title}
+          </h2>
+        )}
+
+        <hr
+          css={{ width: "100%", border: "1px solid #70E3E3", margin: "2rem 0" }}
+        />
+        <Content content={content?.content} />
       </div>
     </div>
   );
