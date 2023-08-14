@@ -42,3 +42,6 @@ export const styledBlockquote = {
   padding: "0 1rem",
   lineHeight: "1.4rem",
 };
+export const styledImg = {
+  maxWidth: "100%",
+};
