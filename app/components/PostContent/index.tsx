@@ -16,6 +16,7 @@ import {
   styledOl,
   styledUl,
   styledBlockquote,
+  styledImg,
 } from "@styles/markdown";
 
 const components = {
@@ -31,6 +32,7 @@ const components = {
   ol: (props: any) => <ol css={styledOl} {...props} />,
   ul: (props: any) => <ul css={styledUl} {...props} />,
   blockquote: (props: any) => <blockquote css={styledBlockquote} {...props} />,
+  img: (props: any) => <img css={styledImg} {...props} />,
   pre: (props: any) => <pre {...props} />,
   code: (props: any) => {
     const match = /language-(\w+)/.exec(props.className || "");
