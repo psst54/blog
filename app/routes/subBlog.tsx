@@ -5,10 +5,11 @@ import { Outlet } from "@remix-run/react";
 
 import MenuBar from "@components/MenuBar";
 import CategoryList from "@components/CategoryList";
-import { headerContainer } from "@styles/styles";
-
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
+
+const breakpoints = [1200, 576];
+const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -42,6 +43,10 @@ const contentContainer = {
 
   height: "100%",
   background: "#FFFFFF7F",
+
+  [mq[1]]: {
+    borderRadius: "2rem 0 0 0",
+  },
 };
 
 function buildTree(items: any) {
@@ -93,8 +98,6 @@ export const loader = async ({ context }: LoaderArgs) => {
 };
 
 export default function SubBlog() {
-  const [isCategoryOpen, setIsCategoryOpen] = useState(true);
-
   const [data, setData] = useState(buildTree(useLoaderData<typeof loader>()));
   const params = useParams();
 
@@ -110,7 +113,6 @@ export default function SubBlog() {
 
       <div css={categoryContainer}>
         <CategoryList
-          isOpen={isCategoryOpen}
           data={data.data}
           setDataOpen={setDataOpen}
           dataOpen={data.dataOpen}
@@ -118,7 +120,6 @@ export default function SubBlog() {
         />
 
         <div css={contentContainer}>
-          <div css={headerContainer} />
           <Outlet />
         </div>
       </div>

@@ -1,4 +1,8 @@
+import { useEffect, useState } from "react";
 import CategoryItem from "./CategoryItem";
+
+const breakpoints = [1200, 576];
+const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 const renderTreeItem = (
   item,
@@ -35,7 +39,6 @@ const renderTreeItem = (
 };
 
 export default function CategoryList({
-  isOpen,
   data,
   dataOpen,
   setDataOpen,
@@ -45,12 +48,29 @@ export default function CategoryList({
   data: any;
   postId: string;
 }) {
-  return (
-    <div css={{ width: isOpen ? "18rem" : "4rem", flexShrink: 0 }}>
-      <div css={{ height: "4rem", borderBottom: "2px solid #95E8BB" }} />
+  const [isOpen, setIsOpen] = useState(true);
 
+  const handleResize = () => {
+    if (window.innerWidth < 1000) setIsOpen(false);
+    else setIsOpen(true);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  }, []);
+
+  return (
+    <div
+      css={{
+        width: isOpen ? "18rem" : "4rem",
+        flexShrink: 0,
+        [mq[1]]: {
+          display: "none",
+        },
+      }}
+    >
       {isOpen && (
-        <div css={{ padding: "1rem" }}>
+        <div css={{ padding: "1rem", paddingTop: "2rem" }}>
           {data.map((datum, datumIdx: number) => {
             return renderTreeItem(
               datum,
