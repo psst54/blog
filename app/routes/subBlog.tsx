@@ -83,7 +83,8 @@ export const loader = async ({ context }: LoaderArgs) => {
     try {
       const { data: postData, error: postError } = await supabase
         .from("posts")
-        .select("id, title, parent_id, type");
+        .select("id, title, parent_id, type")
+        .order("created_at");
 
       if (postError) throw new Error();
 
