@@ -41,12 +41,12 @@ export default function PostPage() {
   const content = useLoaderData<typeof loader>();
 
   return (
-    <div css={{ width: "100%", height: "calc(100% - 4rem)" }}>
+    <div css={{ width: "100%", height: "100%" }}>
       <div
         css={{
           width: "100%",
           height: "100%",
-          padding: "1rem 1.5rem",
+          padding: "2rem 1.5rem",
 
           wordBreak: "break-word",
 

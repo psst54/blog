@@ -1,6 +1,5 @@
 import { Link } from "@remix-run/react";
-import loadable from "@loadable/component";
-const RightChevronIcon = loadable(() => import("@assets/RightChevronIcon"));
+import RightChevronIcon from "@assets/RightChevronIcon";
 
 const itemContainer = (indent: number) => {
   return {

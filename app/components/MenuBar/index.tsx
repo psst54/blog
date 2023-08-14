@@ -7,6 +7,9 @@ const HeartIcon = loadable(() => import("@assets/HeartIcon"));
 const CallChatIcon = loadable(() => import("@assets/CallChatIcon"));
 const SettingsIcon = loadable(() => import("@assets/SettingsIcon"));
 
+const breakpoints = [1200, 576];
+const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+
 const mainMenu = [
   { icon: HomeIcon, href: "/", alt: "Home" },
   { icon: CodeIcon, href: "/subBlog", alt: "CSE" },
@@ -33,6 +36,10 @@ export default function MenuBar() {
         width: "6rem",
         height: "100%",
         paddingBottom: "1rem",
+
+        [mq[1]]: {
+          width: "1rem",
+        },
       }}
     >
       <div
@@ -54,6 +61,10 @@ export default function MenuBar() {
           "::-webkit-scrollbar-thumb": {
             borderRadius: "4px",
             background: "#2222",
+          },
+
+          [mq[1]]: {
+            display: "none",
           },
         }}
       >
