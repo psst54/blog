@@ -6,6 +6,7 @@ const itemContainer = (indent: number) => {
     display: "flex",
     alignItems: "center",
 
+    width: "100%",
     height: "2.25rem",
     paddingRight: "0.5rem",
     paddingLeft: `calc(${indent} * 1rem + 0.2rem)`,
@@ -14,20 +15,20 @@ const itemContainer = (indent: number) => {
   };
 };
 const titleStyle = {
+  flexGrow: 1,
   marginLeft: "0.1rem",
   fontSize: "1.25rem",
   fontWeight: 400,
-};
-const postCountStyle = {
-  marginLeft: "0.25rem",
-  color: "#0000004D",
-  fontSize: "1rem",
+
+  overflow: "hidden",
+  whiteSpace: "nowrap",
+  textOverflow: "ellipsis",
+  wordBreak: "break-all",
 };
 
 export default function CategoryItem({
   id = 0,
   title = "",
-  postCount = 0,
   isSelected = false,
   isOpen = false,
   indent = 0,
@@ -35,7 +36,6 @@ export default function CategoryItem({
 }: {
   id: number;
   title: string;
-  postCount: number;
   isSelected: boolean;
   isOpen: boolean;
   indent: number;
@@ -77,6 +77,7 @@ export default function CategoryItem({
           aria-label="toggle menu"
           onClick={handleButtonClick}
           css={{
+            flexShrink: 0,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -99,7 +100,6 @@ export default function CategoryItem({
         </button>
 
         <h4 css={titleStyle}>{title}</h4>
-        <p css={postCountStyle}>· {postCount}</p>
       </div>
     </Link>
   );
