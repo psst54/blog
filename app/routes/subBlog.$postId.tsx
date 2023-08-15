@@ -10,6 +10,9 @@ export function links() {
   return [{ rel: "stylesheet", href: styles }];
 }
 
+const breakpoints = [1200, 576];
+const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+
 export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
     context.env.SUPABASE_URL,
@@ -58,6 +61,10 @@ export default function PostPage() {
           "::-webkit-scrollbar-thumb": {
             borderRadius: "4px",
             background: "#53A8E2",
+          },
+
+          [mq[1]]: {
+            padding: "1rem",
           },
         }}
       >

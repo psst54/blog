@@ -69,6 +69,7 @@ export default function Content({ content }: { content: string }) {
         width: "100%",
         display: "flex",
         flexDirection: "column",
+        wordBreak: "keep-all",
 
         ".math": {
           flexShrink: 1,

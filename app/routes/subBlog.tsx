@@ -34,6 +34,10 @@ const categoryContainer = {
   height: "100%",
   background: "#FFFFFFB2",
   borderRadius: "2rem 0 0 0",
+
+  [mq[1]]: {
+    borderRadius: "1rem 0 0 0",
+  },
 };
 const contentContainer = {
   flexGrow: 1,
@@ -45,7 +49,7 @@ const contentContainer = {
   background: "#FFFFFF7F",
 
   [mq[1]]: {
-    borderRadius: "2rem 0 0 0",
+    borderRadius: "1rem 0 0 0",
   },
 };
 
