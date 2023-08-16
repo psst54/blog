@@ -1,6 +1,7 @@
 import type { LoaderArgs } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import Content from "@components/PostContent";
+import PostList from "@components/PostList";
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
@@ -23,13 +24,23 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     try {
       const { data: postData, error: postError } = await supabase
         .from("posts")
-        .select("title, sub_title, content, tags")
+        .select("title, sub_title, content, tags, type")
         .eq("id", id)
         .single();
 
       if (postError) throw new Error();
 
-      return postData;
+      if (postData.type === "post") return postData;
+
+      const { data: databaseData, error: databaseError } = await supabase
+        .from("posts")
+        .select("title, sub_title, tags, id, thumbnail")
+        .eq("parent_id", id)
+        .order("created_at", { ascending: false });
+
+      if (databaseError) throw new Error();
+
+      return { ...postData, posts: databaseData };
     } catch (err) {
       return null;
     }
@@ -68,7 +79,7 @@ export default function PostPage() {
           },
         }}
       >
-        {content?.tags && (
+        {content?.tags.length > 0 && (
           <div
             css={{
               display: "flex",
@@ -91,7 +102,9 @@ export default function PostPage() {
             ))}
           </div>
         )}
-        <h1 css={{ fontSize: "2rem", fontWeight: 800 }}>{content?.title}</h1>
+        <h1 css={{ fontSize: "2rem", fontWeight: 800, wordBreak: "keep-all" }}>
+          {content?.title}
+        </h1>
         {content?.sub_title && (
           <h2
             css={{
@@ -99,6 +112,7 @@ export default function PostPage() {
               color: "#555555",
               fontSize: "1rem",
               fontWeight: 500,
+              wordBreak: "keep-all",
             }}
           >
             {content?.sub_title}
@@ -108,7 +122,10 @@ export default function PostPage() {
         <hr
           css={{ width: "100%", border: "1px solid #70E3E3", margin: "2rem 0" }}
         />
-        <Content content={content?.content} />
+
+        {content?.type === "post" && <Content content={content?.content} />}
+
+        {content?.type === "database" && <PostList content={content?.posts} />}
       </div>
     </div>
   );
