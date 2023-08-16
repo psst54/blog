@@ -34,9 +34,9 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
       const { data: databaseData, error: databaseError } = await supabase
         .from("posts")
-        .select("title, sub_title, tags, id")
+        .select("title, sub_title, tags, id, thumbnail")
         .eq("parent_id", id)
-        .order("created_at");
+        .order("created_at", { ascending: false });
 
       if (databaseError) throw new Error();
 
