@@ -21,7 +21,7 @@ export const meta: V2_MetaFunction = () => {
 const background = {
   display: "flex",
   width: "100vw",
-  height: "100vh",
+  height: "100dvh",
   paddingTop: "2rem",
   background:
     "linear-gradient(174deg, #A8DC90 0%, #8BE2B3 33.33%, #70E3E3 66.67%, #53A8E2 100%)",
