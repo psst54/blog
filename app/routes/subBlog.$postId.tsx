@@ -85,7 +85,7 @@ export default function PostPage() {
               display: "flex",
               flexWrap: "wrap",
               gap: "0.25rem",
-              marginBottom: "1rem",
+              marginBottom: "0.5rem",
             }}
           >
             {content?.tags.map((tag: string) => (
@@ -102,7 +102,7 @@ export default function PostPage() {
             ))}
           </div>
         )}
-        <h1 css={{ fontSize: "2rem", fontWeight: 800, wordBreak: "keep-all" }}>
+        <h1 css={{ fontSize: "2rem", fontWeight: 500, wordBreak: "keep-all" }}>
           {content?.title}
         </h1>
         {content?.sub_title && (
@@ -120,7 +120,7 @@ export default function PostPage() {
         )}
 
         <hr
-          css={{ width: "100%", border: "1px solid #70E3E3", margin: "2rem 0" }}
+          css={{ width: "100%", border: "1px solid #70E3E3", margin: "1rem 0" }}
         />
 
         {content?.type === "post" && <Content content={content?.content} />}
