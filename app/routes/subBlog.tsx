@@ -32,7 +32,7 @@ const categoryContainer = {
   display: "flex",
   width: "100%",
   height: "100%",
-  background: "#FFFFFFB2",
+  background: "#FFFFFFD8",
   borderRadius: "2rem 0 0 0",
 
   [mq[1]]: {
@@ -46,7 +46,7 @@ const contentContainer = {
   flexDirection: "column" as "column",
 
   height: "100%",
-  background: "#FFFFFF7F",
+  background: "#FFFFFF",
 
   [mq[1]]: {
     borderRadius: "1rem 0 0 0",
