@@ -12,7 +12,7 @@ export default function PostList({ content }: { content: any }) {
         gap: "1.5rem",
       }}
     >
-      {content.map((post) => (
+      {content?.map((post) => (
         <Link
           aria-label={post.title}
           to={`/subBlog/${post.id}`}
@@ -43,7 +43,7 @@ export default function PostList({ content }: { content: any }) {
               css={{
                 width: "100%",
                 height: "50%",
-                background: "#8BE2B3B2",
+                background: "#70E3E3B2",
                 borderRadius: "1rem 1rem 0 0",
               }}
             >
