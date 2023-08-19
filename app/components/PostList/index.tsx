@@ -1,12 +1,15 @@
 import { Link } from "@remix-run/react";
 
+const breakpoints = [1200, 576];
+const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+
 export default function PostList({ content }: { content: any }) {
   return (
     <div
       css={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(320px, auto))",
-        gap: "2rem",
+        gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+        gap: "1.5rem",
       }}
     >
       {content.map((post) => (
@@ -23,6 +26,17 @@ export default function PostList({ content }: { content: any }) {
               border: "1px solid rgba(255, 255, 255, 0.25)",
               borderRadius: "1rem",
               boxShadow: "4px 4px 15px 3px rgba(78, 120, 97, 0.25)",
+
+              [mq[0]]: {
+                minHeight: "400px",
+                height: "40vw",
+                maxHeight: "600px",
+              },
+              [mq[1]]: {
+                minHeight: "350px",
+                height: "80vw",
+                maxHeight: "400px",
+              },
             }}
           >
             <div

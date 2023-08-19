@@ -51,7 +51,7 @@ export default function CategoryList({
   const [isOpen, setIsOpen] = useState(true);
 
   const handleResize = () => {
-    if (window.innerWidth < 1000) setIsOpen(false);
+    if (window.innerWidth < 1464) setIsOpen(false);
     else setIsOpen(true);
   };
 
@@ -64,7 +64,7 @@ export default function CategoryList({
       css={{
         width: isOpen ? "18rem" : "4rem",
         flexShrink: 0,
-        [mq[1]]: {
+        [mq[0]]: {
           display: "none",
         },
       }}

@@ -27,6 +27,10 @@ const background = {
     "linear-gradient(174deg, #A8DC90 0%, #8BE2B3 33.33%, #70E3E3 66.67%, #53A8E2 100%)",
 
   overflow: "hidden",
+
+  [mq[0]]: {
+    paddingTop: "3.5rem",
+  },
 };
 const categoryContainer = {
   display: "flex",
@@ -48,6 +52,9 @@ const contentContainer = {
   height: "100%",
   background: "#FFFFFF",
 
+  [mq[0]]: {
+    borderRadius: "2rem 0 0 0",
+  },
   [mq[1]]: {
     borderRadius: "1rem 0 0 0",
   },

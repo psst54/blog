@@ -37,7 +37,7 @@ export default function MenuBar() {
         height: "100%",
         paddingBottom: "1rem",
 
-        [mq[1]]: {
+        [mq[0]]: {
           width: "1rem",
         },
       }}
@@ -63,7 +63,7 @@ export default function MenuBar() {
             background: "#2222",
           },
 
-          [mq[1]]: {
+          [mq[0]]: {
             display: "none",
           },
         }}
