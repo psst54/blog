@@ -5,7 +5,7 @@ export default function PostList({ content }: { content: any }) {
     <div
       css={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(300px, auto))",
+        gridTemplateColumns: "repeat(auto-fill, minmax(320px, auto))",
         gap: "2rem",
       }}
     >
@@ -19,7 +19,7 @@ export default function PostList({ content }: { content: any }) {
             css={{
               display: "flex",
               flexDirection: "column" as "column",
-              height: 420,
+              height: "350px",
               border: "1px solid rgba(255, 255, 255, 0.25)",
               borderRadius: "1rem",
               boxShadow: "4px 4px 15px 3px rgba(78, 120, 97, 0.25)",
@@ -48,8 +48,8 @@ export default function PostList({ content }: { content: any }) {
             <div css={{ width: "100%", height: "50%", padding: "1rem" }}>
               <h2
                 css={{
-                  fontSize: "1.5rem",
-                  fontWeight: 400,
+                  fontSize: "1.2rem",
+                  fontWeight: 500,
                   wordBreak: "keep-all",
                 }}
               >
@@ -60,7 +60,7 @@ export default function PostList({ content }: { content: any }) {
                   marginTop: "0.5rem",
                   color: "#777777",
                   fontSize: "1rem",
-                  fontWeight: 400,
+                  fontWeight: 300,
                   wordBreak: "keep-all",
                 }}
               >
@@ -72,22 +72,23 @@ export default function PostList({ content }: { content: any }) {
                   display: "flex",
                   flexWrap: "wrap",
                   gap: "0.25rem",
-                  marginTop: "1rem",
+                  marginTop: "0.5rem",
                 }}
               >
-                {post.tags.map((tag) => (
-                  <div
-                    css={{
-                      padding: "0.25rem 0.75rem",
-                      background: "#4D4D4D",
-                      borderRadius: "0.5rem",
-                      color: "#FFFFFF",
-                      fontWeight: 500,
-                    }}
-                  >
-                    {tag}
-                  </div>
-                ))}
+                {post?.tags &&
+                  post.tags.map((tag) => (
+                    <div
+                      css={{
+                        padding: "0.1rem 0.5rem",
+                        background: "transparent",
+                        border: "1px solid #4D4D4D",
+                        borderRadius: "0.5rem",
+                        color: "#4D4D4D",
+                      }}
+                    >
+                      {tag}
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
