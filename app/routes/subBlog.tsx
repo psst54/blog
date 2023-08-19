@@ -94,7 +94,7 @@ export const loader = async ({ context }: LoaderArgs) => {
 
       return postData;
     } catch (err) {
-      return null;
+      return [];
     }
   };
 
