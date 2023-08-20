@@ -12,8 +12,9 @@ export default function PostList({ content }: { content: any }) {
         gap: "1.5rem",
       }}
     >
-      {content?.map((post) => (
+      {content?.map((post, postIdx: number) => (
         <Link
+          key={postIdx}
           aria-label={post.title}
           to={`/subBlog/${post.id}`}
           css={{ textDecoration: "none", color: "initial" }}
@@ -90,8 +91,9 @@ export default function PostList({ content }: { content: any }) {
                 }}
               >
                 {post?.tags &&
-                  post.tags.map((tag) => (
+                  post.tags.map((tag: string, tagIdx: number) => (
                     <div
+                      key={tagIdx}
                       css={{
                         padding: "0.1rem 0.5rem",
                         background: "transparent",
