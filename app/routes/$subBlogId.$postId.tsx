@@ -66,24 +66,13 @@ export default function PostPage() {
   const { content, subBlogId } = useLoaderData<typeof loader>();
 
   return (
-    <div css={{ width: "100%", height: "100%" }}>
+    <div css={{ width: "100%" }}>
       <div
         css={{
           width: "100%",
-          height: "100%",
           padding: "2rem 1.5rem",
 
           wordBreak: "break-word",
-
-          overflowY: "auto",
-          "::-webkit-scrollbar": {
-            width: "8px",
-            height: "8px",
-          },
-          "::-webkit-scrollbar-thumb": {
-            borderRadius: "4px",
-            background: "#53A8E2",
-          },
 
           [mq[1]]: {
             padding: "1rem",

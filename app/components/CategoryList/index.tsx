@@ -54,15 +54,6 @@ export default function CategoryList({
   subBlogId: string;
   postId: string;
 }) {
-  const handleResize = () => {
-    if (window.innerWidth < 1464) setIsOpen(false);
-    else setIsOpen(true);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-  }, []);
-
   return (
     <div
       css={{
