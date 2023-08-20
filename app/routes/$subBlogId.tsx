@@ -22,15 +22,11 @@ const background = {
   display: "flex",
   width: "100vw",
   height: "100dvh",
-  paddingTop: "2rem",
+  paddingTop: "0.5rem",
   background:
     "linear-gradient(174deg, #A8DC90 0%, #8BE2B3 33.33%, #70E3E3 66.67%, #53A8E2 100%)",
 
   overflow: "hidden",
-
-  [mq[0]]: {
-    paddingTop: "3.5rem",
-  },
 };
 const categoryContainer = {
   display: "flex",
