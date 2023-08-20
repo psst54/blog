@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData, useParams } from "@remix-run/react";
 import { Outlet } from "@remix-run/react";
@@ -21,18 +21,22 @@ export const meta: V2_MetaFunction = () => {
 const background = {
   display: "flex",
   width: "100vw",
-  height: "100vh",
+  height: "100dvh",
   paddingTop: "2rem",
   background:
     "linear-gradient(174deg, #A8DC90 0%, #8BE2B3 33.33%, #70E3E3 66.67%, #53A8E2 100%)",
 
   overflow: "hidden",
+
+  [mq[0]]: {
+    paddingTop: "3.5rem",
+  },
 };
 const categoryContainer = {
   display: "flex",
   width: "100%",
   height: "100%",
-  background: "#FFFFFFB2",
+  background: "#FFFFFFD8",
   borderRadius: "2rem 0 0 0",
 
   [mq[1]]: {
@@ -46,8 +50,11 @@ const contentContainer = {
   flexDirection: "column" as "column",
 
   height: "100%",
-  background: "#FFFFFF7F",
+  background: "#FFFFFF",
 
+  [mq[0]]: {
+    borderRadius: "2rem 0 0 0",
+  },
   [mq[1]]: {
     borderRadius: "1rem 0 0 0",
   },
@@ -55,11 +62,9 @@ const contentContainer = {
 
 function buildTree(items: any) {
   const itemMap = {};
-  const isOpen = {};
 
   for (const item of items) {
     itemMap[item.id] = { ...item, children: [] };
-    isOpen[item.id] = false;
   }
 
   const rootNodes = [];
@@ -74,19 +79,19 @@ function buildTree(items: any) {
     }
   }
 
-  return { data: rootNodes, dataOpen: isOpen };
+  return rootNodes;
 }
 
-export const loader = async ({ context }: LoaderArgs) => {
+export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
     context.env.SUPABASE_URL,
     context.env.SUPABASE_KEY
   );
 
-  const loadData = async () => {
+  const loadData = async ({ subBlogId }: { subBlogId: string }) => {
     try {
       const { data: postData, error: postError } = await supabase
-        .from("posts")
+        .from(subBlogId)
         .select("id, title, parent_id, type")
         .order("created_at");
 
@@ -94,22 +99,33 @@ export const loader = async ({ context }: LoaderArgs) => {
 
       return postData;
     } catch (err) {
-      return null;
+      return [];
     }
   };
 
-  const rawData = await loadData();
-  return rawData;
+  const subBlogId = params.subBlogId || "";
+
+  const rawData = await loadData({ subBlogId });
+
+  return { data: buildTree(rawData), subBlogId };
 };
 
 export default function SubBlog() {
-  const [data, setData] = useState(buildTree(useLoaderData<typeof loader>()));
+  const { data, subBlogId } = useLoaderData<typeof loader>();
+  const [isPostOpen, setIsPostOpen] = useState({});
   const params = useParams();
+  const postId = params.postId || "";
+
+  useEffect(() => {
+    const newObj = {};
+    data.forEach((datum) => (newObj[datum] = false));
+    setIsPostOpen(newObj);
+  }, [data]);
 
   const setDataOpen = (id: number) => {
-    const newData = { ...data.dataOpen };
+    const newData = { ...isPostOpen };
     newData[id] = !newData[id];
-    setData({ ...data, dataOpen: { ...newData } });
+    setIsPostOpen({ ...newData });
   };
 
   return (
@@ -118,10 +134,11 @@ export default function SubBlog() {
 
       <div css={categoryContainer}>
         <CategoryList
-          data={data.data}
-          setDataOpen={setDataOpen}
-          dataOpen={data.dataOpen}
-          postId={params?.postId || ""}
+          data={data}
+          isPostOpen={isPostOpen}
+          setIsPostOpen={setDataOpen}
+          subBlogId={subBlogId}
+          postId={postId}
         />
 
         <div css={contentContainer}>

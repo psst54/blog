@@ -12,9 +12,9 @@ const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 const mainMenu = [
   { icon: HomeIcon, href: "/", alt: "Home" },
-  { icon: CodeIcon, href: "/subBlog", alt: "CSE" },
-  { icon: BookBookmarkIcon, href: "/subBlog", alt: "PHI" },
-  { icon: HeartIcon, href: "/subBlog", alt: "Like" },
+  { icon: CodeIcon, href: "/cse", alt: "CSE" },
+  { icon: BookBookmarkIcon, href: "/phi", alt: "PHI" },
+  { icon: HeartIcon, href: "/lik", alt: "Like" },
 ];
 
 const bottomMenu = [
@@ -37,7 +37,7 @@ export default function MenuBar() {
         height: "100%",
         paddingBottom: "1rem",
 
-        [mq[1]]: {
+        [mq[0]]: {
           width: "1rem",
         },
       }}
@@ -63,7 +63,7 @@ export default function MenuBar() {
             background: "#2222",
           },
 
-          [mq[1]]: {
+          [mq[0]]: {
             display: "none",
           },
         }}

@@ -20,10 +20,16 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     context.env.SUPABASE_KEY
   );
 
-  const loadData = async (id: string) => {
+  const loadData = async ({
+    subBlogId,
+    id,
+  }: {
+    subBlogId: string;
+    id: string;
+  }) => {
     try {
       const { data: postData, error: postError } = await supabase
-        .from("posts")
+        .from(subBlogId)
         .select("title, sub_title, content, tags, type")
         .eq("id", id)
         .single();
@@ -33,7 +39,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
       if (postData.type === "post") return postData;
 
       const { data: databaseData, error: databaseError } = await supabase
-        .from("posts")
+        .from(subBlogId)
         .select("title, sub_title, tags, id, thumbnail")
         .eq("parent_id", id)
         .order("created_at", { ascending: false });
@@ -46,13 +52,18 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     }
   };
 
-  const data = await loadData(params.postId || "");
+  const subBlogId = params.subBlogId || "";
 
-  return data;
+  const data = await loadData({
+    subBlogId,
+    id: params.postId || "",
+  });
+
+  return { content: data, subBlogId };
 };
 
 export default function PostPage() {
-  const content = useLoaderData<typeof loader>();
+  const { content, subBlogId } = useLoaderData<typeof loader>();
 
   return (
     <div css={{ width: "100%", height: "100%" }}>
@@ -85,11 +96,12 @@ export default function PostPage() {
               display: "flex",
               flexWrap: "wrap",
               gap: "0.25rem",
-              marginBottom: "1rem",
+              marginBottom: "0.5rem",
             }}
           >
-            {content?.tags.map((tag: string) => (
+            {content?.tags.map((tag: string, tagIdx: number) => (
               <div
+                key={tagIdx}
                 css={{
                   padding: "0.25rem 0.75rem",
                   background: "#4D4D4D",
@@ -102,7 +114,7 @@ export default function PostPage() {
             ))}
           </div>
         )}
-        <h1 css={{ fontSize: "2rem", fontWeight: 800, wordBreak: "keep-all" }}>
+        <h1 css={{ fontSize: "2rem", fontWeight: 500, wordBreak: "keep-all" }}>
           {content?.title}
         </h1>
         {content?.sub_title && (
@@ -120,12 +132,14 @@ export default function PostPage() {
         )}
 
         <hr
-          css={{ width: "100%", border: "1px solid #70E3E3", margin: "2rem 0" }}
+          css={{ width: "100%", border: "1px solid #70E3E3", margin: "1rem 0" }}
         />
 
         {content?.type === "post" && <Content content={content?.content} />}
 
-        {content?.type === "database" && <PostList content={content?.posts} />}
+        {content?.type === "database" && (
+          <PostList content={content?.posts} subBlogId={subBlogId} />
+        )}
       </div>
     </div>
   );
