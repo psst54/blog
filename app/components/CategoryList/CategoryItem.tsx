@@ -27,19 +27,21 @@ const titleStyle = {
 };
 
 export default function CategoryItem({
+  subBlogId,
   id = 0,
   title = "",
   isSelected = false,
   isOpen = false,
   indent = 0,
-  setDataOpen,
+  setIsPostOpen,
 }: {
+  subBlogId: string;
   id: number;
   title: string;
   isSelected: boolean;
   isOpen: boolean;
   indent: number;
-  setDataOpen: Function;
+  setIsPostOpen: Function;
 }) {
   const handleAnchorClick = (event) => {
     if (
@@ -52,12 +54,12 @@ export default function CategoryItem({
   };
 
   const handleButtonClick = () => {
-    setDataOpen(id);
+    setIsPostOpen(id);
   };
 
   return (
     <Link
-      to={`/subBlog/${id}`}
+      to={`/${subBlogId}/${id}`}
       css={{
         textDecoration: "none",
         color: "black",

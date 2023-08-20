@@ -7,30 +7,33 @@ const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 const renderTreeItem = (
   item,
   idx: number,
-  dataOpen,
-  setDataOpen,
+  isPostOpen,
+  setIsPostOpen,
   depth: number,
+  subBlogId: string,
   postId
 ) => {
   return (
     <div key={idx}>
       <CategoryItem
-        id={item.id}
-        title={item.title}
-        postCount={item.postCount}
+        subBlogId={subBlogId}
+        id={item?.id}
+        title={item?.title}
         indent={depth}
-        isOpen={dataOpen[item.id]}
-        isSelected={postId === item.id}
-        setDataOpen={setDataOpen}
+        // isOpen={false}
+        isOpen={isPostOpen[item?.id]}
+        isSelected={postId === item?.id}
+        setIsPostOpen={setIsPostOpen}
       />
-      {dataOpen[item.id] &&
+      {isPostOpen[item.id] &&
         item?.children.map((child, childIdx: number) =>
           renderTreeItem(
             child,
             childIdx,
-            dataOpen,
-            setDataOpen,
+            isPostOpen,
+            setIsPostOpen,
             depth + 1,
+            subBlogId,
             postId
           )
         )}
@@ -40,12 +43,14 @@ const renderTreeItem = (
 
 export default function CategoryList({
   data,
-  dataOpen,
-  setDataOpen,
+  isPostOpen,
+  setIsPostOpen,
+  subBlogId,
   postId,
 }: {
-  isOpen: boolean;
+  setIsPostOpen: Function;
   data: any;
+  subBlogId: string;
   postId: string;
 }) {
   const [isOpen, setIsOpen] = useState(true);
@@ -75,9 +80,10 @@ export default function CategoryList({
             return renderTreeItem(
               datum,
               datumIdx,
-              dataOpen,
-              setDataOpen,
+              isPostOpen,
+              setIsPostOpen,
               0,
+              subBlogId,
               postId
             );
           })}

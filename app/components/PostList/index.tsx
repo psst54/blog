@@ -3,7 +3,13 @@ import { Link } from "@remix-run/react";
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
-export default function PostList({ content }: { content: any }) {
+export default function PostList({
+  content,
+  subBlogId,
+}: {
+  content: any;
+  subBlogId: string;
+}) {
   return (
     <div
       css={{
@@ -16,7 +22,7 @@ export default function PostList({ content }: { content: any }) {
         <Link
           key={postIdx}
           aria-label={post.title}
-          to={`/subBlog/${post.id}`}
+          to={`/${subBlogId}/${post.id}`}
           css={{ textDecoration: "none", color: "initial" }}
         >
           <div

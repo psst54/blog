@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData, useParams } from "@remix-run/react";
 import { Outlet } from "@remix-run/react";
@@ -62,11 +62,9 @@ const contentContainer = {
 
 function buildTree(items: any) {
   const itemMap = {};
-  const isOpen = {};
 
   for (const item of items) {
     itemMap[item.id] = { ...item, children: [] };
-    isOpen[item.id] = false;
   }
 
   const rootNodes = [];
@@ -81,19 +79,19 @@ function buildTree(items: any) {
     }
   }
 
-  return { data: rootNodes, dataOpen: isOpen };
+  return rootNodes;
 }
 
-export const loader = async ({ context }: LoaderArgs) => {
+export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
     context.env.SUPABASE_URL,
     context.env.SUPABASE_KEY
   );
 
-  const loadData = async () => {
+  const loadData = async ({ subBlogId }: { subBlogId: string }) => {
     try {
       const { data: postData, error: postError } = await supabase
-        .from("posts")
+        .from(subBlogId)
         .select("id, title, parent_id, type")
         .order("created_at");
 
@@ -105,19 +103,23 @@ export const loader = async ({ context }: LoaderArgs) => {
     }
   };
 
-  const rawData = await loadData();
+  const rawData = await loadData({ subBlogId: params.subBlogId || "" });
+
   return rawData;
 };
 
 export default function SubBlog() {
-  const [data, setData] = useState(buildTree(useLoaderData<typeof loader>()));
+  const data = buildTree(useLoaderData<typeof loader>());
+  const [isPostOpen, setIsPostOpen] = useState([]);
   const params = useParams();
 
   const setDataOpen = (id: number) => {
-    const newData = { ...data.dataOpen };
+    const newData = { ...isPostOpen };
     newData[id] = !newData[id];
-    setData({ ...data, dataOpen: { ...newData } });
+    setIsPostOpen({ ...newData });
   };
+
+  useEffect(() => {}, [data]);
 
   return (
     <main css={background}>
@@ -125,10 +127,11 @@ export default function SubBlog() {
 
       <div css={categoryContainer}>
         <CategoryList
-          data={data.data}
+          data={data}
+          isPostOpen={isPostOpen}
           setDataOpen={setDataOpen}
-          dataOpen={data.dataOpen}
-          postId={params?.postId || ""}
+          subBlogId={params.subBlogId || ""}
+          postId={params.postId || ""}
         />
 
         <div css={contentContainer}>
