@@ -103,23 +103,30 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     }
   };
 
-  const rawData = await loadData({ subBlogId: params.subBlogId || "" });
+  const subBlogId = params.subBlogId || "";
 
-  return rawData;
+  const rawData = await loadData({ subBlogId });
+
+  return { data: buildTree(rawData), subBlogId };
 };
 
 export default function SubBlog() {
-  const data = buildTree(useLoaderData<typeof loader>());
-  const [isPostOpen, setIsPostOpen] = useState([]);
+  const { data, subBlogId } = useLoaderData<typeof loader>();
+  const [isPostOpen, setIsPostOpen] = useState({});
   const params = useParams();
+  const postId = params.postId || "";
+
+  useEffect(() => {
+    const newObj = {};
+    data.forEach((datum) => (newObj[datum] = false));
+    setIsPostOpen(newObj);
+  }, [data]);
 
   const setDataOpen = (id: number) => {
     const newData = { ...isPostOpen };
     newData[id] = !newData[id];
     setIsPostOpen({ ...newData });
   };
-
-  useEffect(() => {}, [data]);
 
   return (
     <main css={background}>
@@ -129,9 +136,9 @@ export default function SubBlog() {
         <CategoryList
           data={data}
           isPostOpen={isPostOpen}
-          setDataOpen={setDataOpen}
-          subBlogId={params.subBlogId || ""}
-          postId={params.postId || ""}
+          setIsPostOpen={setDataOpen}
+          subBlogId={subBlogId}
+          postId={postId}
         />
 
         <div css={contentContainer}>

@@ -48,8 +48,9 @@ export default function CategoryList({
   subBlogId,
   postId,
 }: {
-  setIsPostOpen: Function;
   data: any;
+  isPostOpen: boolean[];
+  setIsPostOpen: Function;
   subBlogId: string;
   postId: string;
 }) {

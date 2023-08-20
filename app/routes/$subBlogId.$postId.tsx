@@ -99,8 +99,9 @@ export default function PostPage() {
               marginBottom: "0.5rem",
             }}
           >
-            {content?.tags.map((tag: string) => (
+            {content?.tags.map((tag: string, tagIdx: number) => (
               <div
+                key={tagIdx}
                 css={{
                   padding: "0.25rem 0.75rem",
                   background: "#4D4D4D",
