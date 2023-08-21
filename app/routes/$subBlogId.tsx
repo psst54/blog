@@ -3,6 +3,7 @@ import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData, useParams } from "@remix-run/react";
 import { Outlet } from "@remix-run/react";
 
+import TopBar from "@components/TopBar";
 import MenuBar from "@components/MenuBar";
 import CategoryList from "@components/CategoryList";
 import { createClient } from "@supabase/supabase-js";
@@ -41,6 +42,10 @@ const categoryContainer = {
   borderRadius: "2rem 0 0 0",
 
   marginTop: "0.5rem",
+
+  [mq[0]]: {
+    marginTop: "3rem",
+  },
 
   [mq[1]]: {
     borderRadius: "1rem 0 0 0",
@@ -135,6 +140,7 @@ export default function SubBlog() {
       <div css={gradient}></div>
 
       <MenuBar />
+      <TopBar />
 
       <div css={categoryContainer}>
         <CategoryList
