@@ -17,16 +17,6 @@ export const meta: V2_MetaFunction = () => {
   ];
 };
 
-const globalStyle = {
-  boxSizing: "border-box",
-  margin: 0,
-  padding: 0,
-  fontFamily:
-    '"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif',
-
-  "*": { boxSizing: "border-box", margin: 0, padding: 0 },
-};
-
 const globalStyleCss = css`
   box-sizing: border-box;
   margin: 0;

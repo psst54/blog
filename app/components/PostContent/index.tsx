@@ -20,20 +20,24 @@ import {
 } from "@styles/markdown";
 
 const components = {
-  h1: (props: any) => <h1 css={styledH1} {...props} />,
-  h2: (props: any) => <h2 css={styledH2} {...props} />,
-  h3: (props: any) => <h3 css={styledH3} {...props} />,
-  h4: (props: any) => <h4 css={styledH3} {...props} />,
-  h5: (props: any) => <h5 css={styledH3} {...props} />,
-  h6: (props: any) => <h6 css={styledH3} {...props} />,
-  p: (props: any) => <p css={styledP} {...props} />,
-  a: (props: any) => <a target="_blank" css={styledA} {...props} />,
-  li: (props: any) => <li css={styledLi} {...props} />,
-  ol: (props: any) => <ol css={styledOl} {...props} />,
-  ul: (props: any) => <ul css={styledUl} {...props} />,
-  blockquote: (props: any) => <blockquote css={styledBlockquote} {...props} />,
-  img: (props: any) => <img css={styledImg} {...props} />,
-  pre: (props: any) => <pre {...props} />,
+  h1: (props: any) => <h1 css={styledH1} children={props.children} />,
+  h2: (props: any) => <h2 css={styledH2} children={props.children} />,
+  h3: (props: any) => <h3 css={styledH3} children={props.children} />,
+  h4: (props: any) => <h4 css={styledH3} children={props.children} />,
+  h5: (props: any) => <h5 css={styledH3} children={props.children} />,
+  h6: (props: any) => <h6 css={styledH3} children={props.children} />,
+  p: (props: any) => <p css={styledP} children={props.children} />,
+  a: (props: any) => (
+    <a target="_blank" css={styledA} children={props.children} />
+  ),
+  li: (props: any) => <li css={styledLi} children={props.children} />,
+  ol: (props: any) => <ol css={styledOl} children={props.children} />,
+  ul: (props: any) => <ul css={styledUl} children={props.children} />,
+  blockquote: (props: any) => (
+    <blockquote css={styledBlockquote} children={props.children} />
+  ),
+  img: (props: any) => <img css={styledImg} alt={props.alt} src={props.src} />,
+  pre: (props: any) => <pre children={props.children} />,
   code: (props: any) => {
     const match = /language-(\w+)/.exec(props.className || "");
     return !props.inline && match ? (
@@ -43,21 +47,9 @@ const components = {
         language={match[1]}
         PreTag="div"
         {...props}
-        css={{
-          "::-webkit-scrollbar": {
-            width: "8px",
-            height: "8px",
-          },
-          "::-webkit-scrollbar-thumb": {
-            borderRadius: "4px",
-            background: "#53A8E2",
-          },
-        }}
       />
     ) : (
-      <code css={styledCode} {...props}>
-        {props.children}
-      </code>
+      <code css={styledCode} children={props.children} />
     );
   },
 };
@@ -75,7 +67,6 @@ export default function Content({ content }: { content: string }) {
           flexShrink: 1,
           maxWidth: "100%",
           overflowX: "auto",
-          overflowY: "hidden",
 
           "::-webkit-scrollbar": {
             width: "8px",

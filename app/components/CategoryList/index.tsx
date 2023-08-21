@@ -54,42 +54,29 @@ export default function CategoryList({
   subBlogId: string;
   postId: string;
 }) {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const handleResize = () => {
-    if (window.innerWidth < 1464) setIsOpen(false);
-    else setIsOpen(true);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-  }, []);
-
   return (
     <div
       css={{
-        width: isOpen ? "18rem" : "4rem",
+        width: "18rem",
         flexShrink: 0,
         [mq[0]]: {
           display: "none",
         },
       }}
     >
-      {isOpen && (
-        <div css={{ padding: "1rem", paddingTop: "2rem" }}>
-          {data.map((datum, datumIdx: number) => {
-            return renderTreeItem(
-              datum,
-              datumIdx,
-              isPostOpen,
-              setIsPostOpen,
-              0,
-              subBlogId,
-              postId
-            );
-          })}
-        </div>
-      )}
+      <div css={{ padding: "1rem", paddingTop: "2rem" }}>
+        {data.map((datum, datumIdx: number) => {
+          return renderTreeItem(
+            datum,
+            datumIdx,
+            isPostOpen,
+            setIsPostOpen,
+            0,
+            subBlogId,
+            postId
+          );
+        })}
+      </div>
     </div>
   );
 }

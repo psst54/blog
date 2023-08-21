@@ -34,7 +34,7 @@ export default function MenuBar() {
       css={{
         flexShrink: 0,
         width: "6rem",
-        height: "100%",
+        height: "100dvh",
         paddingBottom: "1rem",
 
         [mq[0]]: {
@@ -44,13 +44,16 @@ export default function MenuBar() {
     >
       <div
         css={{
+          position: "fixed",
           display: "flex",
           flexDirection: "column" as "column",
           gap: "1rem",
           alignItems: "center",
           justifyContent: "space-between",
 
+          width: "6rem",
           height: "100%",
+          padding: "1rem 0",
 
           overflowY: "auto",
 
@@ -65,6 +68,7 @@ export default function MenuBar() {
 
           [mq[0]]: {
             display: "none",
+            width: "1rem",
           },
         }}
       >

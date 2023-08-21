@@ -3,6 +3,7 @@ import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData, useParams } from "@remix-run/react";
 import { Outlet } from "@remix-run/react";
 
+import TopBar from "@components/TopBar";
 import MenuBar from "@components/MenuBar";
 import CategoryList from "@components/CategoryList";
 import { createClient } from "@supabase/supabase-js";
@@ -20,24 +21,31 @@ export const meta: V2_MetaFunction = () => {
 
 const background = {
   display: "flex",
-  width: "100vw",
+  width: "100%",
+  height: "100%",
+};
+const gradient = {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
   height: "100dvh",
-  paddingTop: "2rem",
   background:
     "linear-gradient(174deg, #A8DC90 0%, #8BE2B3 33.33%, #70E3E3 66.67%, #53A8E2 100%)",
 
-  overflow: "hidden",
-
-  [mq[0]]: {
-    paddingTop: "3.5rem",
-  },
+  zIndex: -1,
 };
 const categoryContainer = {
   display: "flex",
   width: "100%",
-  height: "100%",
   background: "#FFFFFFD8",
   borderRadius: "2rem 0 0 0",
+
+  marginTop: "0.5rem",
+
+  [mq[0]]: {
+    marginTop: "3rem",
+  },
 
   [mq[1]]: {
     borderRadius: "1rem 0 0 0",
@@ -49,7 +57,6 @@ const contentContainer = {
   display: "flex",
   flexDirection: "column" as "column",
 
-  height: "100%",
   background: "#FFFFFF",
 
   [mq[0]]: {
@@ -130,7 +137,10 @@ export default function SubBlog() {
 
   return (
     <main css={background}>
+      <div css={gradient}></div>
+
       <MenuBar />
+      <TopBar />
 
       <div css={categoryContainer}>
         <CategoryList
