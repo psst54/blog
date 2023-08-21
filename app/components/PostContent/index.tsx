@@ -47,16 +47,6 @@ const components = {
         language={match[1]}
         PreTag="div"
         {...props}
-        css={{
-          "::-webkit-scrollbar": {
-            width: "8px",
-            height: "8px",
-          },
-          "::-webkit-scrollbar-thumb": {
-            borderRadius: "4px",
-            background: "#53A8E2",
-          },
-        }}
       />
     ) : (
       <code css={styledCode} children={props.children} />

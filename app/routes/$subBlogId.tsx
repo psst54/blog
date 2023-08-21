@@ -20,34 +20,27 @@ export const meta: V2_MetaFunction = () => {
 
 const background = {
   display: "flex",
-  width: "100vw",
-  height: "100dvh",
-  // paddingTop: "0.5rem",
-
-  overflow: "auto",
-  "::-webkit-scrollbar": {
-    width: "8px",
-    height: "8px",
-  },
-  "::-webkit-scrollbar-thumb": {
-    borderRadius: "4px",
-    background: "#53A8E2",
-  },
+  width: "100%",
+  height: "100%",
 };
 const gradient = {
   position: "fixed",
-  width: "100vw",
+  top: 0,
+  left: 0,
+  width: "100%",
   height: "100dvh",
   background:
     "linear-gradient(174deg, #A8DC90 0%, #8BE2B3 33.33%, #70E3E3 66.67%, #53A8E2 100%)",
 
-  zIndex: "-1",
+  zIndex: -1,
 };
 const categoryContainer = {
   display: "flex",
   width: "100%",
   background: "#FFFFFFD8",
   borderRadius: "2rem 0 0 0",
+
+  marginTop: "0.5rem",
 
   [mq[1]]: {
     borderRadius: "1rem 0 0 0",
