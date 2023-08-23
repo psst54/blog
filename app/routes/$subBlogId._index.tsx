@@ -5,11 +5,6 @@ import PostList from "@components/PostList";
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
 
-import styles from "@styles/katex.css";
-export function links() {
-  return [{ rel: "stylesheet", href: styles }];
-}
-
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
