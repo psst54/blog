@@ -1,5 +1,13 @@
 import { Outlet } from "@remix-run/react";
 import MenuBar from "@components/MenuBar";
+import TopBar from "@components/TopBar";
+
+import {
+  background,
+  gradient,
+  categoryContainer,
+  contentContainer,
+} from "@styles/main";
 
 import type { V2_MetaFunction } from "@remix-run/cloudflare";
 export const meta: V2_MetaFunction = () => {
@@ -11,30 +19,16 @@ export const meta: V2_MetaFunction = () => {
 
 export default function Index() {
   return (
-    <main
-      css={{
-        display: "flex",
-        width: "100vw",
-        height: "100dvh",
-        paddingTop: "2rem",
-        background:
-          "linear-gradient(174deg, #A8DC90 0%, #8BE2B3 33.33%, #70E3E3 66.67%, #53A8E2 100%)",
+    <main css={background}>
+      <div css={gradient}></div>
 
-        overflow: "hidden",
-      }}
-    >
       <MenuBar />
+      <TopBar />
 
-      <div
-        css={{
-          display: "flex",
-          width: "100%",
-          height: "100%",
-          background: "#FFFFFFB2",
-          borderRadius: "1.5rem 0 0 0",
-        }}
-      >
-        <Outlet />
+      <div css={categoryContainer}>
+        <div css={{ width: "18rem" }}></div>
+
+        <div css={contentContainer}></div>
       </div>
     </main>
   );

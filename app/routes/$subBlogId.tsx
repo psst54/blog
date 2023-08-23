@@ -3,68 +3,24 @@ import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData, useParams } from "@remix-run/react";
 import { Outlet } from "@remix-run/react";
 
-import TopBar from "@components/TopBar";
 import MenuBar from "@components/MenuBar";
+import TopBar from "@components/TopBar";
 import CategoryList from "@components/CategoryList";
+import {
+  background,
+  gradient,
+  categoryContainer,
+  contentContainer,
+} from "@styles/main";
+
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
-
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 export const meta: V2_MetaFunction = () => {
   return [
     { title: "PSST54's log | sub blog" },
     { name: "description", content: "여기는 서브 블로그" },
   ];
-};
-
-const background = {
-  display: "flex",
-  width: "100%",
-  height: "100%",
-};
-const gradient = {
-  position: "fixed",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100dvh",
-  background:
-    "linear-gradient(174deg, #A8DC90 0%, #8BE2B3 33.33%, #70E3E3 66.67%, #53A8E2 100%)",
-
-  zIndex: -1,
-};
-const categoryContainer = {
-  display: "flex",
-  width: "100%",
-  background: "#FFFFFFD8",
-  borderRadius: "2rem 0 0 0",
-
-  marginTop: "0.5rem",
-
-  [mq[0]]: {
-    marginTop: "3rem",
-  },
-
-  [mq[1]]: {
-    borderRadius: "1rem 0 0 0",
-  },
-};
-const contentContainer = {
-  flexGrow: 1,
-  width: "0px",
-  display: "flex",
-  flexDirection: "column" as "column",
-
-  background: "#FFFFFF",
-
-  [mq[0]]: {
-    borderRadius: "2rem 0 0 0",
-  },
-  [mq[1]]: {
-    borderRadius: "1rem 0 0 0",
-  },
 };
 
 function buildTree(items: any) {
