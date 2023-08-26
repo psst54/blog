@@ -1,6 +1,8 @@
-import { Outlet } from "@remix-run/react";
 import MenuBar from "@components/MenuBar";
 import TopBar from "@components/TopBar";
+
+const breakpoints = [1200, 576];
+const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 import {
   background,
@@ -26,7 +28,14 @@ export default function Index() {
       <TopBar />
 
       <div css={categoryContainer}>
-        <div css={{ width: "18rem" }}></div>
+        <div
+          css={{
+            width: "18rem",
+            [mq[0]]: {
+              display: "none",
+            },
+          }}
+        ></div>
 
         <div css={contentContainer}></div>
       </div>
