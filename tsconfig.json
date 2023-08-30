@@ -18,7 +18,8 @@
       "@styles/*": ["./app/styles/*"],
       "@components/*": ["./app/components/*"],
       "@assets/*": ["./app/assets/*"],
-      "@supabase/*": ["./app/supabase/*"]
+      "@supabase/*": ["./app/supabase/*"],
+      "@screens/*": ["./app/screens/*"]
     },
     "jsxImportSource": "@emotion/react",
 
