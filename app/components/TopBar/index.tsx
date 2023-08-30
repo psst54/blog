@@ -1,5 +1,7 @@
 import { Link } from "@remix-run/react";
 
+import CategoroyPopUp from "@components/CategoryPopUp";
+
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
@@ -25,7 +27,7 @@ export default function TopBar() {
       }}
     >
       <Link to={`/`}>Home</Link>
-      <div>Menu</div>
+      <CategoroyPopUp />
     </div>
   );
 }
