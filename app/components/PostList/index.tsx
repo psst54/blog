@@ -44,6 +44,18 @@ export default function PostList({
                 height: "80vw",
                 maxHeight: "400px",
               },
+
+              "&:hover": {
+                boxShadow: "4px 4px 15px 5px rgba(78, 120, 97, 0.3)",
+                transform: "translateY(-0.25rem)",
+                transition: "transform 0.1s ease-in-out",
+                zIndex: 2,
+              },
+
+              ":not(:hover)": {
+                transform: "translateY(0)",
+                transition: "transform 0.1s ease-in-out",
+              },
             }}
           >
             <div
