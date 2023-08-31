@@ -33,18 +33,32 @@ export default function PostPageScreen({
               marginBottom: "0.5rem",
             }}
           >
-            {content.tags.map((tag: string) => (
-              <div
-                css={{
-                  padding: "0.25rem 0.75rem",
-                  background: "#4D4D4D",
-                  borderRadius: "0.5rem",
-                  color: "#ffffff",
-                }}
-              >
-                {tag}
-              </div>
-            ))}
+            {content.tags.map(
+              (tag: { text: string; isSpoiler: boolean }, tagIdx: number) => (
+                <div
+                  key={tagIdx}
+                  css={{
+                    padding: "0.25rem 0.75rem",
+                    background: "#4D4D4D",
+                    borderRadius: "0.5rem",
+                  }}
+                >
+                  <p
+                    css={[
+                      { color: "#ffffff" },
+                      tag.isSpoiler && {
+                        filter: "blur(0.3rem)",
+                        "&:hover": {
+                          filter: "none",
+                        },
+                      },
+                    ]}
+                  >
+                    {tag.text}
+                  </p>
+                </div>
+              )
+            )}
           </div>
         )}
         <h1 css={{ fontSize: "2rem", fontWeight: 500, wordBreak: "keep-all" }}>

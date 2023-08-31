@@ -109,20 +109,36 @@ export default function PostList({
                 }}
               >
                 {post?.tags &&
-                  post.tags.map((tag: string, tagIdx: number) => (
-                    <div
-                      key={tagIdx}
-                      css={{
-                        padding: "0.1rem 0.5rem",
-                        background: "transparent",
-                        border: "1px solid #4D4D4D",
-                        borderRadius: "0.5rem",
-                        color: "#4D4D4D",
-                      }}
-                    >
-                      {tag}
-                    </div>
-                  ))}
+                  post.tags.map(
+                    (
+                      tag: { text: string; isSpoiler: boolean },
+                      tagIdx: number
+                    ) => (
+                      <div
+                        key={tagIdx}
+                        css={{
+                          padding: "0.1rem 0.5rem",
+                          background: "transparent",
+                          border: "1px solid #4D4D4D",
+                          borderRadius: "0.5rem",
+                        }}
+                      >
+                        <p
+                          css={[
+                            { color: "#4D4D4D" },
+                            tag.isSpoiler && {
+                              filter: "blur(0.3rem)",
+                              "&:hover": {
+                                filter: "none",
+                              },
+                            },
+                          ]}
+                        >
+                          {tag.text}
+                        </p>
+                      </div>
+                    )
+                  )}
               </div>
             </div>
           </div>
