@@ -1,7 +1,7 @@
-import { Outlet } from "@remix-run/react";
-import MenuBar from "@components/MenuBar";
+import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
+import { useLoaderData } from "@remix-run/react";
+import IndexScreen from "~/screens/_index.screen";
 
-import type { V2_MetaFunction } from "@remix-run/cloudflare";
 export const meta: V2_MetaFunction = () => {
   return [
     { title: "PSST54's log" },
@@ -9,33 +9,15 @@ export const meta: V2_MetaFunction = () => {
   ];
 };
 
+export const loader = async ({ context }: LoaderArgs) => {
+  return {
+    supabaseUrl: context.env.SUPABASE_URL,
+    supabaseKey: context.env.SUPABASE_KEY,
+  };
+};
+
 export default function Index() {
-  return (
-    <main
-      css={{
-        display: "flex",
-        width: "100vw",
-        height: "100dvh",
-        paddingTop: "2rem",
-        background:
-          "linear-gradient(174deg, #A8DC90 0%, #8BE2B3 33.33%, #70E3E3 66.67%, #53A8E2 100%)",
+  const { supabaseUrl, supabaseKey } = useLoaderData<typeof loader>();
 
-        overflow: "hidden",
-      }}
-    >
-      <MenuBar />
-
-      <div
-        css={{
-          display: "flex",
-          width: "100%",
-          height: "100%",
-          background: "#FFFFFFB2",
-          borderRadius: "1.5rem 0 0 0",
-        }}
-      >
-        <Outlet />
-      </div>
-    </main>
-  );
+  return <IndexScreen supabaseUrl={supabaseUrl} supabaseKey={supabaseKey} />;
 }

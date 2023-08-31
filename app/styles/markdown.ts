@@ -16,6 +16,8 @@ export const styledA = {
   textDecoration: "underline",
   padding: "0.3rem 0",
   lineHeight: "1.4rem",
+
+  cursor: "pointer",
 };
 export const styledCode = {
   padding: "0 0.2rem",

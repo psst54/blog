@@ -33,7 +33,7 @@ export default function CategoryItem({
   isSelected = false,
   isOpen = false,
   indent = 0,
-  setIsPostOpen,
+  toggleCategory,
 }: {
   subBlogId: string;
   id: number;
@@ -41,7 +41,7 @@ export default function CategoryItem({
   isSelected: boolean;
   isOpen: boolean;
   indent: number;
-  setIsPostOpen: Function;
+  toggleCategory: (id: number) => void;
 }) {
   const handleAnchorClick = (event) => {
     if (
@@ -54,7 +54,7 @@ export default function CategoryItem({
   };
 
   const handleButtonClick = () => {
-    setIsPostOpen(id);
+    toggleCategory(id);
   };
 
   return (

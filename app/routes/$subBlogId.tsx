@@ -1,70 +1,17 @@
 import { useState, useEffect } from "react";
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
-import { useLoaderData, useParams } from "@remix-run/react";
-import { Outlet } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 
-import TopBar from "@components/TopBar";
-import MenuBar from "@components/MenuBar";
-import CategoryList from "@components/CategoryList";
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
 
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+import SubBlogScreen from "@screens/$subBlogId.screen";
 
 export const meta: V2_MetaFunction = () => {
   return [
     { title: "PSST54's log | sub blog" },
     { name: "description", content: "여기는 서브 블로그" },
   ];
-};
-
-const background = {
-  display: "flex",
-  width: "100%",
-  height: "100%",
-};
-const gradient = {
-  position: "fixed",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100dvh",
-  background:
-    "linear-gradient(174deg, #A8DC90 0%, #8BE2B3 33.33%, #70E3E3 66.67%, #53A8E2 100%)",
-
-  zIndex: -1,
-};
-const categoryContainer = {
-  display: "flex",
-  width: "100%",
-  background: "#FFFFFFD8",
-  borderRadius: "2rem 0 0 0",
-
-  marginTop: "0.5rem",
-
-  [mq[0]]: {
-    marginTop: "3rem",
-  },
-
-  [mq[1]]: {
-    borderRadius: "1rem 0 0 0",
-  },
-};
-const contentContainer = {
-  flexGrow: 1,
-  width: "0px",
-  display: "flex",
-  flexDirection: "column" as "column",
-
-  background: "#FFFFFF",
-
-  [mq[0]]: {
-    borderRadius: "2rem 0 0 0",
-  },
-  [mq[1]]: {
-    borderRadius: "1rem 0 0 0",
-  },
 };
 
 function buildTree(items: any) {
@@ -114,14 +61,18 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
   const rawData = await loadData({ subBlogId });
 
-  return { data: buildTree(rawData), subBlogId };
+  return {
+    data: buildTree(rawData),
+    subBlogId,
+    supabaseUrl: context.env.SUPABASE_URL,
+    supabaseKey: context.env.SUPABASE_KEY,
+  };
 };
 
 export default function SubBlog() {
-  const { data, subBlogId } = useLoaderData<typeof loader>();
+  const { data, subBlogId, supabaseUrl, supabaseKey } =
+    useLoaderData<typeof loader>();
   const [isPostOpen, setIsPostOpen] = useState({});
-  const params = useParams();
-  const postId = params.postId || "";
 
   useEffect(() => {
     const newObj = {};
@@ -129,32 +80,20 @@ export default function SubBlog() {
     setIsPostOpen(newObj);
   }, [data]);
 
-  const setDataOpen = (id: number) => {
+  const toggleCategory = (id: number) => {
     const newData = { ...isPostOpen };
     newData[id] = !newData[id];
     setIsPostOpen({ ...newData });
   };
 
   return (
-    <main css={background}>
-      <div css={gradient}></div>
-
-      <MenuBar />
-      <TopBar />
-
-      <div css={categoryContainer}>
-        <CategoryList
-          data={data}
-          isPostOpen={isPostOpen}
-          setIsPostOpen={setDataOpen}
-          subBlogId={subBlogId}
-          postId={postId}
-        />
-
-        <div css={contentContainer}>
-          <Outlet />
-        </div>
-      </div>
-    </main>
+    <SubBlogScreen
+      data={data}
+      isPostOpen={isPostOpen}
+      toggleCategory={toggleCategory}
+      subBlogId={subBlogId}
+      supabaseUrl={supabaseUrl}
+      supabaseKey={supabaseKey}
+    />
   );
 }
