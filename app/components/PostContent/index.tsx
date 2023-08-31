@@ -28,7 +28,12 @@ const components = {
   h6: (props: any) => <h6 css={styledH3} children={props.children} />,
   p: (props: any) => <p css={styledP} children={props.children} />,
   a: (props: any) => (
-    <a target="_blank" css={styledA} children={props.children} />
+    <a
+      target="_blank"
+      css={styledA}
+      href={props.href}
+      children={props.children}
+    />
   ),
   li: (props: any) => <li css={styledLi} children={props.children} />,
   ol: (props: any) => <ol css={styledOl} children={props.children} />,
