@@ -1,10 +1,18 @@
 import { useState } from "react";
+import { useParams } from "@remix-run/react";
+
+import CategoryList from "@components/CategoryList";
 
 import RightChevronIcon from "@assets/RightChevronIcon";
 import ListIcon from "@assets/ListIcon";
 
-export default function CategoroyPopUp() {
+export default function CategoroyPopUp({
+  categoryData,
+  isPostOpen,
+  toggleCategory,
+}) {
   const [isOpen, setIsOpen] = useState(false);
+  const params = useParams();
 
   return (
     <div>
@@ -38,6 +46,9 @@ export default function CategoroyPopUp() {
               top: 0,
               right: 0,
 
+              display: "flex",
+              flexDirection: "column",
+
               background: "#fffc",
               backdropFilter: "blur(10px)",
               borderWidth: "2px 0 2px 2px",
@@ -67,6 +78,13 @@ export default function CategoroyPopUp() {
             </button>
             <h2 css={{ fontSize: "1.25rem", fontWeight: 400 }}>글 목록</h2>
           </div>
+
+          <CategoryList
+            data={categoryData}
+            isPostOpen={isPostOpen}
+            toggleCategory={toggleCategory}
+            subBlogId={params.subBlogId || ""}
+          />
         </div>
       )}
     </div>

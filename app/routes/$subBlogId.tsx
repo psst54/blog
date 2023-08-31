@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
-import { useLoaderData, useParams } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
@@ -61,14 +61,18 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
   const rawData = await loadData({ subBlogId });
 
-  return { data: buildTree(rawData), subBlogId };
+  return {
+    data: buildTree(rawData),
+    subBlogId,
+    supabaseUrl: context.env.SUPABASE_URL,
+    supabaseKey: context.env.SUPABASE_KEY,
+  };
 };
 
 export default function SubBlog() {
-  const { data, subBlogId } = useLoaderData<typeof loader>();
+  const { data, subBlogId, supabaseUrl, supabaseKey } =
+    useLoaderData<typeof loader>();
   const [isPostOpen, setIsPostOpen] = useState({});
-  const params = useParams();
-  const postId = params.postId || "";
 
   useEffect(() => {
     const newObj = {};
@@ -76,7 +80,7 @@ export default function SubBlog() {
     setIsPostOpen(newObj);
   }, [data]);
 
-  const setDataOpen = (id: number) => {
+  const toggleCategory = (id: number) => {
     const newData = { ...isPostOpen };
     newData[id] = !newData[id];
     setIsPostOpen({ ...newData });
@@ -86,9 +90,10 @@ export default function SubBlog() {
     <SubBlogScreen
       data={data}
       isPostOpen={isPostOpen}
-      setDataOpen={setDataOpen}
+      toggleCategory={toggleCategory}
       subBlogId={subBlogId}
-      postId={postId}
+      supabaseUrl={supabaseUrl}
+      supabaseKey={supabaseKey}
     />
   );
 }

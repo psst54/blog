@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
+import { useParams } from "@remix-run/react";
 import CategoryItem from "./CategoryItem";
-
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 const renderTreeItem = (
   item,
   idx: number,
   isPostOpen,
-  setIsPostOpen,
+  toggleCategory,
   depth: number,
   subBlogId: string,
-  postId
+  postId: string
 ) => {
   return (
     <div key={idx}>
@@ -23,7 +20,7 @@ const renderTreeItem = (
         // isOpen={false}
         isOpen={isPostOpen[item?.id]}
         isSelected={postId === item?.id}
-        setIsPostOpen={setIsPostOpen}
+        toggleCategory={toggleCategory}
       />
       {isPostOpen[item.id] &&
         item?.children.map((child, childIdx: number) =>
@@ -31,7 +28,7 @@ const renderTreeItem = (
             child,
             childIdx,
             isPostOpen,
-            setIsPostOpen,
+            toggleCategory,
             depth + 1,
             subBlogId,
             postId
@@ -44,39 +41,29 @@ const renderTreeItem = (
 export default function CategoryList({
   data,
   isPostOpen,
-  setIsPostOpen,
+  toggleCategory,
   subBlogId,
-  postId,
 }: {
   data: any;
   isPostOpen: boolean[];
-  setIsPostOpen: Function;
+  toggleCategory: (id: number) => void;
   subBlogId: string;
-  postId: string;
 }) {
+  const params = useParams();
+
   return (
-    <div
-      css={{
-        width: "18rem",
-        flexShrink: 0,
-        [mq[0]]: {
-          display: "none",
-        },
-      }}
-    >
-      <div css={{ padding: "1rem", paddingTop: "2rem" }}>
-        {data.map((datum, datumIdx: number) => {
-          return renderTreeItem(
-            datum,
-            datumIdx,
-            isPostOpen,
-            setIsPostOpen,
-            0,
-            subBlogId,
-            postId
-          );
-        })}
-      </div>
+    <div>
+      {data.map((datum, datumIdx: number) => {
+        return renderTreeItem(
+          datum,
+          datumIdx,
+          isPostOpen,
+          toggleCategory,
+          0,
+          subBlogId,
+          params.postId || ""
+        );
+      })}
     </div>
   );
 }

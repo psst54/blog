@@ -19,13 +19,19 @@ export const meta: V2_MetaFunction = () => {
   ];
 };
 
-export default function Index() {
+export default function Index({
+  supabaseUrl,
+  supabaseKey,
+}: {
+  supabaseUrl: string;
+  supabaseKey: string;
+}) {
   return (
     <main css={background}>
       <div css={gradient}></div>
 
       <MenuBar />
-      <TopBar />
+      <TopBar supabaseUrl={supabaseUrl} supabaseKey={supabaseKey} />
 
       <div css={categoryContainer}>
         <div
