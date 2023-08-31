@@ -1,4 +1,4 @@
-export default function HomeIcon({
+export default function SettingsIcon({
   size,
   color,
 }: {

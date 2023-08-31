@@ -1,4 +1,4 @@
-export default function CategoryIcon({
+export default function FolderIcon({
   size,
   color,
 }: {

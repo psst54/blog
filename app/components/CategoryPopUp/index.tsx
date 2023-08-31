@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import RightChevronIcon from "@assets/RightChevronIcon";
-import FolderClosedColorIcon from "@assets/FolderClosedColorIcon";
+import ListIcon from "@assets/ListIcon";
 
 export default function CategoroyPopUp() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,8 +24,7 @@ export default function CategoroyPopUp() {
           setIsOpen(true);
         }}
       >
-        <FolderClosedColorIcon size="1.5rem" color="#F6D65D" />
-        <p>카테고리</p>
+        <ListIcon size="1.5rem" color="#000" />
       </button>
 
       {isOpen && (
