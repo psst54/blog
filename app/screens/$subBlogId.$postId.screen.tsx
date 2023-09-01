@@ -51,10 +51,9 @@ export default function PostDetailPageScreen({
                   css={[
                     { color: "#ffffff" },
                     tag.isSpoiler && {
-                      filter: "blur(0.3rem)",
-                      "&:hover": {
-                        filter: "none",
-                      },
+                      color: "#aaa",
+                      filter: "blur(0.25rem)",
+                      "&:hover": { color: "#ffffff", filter: "none" },
                     },
                   ]}
                 >
