@@ -1,5 +1,7 @@
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
+import { createClient } from "@supabase/supabase-js";
+import { Database } from "@supabase/types";
 import IndexScreen from "~/screens/_index.screen";
 
 export const meta: V2_MetaFunction = () => {
@@ -10,14 +12,45 @@ export const meta: V2_MetaFunction = () => {
 };
 
 export const loader = async ({ context }: LoaderArgs) => {
+  const supabase = createClient<Database>(
+    context.env.SUPABASE_URL,
+    context.env.SUPABASE_KEY
+  );
+
+  const loadData = async () => {
+    try {
+      const { data: databaseData, error: databaseError } = await supabase
+        .from("posts")
+        .select("title, sub_title, tags, id, thumbnail, sub_blog")
+        .order("created_at", { ascending: false })
+        .limit(5);
+
+      if (databaseError) throw new Error();
+
+      return databaseData;
+    } catch (err) {
+      return null;
+    }
+  };
+
+  const data = await loadData();
+
   return {
+    recentPosts: data,
     supabaseUrl: context.env.SUPABASE_URL,
     supabaseKey: context.env.SUPABASE_KEY,
   };
 };
 
 export default function Index() {
-  const { supabaseUrl, supabaseKey } = useLoaderData<typeof loader>();
+  const { recentPosts, supabaseUrl, supabaseKey } =
+    useLoaderData<typeof loader>();
 
-  return <IndexScreen supabaseUrl={supabaseUrl} supabaseKey={supabaseKey} />;
+  return (
+    <IndexScreen
+      recentPosts={recentPosts}
+      supabaseUrl={supabaseUrl}
+      supabaseKey={supabaseKey}
+    />
+  );
 }

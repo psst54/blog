@@ -80,7 +80,7 @@ export default function PostPageScreen({
         <hr
           css={{ width: "100%", border: "1px solid #70E3E3", margin: "1rem 0" }}
         />
-        <PostList content={content?.posts} subBlogId={subBlogId} />
+        <PostList content={content?.posts} />
       </div>
     </div>
   );

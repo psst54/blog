@@ -48,3 +48,7 @@ export const contentContainer = {
     borderRadius: "1rem 0 0 0",
   },
 };
+
+export const recentPostsConatiner = {
+  padding: "2rem",
+};
