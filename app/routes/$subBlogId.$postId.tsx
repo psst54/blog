@@ -26,8 +26,9 @@ export const loader = async ({ context, params }: LoaderArgs) => {
   }) => {
     try {
       const { data: postData, error: postError } = await supabase
-        .from(subBlogId)
+        .from("posts")
         .select("title, sub_title, content, tags, type")
+        .eq("sub_blog", subBlogId)
         .eq("id", id)
         .single();
 
@@ -36,8 +37,9 @@ export const loader = async ({ context, params }: LoaderArgs) => {
       if (postData.type === "post") return postData;
 
       const { data: databaseData, error: databaseError } = await supabase
-        .from(subBlogId)
-        .select("title, sub_title, tags, id, thumbnail")
+        .from("posts")
+        .select("title, sub_title, tags, id, thumbnail, sub_blog")
+        .eq("sub_blog", subBlogId)
         .eq("parent_id", id)
         .order("created_at", { ascending: false });
 

@@ -50,5 +50,13 @@ export const contentContainer = {
 };
 
 export const recentPostsConatiner = {
-  padding: "2rem",
+  padding: "1.5rem",
+
+  width: "100%",
+  overflow: "auto",
+};
+export const title = {
+  marginBottom: "1rem",
+  fontSize: "2rem",
+  fontWeight: 800,
 };

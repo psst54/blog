@@ -11,6 +11,7 @@ import {
   categoryContainer,
   contentContainer,
   recentPostsConatiner,
+  title,
 } from "@styles/main";
 
 import type { V2_MetaFunction } from "@remix-run/cloudflare";
@@ -48,6 +49,7 @@ export default function Index({
 
         <div css={contentContainer}>
           <div css={recentPostsConatiner}>
+            <h1 css={title}>최근 포스트</h1>
             <PostList content={recentPosts} />
           </div>
         </div>
