@@ -22,8 +22,9 @@ export const styledA = {
 export const styledCode = {
   padding: "0 0.2rem",
   borderRadius: "0.3rem",
-  background: "#70E3E366",
+  background: "#2F343F",
 
+  color: "#fff",
   fontFamily: "Pretendard",
   fontWeight: 500,
 };
