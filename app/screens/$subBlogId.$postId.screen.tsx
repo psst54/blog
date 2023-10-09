@@ -87,9 +87,7 @@ export default function PostDetailPageScreen({
 
       {content?.type === "post" && <Content content={content?.content} />}
 
-      {content?.type === "database" && (
-        <PostList content={content?.posts} subBlogId={subBlogId} />
-      )}
+      {content?.type === "database" && <PostList content={content?.posts} />}
     </div>
   );
 }

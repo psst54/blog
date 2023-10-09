@@ -1,5 +1,6 @@
 import MenuBar from "@components/MenuBar";
 import TopBar from "@components/TopBar";
+import PostList from "@components/PostList";
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
@@ -9,6 +10,8 @@ import {
   gradient,
   categoryContainer,
   contentContainer,
+  recentPostsConatiner,
+  title,
 } from "@styles/main";
 
 import type { V2_MetaFunction } from "@remix-run/cloudflare";
@@ -20,6 +23,7 @@ export const meta: V2_MetaFunction = () => {
 };
 
 export default function Index({
+  recentPosts,
   supabaseUrl,
   supabaseKey,
 }: {
@@ -43,7 +47,12 @@ export default function Index({
           }}
         ></div>
 
-        <div css={contentContainer}></div>
+        <div css={contentContainer}>
+          <div css={recentPostsConatiner}>
+            <h1 css={title}>최근 포스트</h1>
+            <PostList content={recentPosts} />
+          </div>
+        </div>
       </div>
     </main>
   );

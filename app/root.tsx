@@ -27,6 +27,10 @@ const globalStyleCss = css`
     "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 
   * {
+    font-family: "Pretendard Variable", Pretendard, -apple-system,
+      BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+      "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -40,6 +44,18 @@ export default function App() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
+        <link
+          rel="stylesheet"
+          as="style"
+          crossorigin
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css"
+        />
+        <link
+          rel="stylesheet"
+          as="style"
+          crossorigin
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-dynamic-subset.css"
+        />
         <Links />
       </head>
       <body css={globalStyleCss}>
