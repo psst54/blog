@@ -1,5 +1,9 @@
+import { lazy, Suspense } from "react";
+
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+
+const Thumbnail = lazy(() => import("./Thumbnail"));
 
 export default function PostCard({ postData }: { postData: any }) {
   return (
@@ -45,15 +49,9 @@ export default function PostCard({ postData }: { postData: any }) {
         }}
       >
         {postData.thumbnail && (
-          <img
-            src={postData.thumbnail}
-            css={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              borderRadius: "1rem 1rem 0 0",
-            }}
-          />
+          <Suspense fallback={<></>}>
+            <Thumbnail thumbnail={postData.thumbnail} />
+          </Suspense>
         )}
       </div>
       <div css={{ width: "100%", height: "50%", padding: "1rem" }}>
