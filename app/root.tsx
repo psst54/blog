@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import type { V2_MetaFunction } from "@remix-run/cloudflare";
 import {
   Links,
@@ -37,7 +38,20 @@ const globalStyleCss = css`
   }
 `;
 
+let isInitialRender = true;
+
 export default function App() {
+  const isInitialRenderRef = useRef(true);
+  const [, rerender] = useState(false);
+
+  useEffect(() => {
+    if (isInitialRenderRef.current) {
+      isInitialRender = false;
+      isInitialRenderRef.current = false;
+      rerender(true);
+    }
+  }, []);
+
   return (
     <html lang="ko">
       <head>
@@ -47,14 +61,14 @@ export default function App() {
         <link
           rel="stylesheet"
           as="style"
-          crossorigin
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css"
+          media={isInitialRender ? "print" : "all"}
         />
         <link
           rel="stylesheet"
           as="style"
-          crossorigin
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-dynamic-subset.css"
+          media={isInitialRender ? "print" : "all"}
         />
         <Links />
       </head>
