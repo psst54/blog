@@ -45,9 +45,10 @@ export const loader = async ({ context, params }: LoaderArgs) => {
   const loadData = async ({ subBlogId }: { subBlogId: string }) => {
     try {
       const { data: postData, error: postError } = await supabase
-        .from(subBlogId)
+        .from("posts")
         .select("id, title, parent_id, type")
-        .order("created_at");
+        .order("created_at")
+        .eq("sub_blog", subBlogId);
 
       if (postError) throw new Error();
 
