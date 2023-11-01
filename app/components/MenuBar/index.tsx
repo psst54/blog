@@ -18,8 +18,8 @@ const mainMenu = [
 ];
 
 const bottomMenu = [
-  { icon: CallChatIcon, href: "/contact", alt: "연락" },
-  { icon: SettingsIcon, href: "/setting", alt: "설정" },
+  // { icon: CallChatIcon, href: "/contact", alt: "연락" },
+  // { icon: SettingsIcon, href: "/setting", alt: "설정" },
 ];
 
 const iconList = {
