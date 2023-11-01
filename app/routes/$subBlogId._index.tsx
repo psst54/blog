@@ -21,12 +21,17 @@ export const loader = async ({ context, params }: LoaderArgs) => {
         .is("parent_id", null)
         .order("created_at");
 
-      if (databaseError) throw new Error();
+      const { data: blogData, error: blogError } = await supabase
+        .from("subBlogs")
+        .select("title, description")
+        .eq("id", subBlogId)
+        .single();
+
+      if (databaseError || blogError) throw new Error();
 
       return {
-        title: "subBlog",
-        sub_title: "임시",
-        tags: [],
+        title: blogData.title,
+        sub_title: blogData.description,
         posts: databaseData,
       };
     } catch (err) {
