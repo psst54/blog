@@ -48,9 +48,10 @@ export default function TopBar({
   const getData = async ({ subBlogId }: { subBlogId: string }) => {
     try {
       const { data, error } = await supabase
-        .from(subBlogId)
+        .from("posts")
         .select("id, title, parent_id, type")
-        .order("created_at");
+        .order("created_at")
+        .eq("sub_blog", subBlogId);
 
       if (error) throw new Error();
 
