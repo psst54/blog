@@ -14,7 +14,7 @@ const mainMenu = [
   { icon: HomeIcon, href: "/", alt: "Home" },
   { icon: CodeIcon, href: "/cse", alt: "CSE" },
   // { icon: BookBookmarkIcon, href: "/phi", alt: "PHI" },
-  // { icon: HeartIcon, href: "/lik", alt: "Like" },
+  { icon: HeartIcon, href: "/like", alt: "Like" },
 ];
 
 const bottomMenu = [
