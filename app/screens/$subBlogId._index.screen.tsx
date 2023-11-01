@@ -60,7 +60,7 @@ export default function PostPageScreen({
             )}
           </div>
         )}
-        <h1 css={{ fontSize: "2rem", fontWeight: 500, wordBreak: "keep-all" }}>
+        <h1 css={{ fontSize: "2rem", fontWeight: 800, wordBreak: "keep-all" }}>
           {content?.title}
         </h1>
         {content?.sub_title && (
