@@ -1,6 +1,6 @@
 import MenuBar from "@components/MenuBar";
 import TopBar from "@components/TopBar";
-import PostList from "@components/PostList";
+import PostGrid from "@components/PostGrid";
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
@@ -50,7 +50,7 @@ export default function Index({
         <div css={contentContainer}>
           <div css={recentPostsConatiner}>
             <h1 css={title}>최근 포스트</h1>
-            <PostList content={recentPosts} />
+            <PostGrid content={recentPosts} />
           </div>
         </div>
       </div>

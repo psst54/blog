@@ -1,4 +1,4 @@
-import PostList from "@components/PostList";
+import PostGrid from "@components/PostGrid";
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
@@ -80,7 +80,7 @@ export default function PostPageScreen({
         <hr
           css={{ width: "100%", border: "1px solid #70E3E3", margin: "1rem 0" }}
         />
-        <PostList content={content?.posts} />
+        <PostGrid content={content?.posts} />
       </div>
     </div>
   );

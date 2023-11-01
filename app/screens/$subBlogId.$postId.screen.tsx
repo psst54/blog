@@ -1,5 +1,5 @@
 import Content from "@components/PostContent";
-import PostList from "@components/PostList";
+import PostGrid from "@components/PostGrid";
 
 import styles from "@styles/katex.css";
 export function links() {
@@ -87,7 +87,7 @@ export default function PostDetailPageScreen({
 
       {content?.type === "post" && <Content content={content?.content} />}
 
-      {content?.type === "database" && <PostList content={content?.posts} />}
+      {content?.type === "database" && <PostGrid content={content?.posts} />}
     </div>
   );
 }

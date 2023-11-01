@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 import PostCard from "@components/PostCard";
 
-export default function PostList({ content }: { content: any }) {
+export default function PostGrid({ content }: { content: any }) {
   return (
     <div
       css={{
