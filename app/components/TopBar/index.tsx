@@ -47,8 +47,6 @@ export default function TopBar({
   const [categoryData, setCategoryData] = useState([]);
   const [isPostOpen, setIsPostOpen] = useState({});
 
-  console.log("[categoryData]", categoryData);
-
   const getData = async ({ subBlogId }: { subBlogId: string }) => {
     try {
       const { data, error } = await supabase
