@@ -37,12 +37,20 @@ export default function SubBlogScreen({
             },
           }}
         >
-          <CategoryList
-            data={data}
-            isPostOpen={isPostOpen}
-            toggleCategory={toggleCategory}
-            subBlogId={subBlogId}
-          />
+          <div
+            css={{
+              position: "fixed",
+              width: "18rem",
+              height: "calc(100dvh - 1rem - 2rem)",
+            }}
+          >
+            <CategoryList
+              data={data}
+              isPostOpen={isPostOpen}
+              toggleCategory={toggleCategory}
+              subBlogId={subBlogId}
+            />
+          </div>
         </div>
 
         <div css={contentContainer}>

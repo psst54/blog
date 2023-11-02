@@ -1,6 +1,7 @@
 import PostGrid from "@components/PostGrid";
 import Tag from "@components/Tag";
 import { color } from "@styles/color";
+import { size } from "@styles/size";
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
@@ -21,8 +22,13 @@ export default function PostPageScreen({
 
           wordBreak: "break-word",
 
+          [mq[0]]: {
+            paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
+          },
+
           [mq[1]]: {
             padding: "1rem",
+            paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
           },
         }}
       >

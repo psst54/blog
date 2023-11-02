@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams } from "@remix-run/react";
 
+import { color } from "@styles/color";
 import CategoryList from "@components/CategoryList";
 
 import RightChevronIcon from "@assets/RightChevronIcon";
@@ -49,11 +50,10 @@ export default function CategoroyPopUp({
               display: "flex",
               flexDirection: "column",
 
-              background: "transparent",
-              backdropFilter: "blur(10px)",
+              background: color.background.standard,
               borderWidth: "2px 0 2px 2px",
               borderStyle: "solid",
-              borderColor: "#A8DC90",
+              borderColor: color.border.standard,
               borderRadius: "1rem 0 0 1rem",
               padding: "1.25rem",
 

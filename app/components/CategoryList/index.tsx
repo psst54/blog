@@ -2,6 +2,9 @@ import { useParams } from "@remix-run/react";
 import CategoryItem from "./CategoryItem";
 import { color } from "@styles/color";
 
+const breakpoints = [1200, 576];
+const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+
 const renderTreeItem = (
   item,
   idx: number,
@@ -55,17 +58,21 @@ export default function CategoryList({
   return (
     <div
       css={{
-        position: "fixed",
         display: "flex",
 
-        width: "18rem",
-        maxHeight: "calc(100dvh - 1rem - 2rem)",
+        width: "100%",
+        maxHeight: "100%",
         padding: "0.5rem",
         paddingRight: 0,
 
         border: `2px solid ${color.border.standard}`,
         borderRadius: "1rem",
         boxShadow: `4px 4px 0px 0px ${color.border.standard}`,
+
+        [mq[0]]: {
+          border: "none",
+          boxShadow: "none",
+        },
       }}
     >
       <div
