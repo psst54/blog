@@ -73,7 +73,7 @@ export default function CategoryItem({
         css={[
           itemContainer(indent),
           isSelected && {
-            background: color.border.standard,
+            background: color.primary.standard,
           },
         ]}
       >
@@ -96,7 +96,7 @@ export default function CategoryItem({
 
             transform: isOpen ? "rotate(90deg)" : "",
 
-            "&:hover": { background: color.border.light + "B2" },
+            "&:hover": { background: color.primary.shadow + "B2" },
             cursor: "pointer",
           }}
         >
@@ -109,7 +109,10 @@ export default function CategoryItem({
         <h4
           css={[
             titleStyle,
-            { color: isSelected ? color.text.reverse : color.text.standard },
+            {
+              color: isSelected ? color.text.reverse : color.text.standard,
+              fontWeight: isSelected ? 600 : 500,
+            },
           ]}
         >
           {title}

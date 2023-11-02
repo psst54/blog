@@ -11,6 +11,8 @@ export const darkColor = {
     reverse: "#484561",
   },
 
+  primary: { standard: "#f199a9", shadow: "#F2D2DD" },
+
   black: { standard: "#000" },
   white: { standard: "#fff" },
 };
@@ -21,12 +23,15 @@ export const color = {
     standard: "#484561",
     light: "#C1BACC",
     dark: "#000",
+    pink: "#f199a9",
   },
   text: {
     standard: "#000",
     secondary: "#000",
     reverse: "#F2F0F5",
   },
+
+  primary: { standard: "#f199a9", shadow: "#F2D2DD" },
 
   black: { standard: "#000" },
   white: { standard: "#fff" },

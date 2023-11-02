@@ -60,9 +60,9 @@ export default function CategoryList({
         padding: "0.5rem",
         paddingRight: 0,
 
-        border: `2px solid ${color.border.standard}`,
+        border: `2px solid ${color.primary.standard}`,
         borderRadius: "1rem",
-        boxShadow: `4px 4px 0px 0px ${color.border.standard}`,
+        boxShadow: `4px 4px 0px 0px ${color.primary.standard}`,
 
         [mq[0]]: {
           border: "none",
