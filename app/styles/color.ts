@@ -32,6 +32,7 @@ export const color = {
   },
 
   primary: { standard: "#f199a9", shadow: "#F2D2DD" },
+  secondary: { standard: "#68c6f5" },
 
   black: { standard: "#000" },
   white: { standard: "#fff" },
