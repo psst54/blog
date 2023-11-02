@@ -18,6 +18,7 @@ import {
   styledUl,
   styledBlockquote,
   styledImg,
+  styledCodeWrapper,
 } from "@styles/markdown";
 
 const components = {
@@ -58,13 +59,15 @@ const components = {
   code: (props: any) => {
     const match = /language-(\w+)/.exec(props.className || "");
     return !props.inline && match ? (
-      <SyntaxHighlighter
-        children={String(props.children).replace(/\n$/, "")}
-        style={nord}
-        language={match[1]}
-        PreTag="div"
-        {...props}
-      />
+      <div css={styledCodeWrapper}>
+        <SyntaxHighlighter
+          children={String(props.children).replace(/\n$/, "")}
+          style={nord}
+          language={match[1]}
+          PreTag="div"
+          {...props}
+        />
+      </div>
     ) : (
       <code css={styledCode} children={props.children} />
     );

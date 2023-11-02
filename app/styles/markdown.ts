@@ -1,3 +1,5 @@
+import { color } from "@styles/color";
+
 export const styledH1 = {
   padding: "1rem 0 0.2rem 0",
 };
@@ -47,4 +49,8 @@ export const styledBlockquote = {
 };
 export const styledImg = {
   maxWidth: "100%",
+};
+export const styledCodeWrapper = {
+  color: color.text.reverse,
+  span: { color: color.text.reverse },
 };
