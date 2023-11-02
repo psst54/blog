@@ -74,19 +74,6 @@ export default function CategoryList({
           overflow: "auto",
           width: "100%",
           maxHeight: "100%",
-
-          "&::-webkit-scrollbar": {
-            backgroundColor: "transparent",
-            width: "10px",
-            height: "10px",
-            borderRadius: "10px",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: color.border.light,
-            width: "10px",
-            height: "10px",
-            borderRadius: "10px",
-          },
         }}
       >
         <div css={{ paddingRight: "0.5rem" }}>

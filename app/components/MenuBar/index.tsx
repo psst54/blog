@@ -58,15 +58,6 @@ export default function MenuBar() {
 
           overflowY: "auto",
 
-          "::-webkit-scrollbar": {
-            width: "8px",
-            height: "8px",
-          },
-          "::-webkit-scrollbar-thumb": {
-            borderRadius: "4px",
-            background: "#2222",
-          },
-
           [mq[0]]: {
             display: "none",
             width: "1rem",

@@ -60,17 +60,8 @@ export default function PostCard({ postData }: { postData: any }) {
           padding: "1rem",
 
           overflow: "auto",
-          "&::-webkit-scrollbar": {
-            backgroundColor: "transparent",
-            width: "10px",
-            height: "10px",
-            borderRadius: "10px",
-          },
           "&::-webkit-scrollbar-thumb": {
             backgroundColor: "transparent",
-            width: "10px",
-            height: "10px",
-            borderRadius: "10px",
           },
 
           "&:hover": {

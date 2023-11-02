@@ -84,15 +84,6 @@ export default function Content({ content }: { content: string }) {
           flexShrink: 1,
           maxWidth: "100%",
           overflowX: "auto",
-
-          "::-webkit-scrollbar": {
-            width: "8px",
-            height: "8px",
-          },
-          "::-webkit-scrollbar-thumb": {
-            borderRadius: "4px",
-            background: "#53A8E2",
-          },
         },
         ".katex-mathml": {
           display: "none",
