@@ -23,7 +23,7 @@ export const loader = async ({ context }: LoaderArgs) => {
         .from("posts")
         .select("title, sub_title, tags, id, thumbnail, sub_blog")
         .order("created_at", { ascending: false })
-        .limit(5);
+        .limit(10);
 
       if (databaseError) throw new Error();
 
