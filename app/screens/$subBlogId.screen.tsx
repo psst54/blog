@@ -3,12 +3,7 @@ import { Outlet } from "@remix-run/react";
 import MenuBar from "@components/MenuBar";
 import TopBar from "@components/TopBar";
 import CategoryList from "@components/CategoryList";
-import {
-  background,
-  gradient,
-  categoryContainer,
-  contentContainer,
-} from "@styles/main";
+import { background, categoryContainer, contentContainer } from "@styles/main";
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
@@ -26,8 +21,6 @@ export default function SubBlogScreen({
 }) {
   return (
     <main css={background}>
-      <div css={gradient}></div>
-
       <MenuBar />
       <TopBar supabaseUrl={supabaseUrl} supabaseKey={supabaseKey} />
 
@@ -37,8 +30,7 @@ export default function SubBlogScreen({
             width: "18rem",
             flexShrink: 0,
 
-            padding: "1rem",
-            paddingTop: "2rem",
+            paddingTop: "1rem",
 
             [mq[0]]: {
               display: "none",

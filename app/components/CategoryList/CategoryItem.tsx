@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react";
 import RightChevronIcon from "@assets/RightChevronIcon";
+import { color } from "@styles/color";
 
 const itemContainer = (indent: number) => {
   return {
@@ -11,13 +12,15 @@ const itemContainer = (indent: number) => {
     paddingRight: "0.5rem",
     paddingLeft: `calc(${indent} * 1rem + 0.2rem)`,
 
-    borderRadius: "0.75rem",
+    borderRadius: "2rem",
+
+    // color: color.text.standard,
   };
 };
 const titleStyle = {
   flexGrow: 1,
   marginLeft: "0.1rem",
-  fontSize: "1.25rem",
+  fontSize: "1rem",
   fontWeight: 400,
 
   overflow: "hidden",
@@ -62,8 +65,7 @@ export default function CategoryItem({
       to={`/${subBlogId}/${id}`}
       css={{
         textDecoration: "none",
-        color: "black",
-        "&:active": { color: "black" },
+        "&:active": { color: color.text.standard },
       }}
       onClick={handleAnchorClick}
     >
@@ -71,7 +73,7 @@ export default function CategoryItem({
         css={[
           itemContainer(indent),
           isSelected && {
-            background: "#8BE2B3B2",
+            background: color.border.standard,
           },
         ]}
       >
@@ -88,20 +90,30 @@ export default function CategoryItem({
             height: "1.8rem",
             background: "transparent",
 
-            borderRadius: "0.5rem",
+            borderRadius: "100%",
             border: "none",
             outline: "none",
 
             transform: isOpen ? "rotate(90deg)" : "",
 
-            "&:hover": { background: "#FFFFFFB2" },
+            "&:hover": { background: color.border.light + "B2" },
             cursor: "pointer",
           }}
         >
-          <RightChevronIcon size="1rem" color="#000" />
+          <RightChevronIcon
+            size="1rem"
+            color={isSelected ? color.text.reverse : color.text.standard}
+          />
         </button>
 
-        <h4 css={titleStyle}>{title}</h4>
+        <h4
+          css={[
+            titleStyle,
+            { color: isSelected ? color.text.reverse : color.text.standard },
+          ]}
+        >
+          {title}
+        </h4>
       </div>
     </Link>
   );

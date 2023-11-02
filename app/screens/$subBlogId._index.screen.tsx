@@ -1,4 +1,6 @@
 import PostGrid from "@components/PostGrid";
+import Tag from "@components/Tag";
+import { color } from "@styles/color";
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
@@ -34,28 +36,8 @@ export default function PostPageScreen({
             }}
           >
             {content.tags.map(
-              (tag: { text: string; isSpoiler: boolean }, tagIdx: number) => (
-                <div
-                  key={tagIdx}
-                  css={{
-                    padding: "0.25rem 0.75rem",
-                    background: "#4D4D4D",
-                    borderRadius: "0.5rem",
-                  }}
-                >
-                  <p
-                    css={[
-                      { color: "#ffffff" },
-                      tag.isSpoiler && {
-                        color: "#aaa",
-                        filter: "blur(0.25rem)",
-                        "&:hover": { color: "#ffffff", filter: "none" },
-                      },
-                    ]}
-                  >
-                    {tag.text}
-                  </p>
-                </div>
+              (tag: { text: string; isSpoiler: boolean }, tagIndex: number) => (
+                <Tag key={tagIndex} item={tag} />
               )
             )}
           </div>
@@ -67,7 +49,7 @@ export default function PostPageScreen({
           <h2
             css={{
               marginTop: "0.5rem",
-              color: "#555555",
+              color: color.text.secondary,
               fontSize: "1rem",
               fontWeight: 500,
               wordBreak: "keep-all",
@@ -78,9 +60,13 @@ export default function PostPageScreen({
         )}
 
         <hr
-          css={{ width: "100%", border: "1px solid #70E3E3", margin: "1rem 0" }}
+          css={{
+            width: "100%",
+            border: `1px solid ${color.border.standard}`,
+            margin: "1rem 0",
+          }}
         />
-        <PostGrid content={content?.posts} />
+        <PostGrid posts={content?.posts} />
       </div>
     </div>
   );

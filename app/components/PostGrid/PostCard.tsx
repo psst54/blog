@@ -1,6 +1,9 @@
 import { lazy, Suspense } from "react";
-import Tag from "@components/Tag";
 import { color } from "@styles/color";
+import Tag from "@components/Tag";
+
+const breakpoints = [1200, 576];
+const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 const Thumbnail = lazy(() => import("./Thumbnail"));
 
@@ -9,13 +12,20 @@ export default function PostCard({ postData }: { postData: any }) {
     <div
       css={{
         display: "flex",
-        justifyContent: "space-between",
+        flexDirection: "column" as "column",
 
-        width: "100vw",
-        maxWidth: "46rem",
+        aspectRatio: "1/1.125",
+
         border: `2px solid ${color.border.standard}`,
         borderRadius: "1rem",
         boxShadow: `6px 6px 0px 0px ${color.border.standard}`,
+
+        [mq[0]]: {
+          aspectRatio: "1/1.125",
+        },
+        [mq[1]]: {
+          aspectRatio: "1/1.125",
+        },
 
         "&:hover": {
           transform: "translateY(-0.25rem)",
@@ -29,10 +39,50 @@ export default function PostCard({ postData }: { postData: any }) {
         },
       }}
     >
-      <div css={{ padding: "1rem" }}>
+      {postData.thumbnail && (
+        <div
+          css={{
+            width: "100%",
+            height: "50%",
+          }}
+        >
+          <Suspense fallback={<></>}>
+            <Thumbnail thumbnail={postData.thumbnail} />
+          </Suspense>
+        </div>
+      )}
+
+      <div
+        css={{
+          width: "100%",
+          height: postData.thumbnail ? "50%" : "100%",
+
+          padding: "1rem",
+
+          overflow: "auto",
+          "&::-webkit-scrollbar": {
+            backgroundColor: "transparent",
+            width: "10px",
+            height: "10px",
+            borderRadius: "10px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "transparent",
+            width: "10px",
+            height: "10px",
+            borderRadius: "10px",
+          },
+
+          "&:hover": {
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: color.border.light,
+            },
+          },
+        }}
+      >
         <h2
           css={{
-            fontSize: "1.2rem",
+            fontSize: "1.4rem",
             fontWeight: 800,
             wordBreak: "keep-all",
           }}
@@ -55,7 +105,7 @@ export default function PostCard({ postData }: { postData: any }) {
           css={{
             display: "flex",
             flexWrap: "wrap",
-            gap: "0.25rem",
+            gap: "0.5rem",
             marginTop: "1rem",
           }}
         >
@@ -66,19 +116,6 @@ export default function PostCard({ postData }: { postData: any }) {
               )
             )}
         </div>
-      </div>
-
-      <div
-        css={{
-          width: "15rem",
-          borderRadius: "0 1rem 1rem 0",
-        }}
-      >
-        {postData.thumbnail && (
-          <Suspense fallback={<></>}>
-            <Thumbnail thumbnail={postData.thumbnail} />
-          </Suspense>
-        )}
       </div>
     </div>
   );

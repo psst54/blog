@@ -1,7 +1,11 @@
 import Content from "@components/PostContent";
 import PostGrid from "@components/PostGrid";
+import Tag from "@components/Tag";
 
 import styles from "@styles/katex.css";
+import { color } from "@styles/color";
+import { size } from "@styles/size";
+
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
 }
@@ -23,8 +27,13 @@ export default function PostDetailPageScreen({
 
         wordBreak: "break-word",
 
+        [mq[0]]: {
+          paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
+        },
+
         [mq[1]]: {
           padding: "1rem",
+          paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
         },
       }}
     >
@@ -33,33 +42,13 @@ export default function PostDetailPageScreen({
           css={{
             display: "flex",
             flexWrap: "wrap",
-            gap: "0.25rem",
+            gap: "0.5rem",
             marginBottom: "0.5rem",
           }}
         >
           {content?.tags.map(
-            (tag: { text: string; isSpoiler: boolean }, tagIdx: number) => (
-              <div
-                key={tagIdx}
-                css={{
-                  padding: "0.25rem 0.75rem",
-                  background: "#4D4D4D",
-                  borderRadius: "0.5rem",
-                }}
-              >
-                <p
-                  css={[
-                    { color: "#ffffff" },
-                    tag.isSpoiler && {
-                      color: "#aaa",
-                      filter: "blur(0.25rem)",
-                      "&:hover": { color: "#ffffff", filter: "none" },
-                    },
-                  ]}
-                >
-                  {tag.text}
-                </p>
-              </div>
+            (tag: { text: string; isSpoiler: boolean }, tagIndex: number) => (
+              <Tag key={tagIndex} item={tag} />
             )
           )}
         </div>
@@ -71,7 +60,7 @@ export default function PostDetailPageScreen({
         <h2
           css={{
             marginTop: "0.5rem",
-            color: "#555555",
+            color: color.text.secondary,
             fontSize: "1rem",
             fontWeight: 500,
             wordBreak: "keep-all",
@@ -82,12 +71,15 @@ export default function PostDetailPageScreen({
       )}
 
       <hr
-        css={{ width: "100%", border: "1px solid #70E3E3", margin: "1rem 0" }}
+        css={{
+          width: "100%",
+          border: `1px solid ${color.border.standard}`,
+          margin: "1rem 0",
+        }}
       />
 
       {content?.type === "post" && <Content content={content?.content} />}
-
-      {content?.type === "database" && <PostGrid content={content?.posts} />}
+      {content?.type === "database" && <PostGrid posts={content?.posts} />}
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import { color } from "@styles/color";
 
 import {
   styledH1,
@@ -20,7 +21,18 @@ import {
 } from "@styles/markdown";
 
 const components = {
-  h1: (props: any) => <h1 css={styledH1} children={props.children} />,
+  h1: (props: any) => (
+    <div css={{ display: "flex" }}>
+      <h1 css={styledH1} children={props.children} />
+      <hr
+        css={{
+          flexGrow: 1,
+          border: "none",
+          borderBottom: `2px solid ${color.border.light}`,
+        }}
+      />
+    </div>
+  ),
   h2: (props: any) => <h2 css={styledH2} children={props.children} />,
   h3: (props: any) => <h3 css={styledH3} children={props.children} />,
   h4: (props: any) => <h4 css={styledH3} children={props.children} />,

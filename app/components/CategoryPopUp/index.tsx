@@ -49,7 +49,7 @@ export default function CategoroyPopUp({
               display: "flex",
               flexDirection: "column",
 
-              background: "#fffc",
+              background: "transparent",
               backdropFilter: "blur(10px)",
               borderWidth: "2px 0 2px 2px",
               borderStyle: "solid",

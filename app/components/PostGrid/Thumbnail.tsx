@@ -6,7 +6,7 @@ export default function Thumbnail({ thumbnail }: { thumbnail: string }) {
         width: "100%",
         height: "100%",
         objectFit: "cover",
-        borderRadius: "1rem 1rem 0 0",
+        borderRadius: "calc(1rem - 2px) calc(1rem - 2px) 0 0",
       }}
     />
   );

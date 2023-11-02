@@ -7,7 +7,6 @@ const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 import {
   background,
-  gradient,
   categoryContainer,
   contentContainer,
   recentPostsConatiner,
@@ -32,8 +31,6 @@ export default function Index({
 }) {
   return (
     <main css={background}>
-      <div css={gradient}></div>
-
       <MenuBar />
       <TopBar supabaseUrl={supabaseUrl} supabaseKey={supabaseKey} />
 

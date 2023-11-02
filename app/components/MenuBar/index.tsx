@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react";
 import loadable from "@loadable/component";
+import { color } from "@styles/color";
 const HomeIcon = loadable(() => import("@assets/HomeIcon"));
 const CodeIcon = loadable(() => import("@assets/CodeIcon"));
 const BookBookmarkIcon = loadable(() => import("@assets/BookBookmarkIcon"));
@@ -38,7 +39,7 @@ export default function MenuBar() {
         paddingBottom: "1rem",
 
         [mq[0]]: {
-          width: "1rem",
+          width: 0,
         },
       }}
     >
@@ -80,7 +81,7 @@ export default function MenuBar() {
               to={menuItem.href}
               css={{ cursor: "pointer" }}
             >
-              <menuItem.icon size="3.5rem" color="#fff" />
+              <menuItem.icon size="3.5rem" color={color.border.standard} />
             </Link>
           ))}
         </div>
@@ -93,7 +94,7 @@ export default function MenuBar() {
               to={menuItem.href}
               css={{ cursor: "pointer" }}
             >
-              <menuItem.icon size="3.5rem" color="#fff" />
+              <menuItem.icon size="3.5rem" color={color.border.standard} />
             </Link>
           ))}
         </div>

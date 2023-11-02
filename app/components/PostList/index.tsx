@@ -5,9 +5,8 @@ export default function PostList({ content }: { content: any }) {
   return (
     <div
       css={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
+        display: "grid",
+        gap: "1.5rem",
       }}
     >
       {content?.map((post, postIdx: number) => (
@@ -15,7 +14,11 @@ export default function PostList({ content }: { content: any }) {
           key={postIdx}
           aria-label={post.title}
           to={`/${post.sub_blog}/${post.id}`}
-          css={{ textDecoration: "none", color: "initial" }}
+          css={{
+            textDecoration: "none",
+            color: "initial",
+            width: "fit-content",
+          }}
         >
           <PostCard postData={post} />
         </Link>

@@ -6,6 +6,8 @@ import { Database } from "@supabase/types";
 
 import CategoroyPopUp from "@components/CategoryPopUp";
 import HomeIcon from "@assets/HomeIcon";
+import { color } from "@styles/color";
+import { size } from "@styles/size";
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
@@ -93,16 +95,18 @@ export default function TopBar({
           justifyContent: "space-between",
 
           width: "100%",
-          height: "3rem",
+          height: size.TOPBAR_HEIGHT,
           padding: "0 1rem",
-          background: "#A8DC90",
+          background: color.background.standard,
+
+          borderBottom: `2px solid ${color.border.standard}`,
 
           zIndex: 1,
         },
       }}
     >
       <Link to={`/`}>
-        <HomeIcon size="1.5rem" color="#000" />
+        <HomeIcon size="1.5rem" color={color.border.standard} />
       </Link>
 
       <CategoroyPopUp
