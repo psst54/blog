@@ -3,6 +3,7 @@ export const darkColor = {
   border: {
     standard: "#F2F0F5",
     light: "#C1BACC",
+    dark: "#fff",
   },
   text: {
     standard: "#F2F0F5",
@@ -19,6 +20,7 @@ export const color = {
   border: {
     standard: "#484561",
     light: "#C1BACC",
+    dark: "#000",
   },
   text: {
     standard: "#000",

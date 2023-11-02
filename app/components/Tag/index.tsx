@@ -8,18 +8,23 @@ export default function Tag({
   return (
     <div
       css={{
-        padding: "0.25rem 0.75rem",
-        border: `2px solid ${color.border.standard}`,
+        padding: "0.1rem 0.75rem",
+        background: color.border.dark,
+
+        border: `2px solid ${color.border.dark}`,
         borderRadius: "2rem",
+
+        color: color.text.reverse,
+        fontWeight: 500,
       }}
     >
       <p
         css={[
-          { color: color.text.standard },
+          { color: color.text.reverse },
           item.isSpoiler && {
             filter: "blur(0.25rem)",
             "&:hover": {
-              color: color.text.standard,
+              color: color.text.reverse,
               filter: "none",
             },
           },
