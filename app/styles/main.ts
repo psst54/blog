@@ -1,4 +1,5 @@
 import { color } from "@styles/color";
+import { size } from "@styles/size";
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
@@ -29,6 +30,15 @@ export const recentPostsConatiner = {
 
   width: "100%",
   overflow: "auto",
+
+  [mq[0]]: {
+    paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
+  },
+
+  [mq[1]]: {
+    padding: "1rem",
+    paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
+  },
 };
 export const title = {
   marginBottom: "1rem",
