@@ -11,17 +11,15 @@ const renderTreeItem = (
   isPostOpen,
   toggleCategory,
   depth: number,
-  subBlogId: string,
   postId: string
 ) => {
   return (
     <div key={idx}>
       <CategoryItem
-        subBlogId={subBlogId}
         id={item?.id}
         title={item?.title}
+        href={`/${item?.sub_blog}/${item?.id}`}
         indent={depth}
-        // isOpen={false}
         isOpen={isPostOpen[item?.id]}
         isSelected={postId === item?.id}
         toggleCategory={toggleCategory}
@@ -34,7 +32,6 @@ const renderTreeItem = (
             isPostOpen,
             toggleCategory,
             depth + 1,
-            subBlogId,
             postId
           )
         )}
@@ -46,12 +43,10 @@ export default function CategoryList({
   data,
   isPostOpen,
   toggleCategory,
-  subBlogId,
 }: {
   data: any;
   isPostOpen: boolean[];
   toggleCategory: (id: number) => void;
-  subBlogId: string;
 }) {
   const params = useParams();
 
@@ -91,7 +86,6 @@ export default function CategoryList({
               isPostOpen,
               toggleCategory,
               0,
-              subBlogId,
               params.postId || ""
             );
           })}

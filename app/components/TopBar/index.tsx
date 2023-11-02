@@ -47,11 +47,13 @@ export default function TopBar({
   const [categoryData, setCategoryData] = useState([]);
   const [isPostOpen, setIsPostOpen] = useState({});
 
+  console.log("[categoryData]", categoryData);
+
   const getData = async ({ subBlogId }: { subBlogId: string }) => {
     try {
       const { data, error } = await supabase
         .from("posts")
-        .select("id, title, parent_id, type")
+        .select("id, title, parent_id, type, sub_blog")
         .order("created_at")
         .eq("sub_blog", subBlogId);
 

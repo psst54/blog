@@ -83,7 +83,6 @@ export default function CategoroyPopUp({
             data={categoryData}
             isPostOpen={isPostOpen}
             toggleCategory={toggleCategory}
-            subBlogId={params.subBlogId || ""}
           />
         </div>
       )}

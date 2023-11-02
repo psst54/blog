@@ -30,17 +30,17 @@ const titleStyle = {
 };
 
 export default function CategoryItem({
-  subBlogId,
   id = 0,
   title = "",
+  href = "/",
   isSelected = false,
   isOpen = false,
   indent = 0,
   toggleCategory,
 }: {
-  subBlogId: string;
   id: number;
   title: string;
+  href: string;
   isSelected: boolean;
   isOpen: boolean;
   indent: number;
@@ -62,7 +62,7 @@ export default function CategoryItem({
 
   return (
     <Link
-      to={`/${subBlogId}/${id}`}
+      to={href}
       css={{
         textDecoration: "none",
         "&:active": { color: color.text.standard },

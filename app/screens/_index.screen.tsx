@@ -1,6 +1,9 @@
 import MenuBar from "@components/MenuBar";
 import TopBar from "@components/TopBar";
 import PostGrid from "@components/PostGrid";
+import CategoryList from "@components/CategoryList";
+
+import { size } from "@styles/size";
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
@@ -14,6 +17,7 @@ import {
 } from "@styles/main";
 
 import type { V2_MetaFunction } from "@remix-run/cloudflare";
+
 export const meta: V2_MetaFunction = () => {
   return [
     { title: "PSST54's log" },
@@ -37,12 +41,26 @@ export default function Index({
       <div css={categoryContainer}>
         <div
           css={{
-            width: "18rem",
+            width: size.CATEGORY_WIDTH,
+            flexShrink: 0,
+
+            paddingTop: "1rem",
+
             [mq[0]]: {
               display: "none",
             },
           }}
-        ></div>
+        >
+          <div
+            css={{
+              position: "fixed",
+              width: size.CATEGORY_WIDTH,
+              height: "calc(100dvh - 1rem - 2rem)",
+            }}
+          >
+            <CategoryList data={[]} isPostOpen={[]} toggleCategory={() => {}} />
+          </div>
+        </div>
 
         <div css={contentContainer}>
           <div css={recentPostsConatiner}>

@@ -4,6 +4,7 @@ import MenuBar from "@components/MenuBar";
 import TopBar from "@components/TopBar";
 import CategoryList from "@components/CategoryList";
 import { background, categoryContainer, contentContainer } from "@styles/main";
+import { size } from "@styles/size";
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
@@ -27,7 +28,7 @@ export default function SubBlogScreen({
       <div css={categoryContainer}>
         <div
           css={{
-            width: "18rem",
+            width: size.CATEGORY_WIDTH,
             flexShrink: 0,
 
             paddingTop: "1rem",
@@ -40,7 +41,7 @@ export default function SubBlogScreen({
           <div
             css={{
               position: "fixed",
-              width: "18rem",
+              width: size.CATEGORY_WIDTH,
               height: "calc(100dvh - 1rem - 2rem)",
             }}
           >
@@ -48,7 +49,6 @@ export default function SubBlogScreen({
               data={data}
               isPostOpen={isPostOpen}
               toggleCategory={toggleCategory}
-              subBlogId={subBlogId}
             />
           </div>
         </div>
