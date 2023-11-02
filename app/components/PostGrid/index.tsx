@@ -3,8 +3,6 @@ import PostCard from "./PostCard";
 import { POST_WIDTH } from "./styles";
 
 export default function PostGrid({ posts }: { posts: any }) {
-  console.log("[posts]", posts);
-
   return (
     <div
       css={{
@@ -14,7 +12,6 @@ export default function PostGrid({ posts }: { posts: any }) {
       }}
     >
       {posts?.map((post, postIdx: number) => {
-        console.log(post);
         return (
           <Link
             key={postIdx}
