@@ -72,7 +72,7 @@ export default function CategoroyPopUp({ data, isPostOpen, toggleCategory }) {
             >
               <RightChevronIcon size="1rem" color="#000" />
             </button>
-            <h2 css={{ fontSize: "1.25rem", fontWeight: 400 }}>글 목록</h2>
+            <h2 css={{ fontSize: "1.25rem", fontWeight: 400 }}>접기</h2>
           </div>
 
           <CategoryList

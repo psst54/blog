@@ -1,9 +1,9 @@
 import { Link } from "@remix-run/react";
 import loadable from "@loadable/component";
 import { color } from "@styles/color";
+
 const HomeIcon = loadable(() => import("@assets/HomeIcon"));
 const CodeIcon = loadable(() => import("@assets/CodeIcon"));
-const BookBookmarkIcon = loadable(() => import("@assets/BookBookmarkIcon"));
 const HeartIcon = loadable(() => import("@assets/HeartIcon"));
 
 const breakpoints = [1200, 576];
