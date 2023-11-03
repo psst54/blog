@@ -78,6 +78,12 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <link
+          rel="sitemap"
+          type="application/xml"
+          title="Sitemap"
+          href="/sitemap/sitemap.xml"
+        />
+        <link
           rel="stylesheet"
           as="style"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css"
