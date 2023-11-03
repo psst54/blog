@@ -9,21 +9,15 @@ import { size } from "@styles/size";
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
-export default function SubBlogScreen({
-  data,
-  isPostOpen,
-  toggleCategory,
-  subBlogId,
-  supabaseUrl,
-  supabaseKey,
-}: {
-  supabaseUrl: string;
-  supabaseKey: string;
-}) {
+export default function SubBlogScreen({ data, isPostOpen, toggleCategory }) {
   return (
     <main css={background}>
       <MenuBar />
-      <TopBar supabaseUrl={supabaseUrl} supabaseKey={supabaseKey} />
+      <TopBar
+        data={data}
+        isPostOpen={isPostOpen}
+        toggleCategory={toggleCategory}
+      />
 
       <div css={categoryContainer}>
         <div

@@ -78,11 +78,6 @@ export default function Content({ content }: { content: string }) {
   return (
     <div
       css={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        wordBreak: "keep-all",
-
         ".math": {
           flexShrink: 1,
           maxWidth: "100%",

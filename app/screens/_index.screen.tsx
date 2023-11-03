@@ -27,16 +27,18 @@ export const meta: V2_MetaFunction = () => {
 
 export default function Index({
   recentPosts,
-  supabaseUrl,
-  supabaseKey,
-}: {
-  supabaseUrl: string;
-  supabaseKey: string;
+  categoryData,
+  isPostOpen,
+  toggleCategory,
 }) {
   return (
     <main css={background}>
       <MenuBar />
-      <TopBar supabaseUrl={supabaseUrl} supabaseKey={supabaseKey} />
+      <TopBar
+        data={categoryData}
+        isPostOpen={isPostOpen}
+        toggleCategory={toggleCategory}
+      />
 
       <div css={categoryContainer}>
         <div
@@ -58,7 +60,11 @@ export default function Index({
               height: "calc(100dvh - 1rem - 2rem)",
             }}
           >
-            <CategoryList data={[]} isPostOpen={[]} toggleCategory={() => {}} />
+            <CategoryList
+              data={categoryData}
+              isPostOpen={[]}
+              toggleCategory={() => {}}
+            />
           </div>
         </div>
 

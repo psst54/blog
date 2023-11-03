@@ -7,11 +7,7 @@ import CategoryList from "@components/CategoryList";
 import RightChevronIcon from "@assets/RightChevronIcon";
 import ListIcon from "@assets/ListIcon";
 
-export default function CategoroyPopUp({
-  categoryData,
-  isPostOpen,
-  toggleCategory,
-}) {
+export default function CategoroyPopUp({ data, isPostOpen, toggleCategory }) {
   const [isOpen, setIsOpen] = useState(false);
   const params = useParams();
 
@@ -80,7 +76,7 @@ export default function CategoroyPopUp({
           </div>
 
           <CategoryList
-            data={categoryData}
+            data={data}
             isPostOpen={isPostOpen}
             toggleCategory={toggleCategory}
           />

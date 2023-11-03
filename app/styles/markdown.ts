@@ -28,7 +28,6 @@ export const styledCode = {
 
   color: "#fff",
   fontFamily: "Pretendard",
-  fontWeight: 500,
 };
 export const styledLi = {
   marginLeft: "1.5rem",

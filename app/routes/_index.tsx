@@ -1,8 +1,12 @@
+import { useState, useEffect } from "react";
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
-import IndexScreen from "~/screens/_index.screen";
+
+import IndexScreen from "@screens/_index.screen";
+import { getSubBlogId, buildTree } from "@functions/category";
+import { getPosts, getRecentPosts } from "@functions/supabase";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -11,46 +15,47 @@ export const meta: V2_MetaFunction = () => {
   ];
 };
 
-export const loader = async ({ context }: LoaderArgs) => {
+export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
     context.env.SUPABASE_URL,
     context.env.SUPABASE_KEY
   );
 
-  const loadData = async () => {
-    try {
-      const { data: databaseData, error: databaseError } = await supabase
-        .from("posts")
-        .select("title, sub_title, tags, id, thumbnail, sub_blog")
-        .order("created_at", { ascending: false })
-        .limit(10);
-
-      if (databaseError) throw new Error();
-
-      return databaseData;
-    } catch (err) {
-      return null;
-    }
-  };
-
-  const data = await loadData();
-
-  return {
-    recentPosts: data,
-    supabaseUrl: context.env.SUPABASE_URL,
-    supabaseKey: context.env.SUPABASE_KEY,
-  };
+  const subBlogId = getSubBlogId({ params });
+  try {
+    const recentPosts = await getRecentPosts({ supabase });
+    const categoryRawData = await getPosts({ supabase, subBlogId });
+    return {
+      recentPosts: recentPosts,
+      categoryData: buildTree(categoryRawData),
+    };
+  } catch (err) {
+    return { categoryData: [], categoryData: [] };
+  }
 };
 
 export default function Index() {
-  const { recentPosts, supabaseUrl, supabaseKey } =
-    useLoaderData<typeof loader>();
+  const { recentPosts, categoryData } = useLoaderData<typeof loader>();
+  const [isPostOpen, setIsPostOpen] = useState({});
+
+  useEffect(() => {
+    const newObj = {};
+    categoryData.forEach((datum) => (newObj[datum] = false));
+    setIsPostOpen(newObj);
+  }, [categoryData]);
+
+  const toggleCategory = (id: number) => {
+    const newData = { ...isPostOpen };
+    newData[id] = !newData[id];
+    setIsPostOpen({ ...newData });
+  };
 
   return (
     <IndexScreen
       recentPosts={recentPosts}
-      supabaseUrl={supabaseUrl}
-      supabaseKey={supabaseKey}
+      categoryData={categoryData}
+      isPostOpen={isPostOpen}
+      toggleCategory={toggleCategory}
     />
   );
 }
