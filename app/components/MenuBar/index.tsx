@@ -70,9 +70,22 @@ export default function MenuBar() {
               aria-label={menuItem.href}
               key={menuItemIdx}
               to={menuItem.href}
-              css={{ cursor: "pointer" }}
+              css={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+
+                width: "3.5rem",
+                height: "3.5rem",
+
+                border: `2px solid ${color.border.standard}`,
+                borderRadius: "1rem",
+                boxShadow: `4px 4px 0px 0px ${color.primary.standard}`,
+
+                cursor: "pointer",
+              }}
             >
-              <menuItem.icon size="3.5rem" color={color.border.standard} />
+              <menuItem.icon size="2.5rem" color={color.border.standard} />
             </Link>
           ))}
         </div>
