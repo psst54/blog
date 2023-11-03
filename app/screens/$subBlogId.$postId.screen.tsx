@@ -2,13 +2,8 @@ import Content from "@components/PostContent";
 import PostGrid from "@components/PostGrid";
 import Tag from "@components/Tag";
 
-import styles from "@styles/katex.css";
 import { color } from "@styles/color";
 import { size } from "@styles/size";
-
-export function links() {
-  return [{ rel: "stylesheet", href: styles }];
-}
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);

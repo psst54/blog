@@ -4,11 +4,6 @@ import { useLoaderData } from "@remix-run/react";
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
 
-import styles from "@styles/katex.css";
-export function links() {
-  return [{ rel: "stylesheet", href: styles }];
-}
-
 import PostDetailPageScreen from "@screens/$subBlogId.$postId.screen";
 
 export const loader = async ({ context, params }: LoaderArgs) => {

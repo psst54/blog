@@ -9,6 +9,8 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import katexStyle from "katex/dist/katex.css";
+
 import { css } from "@emotion/react";
 import { color } from "@styles/color";
 
@@ -85,6 +87,12 @@ export default function App() {
           rel="stylesheet"
           as="style"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard-dynamic-subset.css"
+          media={isInitialRender ? "print" : "all"}
+        />
+        <link
+          rel="stylesheet"
+          as="style"
+          href={katexStyle}
           media={isInitialRender ? "print" : "all"}
         />
         <Links />
