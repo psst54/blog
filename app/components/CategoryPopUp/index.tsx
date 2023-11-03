@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 import { color } from "@styles/color";
 import CategoryList from "@components/CategoryList";
@@ -52,13 +52,13 @@ const titleWrapper = { display: "flex", alignItems: "center", gap: "0.5rem" };
 export default function CategoroyPopUp({ data, isPostOpen, toggleCategory }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  function onOpen() {
+  const onOpen = useMemo(function () {
     setIsOpen(true);
-  }
+  }, []);
 
-  function onClose() {
+  const onClose = useMemo(function () {
     setIsOpen(false);
-  }
+  }, []);
 
   return (
     <div>
