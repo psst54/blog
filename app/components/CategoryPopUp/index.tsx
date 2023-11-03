@@ -1,89 +1,111 @@
 import { useState } from "react";
-import { useParams } from "@remix-run/react";
+import loadable from "@loadable/component";
 
+import { color } from "@styles/color";
 import CategoryList from "@components/CategoryList";
+import MenuIcon from "@components/MenuIcon";
 
 import RightChevronIcon from "@assets/RightChevronIcon";
 import ListIcon from "@assets/ListIcon";
 
-export default function CategoroyPopUp({
-  categoryData,
-  isPostOpen,
-  toggleCategory,
-}) {
+const HomeIcon = loadable(() => import("@assets/HomeIcon"));
+const CodeIcon = loadable(() => import("@assets/CodeIcon"));
+const HeartIcon = loadable(() => import("@assets/HeartIcon"));
+
+const mainMenu = [
+  { icon: HomeIcon, href: "/", alt: "Home" },
+  { icon: CodeIcon, href: "/cse", alt: "CSE" },
+  { icon: HeartIcon, href: "/like", alt: "Like" },
+];
+
+const openButton = {
+  display: "flex",
+  alignItems: "center",
+  gap: "0.5rem",
+
+  background: "transparent",
+  border: "none",
+  outline: "none",
+  cursor: "pointer",
+};
+
+const closeButton = {
+  background: "none",
+  border: "none",
+  outline: "none",
+  cursor: "pointer",
+};
+
+const buttonDescriptionText = { fontSize: "1.25rem" };
+
+const CategorySlide = {
+  position: "fixed" as "fixed",
+  width: "90vw",
+  maxWidth: "400px",
+  height: "100dvh",
+  top: 0,
+  right: 0,
+
+  display: "flex",
+  flexDirection: "column" as "column",
+  gap: "1rem",
+
+  background: color.background.standard,
+  borderWidth: "2px 0 2px 2px",
+  borderStyle: "solid",
+  borderColor: color.border.standard,
+  borderRadius: "1rem 0 0 1rem",
+  padding: "1.25rem",
+
+  zIndex: 10,
+};
+
+const titleWrapper = { display: "flex", alignItems: "center", gap: "0.5rem" };
+
+export default function CategoroyPopUp({ data, isPostOpen, toggleCategory }) {
   const [isOpen, setIsOpen] = useState(false);
-  const params = useParams();
+
+  function onOpen() {
+    setIsOpen(true);
+  }
+
+  function onClose() {
+    setIsOpen(false);
+  }
 
   return (
     <div>
       <button
         aria-label="toggle category menu"
-        css={{
-          display: "flex",
-          alignItems: "center",
-          gap: "0.5rem",
-
-          background: "transparent",
-          border: "none",
-          outline: "none",
-          cursor: "pointer",
-        }}
-        onClick={() => {
-          setIsOpen(true);
-        }}
+        css={openButton}
+        onClick={onOpen}
       >
         <ListIcon size="1.5rem" color="#000" />
       </button>
 
       {isOpen && (
-        <div
-          css={[
-            {
-              position: "fixed",
-              width: "90vw",
-              maxWidth: "400px",
-              height: "100dvh",
-              top: 0,
-              right: 0,
-
-              display: "flex",
-              flexDirection: "column",
-
-              background: "#fffc",
-              backdropFilter: "blur(10px)",
-              borderWidth: "2px 0 2px 2px",
-              borderStyle: "solid",
-              borderColor: "#A8DC90",
-              borderRadius: "1rem 0 0 1rem",
-              padding: "1.25rem",
-
-              zIndex: 10,
-            },
-          ]}
-        >
-          <div css={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <div css={CategorySlide}>
+          <div css={titleWrapper}>
             <button
               aria-label="toggle category menu"
-              css={{
-                background: "none",
-                border: "none",
-                outline: "none",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                setIsOpen(false);
-              }}
+              css={closeButton}
+              onClick={onClose}
             >
               <RightChevronIcon size="1rem" color="#000" />
             </button>
-            <h2 css={{ fontSize: "1.25rem", fontWeight: 400 }}>글 목록</h2>
+            <h2 css={buttonDescriptionText}>접기</h2>
+          </div>
+
+          <div css={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+            {mainMenu.map((menuItem, menuItemIndex) => (
+              <MenuIcon key={menuItemIndex} item={menuItem} />
+            ))}
           </div>
 
           <CategoryList
-            data={categoryData}
+            data={data}
             isPostOpen={isPostOpen}
             toggleCategory={toggleCategory}
-            subBlogId={params.subBlogId || ""}
           />
         </div>
       )}

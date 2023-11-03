@@ -1,10 +1,9 @@
 import Content from "@components/PostContent";
-import PostList from "@components/PostList";
+import PostGrid from "@components/PostGrid";
+import Tag from "@components/Tag";
 
-import styles from "@styles/katex.css";
-export function links() {
-  return [{ rel: "stylesheet", href: styles }];
-}
+import { color } from "@styles/color";
+import { size } from "@styles/size";
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
@@ -19,60 +18,29 @@ export default function PostDetailPageScreen({
     <div
       css={{
         width: "100%",
-        padding: "2rem 1.5rem",
+        padding: "1rem 1.5rem",
 
         wordBreak: "break-word",
 
+        [mq[0]]: {
+          paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
+        },
+
         [mq[1]]: {
           padding: "1rem",
+          paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
         },
       }}
     >
-      {content?.tags.length > 0 && (
-        <div
-          css={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "0.25rem",
-            marginBottom: "0.5rem",
-          }}
-        >
-          {content?.tags.map(
-            (tag: { text: string; isSpoiler: boolean }, tagIdx: number) => (
-              <div
-                key={tagIdx}
-                css={{
-                  padding: "0.25rem 0.75rem",
-                  background: "#4D4D4D",
-                  borderRadius: "0.5rem",
-                }}
-              >
-                <p
-                  css={[
-                    { color: "#ffffff" },
-                    tag.isSpoiler && {
-                      color: "#aaa",
-                      filter: "blur(0.25rem)",
-                      "&:hover": { color: "#ffffff", filter: "none" },
-                    },
-                  ]}
-                >
-                  {tag.text}
-                </p>
-              </div>
-            )
-          )}
-        </div>
-      )}
-      <h1 css={{ fontSize: "2rem", fontWeight: 800, wordBreak: "keep-all" }}>
+      <h1 css={{ fontSize: "2.4rem", fontWeight: 600, wordBreak: "keep-all" }}>
         {content?.title}
       </h1>
       {content?.sub_title && (
         <h2
           css={{
             marginTop: "0.5rem",
-            color: "#555555",
-            fontSize: "1rem",
+            color: color.text.secondary,
+            fontSize: "1.2rem",
             fontWeight: 500,
             wordBreak: "keep-all",
           }}
@@ -80,14 +48,33 @@ export default function PostDetailPageScreen({
           {content?.sub_title}
         </h2>
       )}
+      {content?.tags.length > 0 && (
+        <div
+          css={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "0.5rem",
+            marginTop: "0.5rem",
+          }}
+        >
+          {content?.tags.map(
+            (tag: { text: string; isSpoiler: boolean }, tagIndex: number) => (
+              <Tag key={tagIndex} item={tag} />
+            )
+          )}
+        </div>
+      )}
 
       <hr
-        css={{ width: "100%", border: "1px solid #70E3E3", margin: "1rem 0" }}
+        css={{
+          width: "100%",
+          border: `1px solid ${color.border.standard}`,
+          margin: "1rem 0",
+        }}
       />
 
       {content?.type === "post" && <Content content={content?.content} />}
-
-      {content?.type === "database" && <PostList content={content?.posts} />}
+      {content?.type === "database" && <PostGrid posts={content?.posts} />}
     </div>
   );
 }

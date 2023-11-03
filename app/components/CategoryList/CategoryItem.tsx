@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react";
 import RightChevronIcon from "@assets/RightChevronIcon";
+import { color } from "@styles/color";
 
 const itemContainer = (indent: number) => {
   return {
@@ -11,13 +12,15 @@ const itemContainer = (indent: number) => {
     paddingRight: "0.5rem",
     paddingLeft: `calc(${indent} * 1rem + 0.2rem)`,
 
-    borderRadius: "0.75rem",
+    borderRadius: "2rem",
+
+    // color: color.text.standard,
   };
 };
 const titleStyle = {
   flexGrow: 1,
   marginLeft: "0.1rem",
-  fontSize: "1.25rem",
+  fontSize: "1rem",
   fontWeight: 400,
 
   overflow: "hidden",
@@ -27,17 +30,17 @@ const titleStyle = {
 };
 
 export default function CategoryItem({
-  subBlogId,
   id = 0,
   title = "",
+  href = "/",
   isSelected = false,
   isOpen = false,
   indent = 0,
   toggleCategory,
 }: {
-  subBlogId: string;
   id: number;
   title: string;
+  href: string;
   isSelected: boolean;
   isOpen: boolean;
   indent: number;
@@ -59,11 +62,10 @@ export default function CategoryItem({
 
   return (
     <Link
-      to={`/${subBlogId}/${id}`}
+      to={href}
       css={{
         textDecoration: "none",
-        color: "black",
-        "&:active": { color: "black" },
+        "&:active": { color: color.text.standard },
       }}
       onClick={handleAnchorClick}
     >
@@ -71,7 +73,7 @@ export default function CategoryItem({
         css={[
           itemContainer(indent),
           isSelected && {
-            background: "#8BE2B3B2",
+            background: color.primary.standard,
           },
         ]}
       >
@@ -88,20 +90,33 @@ export default function CategoryItem({
             height: "1.8rem",
             background: "transparent",
 
-            borderRadius: "0.5rem",
+            borderRadius: "100%",
             border: "none",
             outline: "none",
 
             transform: isOpen ? "rotate(90deg)" : "",
 
-            "&:hover": { background: "#FFFFFFB2" },
+            "&:hover": { background: color.primary.shadow + "B2" },
             cursor: "pointer",
           }}
         >
-          <RightChevronIcon size="1rem" color="#000" />
+          <RightChevronIcon
+            size="1rem"
+            color={isSelected ? color.text.reverse : color.text.standard}
+          />
         </button>
 
-        <h4 css={titleStyle}>{title}</h4>
+        <h4
+          css={[
+            titleStyle,
+            {
+              color: isSelected ? color.text.reverse : color.text.standard,
+              fontWeight: isSelected ? 600 : 500,
+            },
+          ]}
+        >
+          {title}
+        </h4>
       </div>
     </Link>
   );

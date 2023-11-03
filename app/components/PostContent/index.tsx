@@ -4,6 +4,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import { color } from "@styles/color";
 
 import {
   styledH1,
@@ -17,10 +18,22 @@ import {
   styledUl,
   styledBlockquote,
   styledImg,
+  styledCodeWrapper,
 } from "@styles/markdown";
 
 const components = {
-  h1: (props: any) => <h1 css={styledH1} children={props.children} />,
+  h1: (props: any) => (
+    <div css={{ display: "flex" }}>
+      <h1 css={styledH1} children={props.children} />
+      <hr
+        css={{
+          flexGrow: 1,
+          border: "none",
+          borderBottom: `2px solid ${color.border.light}`,
+        }}
+      />
+    </div>
+  ),
   h2: (props: any) => <h2 css={styledH2} children={props.children} />,
   h3: (props: any) => <h3 css={styledH3} children={props.children} />,
   h4: (props: any) => <h4 css={styledH3} children={props.children} />,
@@ -46,13 +59,15 @@ const components = {
   code: (props: any) => {
     const match = /language-(\w+)/.exec(props.className || "");
     return !props.inline && match ? (
-      <SyntaxHighlighter
-        children={String(props.children).replace(/\n$/, "")}
-        style={nord}
-        language={match[1]}
-        PreTag="div"
-        {...props}
-      />
+      <div css={styledCodeWrapper}>
+        <SyntaxHighlighter
+          children={String(props.children).replace(/\n$/, "")}
+          style={nord}
+          language={match[1]}
+          PreTag="div"
+          {...props}
+        />
+      </div>
     ) : (
       <code css={styledCode} children={props.children} />
     );
@@ -63,24 +78,10 @@ export default function Content({ content }: { content: string }) {
   return (
     <div
       css={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        wordBreak: "keep-all",
-
         ".math": {
           flexShrink: 1,
           maxWidth: "100%",
           overflowX: "auto",
-
-          "::-webkit-scrollbar": {
-            width: "8px",
-            height: "8px",
-          },
-          "::-webkit-scrollbar-thumb": {
-            borderRadius: "4px",
-            background: "#53A8E2",
-          },
         },
         ".katex-mathml": {
           display: "none",

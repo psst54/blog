@@ -6,6 +6,8 @@ import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
 
 import SubBlogScreen from "@screens/$subBlogId.screen";
+import { getSubBlogId, buildTree } from "@functions/category";
+import { getPosts } from "@functions/supabase";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -14,72 +16,30 @@ export const meta: V2_MetaFunction = () => {
   ];
 };
 
-function buildTree(items: any) {
-  const itemMap = {};
-
-  for (const item of items) {
-    itemMap[item.id] = { ...item, children: [] };
-  }
-
-  const rootNodes = [];
-
-  for (const item of items) {
-    const parentID = item.parent_id;
-
-    if (parentID === null || !itemMap[parentID]) {
-      rootNodes.push(itemMap[item.id]);
-    } else {
-      itemMap[parentID].children.push(itemMap[item.id]);
-    }
-  }
-
-  return rootNodes;
-}
-
 export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
     context.env.SUPABASE_URL,
     context.env.SUPABASE_KEY
   );
 
-  const loadData = async ({ subBlogId }: { subBlogId: string }) => {
-    try {
-      const { data: postData, error: postError } = await supabase
-        .from("posts")
-        .select("id, title, parent_id, type")
-        .order("created_at")
-        .eq("sub_blog", subBlogId);
-
-      if (postError) throw new Error();
-
-      return postData;
-    } catch (err) {
-      return [];
-    }
-  };
-
-  const subBlogId = params.subBlogId || "";
-
-  const rawData = await loadData({ subBlogId });
-
-  return {
-    data: buildTree(rawData),
-    subBlogId,
-    supabaseUrl: context.env.SUPABASE_URL,
-    supabaseKey: context.env.SUPABASE_KEY,
-  };
+  const subBlogId = getSubBlogId({ params });
+  try {
+    const categoryRawData = await getPosts({ supabase, subBlogId });
+    return { categoryData: buildTree(categoryRawData) };
+  } catch (err) {
+    return { categoryData: [] };
+  }
 };
 
 export default function SubBlog() {
-  const { data, subBlogId, supabaseUrl, supabaseKey } =
-    useLoaderData<typeof loader>();
+  const { categoryData } = useLoaderData<typeof loader>();
   const [isPostOpen, setIsPostOpen] = useState({});
 
   useEffect(() => {
     const newObj = {};
-    data.forEach((datum) => (newObj[datum] = false));
+    categoryData.forEach((datum) => (newObj[datum] = false));
     setIsPostOpen(newObj);
-  }, [data]);
+  }, [categoryData]);
 
   const toggleCategory = (id: number) => {
     const newData = { ...isPostOpen };
@@ -89,12 +49,9 @@ export default function SubBlog() {
 
   return (
     <SubBlogScreen
-      data={data}
+      data={categoryData}
       isPostOpen={isPostOpen}
       toggleCategory={toggleCategory}
-      subBlogId={subBlogId}
-      supabaseUrl={supabaseUrl}
-      supabaseKey={supabaseKey}
     />
   );
 }

@@ -1,3 +1,5 @@
+import { color } from "@styles/color";
+
 export const styledH1 = {
   padding: "1rem 0 0.2rem 0",
 };
@@ -26,7 +28,6 @@ export const styledCode = {
 
   color: "#fff",
   fontFamily: "Pretendard",
-  fontWeight: 500,
 };
 export const styledLi = {
   marginLeft: "1.5rem",
@@ -46,5 +47,15 @@ export const styledBlockquote = {
   lineHeight: "1.4rem",
 };
 export const styledImg = {
+  margin: "auto",
+  display: "block",
+
   maxWidth: "100%",
+  border: `2px solid ${color.border.standard}`,
+  borderRadius: "1rem",
+  boxShadow: `6px 6px 0px 0px ${color.border.standard}`,
+};
+export const styledCodeWrapper = {
+  color: color.text.reverse,
+  span: { color: color.text.reverse },
 };

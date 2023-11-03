@@ -1,12 +1,11 @@
 import { Link } from "@remix-run/react";
-import PostCard from "@components/PostCard";
+import PostCard from "./PostCard";
 
 export default function PostList({ content }: { content: any }) {
   return (
     <div
       css={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
         gap: "1.5rem",
       }}
     >
@@ -15,7 +14,11 @@ export default function PostList({ content }: { content: any }) {
           key={postIdx}
           aria-label={post.title}
           to={`/${post.sub_blog}/${post.id}`}
-          css={{ textDecoration: "none", color: "initial" }}
+          css={{
+            textDecoration: "none",
+            color: "initial",
+            width: "fit-content",
+          }}
         >
           <PostCard postData={post} />
         </Link>
