@@ -6,7 +6,8 @@
     "build": "remix build",
     "dev": "remix dev --manual -c \"npm run start\"",
     "start": "wrangler pages dev --compatibility-date=2023-06-21 ./public",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "sitemap": "node sitemap.js"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
