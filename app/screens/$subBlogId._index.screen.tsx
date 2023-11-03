@@ -18,7 +18,7 @@ export default function PostPageScreen({
         css={{
           width: "100%",
           height: "100%",
-          padding: "2rem 1.5rem",
+          padding: "1rem 1.5rem",
 
           wordBreak: "break-word",
 
@@ -32,13 +32,31 @@ export default function PostPageScreen({
           },
         }}
       >
+        <h1
+          css={{ fontSize: "2.4rem", fontWeight: 600, wordBreak: "keep-all" }}
+        >
+          {content?.title}
+        </h1>
+        {content?.sub_title && (
+          <h2
+            css={{
+              marginTop: "0.5rem",
+              color: color.text.secondary,
+              fontSize: "1.2rem",
+              fontWeight: 500,
+              wordBreak: "keep-all",
+            }}
+          >
+            {content.sub_title}
+          </h2>
+        )}
         {content?.tags && content.tags.length > 0 && (
           <div
             css={{
               display: "flex",
               flexWrap: "wrap",
               gap: "0.25rem",
-              marginBottom: "0.5rem",
+              marginTop: "0.5rem",
             }}
           >
             {content.tags.map(
@@ -47,22 +65,6 @@ export default function PostPageScreen({
               )
             )}
           </div>
-        )}
-        <h1 css={{ fontSize: "2rem", fontWeight: 800, wordBreak: "keep-all" }}>
-          {content?.title}
-        </h1>
-        {content?.sub_title && (
-          <h2
-            css={{
-              marginTop: "0.5rem",
-              color: color.text.secondary,
-              fontSize: "1rem",
-              fontWeight: 500,
-              wordBreak: "keep-all",
-            }}
-          >
-            {content.sub_title}
-          </h2>
         )}
 
         <hr

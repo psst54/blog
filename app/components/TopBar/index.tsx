@@ -94,7 +94,7 @@ export default function TopBar({
           alignItems: "center",
           justifyContent: "space-between",
 
-          width: "100%",
+          width: "100vw",
           height: size.TOPBAR_HEIGHT,
           padding: "0 1rem",
           background: color.background.standard,
