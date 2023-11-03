@@ -1,10 +1,22 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
+import loadable from "@loadable/component";
 
 import { color } from "@styles/color";
 import CategoryList from "@components/CategoryList";
+import MenuIcon from "@components/MenuIcon";
 
 import RightChevronIcon from "@assets/RightChevronIcon";
 import ListIcon from "@assets/ListIcon";
+
+const HomeIcon = loadable(() => import("@assets/HomeIcon"));
+const CodeIcon = loadable(() => import("@assets/CodeIcon"));
+const HeartIcon = loadable(() => import("@assets/HeartIcon"));
+
+const mainMenu = [
+  { icon: HomeIcon, href: "/", alt: "Home" },
+  { icon: CodeIcon, href: "/cse", alt: "CSE" },
+  { icon: HeartIcon, href: "/like", alt: "Like" },
+];
 
 const openButton = {
   display: "flex",
@@ -36,6 +48,7 @@ const CategorySlide = {
 
   display: "flex",
   flexDirection: "column" as "column",
+  gap: "1rem",
 
   background: color.background.standard,
   borderWidth: "2px 0 2px 2px",
@@ -81,6 +94,12 @@ export default function CategoroyPopUp({ data, isPostOpen, toggleCategory }) {
               <RightChevronIcon size="1rem" color="#000" />
             </button>
             <h2 css={buttonDescriptionText}>접기</h2>
+          </div>
+
+          <div css={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+            {mainMenu.map((menuItem, menuItemIndex) => (
+              <MenuIcon key={menuItemIndex} item={menuItem} />
+            ))}
           </div>
 
           <CategoryList

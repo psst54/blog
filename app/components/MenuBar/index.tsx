@@ -1,19 +1,19 @@
-import { Link } from "@remix-run/react";
 import loadable from "@loadable/component";
-import { color } from "@styles/color";
+
+import MenuIcon from "@components/MenuIcon";
 
 const HomeIcon = loadable(() => import("@assets/HomeIcon"));
 const CodeIcon = loadable(() => import("@assets/CodeIcon"));
 const HeartIcon = loadable(() => import("@assets/HeartIcon"));
-
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 const mainMenu = [
   { icon: HomeIcon, href: "/", alt: "Home" },
   { icon: CodeIcon, href: "/cse", alt: "CSE" },
   { icon: HeartIcon, href: "/like", alt: "Like" },
 ];
+
+const breakpoints = [1200, 576];
+const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 const MENU_WIDTH = "6rem";
 
@@ -58,28 +58,8 @@ export default function MenuBar() {
     <div css={container}>
       <div css={innerContainer}>
         <div css={iconList}>
-          {mainMenu.map((menuItem, menuItemIdx) => (
-            <Link
-              aria-label={menuItem.href}
-              key={menuItemIdx}
-              to={menuItem.href}
-              css={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-
-                width: "3.5rem",
-                height: "3.5rem",
-
-                border: `2px solid ${color.border.standard}`,
-                borderRadius: "1rem",
-                boxShadow: `4px 4px 0px 0px ${color.primary.standard}`,
-
-                cursor: "pointer",
-              }}
-            >
-              <menuItem.icon size="2.5rem" color={color.border.standard} />
-            </Link>
+          {mainMenu.map((menuItem, menuItemIndex) => (
+            <MenuIcon key={menuItemIndex} item={menuItem} />
           ))}
         </div>
       </div>
