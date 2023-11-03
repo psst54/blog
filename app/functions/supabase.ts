@@ -28,6 +28,7 @@ export async function getRecentPosts({
     .from("posts")
     .select("title, sub_title, tags, id, thumbnail, sub_blog")
     .order("created_at", { ascending: false })
+    .eq("type", "post")
     .limit(10);
 
   if (databaseError) throw new Error();
