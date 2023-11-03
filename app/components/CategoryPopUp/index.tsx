@@ -52,13 +52,13 @@ const titleWrapper = { display: "flex", alignItems: "center", gap: "0.5rem" };
 export default function CategoroyPopUp({ data, isPostOpen, toggleCategory }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const onOpen = useMemo(function () {
+  function onOpen() {
     setIsOpen(true);
-  }, []);
+  }
 
-  const onClose = useMemo(function () {
+  function onClose() {
     setIsOpen(false);
-  }, []);
+  }
 
   return (
     <div>
