@@ -38,12 +38,6 @@ export default function Index() {
   const { recentPosts, categoryData } = useLoaderData<typeof loader>();
   const [isPostOpen, setIsPostOpen] = useState({});
 
-  useEffect(() => {
-    const newObj = {};
-    categoryData.forEach((datum) => (newObj[datum] = false));
-    setIsPostOpen(newObj);
-  }, [categoryData]);
-
   const toggleCategory = (id: number) => {
     const newData = { ...isPostOpen };
     newData[id] = !newData[id];

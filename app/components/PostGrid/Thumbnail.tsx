@@ -1,7 +1,14 @@
-export default function Thumbnail({ thumbnail }: { thumbnail: string }) {
+export default function Thumbnail({
+  thumbnail,
+  title,
+}: {
+  thumbnail: string;
+  title: string;
+}) {
   return (
     <img
       src={thumbnail}
+      alt={title}
       css={{
         width: "100%",
         height: "100%",
