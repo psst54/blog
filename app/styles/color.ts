@@ -18,7 +18,9 @@ export const darkColor = {
 };
 
 export const color = {
-  background: { standard: "#F2F0F5" },
+  background: {
+    standard: "#fbf6f7",
+  },
   border: {
     standard: "#484561",
     light: "#C1BACC",
@@ -31,8 +33,8 @@ export const color = {
     reverse: "#F2F0F5",
   },
 
-  primary: { standard: "#f199a9", shadow: "#F2D2DD" },
-  secondary: { standard: "#68c6f5" },
+  primary: { standard: "#fd92d6", shadow: "#F2D2DD" },
+  secondary: { standard: "#7eaef7" },
 
   black: { standard: "#000" },
   white: { standard: "#fff" },

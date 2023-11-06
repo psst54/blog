@@ -16,9 +16,10 @@ export default function PostCard({ postData }: { postData: any }) {
 
         aspectRatio: "1/1.125",
 
-        border: `1px solid ${color.secondary.standard}`,
+        background: `${color.background.standard}`,
+        border: `2px solid ${color.border.standard}`,
         borderRadius: "1rem",
-        boxShadow: `6px 6px 0px 0px ${color.secondary.standard}`,
+        boxShadow: `8px 8px 0px 0px ${color.secondary.standard}`,
 
         [mq[0]]: {
           aspectRatio: "1/1.125",
