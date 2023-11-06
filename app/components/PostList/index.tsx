@@ -12,7 +12,6 @@ export default function PostList({ content }: { content: any }) {
       {content?.map((post, postIdx: number) => (
         <Link
           key={postIdx}
-          aria-label={post.title}
           to={`/${post.sub_blog}/${post.id}`}
           css={{
             textDecoration: "none",

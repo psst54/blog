@@ -4,7 +4,6 @@ import { color } from "@styles/color";
 export default function MenuBar({ item }) {
   return (
     <Link
-      aria-label={item.href}
       to={item.href}
       css={{
         display: "flex",
