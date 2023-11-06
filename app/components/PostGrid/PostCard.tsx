@@ -48,7 +48,7 @@ export default function PostCard({ postData }: { postData: any }) {
           }}
         >
           <Suspense fallback={<></>}>
-            <Thumbnail thumbnail={postData.thumbnail} title={postData.string} />
+            <Thumbnail thumbnail={postData.thumbnail} title={postData.title} />
           </Suspense>
         </div>
       )}
