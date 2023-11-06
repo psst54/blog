@@ -16,7 +16,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     try {
       const { data: databaseData, error: databaseError } = await supabase
         .from("posts")
-        .select("title, sub_title, tags, id, thumbnail, sub_blog")
+        .select("title, sub_title, tags, id, thumbnail, sub_blog, created_at")
         .eq("sub_blog", subBlogId)
         .is("parent_id", null)
         .order("created_at");

@@ -4,4 +4,5 @@ export interface Post {
   parent_id: string;
   type: string;
   sub_blog: string;
+  created_at: string;
 }

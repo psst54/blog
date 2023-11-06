@@ -1,19 +1,13 @@
+import PostHeader from "@components/PostHeader";
 import Content from "@components/PostContent";
 import PostGrid from "@components/PostGrid";
-import Tag from "@components/Tag";
-
-import { color } from "@styles/color";
 import { size } from "@styles/size";
+import { Post } from "@types";
 
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
-export default function PostDetailPageScreen({
-  content,
-  subBlogId,
-}: {
-  subBlogId: string;
-}) {
+export default function PostDetailPageScreen({ content }: { content: Post }) {
   return (
     <div
       css={{
@@ -32,47 +26,12 @@ export default function PostDetailPageScreen({
         },
       }}
     >
-      <h1 css={{ fontSize: "2.4rem", fontWeight: 600, wordBreak: "keep-all" }}>
-        {content?.title}
-      </h1>
-      {content?.sub_title && (
-        <h2
-          css={{
-            marginTop: "0.5rem",
-            color: color.text.secondary,
-            fontSize: "1.2rem",
-            fontWeight: 500,
-            wordBreak: "keep-all",
-          }}
-        >
-          {content?.sub_title}
-        </h2>
-      )}
-      {content?.tags.length > 0 && (
-        <div
-          css={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "0.5rem",
-            marginTop: "0.5rem",
-          }}
-        >
-          {content?.tags.map(
-            (tag: { text: string; isSpoiler: boolean }, tagIndex: number) => (
-              <Tag key={tagIndex} item={tag} />
-            )
-          )}
-        </div>
-      )}
-
-      <hr
-        css={{
-          width: "100%",
-          border: `1px solid ${color.border.standard}`,
-          margin: "1rem 0",
-        }}
+      <PostHeader
+        title={content?.title}
+        subTitle={content?.sub_title}
+        tags={content?.tags}
+        postDate={content?.created_at}
       />
-
       {content?.type === "post" && <Content content={content?.content} />}
       {content?.type === "database" && <PostGrid posts={content?.posts} />}
     </div>

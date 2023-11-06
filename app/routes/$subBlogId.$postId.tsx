@@ -22,7 +22,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     try {
       const { data: postData, error: postError } = await supabase
         .from("posts")
-        .select("title, sub_title, content, tags, type")
+        .select("title, sub_title, content, tags, type, created_at")
         .eq("sub_blog", subBlogId)
         .eq("id", id)
         .single();
@@ -33,7 +33,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
       const { data: databaseData, error: databaseError } = await supabase
         .from("posts")
-        .select("title, sub_title, tags, id, thumbnail, sub_blog")
+        .select("title, sub_title, tags, id, thumbnail, sub_blog, created_at")
         .eq("sub_blog", subBlogId)
         .eq("parent_id", id)
         .order("created_at", { ascending: false });
