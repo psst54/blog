@@ -23,10 +23,9 @@ export default function PostHeader({
   }
 
   function formatDate(dateString: string | null) {
-    console.log(dateString);
     if (!dateString) return "";
 
-    let dateObject = new Date(dateString);
+    const dateObject = new Date(dateString);
     const utc =
       dateObject.getTime() + dateObject.getTimezoneOffset() * 60 * 1000;
     const TIME_DIFF = 9 * 60 * 60 * 1000;
