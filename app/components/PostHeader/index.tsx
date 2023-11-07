@@ -22,11 +22,19 @@ export default function PostHeader({
     return number;
   }
 
-  function formatDate(dateString: string) {
-    const dateObject = new Date(dateString);
-    const year = dateObject.getFullYear();
-    const month = dateObject.getMonth() + 1;
-    const date = dateObject.getDate();
+  function formatDate(dateString: string | null) {
+    console.log(dateString);
+    if (!dateString) return "";
+
+    let dateObject = new Date(dateString);
+    const utc =
+      dateObject.getTime() + dateObject.getTimezoneOffset() * 60 * 1000;
+    const TIME_DIFF = 9 * 60 * 60 * 1000;
+    const ktc = new Date(utc + TIME_DIFF);
+
+    const year = ktc.getFullYear();
+    const month = ktc.getMonth() + 1;
+    const date = ktc.getDate();
 
     return year + "." + padNumber(month) + "." + padNumber(date) + ".";
   }
@@ -84,9 +92,11 @@ export default function PostHeader({
         </div>
       )}
 
-      <p css={{ marginTop: "0.5rem", textAlign: "right" }}>
-        {formatDate(postDate)}
-      </p>
+      {postDate && (
+        <p css={{ marginTop: "0.5rem", textAlign: "right" }}>
+          {formatDate(postDate)}
+        </p>
+      )}
 
       <hr
         css={{
