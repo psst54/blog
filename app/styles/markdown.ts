@@ -43,8 +43,6 @@ export const styledLi = {
   lineHeight: 1.6,
   paddingBottom: "0.25rem",
 };
-export const styledOl = {};
-export const styledUl = {};
 export const styledBlockquote = {
   borderLeft: "3px solid black",
   margin: "0.5rem 0",
