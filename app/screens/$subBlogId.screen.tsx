@@ -9,7 +9,12 @@ import { size } from "@styles/size";
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
-export default function SubBlogScreen({ data, isPostOpen, toggleCategory }) {
+export default function SubBlogScreen({
+  plainCategoryData,
+  data,
+  isPostOpen,
+  toggleCategory,
+}) {
   return (
     <main css={background}>
       <MenuBar />
@@ -48,7 +53,7 @@ export default function SubBlogScreen({ data, isPostOpen, toggleCategory }) {
         </div>
 
         <div css={contentContainer}>
-          <Outlet />
+          <Outlet context={plainCategoryData} />
         </div>
       </div>
     </main>

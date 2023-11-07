@@ -1,23 +1,28 @@
+import { useMemo } from "react";
 import Tag from "@components/Tag";
 import { color } from "@styles/color";
+import Breadcrumb from "./Breadcrumb";
 
 export default function PostHeader({
+  id,
   title,
   subTitle,
   tags,
   postDate,
+  plainCategoryData,
 }: {
+  id: string;
   title: string | null;
   subTitle: string | null;
   tags: { text: string; isSpoiler: boolean }[] | null;
   postDate: string | null;
 }) {
-  function padNumber(number) {
+  function padNumber(number: number) {
     if (number < 10) return "0" + number;
     return number;
   }
 
-  function formatDate(dateString) {
+  function formatDate(dateString: string) {
     const dateObject = new Date(dateString);
     const year = dateObject.getFullYear();
     const month = dateObject.getMonth() + 1;
@@ -26,8 +31,26 @@ export default function PostHeader({
     return year + "." + padNumber(month) + "." + padNumber(date) + ".";
   }
 
+  function getAncestors(id) {
+    if (!id) return [];
+    let ret = [];
+
+    while (id !== null) {
+      ret.unshift(plainCategoryData[id]);
+      id = plainCategoryData[id].parentId;
+    }
+
+    return ret;
+  }
+
+  const breadcrumbData = useMemo(() => {
+    return getAncestors(id);
+  }, [id]);
+
   return (
     <>
+      <Breadcrumb breadcrumbData={breadcrumbData} />
+
       <h1 css={{ fontSize: "2.4rem", fontWeight: 600, wordBreak: "keep-all" }}>
         {title}
       </h1>

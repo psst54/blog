@@ -1,5 +1,5 @@
 import type { LoaderArgs } from "@remix-run/cloudflare";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useOutletContext } from "@remix-run/react";
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
@@ -22,7 +22,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     try {
       const { data: postData, error: postError } = await supabase
         .from("posts")
-        .select("title, sub_title, content, tags, type, created_at")
+        .select("id, title, sub_title, content, tags, type, created_at")
         .eq("sub_blog", subBlogId)
         .eq("id", id)
         .single();
@@ -53,11 +53,17 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     id: params.postId || "",
   });
 
-  return { content: data, subBlogId };
+  return { content: data };
 };
 
 export default function PostPage() {
-  const { content, subBlogId } = useLoaderData<typeof loader>();
+  const { content } = useLoaderData<typeof loader>();
+  const plainCategoryData = useOutletContext();
 
-  return <PostDetailPageScreen content={content} subBlogId={subBlogId} />;
+  return (
+    <PostDetailPageScreen
+      content={content}
+      plainCategoryData={plainCategoryData}
+    />
+  );
 }

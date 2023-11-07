@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 
@@ -6,7 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
 
 import SubBlogScreen from "@screens/$subBlogId.screen";
-import { getSubBlogId, buildTree } from "@functions/category";
+import { getSubBlogId, buildTree, spread } from "@functions/category";
 import { getPosts } from "@functions/supabase";
 
 export const meta: V2_MetaFunction = () => {
@@ -25,14 +25,17 @@ export const loader = async ({ context, params }: LoaderArgs) => {
   const subBlogId = getSubBlogId({ params });
   try {
     const categoryRawData = await getPosts({ supabase, subBlogId });
-    return { categoryData: buildTree(categoryRawData) };
+    return {
+      plainCategoryData: spread(categoryRawData),
+      categoryData: buildTree(categoryRawData),
+    };
   } catch (err) {
-    return { categoryData: [] };
+    return { plainCategoryData: {}, categoryData: [] };
   }
 };
 
 export default function SubBlog() {
-  const { categoryData } = useLoaderData<typeof loader>();
+  const { plainCategoryData, categoryData } = useLoaderData<typeof loader>();
   const [isPostOpen, setIsPostOpen] = useState({});
 
   const toggleCategory = (id: number) => {
@@ -43,6 +46,7 @@ export default function SubBlog() {
 
   return (
     <SubBlogScreen
+      plainCategoryData={plainCategoryData}
       data={categoryData}
       isPostOpen={isPostOpen}
       toggleCategory={toggleCategory}
