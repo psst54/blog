@@ -13,8 +13,6 @@ const itemContainer = (indent: number) => {
     paddingLeft: `calc(${indent} * 1rem + 0.2rem)`,
 
     borderRadius: "2rem",
-
-    // color: color.text.standard,
   };
 };
 const titleStyle = {
