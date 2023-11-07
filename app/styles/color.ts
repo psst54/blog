@@ -20,6 +20,7 @@ export const darkColor = {
 export const color = {
   background: {
     standard: "#fbf6f7",
+    toSecondary: "#e1e7f0",
   },
   border: {
     standard: "#484561",
@@ -31,6 +32,7 @@ export const color = {
     standard: "#000",
     secondary: "#000",
     reverse: "#F2F0F5",
+    link: "#247bff",
   },
 
   primary: { standard: "#fd92d6", shadow: "#F2D2DD" },
