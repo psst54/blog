@@ -1,16 +1,12 @@
-import { memo, useMemo, lazy, Suspense } from "react";
 import { Link } from "@remix-run/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { remark } from "remark";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import remarkToc from "remark-toc";
 import { color } from "@styles/color";
-// import TableOfContent from "./TableOfContent";
-const TableOfContent = lazy(() => import("./TableOfContent"));
 
 import {
   styledH1,
@@ -28,10 +24,17 @@ import {
 } from "@styles/markdown";
 
 function getId(child) {
+  return solve(child)
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\sㄱ-ㅎㅏ-ㅣ가-힣-]/g, "")
+    .toLowerCase();
+}
+
+function solve(child) {
   return child
     .map((item) => {
       if (typeof item === "string") return item;
-      return getId(item.props.children);
+      return solve(item.props.children);
     })
     .join("");
 }
@@ -39,11 +42,11 @@ function getId(child) {
 const components = {
   h1: (props: any) => {
     return (
-      <div css={{ display: "flex" }}>
+      <div css={{ display: "flex", marginBottom: "0.25rem" }}>
         <h1
           css={styledH1}
           children={props.children}
-          id={getId(props.children).replace(/\s+/g, "-").toLowerCase()}
+          id={getId(props.children)}
         />
         <hr
           css={{
@@ -56,31 +59,28 @@ const components = {
     );
   },
   h2: (props: any) => (
-    <h2
-      css={styledH2}
-      children={props.children}
-      id={getId(props.children).replace(/\s+/g, "-").toLowerCase()}
-    />
+    <h2 css={styledH2} children={props.children} id={getId(props.children)} />
   ),
   h3: (props: any) => (
-    <h3
-      css={styledH3}
-      children={props.children}
-      id={getId(props.children).replace(/\s+/g, "-").toLowerCase()}
-    />
+    <h3 css={styledH3} children={props.children} id={getId(props.children)} />
   ),
   h4: (props: any) => <h4 css={styledH3} children={props.children} />,
   h5: (props: any) => <h5 css={styledH3} children={props.children} />,
   h6: (props: any) => <h6 css={styledH3} children={props.children} />,
   p: (props: any) => <p css={styledP} children={props.children} />,
-  a: (props: any) => (
-    <Link
-      target="_blank"
-      css={styledA}
-      href={props.href}
-      children={props.children}
-    />
-  ),
+  a: (props: any) => {
+    if (props.href[0] === "#")
+      return <Link css={styledA} to={props.href} children={props.children} />;
+
+    return (
+      <Link
+        target="_blank"
+        css={styledA}
+        to={props.href}
+        children={props.children}
+      />
+    );
+  },
   li: (props: any) => <li css={styledLi} children={props.children} />,
   ol: (props: any) => <ol css={styledOl} children={props.children} />,
   ul: (props: any) => <ul css={styledUl} children={props.children} />,
@@ -108,22 +108,6 @@ const components = {
 };
 
 export default function Content({ content }: { content: string }) {
-  const headings = useMemo(() => {
-    const headings = [];
-    const toc = [];
-    remark()
-      .parse(content)
-      .children.forEach((node) => {
-        if (node.type === "heading" && node.depth <= 3) {
-          const text = node.children.map((child) => child.value).join("");
-          const id = text.replace(/\s+/g, "-").toLowerCase();
-          headings.push({ text, id, depth: node.depth });
-          toc.push(`- [${text}](#${id})`);
-        }
-      });
-    return headings;
-  }, [content]);
-
   return (
     <div
       css={{
@@ -137,16 +121,16 @@ export default function Content({ content }: { content: string }) {
         },
       }}
     >
-      <Suspense fallback={<></>}>
-        <TableOfContent headings={headings} />
-      </Suspense>
-
       <ReactMarkdown
-        remarkPlugins={[remarkMath, remarkGfm, remarkToc]}
+        remarkPlugins={[
+          [remarkMath],
+          [remarkGfm],
+          [remarkToc, { tight: true, maxDepth: 3, ordered: true }],
+        ]}
         rehypePlugins={[rehypeKatex]}
         components={components}
       >
-        {content}
+        {"### Table of Contents\n" + content}
       </ReactMarkdown>
     </div>
   );
