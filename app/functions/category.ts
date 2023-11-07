@@ -25,3 +25,17 @@ export function buildTree(items: any) {
 
   return rootNodes;
 }
+
+export function spread(items) {
+  const ret = {};
+
+  for (const item of items) {
+    ret[item.id] = {
+      id: item.id,
+      parentId: item.parent_id,
+      title: item.title,
+      subBlog: item.sub_blog,
+    };
+  }
+  return ret;
+}

@@ -7,7 +7,12 @@ import { Post } from "@types";
 const breakpoints = [1200, 576];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
-export default function PostDetailPageScreen({ content }: { content: Post }) {
+export default function PostDetailPageScreen({
+  content,
+  plainCategoryData,
+}: {
+  content: Post;
+}) {
   return (
     <div
       css={{
@@ -27,10 +32,12 @@ export default function PostDetailPageScreen({ content }: { content: Post }) {
       }}
     >
       <PostHeader
+        id={content.id}
         title={content?.title}
         subTitle={content?.sub_title}
         tags={content?.tags}
         postDate={content?.created_at}
+        plainCategoryData={plainCategoryData}
       />
       {content?.type === "post" && <Content content={content?.content} />}
       {content?.type === "database" && <PostGrid posts={content?.posts} />}
