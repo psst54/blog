@@ -77,7 +77,7 @@ const components = {
     <Link
       target="_blank"
       css={styledA}
-      href={props.href}
+      to={props.href}
       children={props.children}
     />
   ),
@@ -117,7 +117,7 @@ export default function Content({ content }: { content: string }) {
         if (node.type === "heading" && node.depth <= 3) {
           const text = node.children.map((child) => child.value).join("");
           const id = text.replace(/\s+/g, "-").toLowerCase();
-          headings.push({ text, id });
+          headings.push({ text, id, depth: node.depth });
           toc.push(`- [${text}](#${id})`);
         }
       });
