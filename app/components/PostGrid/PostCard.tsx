@@ -2,8 +2,7 @@ import { lazy, Suspense } from "react";
 import { color } from "@styles/color";
 import Tag from "@components/Tag";
 
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+import { mq } from "@styles/size";
 
 const Thumbnail = lazy(() => import("./Thumbnail"));
 

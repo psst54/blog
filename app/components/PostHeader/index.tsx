@@ -48,7 +48,7 @@ export default function PostHeader({
   }, [id]);
 
   return (
-    <>
+    <div>
       <Breadcrumb breadcrumbData={breadcrumbData} />
 
       <h1 css={{ fontSize: "2.4rem", fontWeight: 600, wordBreak: "keep-all" }}>
@@ -95,6 +95,6 @@ export default function PostHeader({
           margin: "1rem 0",
         }}
       />
-    </>
+    </div>
   );
 }

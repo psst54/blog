@@ -23,7 +23,15 @@ export default function Breadcrumb({
       }}
     >
       {breadcrumbData.map((item, itemIndex) => (
-        <>
+        <div
+          key={itemIndex}
+          css={{
+            display: "flex",
+            gap: "0.5rem",
+            alignItems: "center",
+            overflow: "hidden",
+          }}
+        >
           {itemIndex !== 0 && (
             <div css={{ flexShrink: 0 }}>
               <RightChevronIcon size="1rem" color={color.text.standard} />
@@ -34,7 +42,6 @@ export default function Breadcrumb({
             css={{
               textDecoration: "none",
               wordBreak: "keep-all",
-
               overflow: "hidden",
               whiteSpace: "nowrap",
               textOverflow: "ellipsis",
@@ -46,7 +53,7 @@ export default function Breadcrumb({
           >
             {item.title}
           </Link>
-        </>
+        </div>
       ))}
     </div>
   );

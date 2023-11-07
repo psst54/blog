@@ -3,10 +3,7 @@ import TopBar from "@components/TopBar";
 import PostGrid from "@components/PostGrid";
 import CategoryList from "@components/CategoryList";
 
-import { size } from "@styles/size";
-
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+import { size, mq } from "@styles/size";
 
 import {
   background,

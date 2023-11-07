@@ -14,17 +14,17 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
   const loadData = async ({
     subBlogId,
-    id,
+    postId,
   }: {
     subBlogId: string;
-    id: string;
+    postId: string;
   }) => {
     try {
       const { data: postData, error: postError } = await supabase
         .from("posts")
         .select("id, title, sub_title, content, tags, type, created_at")
         .eq("sub_blog", subBlogId)
-        .eq("id", id)
+        .eq("id", postId)
         .single();
 
       if (postError) throw new Error();
@@ -35,7 +35,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
         .from("posts")
         .select("title, sub_title, tags, id, thumbnail, sub_blog, created_at")
         .eq("sub_blog", subBlogId)
-        .eq("parent_id", id)
+        .eq("parent_id", postId)
         .order("created_at", { ascending: false });
 
       if (databaseError) throw new Error();
@@ -50,7 +50,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
   const data = await loadData({
     subBlogId,
-    id: params.postId || "",
+    postId: params.postId || "",
   });
 
   return { content: data };

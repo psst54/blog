@@ -12,8 +12,7 @@ const mainMenu = [
   { icon: HeartIcon, href: "/like", alt: "Like" },
 ];
 
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+import { mq } from "@styles/size";
 
 const MENU_WIDTH = "6rem";
 
