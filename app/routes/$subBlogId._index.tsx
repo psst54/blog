@@ -3,6 +3,7 @@ import { useLoaderData, useOutletContext } from "@remix-run/react";
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
+import { getPostsById, getSubBlogInfo } from "~/functions/supabase";
 
 import PostPageScreen from "@screens/$subBlogId._index.screen";
 
@@ -14,24 +15,17 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
   const loadData = async ({ subBlogId }: { subBlogId: string }) => {
     try {
-      const { data: databaseData, error: databaseError } = await supabase
-        .from("posts")
-        .select("title, sub_title, tags, id, thumbnail, sub_blog, created_at")
-        .eq("sub_blog", subBlogId)
-        .is("parent_id", null)
-        .order("created_at");
+      const databaseData = await getPostsById({
+        supabase,
+        subBlogId,
+        postId: null,
+      });
 
-      const { data: blogData, error: blogError } = await supabase
-        .from("subBlogs")
-        .select("title, description")
-        .eq("id", subBlogId)
-        .single();
-
-      if (databaseError || blogError) throw new Error();
+      const blogData = await getSubBlogInfo({ supabase, subBlogId });
 
       return {
         title: blogData.title,
-        sub_title: blogData.description,
+        subTitle: blogData.description,
         posts: databaseData,
       };
     } catch (err) {

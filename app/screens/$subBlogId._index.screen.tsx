@@ -32,7 +32,7 @@ export default function PostPageScreen({
         <PostHeader
           id={content.id}
           title={content?.title}
-          subTitle={content?.sub_title}
+          subTitle={content?.subTitle}
           tags={content?.tags}
           postDate={content?.created_at}
           plainCategoryData={plainCategoryData}

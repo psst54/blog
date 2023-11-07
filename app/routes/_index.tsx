@@ -6,7 +6,7 @@ import { Database } from "@supabase/types";
 
 import IndexScreen from "@screens/_index.screen";
 import { getSubBlogId, buildTree } from "@functions/category";
-import { getPosts, getRecentPosts } from "@functions/supabase";
+import { getPostsByBlogId, getRecentPosts } from "@functions/supabase";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -24,7 +24,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
   const subBlogId = getSubBlogId({ params });
   try {
     const recentPosts = await getRecentPosts({ supabase });
-    const categoryRawData = await getPosts({ supabase, subBlogId });
+    const categoryRawData = await getPostsByBlogId({ supabase, subBlogId });
     return {
       recentPosts: recentPosts,
       categoryData: buildTree(categoryRawData),
