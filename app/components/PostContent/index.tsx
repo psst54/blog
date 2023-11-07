@@ -130,7 +130,7 @@ export default function Content({ content }: { content: string }) {
         rehypePlugins={[rehypeKatex]}
         components={components}
       >
-        {"### Table of Contents\n" + content}
+        {"# Table of Contents\n" + content}
       </ReactMarkdown>
     </div>
   );

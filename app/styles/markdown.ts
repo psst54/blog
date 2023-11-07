@@ -35,7 +35,7 @@ export const styledCode = {
   borderRadius: "0.3rem",
   background: color.background.toSecondary,
 
-  color: color.text.standard,
+  color: "inherit",
   fontFamily: "Pretendard",
 };
 export const styledLi = {
