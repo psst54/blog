@@ -27,35 +27,47 @@ import {
   styledCodeWrapper,
 } from "@styles/markdown";
 
+function getId(child) {
+  return child
+    .map((item) => {
+      if (typeof item === "string") return item;
+      return getId(item.props.children);
+    })
+    .join("");
+}
+
 const components = {
-  h1: (props: any) => (
-    <div css={{ display: "flex" }}>
-      <h1
-        css={styledH1}
-        children={props.children}
-        id={props.children[0].replace(/\s+/g, "-").toLowerCase()}
-      />
-      <hr
-        css={{
-          flexGrow: 1,
-          border: "none",
-          borderBottom: `2px solid ${color.border.light}`,
-        }}
-      />
-    </div>
-  ),
+  h1: (props: any) => {
+    console.log(props);
+    return (
+      <div css={{ display: "flex" }}>
+        <h1
+          css={styledH1}
+          children={props.children}
+          id={getId(props.children).replace(/\s+/g, "-").toLowerCase()}
+        />
+        <hr
+          css={{
+            flexGrow: 1,
+            border: "none",
+            borderBottom: `2px solid ${color.border.light}`,
+          }}
+        />
+      </div>
+    );
+  },
   h2: (props: any) => (
     <h2
       css={styledH2}
       children={props.children}
-      id={props.children[0].replace(/\s+/g, "-").toLowerCase()}
+      id={getId(props.children).replace(/\s+/g, "-").toLowerCase()}
     />
   ),
   h3: (props: any) => (
     <h3
       css={styledH3}
       children={props.children}
-      id={props.children[0].replace(/\s+/g, "-").toLowerCase()}
+      id={getId(props.children).replace(/\s+/g, "-").toLowerCase()}
     />
   ),
   h4: (props: any) => <h4 css={styledH3} children={props.children} />,
