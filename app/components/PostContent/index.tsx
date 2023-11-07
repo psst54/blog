@@ -38,7 +38,6 @@ function getId(child) {
 
 const components = {
   h1: (props: any) => {
-    console.log(props);
     return (
       <div css={{ display: "flex" }}>
         <h1
