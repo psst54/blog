@@ -1,9 +1,7 @@
 import { useParams } from "@remix-run/react";
 import CategoryItem from "./CategoryItem";
 import { color } from "@styles/color";
-
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+import { mq } from "@styles/size";
 
 const renderTreeItem = (
   item,

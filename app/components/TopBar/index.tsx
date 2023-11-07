@@ -1,13 +1,8 @@
-import { useState, useEffect } from "react";
-import { Link, useParams } from "@remix-run/react";
-
 import CategoroyPopUp from "@components/CategoryPopUp";
-import HomeIcon from "@assets/HomeIcon";
 import { color } from "@styles/color";
 import { size } from "@styles/size";
 
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+import { mq } from "@styles/size";
 
 export default function TopBar({ data, isPostOpen, toggleCategory }) {
   return (

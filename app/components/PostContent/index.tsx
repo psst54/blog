@@ -1,4 +1,5 @@
-import { useMemo, lazy, Suspense } from "react";
+import { memo, useMemo, lazy, Suspense } from "react";
+import { Link } from "@remix-run/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -62,7 +63,7 @@ const components = {
   h6: (props: any) => <h6 css={styledH3} children={props.children} />,
   p: (props: any) => <p css={styledP} children={props.children} />,
   a: (props: any) => (
-    <a
+    <Link
       target="_blank"
       css={styledA}
       href={props.href}
@@ -96,8 +97,6 @@ const components = {
 };
 
 export default function Content({ content }: { content: string }) {
-  console.log(new Date());
-
   const headings = useMemo(() => {
     const headings = [];
     const toc = [];

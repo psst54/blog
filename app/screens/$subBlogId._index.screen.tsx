@@ -1,10 +1,7 @@
 import PostHeader from "@components/PostHeader";
 import PostGrid from "@components/PostGrid";
-import { size } from "@styles/size";
+import { size, mq } from "@styles/size";
 import { Post } from "@types";
-
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 export default function PostPageScreen({
   content,

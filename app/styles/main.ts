@@ -1,8 +1,5 @@
 import { color } from "@styles/color";
-import { size } from "@styles/size";
-
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+import { size, mq } from "@styles/size";
 
 export const background = {
   display: "flex",

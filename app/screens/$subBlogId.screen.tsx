@@ -4,10 +4,7 @@ import MenuBar from "@components/MenuBar";
 import TopBar from "@components/TopBar";
 import CategoryList from "@components/CategoryList";
 import { background, categoryContainer, contentContainer } from "@styles/main";
-import { size } from "@styles/size";
-
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+import { size, mq } from "@styles/size";
 
 export default function SubBlogScreen({
   plainCategoryData,

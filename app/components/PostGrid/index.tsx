@@ -2,8 +2,7 @@ import { Link } from "@remix-run/react";
 import PostCard from "./PostCard";
 import { POST_WIDTH } from "./styles";
 
-const breakpoints = [1200, 576];
-const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
+import { mq } from "@styles/size";
 
 export default function PostGrid({ posts }: { posts: any }) {
   return (
