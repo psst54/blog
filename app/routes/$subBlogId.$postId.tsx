@@ -7,7 +7,7 @@ import { getSubBlogId } from "@functions/category";
 import { getPostById, getPostsById } from "@functions/supabase";
 
 import PostDetailPageScreen from "@screens/$subBlogId.$postId.screen";
-import { Env, plainCategory } from "~/types";
+import { Env, PlainCategory } from "~/types";
 
 export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
@@ -51,7 +51,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
 export default function PostPage() {
   const { content } = useLoaderData<typeof loader>();
-  const plainCategoryData: plainCategory[] = useOutletContext();
+  const plainCategoryData: PlainCategory[] = useOutletContext();
 
   return (
     <PostDetailPageScreen

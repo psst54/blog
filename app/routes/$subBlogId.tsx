@@ -1,13 +1,14 @@
 import { useState } from "react";
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
+import type { SitemapFunction } from "remix-sitemap";
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
 
 import SubBlogScreen from "@screens/$subBlogId.screen";
 import { getSubBlogId, buildTree, spread } from "@functions/category";
-import { getPostsByBlogId } from "@functions/supabase";
+import { getPostsByBlogId, getAllPosts } from "@functions/supabase";
 import { Env } from "~/types";
 
 export const meta: V2_MetaFunction = () => {
@@ -33,6 +34,20 @@ export const loader = async ({ context, params }: LoaderArgs) => {
   } catch (err) {
     return { plainCategoryData: {}, categoryData: [] };
   }
+};
+
+export const sitemap: SitemapFunction = async ({ config }) => {
+  const supabase = createClient<Database>(
+    config.SUPABASE_URL,
+    config.SUPABASE_KEY
+  );
+
+  const posts = await getAllPosts({ supabase });
+
+  return posts.map((post) => ({
+    loc: `/${post.sub_blog}/${post.id}`,
+    lastmod: post.last_edited_at,
+  }));
 };
 
 export default function SubBlog() {

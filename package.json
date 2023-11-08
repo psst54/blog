@@ -27,7 +27,8 @@
     "remark": "^15.0.1",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
-    "remark-toc": "^9.0.0"
+    "remark-toc": "^9.0.0",
+    "remix-sitemap": "^3.1.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.19.0",

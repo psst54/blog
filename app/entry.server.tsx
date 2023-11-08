@@ -8,6 +8,18 @@ import type { AppLoadContext, EntryContext } from "@remix-run/cloudflare";
 import { RemixServer } from "@remix-run/react";
 import isbot from "isbot";
 import { renderToReadableStream } from "react-dom/server";
+import { createSitemapGenerator } from "remix-sitemap";
+
+export const getSitemap = (context) => {
+  const { isSitemapUrl, sitemap } = createSitemapGenerator({
+    siteUrl: "https://blog.psst54.me",
+    generateRobotsTxt: true,
+    SUPABASE_URL: context.env.SUPABASE_URL,
+    SUPABASE_KEY: context.env.SUPABASE_KEY,
+  });
+
+  return { isSitemapUrl, sitemap };
+};
 
 export default async function handleRequest(
   request: Request,
@@ -16,6 +28,9 @@ export default async function handleRequest(
   remixContext: EntryContext,
   loadContext: AppLoadContext
 ) {
+  const { isSitemapUrl, sitemap } = await getSitemap(loadContext);
+  if (isSitemapUrl(request)) return await sitemap(request, remixContext);
+
   const body = await renderToReadableStream(
     <RemixServer context={remixContext} url={request.url} />,
     {
