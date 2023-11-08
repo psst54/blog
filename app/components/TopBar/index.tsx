@@ -3,8 +3,17 @@ import { color } from "@styles/color";
 import { size } from "@styles/size";
 
 import { mq } from "@styles/size";
+import { IsPostOpen, Category } from "~/types";
 
-export default function TopBar({ data, isPostOpen, toggleCategory }) {
+export default function TopBar({
+  data,
+  isPostOpen,
+  toggleCategory,
+}: {
+  data: Category[];
+  isPostOpen: IsPostOpen;
+  toggleCategory: (id: string) => void;
+}) {
   return (
     <div
       css={{
@@ -27,10 +36,6 @@ export default function TopBar({ data, isPostOpen, toggleCategory }) {
         },
       }}
     >
-      {/* <Link to={`/`}>
-        <HomeIcon size="1.5rem" color={color.border.standard} />
-      </Link> */}
-
       <CategoroyPopUp
         data={data}
         isPostOpen={isPostOpen}

@@ -7,6 +7,7 @@ import { Database } from "@supabase/types";
 import IndexScreen from "@screens/_index.screen";
 import { getSubBlogId, buildTree } from "@functions/category";
 import { getPostsByBlogId, getRecentPosts } from "@functions/supabase";
+import { Post, Category, IsPostOpen } from "~/types";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -30,15 +31,19 @@ export const loader = async ({ context, params }: LoaderArgs) => {
       categoryData: buildTree(categoryRawData),
     };
   } catch (err) {
-    return { categoryData: [], categoryData: [] };
+    return { recentPosts: [], categoryData: [] };
   }
 };
 
 export default function Index() {
-  const { recentPosts, categoryData } = useLoaderData<typeof loader>();
-  const [isPostOpen, setIsPostOpen] = useState({});
+  const {
+    recentPosts,
+    categoryData,
+  }: { recentPosts: Post[]; categoryData: Category[] } =
+    useLoaderData<typeof loader>();
+  const [isPostOpen, setIsPostOpen] = useState<IsPostOpen>({});
 
-  const toggleCategory = (id: number) => {
+  const toggleCategory = (id: string) => {
     const newData = { ...isPostOpen };
     newData[id] = !newData[id];
     setIsPostOpen({ ...newData });

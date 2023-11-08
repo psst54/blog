@@ -12,6 +12,8 @@ const HomeIcon = loadable(() => import("@assets/HomeIcon"));
 const CodeIcon = loadable(() => import("@assets/CodeIcon"));
 const HeartIcon = loadable(() => import("@assets/HeartIcon"));
 
+import { Category, IsPostOpen } from "~/types";
+
 const mainMenu = [
   { icon: HomeIcon, href: "/", alt: "Home" },
   { icon: CodeIcon, href: "/cse", alt: "CSE" },
@@ -62,7 +64,15 @@ const CategorySlide = {
 
 const titleWrapper = { display: "flex", alignItems: "center", gap: "0.5rem" };
 
-export default function CategoroyPopUp({ data, isPostOpen, toggleCategory }) {
+export default function CategoroyPopUp({
+  data,
+  isPostOpen,
+  toggleCategory,
+}: {
+  data: Category[];
+  isPostOpen: IsPostOpen;
+  toggleCategory: (id: string) => void;
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   function onOpen() {

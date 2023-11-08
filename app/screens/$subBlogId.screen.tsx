@@ -5,12 +5,18 @@ import TopBar from "@components/TopBar";
 import CategoryList from "@components/CategoryList";
 import { background, categoryContainer, contentContainer } from "@styles/main";
 import { size, mq } from "@styles/size";
+import { Category, IsPostOpen, PlainCategory } from "~/types";
 
 export default function SubBlogScreen({
   plainCategoryData,
   data,
   isPostOpen,
   toggleCategory,
+}: {
+  plainCategoryData: PlainCategory;
+  data: Category[];
+  isPostOpen: IsPostOpen;
+  toggleCategory: (id: string) => void;
 }) {
   return (
     <main css={background}>

@@ -3,6 +3,7 @@ import PostCard from "./PostCard";
 import { POST_WIDTH } from "./styles";
 
 import { mq } from "@styles/size";
+import { Post } from "~/types";
 
 export default function PostGrid({ posts }: { posts: any }) {
   return (
@@ -18,7 +19,7 @@ export default function PostGrid({ posts }: { posts: any }) {
         [mq[1]]: {},
       }}
     >
-      {posts?.map((post, postIdx: number) => {
+      {posts?.map((post: Post, postIdx: number) => {
         return (
           <Link
             key={postIdx}
