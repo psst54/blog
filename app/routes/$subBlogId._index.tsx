@@ -6,11 +6,12 @@ import { Database } from "@supabase/types";
 import { getSubBlogMainPosts, getSubBlogInfo } from "~/functions/supabase";
 
 import PostPageScreen from "@screens/$subBlogId._index.screen";
+import { Env, PlainCategory } from "~/types";
 
 export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
-    context.env.SUPABASE_URL,
-    context.env.SUPABASE_KEY
+    (context.env as Env).SUPABASE_URL,
+    (context.env as Env).SUPABASE_KEY
   );
 
   const loadData = async ({ subBlogId }: { subBlogId: string }) => {
@@ -41,7 +42,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
 export default function PostPage() {
   const { content } = useLoaderData<typeof loader>();
-  const plainCategoryData = useOutletContext();
+  const plainCategoryData: PlainCategory[] = useOutletContext();
 
   return (
     <PostPageScreen content={content} plainCategoryData={plainCategoryData} />

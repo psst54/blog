@@ -66,8 +66,8 @@ export default function Index({
           >
             <CategoryList
               data={categoryData}
-              isPostOpen={[]}
-              toggleCategory={(id: string) => {}}
+              isPostOpen={{}}
+              toggleCategory={toggleCategory}
             />
           </div>
         </div>
