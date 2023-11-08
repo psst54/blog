@@ -2,13 +2,14 @@ import PostHeader from "@components/PostHeader";
 import Content from "@components/PostContent";
 import PostGrid from "@components/PostGrid";
 import { size, mq } from "@styles/size";
-import { Post } from "@types";
+import { PlainCategory, Post } from "~/types";
 
 export default function PostDetailPageScreen({
   content,
   plainCategoryData,
 }: {
   content: Post;
+  plainCategoryData: PlainCategory[];
 }) {
   return (
     <div
@@ -31,7 +32,7 @@ export default function PostDetailPageScreen({
       <PostHeader
         id={content.id}
         title={content?.title}
-        subTitle={content?.sub_title}
+        subTitle={content?.subTitle}
         tags={content?.tags}
         postDate={content?.created_at}
         plainCategoryData={plainCategoryData}

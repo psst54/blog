@@ -7,7 +7,8 @@ import { Database } from "@supabase/types";
 
 import SubBlogScreen from "@screens/$subBlogId.screen";
 import { getSubBlogId, buildTree, spread } from "@functions/category";
-import { getPosts } from "@functions/supabase";
+import { getPostsByBlogId } from "@functions/supabase";
+import { Env } from "~/types";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -18,13 +19,13 @@ export const meta: V2_MetaFunction = () => {
 
 export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
-    context.env.SUPABASE_URL,
-    context.env.SUPABASE_KEY
+    (context.env as Env).SUPABASE_URL,
+    (context.env as Env).SUPABASE_KEY
   );
 
   const subBlogId = getSubBlogId({ params });
   try {
-    const categoryRawData = await getPosts({ supabase, subBlogId });
+    const categoryRawData = await getPostsByBlogId({ supabase, subBlogId });
     return {
       plainCategoryData: spread(categoryRawData),
       categoryData: buildTree(categoryRawData),

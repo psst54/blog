@@ -1,10 +1,7 @@
 import { color } from "@styles/color";
+import { Tag } from "~/types";
 
-export default function Tag({
-  item,
-}: {
-  item: { isSpoiler: boolean; text: string };
-}) {
+export default function TagItem({ item }: { item: Tag }) {
   return (
     <div
       css={{

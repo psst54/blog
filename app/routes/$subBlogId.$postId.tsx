@@ -3,13 +3,16 @@ import { useLoaderData, useOutletContext } from "@remix-run/react";
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
+import { getSubBlogId } from "@functions/category";
+import { getPostById, getPostsById } from "@functions/supabase";
 
 import PostDetailPageScreen from "@screens/$subBlogId.$postId.screen";
+import { Env, plainCategory } from "~/types";
 
 export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
-    context.env.SUPABASE_URL,
-    context.env.SUPABASE_KEY
+    (context.env as Env).SUPABASE_URL,
+    (context.env as Env).SUPABASE_KEY
   );
 
   const loadData = async ({
@@ -20,25 +23,15 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     postId: string;
   }) => {
     try {
-      const { data: postData, error: postError } = await supabase
-        .from("posts")
-        .select("id, title, sub_title, content, tags, type, created_at")
-        .eq("sub_blog", subBlogId)
-        .eq("id", postId)
-        .single();
-
-      if (postError) throw new Error();
+      const postData = await getPostById({ supabase, postId });
 
       if (postData.type === "post") return postData;
 
-      const { data: databaseData, error: databaseError } = await supabase
-        .from("posts")
-        .select("title, sub_title, tags, id, thumbnail, sub_blog, created_at")
-        .eq("sub_blog", subBlogId)
-        .eq("parent_id", postId)
-        .order("created_at", { ascending: false });
-
-      if (databaseError) throw new Error();
+      const databaseData = await getPostsById({
+        supabase,
+        subBlogId,
+        postId,
+      });
 
       return { ...postData, posts: databaseData };
     } catch (err) {
@@ -46,7 +39,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     }
   };
 
-  const subBlogId = params.subBlogId || "";
+  const subBlogId = getSubBlogId({ params });
 
   const data = await loadData({
     subBlogId,
@@ -58,7 +51,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
 export default function PostPage() {
   const { content } = useLoaderData<typeof loader>();
-  const plainCategoryData = useOutletContext();
+  const plainCategoryData: plainCategory[] = useOutletContext();
 
   return (
     <PostDetailPageScreen

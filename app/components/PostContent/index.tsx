@@ -16,8 +16,6 @@ import {
   styledA,
   styledCode,
   styledLi,
-  styledOl,
-  styledUl,
   styledBlockquote,
   styledImg,
   styledCodeWrapper,
@@ -82,8 +80,6 @@ const components = {
     );
   },
   li: (props: any) => <li css={styledLi} children={props.children} />,
-  ol: (props: any) => <ol css={styledOl} children={props.children} />,
-  ul: (props: any) => <ul css={styledUl} children={props.children} />,
   blockquote: (props: any) => (
     <blockquote css={styledBlockquote} children={props.children} />
   ),
@@ -109,29 +105,16 @@ const components = {
 
 export default function Content({ content }: { content: string }) {
   return (
-    <div
-      css={{
-        ".math": {
-          flexShrink: 1,
-          maxWidth: "100%",
-          overflowX: "auto",
-        },
-        ".katex-mathml": {
-          display: "none",
-        },
-      }}
+    <ReactMarkdown
+      remarkPlugins={[
+        [remarkMath],
+        [remarkGfm],
+        [remarkToc, { tight: true, maxDepth: 3, ordered: true }],
+      ]}
+      rehypePlugins={[rehypeKatex]}
+      components={components}
     >
-      <ReactMarkdown
-        remarkPlugins={[
-          [remarkMath],
-          [remarkGfm],
-          [remarkToc, { tight: true, maxDepth: 3, ordered: true }],
-        ]}
-        rehypePlugins={[rehypeKatex]}
-        components={components}
-      >
-        {"# Table of Contents\n" + content}
-      </ReactMarkdown>
-    </div>
+      {"# Table of Contents\n" + content}
+    </ReactMarkdown>
   );
 }

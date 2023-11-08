@@ -1,3 +1,5 @@
+import type { V2_MetaFunction } from "@remix-run/cloudflare";
+
 import MenuBar from "@components/MenuBar";
 import TopBar from "@components/TopBar";
 import PostGrid from "@components/PostGrid";
@@ -13,7 +15,7 @@ import {
   title,
 } from "@styles/main";
 
-import type { V2_MetaFunction } from "@remix-run/cloudflare";
+import { Post, IsPostOpen, Category } from "~/types";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -27,6 +29,11 @@ export default function Index({
   categoryData,
   isPostOpen,
   toggleCategory,
+}: {
+  recentPosts: Post[];
+  categoryData: Category[];
+  isPostOpen: IsPostOpen;
+  toggleCategory: (id: string) => void;
 }) {
   return (
     <main css={background}>
@@ -59,8 +66,8 @@ export default function Index({
           >
             <CategoryList
               data={categoryData}
-              isPostOpen={[]}
-              toggleCategory={() => {}}
+              isPostOpen={{}}
+              toggleCategory={toggleCategory}
             />
           </div>
         </div>

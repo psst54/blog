@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { color } from "@styles/color";
-import Tag from "@components/Tag";
+import TagItem from "@components/Tag";
 
 import { mq } from "@styles/size";
 
@@ -103,7 +103,7 @@ export default function PostCard({ postData }: { postData: any }) {
           {postData?.tags &&
             postData.tags.map(
               (tag: { text: string; isSpoiler: boolean }, tagIndex: number) => (
-                <Tag key={tagIndex} item={tag} />
+                <TagItem key={tagIndex} item={tag} />
               )
             )}
         </div>

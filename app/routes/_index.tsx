@@ -6,7 +6,8 @@ import { Database } from "@supabase/types";
 
 import IndexScreen from "@screens/_index.screen";
 import { getSubBlogId, buildTree } from "@functions/category";
-import { getPosts, getRecentPosts } from "@functions/supabase";
+import { getPostsByBlogId, getRecentPosts } from "@functions/supabase";
+import { Env, Post, Category, IsPostOpen } from "~/types";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -17,28 +18,32 @@ export const meta: V2_MetaFunction = () => {
 
 export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
-    context.env.SUPABASE_URL,
-    context.env.SUPABASE_KEY
+    (context.env as Env).SUPABASE_URL,
+    (context.env as Env).SUPABASE_KEY
   );
 
   const subBlogId = getSubBlogId({ params });
   try {
     const recentPosts = await getRecentPosts({ supabase });
-    const categoryRawData = await getPosts({ supabase, subBlogId });
+    const categoryRawData = await getPostsByBlogId({ supabase, subBlogId });
     return {
       recentPosts: recentPosts,
       categoryData: buildTree(categoryRawData),
     };
   } catch (err) {
-    return { categoryData: [], categoryData: [] };
+    return { recentPosts: [], categoryData: [] };
   }
 };
 
 export default function Index() {
-  const { recentPosts, categoryData } = useLoaderData<typeof loader>();
-  const [isPostOpen, setIsPostOpen] = useState({});
+  const {
+    recentPosts,
+    categoryData,
+  }: { recentPosts: Post[]; categoryData: Category[] } =
+    useLoaderData<typeof loader>();
+  const [isPostOpen, setIsPostOpen] = useState<IsPostOpen>({});
 
-  const toggleCategory = (id: number) => {
+  const toggleCategory = (id: string) => {
     const newData = { ...isPostOpen };
     newData[id] = !newData[id];
     setIsPostOpen({ ...newData });

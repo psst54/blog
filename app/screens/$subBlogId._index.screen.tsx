@@ -1,13 +1,14 @@
 import PostHeader from "@components/PostHeader";
 import PostGrid from "@components/PostGrid";
 import { size, mq } from "@styles/size";
-import { Post } from "@types";
+import { Post, PlainCategory } from "~/types";
 
 export default function PostPageScreen({
   content,
   plainCategoryData,
 }: {
   content: Post;
+  plainCategoryData: PlainCategory[];
 }) {
   return (
     <div css={{ width: "100%", height: "100%" }}>
@@ -32,7 +33,7 @@ export default function PostPageScreen({
         <PostHeader
           id={content.id}
           title={content?.title}
-          subTitle={content?.sub_title}
+          subTitle={content?.subTitle}
           tags={content?.tags}
           postDate={content?.created_at}
           plainCategoryData={plainCategoryData}

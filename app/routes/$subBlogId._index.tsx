@@ -3,35 +3,29 @@ import { useLoaderData, useOutletContext } from "@remix-run/react";
 
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
+import { getSubBlogMainPosts, getSubBlogInfo } from "~/functions/supabase";
 
 import PostPageScreen from "@screens/$subBlogId._index.screen";
+import { Env, PlainCategory } from "~/types";
 
 export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
-    context.env.SUPABASE_URL,
-    context.env.SUPABASE_KEY
+    (context.env as Env).SUPABASE_URL,
+    (context.env as Env).SUPABASE_KEY
   );
 
   const loadData = async ({ subBlogId }: { subBlogId: string }) => {
     try {
-      const { data: databaseData, error: databaseError } = await supabase
-        .from("posts")
-        .select("title, sub_title, tags, id, thumbnail, sub_blog, created_at")
-        .eq("sub_blog", subBlogId)
-        .is("parent_id", null)
-        .order("created_at");
+      const databaseData = await getSubBlogMainPosts({
+        supabase,
+        subBlogId,
+      });
 
-      const { data: blogData, error: blogError } = await supabase
-        .from("subBlogs")
-        .select("title, description")
-        .eq("id", subBlogId)
-        .single();
-
-      if (databaseError || blogError) throw new Error();
+      const blogData = await getSubBlogInfo({ supabase, subBlogId });
 
       return {
         title: blogData.title,
-        sub_title: blogData.description,
+        subTitle: blogData.description,
         posts: databaseData,
       };
     } catch (err) {
@@ -48,7 +42,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
 export default function PostPage() {
   const { content } = useLoaderData<typeof loader>();
-  const plainCategoryData = useOutletContext();
+  const plainCategoryData: PlainCategory[] = useOutletContext();
 
   return (
     <PostPageScreen content={content} plainCategoryData={plainCategoryData} />

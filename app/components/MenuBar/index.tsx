@@ -2,9 +2,9 @@ import loadable from "@loadable/component";
 
 import MenuIcon from "@components/MenuIcon";
 
-const HomeIcon = loadable(() => import("@assets/HomeIcon"));
-const CodeIcon = loadable(() => import("@assets/CodeIcon"));
-const HeartIcon = loadable(() => import("@assets/HeartIcon"));
+const HomeIcon: JSX.Element = loadable(() => import("@assets/HomeIcon"));
+const CodeIcon: JSX.Element = loadable(() => import("@assets/CodeIcon"));
+const HeartIcon: JSX.Element = loadable(() => import("@assets/HeartIcon"));
 
 const mainMenu = [
   { icon: HomeIcon, href: "/", alt: "Home" },

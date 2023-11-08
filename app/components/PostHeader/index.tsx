@@ -1,7 +1,9 @@
 import { useMemo } from "react";
-import Tag from "@components/Tag";
+import TagItem from "@components/Tag";
 import { color } from "@styles/color";
 import Breadcrumb from "./Breadcrumb";
+
+import { Tag, PlainCategory } from "~/types";
 
 export default function PostHeader({
   id,
@@ -13,9 +15,10 @@ export default function PostHeader({
 }: {
   id: string;
   title: string | null;
-  subTitle: string | null;
-  tags: { text: string; isSpoiler: boolean }[] | null;
+  subTitle: string | undefined;
+  tags: Tag[] | null;
   postDate: string | null;
+  plainCategoryData: PlainCategory[];
 }) {
   function padNumber(number: number) {
     if (number < 10) return "0" + number;
@@ -38,7 +41,7 @@ export default function PostHeader({
     return year + "." + padNumber(month) + "." + padNumber(date) + ".";
   }
 
-  function getAncestors(id) {
+  function getAncestors(id: string) {
     if (!id) return [];
     let ret = [];
 
@@ -85,7 +88,7 @@ export default function PostHeader({
         >
           {tags.map(
             (tag: { text: string; isSpoiler: boolean }, tagIndex: number) => (
-              <Tag key={tagIndex} item={tag} />
+              <TagItem key={tagIndex} item={tag} />
             )
           )}
         </div>

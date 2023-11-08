@@ -2,12 +2,13 @@ import { useParams } from "@remix-run/react";
 import CategoryItem from "./CategoryItem";
 import { color } from "@styles/color";
 import { mq } from "@styles/size";
+import { Category, IsPostOpen } from "~/types";
 
 const renderTreeItem = (
-  item,
+  item: Category,
   idx: number,
-  isPostOpen,
-  toggleCategory,
+  isPostOpen: IsPostOpen,
+  toggleCategory: (id: string) => void,
   depth: number,
   postId: string
 ) => {
@@ -43,8 +44,8 @@ export default function CategoryList({
   toggleCategory,
 }: {
   data: any;
-  isPostOpen: boolean[];
-  toggleCategory: (id: number) => void;
+  isPostOpen: IsPostOpen;
+  toggleCategory: (id: string) => void;
 }) {
   const params = useParams();
 
@@ -77,7 +78,7 @@ export default function CategoryList({
         }}
       >
         <div css={{ paddingRight: "0.5rem" }}>
-          {data.map((datum, datumIdx: number) => {
+          {data.map((datum: Category, datumIdx: number) => {
             return renderTreeItem(
               datum,
               datumIdx,

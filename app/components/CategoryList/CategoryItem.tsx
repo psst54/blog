@@ -22,13 +22,13 @@ const titleStyle = {
   fontWeight: 400,
 
   overflow: "hidden",
-  whiteSpace: "nowrap",
+  whiteSpace: "nowrap" as "nowrap",
   textOverflow: "ellipsis",
-  wordBreak: "break-all",
+  wordBreak: "break-all" as "break-all",
 };
 
 export default function CategoryItem({
-  id = 0,
+  id = "",
   title = "",
   href = "/",
   isSelected = false,
@@ -36,19 +36,22 @@ export default function CategoryItem({
   indent = 0,
   toggleCategory,
 }: {
-  id: number;
+  id: string;
   title: string;
   href: string;
   isSelected: boolean;
   isOpen: boolean;
   indent: number;
-  toggleCategory: (id: number) => void;
+  toggleCategory: (id: string) => void;
 }) {
-  const handleAnchorClick = (event) => {
+  const handleAnchorClick = (event: MouseEvent) => {
+    const target: HTMLElement | null = event.target as HTMLElement | null;
+    if (!target) return;
+
     if (
-      event.target.tagName.toLowerCase() === "button" ||
-      event.target.tagName.toLowerCase() === "svg" ||
-      event.target.tagName.toLowerCase() === "path"
+      target.tagName.toLowerCase() === "button" ||
+      target.tagName.toLowerCase() === "svg" ||
+      target.tagName.toLowerCase() === "path"
     ) {
       event.preventDefault();
     }
