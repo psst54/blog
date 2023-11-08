@@ -10,8 +10,6 @@ export default function PostPageScreen({
   content: Post;
   plainCategoryData: PlainCategory[];
 }) {
-  console.log(content);
-
   return (
     <div css={{ width: "100%", height: "100%" }}>
       <div

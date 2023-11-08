@@ -44,13 +44,32 @@ export async function getPostsById({
 }: {
   supabase: SupabaseClient<Database, "public", any>;
   subBlogId: string;
-  postId: string | null;
+  postId: string;
 }) {
   const { data: postData, error: postError } = await supabase
     .from("posts")
     .select("title, sub_title, tags, id, thumbnail, sub_blog, created_at")
     .eq("sub_blog", subBlogId)
     .eq("parent_id", postId)
+    .order("created_at", { ascending: false });
+
+  if (postError) throw new Error();
+
+  return postData;
+}
+
+export async function getSubBlogMainPosts({
+  supabase,
+  subBlogId,
+}: {
+  supabase: SupabaseClient<Database, "public", any>;
+  subBlogId: string;
+}) {
+  const { data: postData, error: postError } = await supabase
+    .from("posts")
+    .select("title, sub_title, tags, id, thumbnail, sub_blog, created_at")
+    .eq("sub_blog", subBlogId)
+    .is("parent_id", null)
     .order("created_at", { ascending: false });
 
   if (postError) throw new Error();

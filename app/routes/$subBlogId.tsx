@@ -44,8 +44,6 @@ export default function SubBlog() {
     setIsPostOpen({ ...newData });
   };
 
-  console.log(categoryData);
-
   return (
     <SubBlogScreen
       plainCategoryData={plainCategoryData}
