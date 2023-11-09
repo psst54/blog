@@ -74,7 +74,7 @@ export default function App() {
         <Links />
       </head>
       <body css={globalStyleCss}>
-        {ENVIRONMENT === "production" && (
+        {ENVIRONMENT === "PRODUCTION" && (
           <>
             <script
               async
