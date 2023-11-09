@@ -2,7 +2,7 @@ export interface Env {
   SUPABASE_URL: string;
   SUPABASE_KEY: string;
   GA_TRACKING_ID: string;
-  NODE_ENV: string;
+  ENVIRONMENT: string;
 }
 
 export interface Tag {

@@ -28,13 +28,13 @@ let isInitialRender = true;
 export const loader = async ({ context }: LoaderArgs) => {
   return {
     gaTrackingId: (context.env as Env).GA_TRACKING_ID,
-    NODE_ENV: (context.env as Env).NODE_ENV,
+    ENVIRONMENT: (context.env as Env).ENVIRONMENT,
   };
 };
 
 export default function App() {
   const location = useLocation();
-  const { gaTrackingId, NODE_ENV } = useLoaderData<typeof loader>();
+  const { gaTrackingId, ENVIRONMENT } = useLoaderData<typeof loader>();
 
   useEffect(() => {
     if (gaTrackingId?.length) {
@@ -74,7 +74,7 @@ export default function App() {
         <Links />
       </head>
       <body css={globalStyleCss}>
-        {NODE_ENV === "production" && (
+        {ENVIRONMENT === "production" && (
           <>
             <script
               async
