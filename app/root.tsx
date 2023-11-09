@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { V2_MetaFunction } from "@remix-run/cloudflare";
+import type { V2_MetaFunction, LoaderArgs } from "@remix-run/cloudflare";
 import {
   Links,
   LiveReload,
@@ -7,10 +7,14 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
+  useLoaderData,
 } from "@remix-run/react";
+import * as gtag from "~/utils/gtags.client";
 
 import katexStyle from "katex/dist/katex.css";
 import { globalStyleCss } from "@styles/global";
+import { Env } from "~/types";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -21,7 +25,23 @@ export const meta: V2_MetaFunction = () => {
 
 let isInitialRender = true;
 
+export const loader = async ({ context }: LoaderArgs) => {
+  return {
+    gaTrackingId: (context.env as Env).GA_TRACKING_ID,
+    NODE_ENV: (context.env as Env).NODE_ENV,
+  };
+};
+
 export default function App() {
+  const location = useLocation();
+  const { gaTrackingId, NODE_ENV } = useLoaderData<typeof loader>();
+
+  useEffect(() => {
+    if (gaTrackingId?.length) {
+      gtag.pageview(location.pathname, gaTrackingId);
+    }
+  }, [location, gaTrackingId]);
+
   const isInitialRenderRef = useRef(true);
   const [, rerender] = useState(false);
 
@@ -40,12 +60,6 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <link
-          rel="sitemap"
-          type="application/xml"
-          title="Sitemap"
-          href="/sitemap/sitemap.xml"
-        />
-        <link
           rel="stylesheet"
           as="style"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css"
@@ -60,6 +74,29 @@ export default function App() {
         <Links />
       </head>
       <body css={globalStyleCss}>
+        {NODE_ENV === "PRODUCTION" && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
+            />
+            <script
+              async
+              id="gtag-init"
+              dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', '${gaTrackingId}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+              }}
+            />
+          </>
+        )}
         <Outlet />
         <ScrollRestoration />
         <Scripts />
