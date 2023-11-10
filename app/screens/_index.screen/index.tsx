@@ -4,8 +4,7 @@ import MenuBar from "@components/MenuBar";
 import TopBar from "@components/TopBar";
 import PostGrid from "@components/PostGrid";
 import CategoryList from "@components/CategoryList";
-
-import { size, mq } from "@styles/size";
+import { categoryArea, categoryWrapper } from "./styles";
 
 import {
   background,
@@ -45,40 +44,46 @@ export default function Index({
       />
 
       <div css={categoryContainer}>
-        <div
-          css={{
-            width: size.CATEGORY_WIDTH,
-            flexShrink: 0,
-
-            paddingTop: "1rem",
-
-            [mq[0]]: {
-              display: "none",
-            },
-          }}
-        >
-          <div
-            css={{
-              position: "fixed",
-              width: size.CATEGORY_WIDTH,
-              height: "calc(100dvh - 1rem - 2rem)",
-            }}
-          >
-            <CategoryList
-              data={categoryData}
-              isPostOpen={{}}
-              toggleCategory={toggleCategory}
-            />
-          </div>
-        </div>
-
-        <div css={contentContainer}>
-          <div css={recentPostsConatiner}>
-            <h1 css={title}>최근 포스트</h1>
-            <PostGrid posts={recentPosts} />
-          </div>
-        </div>
+        <Category
+          categoryData={categoryData}
+          isPostOpen={isPostOpen}
+          toggleCategory={toggleCategory}
+        />
+        <Content posts={recentPosts} />
       </div>
     </main>
+  );
+}
+
+function Category({
+  categoryData,
+  isPostOpen,
+  toggleCategory,
+}: {
+  categoryData: Category[];
+  isPostOpen: IsPostOpen;
+  toggleCategory: (id: string) => void;
+}) {
+  return (
+    <div css={categoryArea}>
+      <div css={categoryWrapper}>
+        <CategoryList
+          data={categoryData}
+          isPostOpen={isPostOpen}
+          toggleCategory={toggleCategory}
+        />
+      </div>
+    </div>
+  );
+}
+
+function Content({ posts }: { posts: Post[] }) {
+  return (
+    <div css={contentContainer}>
+      <div css={recentPostsConatiner}>
+        <h1 css={title}>최근 포스트</h1>
+        <PostGrid posts={posts} />
+      </div>
+    </div>
   );
 }

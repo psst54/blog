@@ -13,7 +13,7 @@ export default function SubBlogScreen({
   isPostOpen,
   toggleCategory,
 }: {
-  plainCategoryData: PlainCategory;
+  plainCategoryData: PlainCategory[];
   data: Category[];
   isPostOpen: IsPostOpen;
   toggleCategory: (id: string) => void;
@@ -28,37 +28,65 @@ export default function SubBlogScreen({
       />
 
       <div css={categoryContainer}>
-        <div
-          css={{
-            width: size.CATEGORY_WIDTH,
-            flexShrink: 0,
+        <Category
+          data={data}
+          isPostOpen={isPostOpen}
+          toggleCategory={toggleCategory}
+        />
 
-            paddingTop: "1rem",
-
-            [mq[0]]: {
-              display: "none",
-            },
-          }}
-        >
-          <div
-            css={{
-              position: "fixed",
-              width: size.CATEGORY_WIDTH,
-              height: "calc(100dvh - 1rem - 2rem)",
-            }}
-          >
-            <CategoryList
-              data={data}
-              isPostOpen={isPostOpen}
-              toggleCategory={toggleCategory}
-            />
-          </div>
-        </div>
-
-        <div css={contentContainer}>
-          <Outlet context={plainCategoryData} />
-        </div>
+        <Content plainCategoryData={plainCategoryData} />
       </div>
     </main>
   );
 }
+
+function Category({
+  data,
+  isPostOpen,
+  toggleCategory,
+}: {
+  data: Category[];
+  isPostOpen: IsPostOpen;
+  toggleCategory: (id: string) => void;
+}) {
+  return (
+    <div css={categoryArea}>
+      <div css={categoryWrapper}>
+        <CategoryList
+          data={data}
+          isPostOpen={isPostOpen}
+          toggleCategory={toggleCategory}
+        />
+      </div>
+    </div>
+  );
+}
+
+function Content({
+  plainCategoryData,
+}: {
+  plainCategoryData: PlainCategory[];
+}) {
+  return (
+    <div css={contentContainer}>
+      <Outlet context={plainCategoryData} />
+    </div>
+  );
+}
+
+const categoryArea = {
+  width: size.CATEGORY_WIDTH,
+  flexShrink: 0,
+
+  paddingTop: "1rem",
+
+  [mq[0]]: {
+    display: "none",
+  },
+};
+
+const categoryWrapper = {
+  position: "fixed" as "fixed",
+  width: size.CATEGORY_WIDTH,
+  height: "calc(100dvh - 1rem - 2rem)",
+};
