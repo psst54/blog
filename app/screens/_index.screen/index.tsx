@@ -44,7 +44,7 @@ export default function Index({
       />
 
       <div css={categoryContainer}>
-        <Category
+        <CategoryArea
           categoryData={categoryData}
           isPostOpen={isPostOpen}
           toggleCategory={toggleCategory}
@@ -55,7 +55,7 @@ export default function Index({
   );
 }
 
-function Category({
+function CategoryArea({
   categoryData,
   isPostOpen,
   toggleCategory,

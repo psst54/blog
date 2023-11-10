@@ -28,7 +28,7 @@ export default function SubBlogScreen({
       />
 
       <div css={categoryContainer}>
-        <Category
+        <CategoryArea
           data={data}
           isPostOpen={isPostOpen}
           toggleCategory={toggleCategory}
@@ -40,7 +40,7 @@ export default function SubBlogScreen({
   );
 }
 
-function Category({
+function CategoryArea({
   data,
   isPostOpen,
   toggleCategory,
