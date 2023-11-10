@@ -1,31 +1,7 @@
 import { Link } from "@remix-run/react";
 import RightChevronIcon from "@assets/RightChevronIcon";
 import { color } from "@styles/color";
-
-const itemContainer = (indent: number) => {
-  return {
-    display: "flex",
-    alignItems: "center",
-
-    width: "100%",
-    height: "2.25rem",
-    paddingRight: "0.5rem",
-    paddingLeft: `calc(${indent} * 1rem + 0.2rem)`,
-
-    borderRadius: "2rem",
-  };
-};
-const titleStyle = {
-  flexGrow: 1,
-  marginLeft: "0.1rem",
-  fontSize: "1rem",
-  fontWeight: 400,
-
-  overflow: "hidden",
-  whiteSpace: "nowrap" as "nowrap",
-  textOverflow: "ellipsis",
-  wordBreak: "break-all" as "break-all",
-};
+import { ItemContainer, Title, ToggleButton } from "./categoryItemStyles";
 
 export default function CategoryItem({
   id = "",
@@ -72,7 +48,7 @@ export default function CategoryItem({
     >
       <div
         css={[
-          itemContainer(indent),
+          ItemContainer(indent),
           isSelected && {
             background: color.primary.standard,
           },
@@ -81,25 +57,10 @@ export default function CategoryItem({
         <button
           aria-label="toggle menu"
           onClick={handleButtonClick}
-          css={{
-            flexShrink: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-
-            width: "1.8rem",
-            height: "1.8rem",
-            background: "transparent",
-
-            borderRadius: "100%",
-            border: "none",
-            outline: "none",
-
-            transform: isOpen ? "rotate(90deg)" : "",
-
-            "&:hover": { background: color.primary.shadow + "B2" },
-            cursor: "pointer",
-          }}
+          css={[
+            ToggleButton,
+            isOpen && { transform: isOpen ? "rotate(90deg)" : "" },
+          ]}
         >
           <RightChevronIcon
             size="1rem"
@@ -109,7 +70,7 @@ export default function CategoryItem({
 
         <h4
           css={[
-            titleStyle,
+            Title,
             {
               color: isSelected ? color.text.reverse : color.text.standard,
               fontWeight: isSelected ? 600 : 500,
