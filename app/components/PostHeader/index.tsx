@@ -1,13 +1,7 @@
 import { useMemo } from "react";
-import TagItem from "@components/Tag";
+import TagList from "@components/TagList";
 import Breadcrumb from "./Breadcrumb";
-import {
-  Title,
-  SubTitle,
-  TagListContainer,
-  DateText,
-  DivideLine,
-} from "./styles";
+import { Title, SubTitle, DateText, DivideLine } from "./styles";
 
 import { Tag, PlainCategory } from "~/types";
 import { getAncestors, formatDate } from "./functions";
@@ -37,28 +31,10 @@ export default function PostHeader({
 
       <h1 css={Title}>{title}</h1>
       {subTitle && <h2 css={SubTitle}>{subTitle}</h2>}
-      {doesTagExist({ data: tags }) && <TagList data={tags as Tag[]} />}
+      <TagList data={tags as Tag[]} />
       {postDate && <p css={DateText}>{formatDate(postDate)}</p>}
 
       <hr css={DivideLine} />
-    </div>
-  );
-}
-
-function doesTagExist({ data }: { data: Tag[] | null }) {
-  if (data === null) return false;
-  if (data.length === 0) return false;
-  return true;
-}
-
-function TagList({ data }: { data: Tag[] }) {
-  return (
-    <div css={TagListContainer}>
-      {data.map(
-        (tag: { text: string; isSpoiler: boolean }, tagIndex: number) => (
-          <TagItem key={tagIndex} item={tag} />
-        )
-      )}
     </div>
   );
 }

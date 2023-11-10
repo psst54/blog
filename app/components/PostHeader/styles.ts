@@ -14,13 +14,6 @@ export const SubTitle = {
   wordBreak: "keep-all" as "keep-all",
 };
 
-export const TagListContainer = {
-  display: "flex",
-  flexWrap: "wrap" as "wrap",
-  gap: "0.25rem",
-  marginTop: "0.5rem",
-};
-
 export const DateText = { marginTop: "0.5rem", textAlign: "right" as "right" };
 
 export const DivideLine = {
