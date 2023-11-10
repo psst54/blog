@@ -1,8 +1,36 @@
 import { useParams } from "@remix-run/react";
 import CategoryItem from "./CategoryItem";
-import { color } from "@styles/color";
-import { mq } from "@styles/size";
+import { Container, Inner } from "./styles";
 import { Category, IsPostOpen } from "~/types";
+
+export default function CategoryList({
+  data,
+  isPostOpen,
+  toggleCategory,
+}: {
+  data: any;
+  isPostOpen: IsPostOpen;
+  toggleCategory: (id: string) => void;
+}) {
+  const params = useParams();
+
+  return (
+    <div css={Container}>
+      <div css={Inner}>
+        {data.map((datum: Category, datumIdx: number) => {
+          return renderTreeItem(
+            datum,
+            datumIdx,
+            isPostOpen,
+            toggleCategory,
+            0,
+            params.postId || ""
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 const renderTreeItem = (
   item: Category,
@@ -37,59 +65,3 @@ const renderTreeItem = (
     </div>
   );
 };
-
-export default function CategoryList({
-  data,
-  isPostOpen,
-  toggleCategory,
-}: {
-  data: any;
-  isPostOpen: IsPostOpen;
-  toggleCategory: (id: string) => void;
-}) {
-  const params = useParams();
-
-  return (
-    <div
-      css={{
-        display: "flex",
-
-        width: "100%",
-        maxHeight: "100%",
-        padding: "0.5rem",
-        paddingRight: 0,
-
-        border: `2px solid ${color.border.standard}`,
-        borderRadius: "1rem",
-        boxShadow: `6px 6px 0px 0px ${color.primary.standard}`,
-
-        [mq[0]]: {
-          border: "none",
-          boxShadow: "none",
-        },
-      }}
-    >
-      <div
-        css={{
-          flexGrow: 1,
-          overflow: "auto",
-          width: "100%",
-          maxHeight: "100%",
-        }}
-      >
-        <div css={{ paddingRight: "0.5rem" }}>
-          {data.map((datum: Category, datumIdx: number) => {
-            return renderTreeItem(
-              datum,
-              datumIdx,
-              isPostOpen,
-              toggleCategory,
-              0,
-              params.postId || ""
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
