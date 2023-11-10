@@ -1,27 +1,14 @@
 import { useState, useEffect, createElement } from "react";
-import { Link } from "@remix-run/react";
+// import { Link } from "@remix-run/react";
 
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+// import ReactMarkdown from "react-markdown";
+// import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import remarkToc from "remark-toc";
+// import remarkToc from "remark-toc";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import rehypeStringify from "rehype-stringify";
-
-import {
-  styledH1,
-  styledH2,
-  styledH3,
-  styledP,
-  styledA,
-  styledCode,
-  styledLi,
-  styledBlockquote,
-  styledImg,
-  styledCodeWrapper,
-} from "@styles/markdown";
+// import rehypeStringify from "rehype-stringify";
 
 import { unified } from "unified";
 
@@ -40,8 +27,6 @@ async function test(content) {
 
 export default function Content({ content }: { content: string }) {
   const [parsed, setParsed] = useState(null);
-
-  // .process(await read("example.md"));
 
   useEffect(() => {
     test(content).then((res) => {
