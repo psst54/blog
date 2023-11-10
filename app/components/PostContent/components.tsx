@@ -11,6 +11,7 @@ function getId(child) {
 }
 
 function solve(child) {
+  if (typeof child === "string") return child;
   return child
     .map((item) => {
       if (typeof item === "string") return item;
