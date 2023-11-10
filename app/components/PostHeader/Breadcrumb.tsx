@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 import { color } from "@styles/color";
 import RightChevronIcon from "@assets/RightChevronIcon";
-import { Container, ItemContainer, Text } from "./styles";
+import { Container, ItemContainer, Text } from "./breadScrumbStyles";
 
 export default function Breadcrumb({
   breadcrumbData,
