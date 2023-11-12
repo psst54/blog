@@ -20,6 +20,10 @@ function renderNodes(node) {
     return node.children.map((child) => renderNodes(child));
   }
 
+  if (node.tagName === "hr") {
+    return <hr />;
+  }
+
   if (node.tagName === "h1") {
     return (
       <H1
