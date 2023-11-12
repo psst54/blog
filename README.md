@@ -4,9 +4,9 @@
 
 Remix와 함께하는 v2 블로그 만들기 프로젝트
 
-[작업 로그(velog) →](https://velog.io/@psst54/series/Remix%EC%99%80-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0)
+[작업 로그(velog) →](https://blog.psst54.me/cse/C5D7DA7CD12E1905BFC319B2EE7809044C751F935A387E22C4393ACC42E48EA6)
 
-[v2 블로그(작업중) →](https://psst54-blog.pages.dev/cse)
+[v2 블로그(작업중) →](https://blog.psst54.me/)
 
 <br/>
 
