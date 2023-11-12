@@ -1,14 +1,6 @@
 import type { LoaderArgs } from "@remix-run/cloudflare";
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 
-import { unified } from "unified";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import remarkGfm from "remark-gfm";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import { VFile } from "vfile";
-
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
 import { getSubBlogId } from "@functions/category";
@@ -64,9 +56,6 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
 export default function PostPage() {
   const { content } = useLoaderData<typeof loader>();
-
-  console.log(content?.content);
-  console.log(content?.json);
 
   const plainCategoryData: PlainCategory[] = useOutletContext();
 
