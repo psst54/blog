@@ -1,49 +1,11 @@
-import { useState, useEffect } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
-
 import { css } from "@emotion/react";
-
-import { unified } from "unified";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import remarkGfm from "remark-gfm";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import { VFile } from "vfile";
-
 import { H1, H2, H3, P, A, Img, Blockquote, Code, Li } from "./components";
-
 import { styledCodeWrapper } from "@styles/markdown";
 
-async function parse(content: string) {
-  const processor = unified()
-    .use(remarkParse)
-    .use([remarkMath, remarkGfm])
-    .use(remarkRehype, {
-      allowDangerousHtml: true,
-    })
-    .use([rehypeKatex]);
-
-  const file = new VFile();
-
-  file.value = content;
-
-  const hastNode = processor.runSync(processor.parse(file), file);
-
-  return hastNode;
-}
-
-export default function Content({ content }: { content: string }) {
-  const [parsed, setParsed] = useState(null);
-
-  useEffect(() => {
-    parse(content).then((res) => {
-      setParsed(res);
-    });
-  }, []);
-
-  return <div>{renderNodes(parsed)}</div>;
+export default function Content({ content }) {
+  return <div>{renderNodes(content)}</div>;
 }
 
 function renderNodes(node) {

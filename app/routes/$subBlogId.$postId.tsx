@@ -1,6 +1,14 @@
 import type { LoaderArgs } from "@remix-run/cloudflare";
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 
+import { unified } from "unified";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import { VFile } from "vfile";
+
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "@supabase/types";
 import { getSubBlogId } from "@functions/category";
@@ -8,6 +16,21 @@ import { getPostById, getPostsById } from "@functions/supabase";
 
 import PostDetailPageScreen from "@screens/$subBlogId.$postId.screen";
 import { Env, PlainCategory } from "~/types";
+
+async function parse(content: string) {
+  const processor = await unified()
+    .use(remarkParse)
+    .use([remarkMath, remarkGfm])
+    .use(remarkRehype, {
+      allowDangerousHtml: true,
+    })
+    .use([rehypeKatex]);
+
+  const file = new VFile();
+  file.value = content;
+
+  return await processor.runSync(processor.parse(file), file);
+}
 
 export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
@@ -25,7 +48,15 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     try {
       const postData = await getPostById({ supabase, postId });
 
-      if (postData.type === "post") return postData;
+      if (postData.type === "post") {
+        const content = await parse(postData.content);
+
+        return {
+          ...postData,
+          test: postData.content,
+          content: content,
+        };
+      }
 
       const databaseData = await getPostsById({
         supabase,
@@ -51,6 +82,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
 export default function PostPage() {
   const { content } = useLoaderData<typeof loader>();
+
   const plainCategoryData: PlainCategory[] = useOutletContext();
 
   return (
