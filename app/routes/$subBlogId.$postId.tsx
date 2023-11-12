@@ -7,6 +7,7 @@ import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
+import remarkToc from "remark-toc";
 import { VFile } from "vfile";
 
 import { createClient } from "@supabase/supabase-js";
@@ -20,7 +21,7 @@ import { Env, PlainCategory } from "~/types";
 async function parse(content: string) {
   const processor = await unified()
     .use(remarkParse)
-    .use([remarkMath, remarkGfm])
+    .use([remarkMath, remarkGfm, remarkToc])
     .use(remarkRehype, {
       allowDangerousHtml: true,
     })
@@ -49,7 +50,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
       const postData = await getPostById({ supabase, postId });
 
       if (postData.type === "post") {
-        const content = await parse(postData.content);
+        const content = await parse("# Table Of Contents\n" + postData.content);
 
         return {
           ...postData,
