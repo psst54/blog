@@ -17,21 +17,6 @@ import { getPostById, getPostsById } from "@functions/supabase";
 import PostDetailPageScreen from "@screens/$subBlogId.$postId.screen";
 import { Env, PlainCategory } from "~/types";
 
-async function parse(content: string) {
-  const processor = await unified()
-    .use(remarkParse)
-    .use([remarkMath, remarkGfm])
-    .use(remarkRehype, {
-      allowDangerousHtml: true,
-    })
-    .use([rehypeKatex]);
-
-  const file = new VFile();
-  file.value = content;
-
-  return await processor.runSync(processor.parse(file), file);
-}
-
 export const loader = async ({ context, params }: LoaderArgs) => {
   const supabase = createClient<Database>(
     (context.env as Env).SUPABASE_URL,
@@ -49,12 +34,9 @@ export const loader = async ({ context, params }: LoaderArgs) => {
       const postData = await getPostById({ supabase, postId });
 
       if (postData.type === "post") {
-        const content = await parse(postData.content);
-
         return {
           ...postData,
-          test: postData.content,
-          content: content,
+          content: JSON.parse(postData.content),
         };
       }
 
@@ -82,6 +64,9 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
 export default function PostPage() {
   const { content } = useLoaderData<typeof loader>();
+
+  console.log(content?.content);
+  console.log(content?.json);
 
   const plainCategoryData: PlainCategory[] = useOutletContext();
 
