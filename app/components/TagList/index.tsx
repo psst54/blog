@@ -2,7 +2,7 @@ import TagItem from "@components/Tag";
 import { Tag } from "~/types";
 
 export default function TagList({ data }: { data: Tag[] | null | undefined }) {
-  if (!doesTagExist) return <></>;
+  if (!doesTagExist({ data })) return <></>;
 
   return (
     <div css={TagListContainer}>

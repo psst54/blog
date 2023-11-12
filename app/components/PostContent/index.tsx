@@ -1,35 +1,44 @@
-import { useState, useEffect, createElement } from "react";
-// import { Link } from "@remix-run/react";
+import { useState, useEffect } from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-// import ReactMarkdown from "react-markdown";
-// import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-// import remarkToc from "remark-toc";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-// import rehypeStringify from "rehype-stringify";
+import { css } from "@emotion/react";
 
 import { unified } from "unified";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import { VFile } from "vfile";
 
-import { components } from "./components";
+import { H1, H2, H3, P, A, Img, Blockquote, Code, Li } from "./components";
 
-async function test(content) {
+import { styledCodeWrapper } from "@styles/markdown";
+
+async function parse(content: string) {
   const processor = unified()
     .use(remarkParse)
-    .use(remarkMath)
-    .use(remarkRehype)
-    .use(rehypeKatex);
+    .use([remarkMath, remarkGfm])
+    .use(remarkRehype, {
+      allowDangerousHtml: true,
+    })
+    .use([rehypeKatex]);
 
-  const tree = processor.parse(content);
-  return tree;
+  const file = new VFile();
+
+  file.value = content;
+
+  const hastNode = processor.runSync(processor.parse(file), file);
+
+  return hastNode;
 }
 
 export default function Content({ content }: { content: string }) {
   const [parsed, setParsed] = useState(null);
 
   useEffect(() => {
-    test(content).then((res) => {
+    parse(content).then((res) => {
       setParsed(res);
     });
   }, []);
@@ -40,81 +49,111 @@ export default function Content({ content }: { content: string }) {
 function renderNodes(node) {
   if (!node) return <></>;
 
+  if (node.type === "text") {
+    if (!node.value) return <></>;
+    return node.value;
+  }
+
   if (node.type === "root") {
     return node.children.map((child) => renderNodes(child));
   }
 
-  if (node.type === "heading") {
-    if (node.depth === 1) {
-      return (
-        <components.h1
-          children={node.children.map((child) => renderNodes(child))}
-        />
-      );
-    }
-    if (node.depth === 2) {
-      return (
-        <components.h2
-          children={node.children.map((child) => renderNodes(child))}
-        />
-      );
-    }
-    if (node.depth === 3) {
-      return (
-        <components.h3
-          children={node.children.map((child) => renderNodes(child))}
-        />
-      );
-    }
-    if (node.depth === 4) {
-      return <h4>{node.children.map((child) => renderNodes(child))}</h4>;
-    }
-    if (node.depth === 5) {
-      return <h5>{node.children.map((child) => renderNodes(child))}</h5>;
-    }
-    return;
-  }
-
-  if (node.type === "paragraph") {
+  if (node.tagName === "h1") {
     return (
-      <components.p
+      <H1
         children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
+      />
+    );
+  }
+  if (node.tagName === "h2") {
+    return (
+      <H2
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
+      />
+    );
+  }
+  if (node.tagName === "h3") {
+    return (
+      <H3
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
       />
     );
   }
 
-  if (node.type === "link") {
+  if (node.tagName === "p") {
     return (
-      <components.a
-        href={node.url}
+      <P
         children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
       />
     );
   }
 
-  if (node.type === "image") {
-    return <components.img src={node.url} alt={node.alt} />;
+  if (node.tagName === "img") {
+    return <Img {...node.properties} />;
   }
 
-  if (node.type === "text") {
-    return node.value;
-  }
-
-  if (node.type === "blockquote") {
+  if (node.tagName === "a") {
     return (
-      <components.blockquote
+      <A
         children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
       />
     );
   }
 
-  if (node.type === "inlineCode") {
-    return <code>{node.value}</code>;
+  if (node.tagName === "blockquote") {
+    return (
+      <Blockquote
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
+      />
+    );
   }
 
-  if (node.type === "code") {
-    return <code>{node.value}</code>;
+  if (node.tagName === "li") {
+    return (
+      <Li
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
+      />
+    );
   }
 
-  console.log(node);
+  if (node.tagName === "code") {
+    if (!node.properties?.className)
+      return (
+        <Code
+          children={node.children.map((child) => renderNodes(child))}
+          {...node.properties}
+        />
+      );
+
+    return (
+      <div css={styledCodeWrapper}>
+        <SyntaxHighlighter
+          children={node.children.map((child) => renderNodes(child))}
+          style={nord}
+          language={node.properties?.className[0]?.split("language-")[1]}
+          PreTag="div"
+        />
+      </div>
+    );
+  }
+
+  const className = node?.properties?.className?.join(" ");
+  const style = node?.properties?.style;
+  return (
+    <node.tagName
+      className={className}
+      css={css`
+        ${style}
+      `}
+    >
+      {node.children?.map((child) => renderNodes(child))}
+    </node.tagName>
+  );
 }
