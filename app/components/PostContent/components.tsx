@@ -41,6 +41,14 @@ export function P({ children }) {
 }
 
 export function A({ href, children }) {
+  if (href[0] === "#")
+    return (
+      <Link
+        css={[styledA, { color: color.text.standard }]}
+        to={href}
+        children={children}
+      />
+    );
   return <Link target="_blank" css={styledA} to={href} children={children} />;
 }
 
