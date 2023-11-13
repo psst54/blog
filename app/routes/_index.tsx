@@ -24,7 +24,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 
   const subBlogId = getSubBlogId({ params });
   try {
-    const recentPosts = await getRecentPosts({ supabase });
+    const recentPosts = await getRecentPosts({ supabase, showAll: false });
     const categoryRawData = await getPostsByBlogId({ supabase, subBlogId });
     return {
       recentPosts: recentPosts,
