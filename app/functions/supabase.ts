@@ -97,17 +97,20 @@ export async function getRecentPosts({
   supabase,
   subBlogId,
   count = 10,
+  showAll = true,
 }: {
   supabase: SupabaseClient<Database, "public", any>;
   subBlogId?: string | undefined;
   count?: number | undefined;
+  showAll?: boolean;
 }) {
   if (!subBlogId) {
     const { data: databaseData, error: databaseError } = await supabase
       .from("posts")
       .select("title, sub_title, tags, id, thumbnail, sub_blog")
-      .order("created_at", { ascending: false })
+      .in("show_main", showAll ? [true, false] : [true])
       .eq("type", "post")
+      .order("created_at", { ascending: false })
       .limit(count);
 
     if (databaseError) throw new Error();
@@ -117,9 +120,10 @@ export async function getRecentPosts({
     const { data: databaseData, error: databaseError } = await supabase
       .from("posts")
       .select("title, sub_title, tags, id, thumbnail, sub_blog")
-      .order("created_at", { ascending: false })
+      .in("show_main", showAll ? [true, false] : [true])
       .eq("sub_blog", subBlogId)
       .eq("type", "post")
+      .order("created_at", { ascending: false })
       .limit(count);
 
     if (databaseError) throw new Error();

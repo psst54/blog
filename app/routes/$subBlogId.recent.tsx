@@ -8,17 +8,18 @@ import { getRecentPosts } from "~/functions/supabase";
 import PostPageScreen from "@screens/$subBlogId._index.screen";
 import { Env, PlainCategory } from "~/types";
 
-export const loader = async ({ context, params }: LoaderArgs) => {
+export const loader = async ({ context }: LoaderArgs) => {
   const supabase = createClient<Database>(
     (context.env as Env).SUPABASE_URL,
     (context.env as Env).SUPABASE_KEY
   );
 
-  const loadData = async ({ subBlogId }: { subBlogId: string }) => {
+  const loadData = async () => {
     try {
       const databaseData = await getRecentPosts({
         supabase,
         count: 100,
+        showAll: true,
       });
 
       return {
@@ -31,9 +32,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     }
   };
 
-  const subBlogId = params.subBlogId || "";
-
-  const data = await loadData({ subBlogId });
+  const data = await loadData();
 
   return { content: data };
 };
