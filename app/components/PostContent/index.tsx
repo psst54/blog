@@ -89,6 +89,16 @@ function renderNodes(node) {
     );
   }
 
+  if (node.tagName === "strong") {
+    return (
+      <span
+        style={{ fontWeight: 800 }}
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
+      />
+    );
+  }
+
   if (node.tagName === "code") {
     if (!node.properties?.className)
       return (
@@ -109,6 +119,10 @@ function renderNodes(node) {
       </div>
     );
   }
+
+  if (node.type === "raw") return;
+
+  console.log(node);
 
   const className = node?.properties?.className?.join(" ");
   const style = node?.properties?.style;
