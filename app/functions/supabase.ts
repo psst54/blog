@@ -95,19 +95,43 @@ export async function getSubBlogMainPosts({
 
 export async function getRecentPosts({
   supabase,
+  subBlogId,
+  count = 10,
+  showAll = true,
 }: {
   supabase: SupabaseClient<Database, "public", any>;
+  subBlogId?: string | undefined;
+  count?: number | undefined;
+  showAll?: boolean;
 }) {
-  const { data: databaseData, error: databaseError } = await supabase
-    .from("posts")
-    .select("title, sub_title, tags, id, thumbnail, sub_blog")
-    .order("created_at", { ascending: false })
-    .eq("type", "post")
-    .limit(10);
+  if (!subBlogId) {
+    const { data: databaseData, error: databaseError } = await supabase
+      .from("posts")
+      .select("title, sub_title, tags, id, thumbnail, sub_blog")
+      .in("show_main", showAll ? [true, false] : [true])
+      .eq("type", "post")
+      .order("created_at", { ascending: false })
+      .limit(count);
 
-  if (databaseError) throw new Error();
+    if (databaseError) throw new Error();
 
-  return databaseData;
+    return databaseData;
+  } else {
+    const { data: databaseData, error: databaseError } = await supabase
+      .from("posts")
+      .select("title, sub_title, tags, id, thumbnail, sub_blog")
+      .in("show_main", showAll ? [true, false] : [true])
+      .eq("sub_blog", subBlogId)
+      .eq("type", "post")
+      .order("created_at", { ascending: false })
+      .limit(count);
+
+    if (databaseError) throw new Error();
+
+    return databaseData;
+  }
+
+  return [];
 }
 
 export async function getSubBlogInfo({

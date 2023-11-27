@@ -1,120 +1,139 @@
-import { Link } from "@remix-run/react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import remarkToc from "remark-toc";
-import { color } from "@styles/color";
+import { css } from "@emotion/react";
+import { H1, H2, H3, P, A, Img, Blockquote, Code, Li } from "./components";
+import { styledCodeWrapper } from "@styles/markdown";
 
-import {
-  styledH1,
-  styledH2,
-  styledH3,
-  styledP,
-  styledA,
-  styledCode,
-  styledLi,
-  styledBlockquote,
-  styledImg,
-  styledCodeWrapper,
-} from "@styles/markdown";
-
-function getId(child) {
-  return solve(child)
-    .replace(/\s+/g, "-")
-    .replace(/[^\w\sㄱ-ㅎㅏ-ㅣ가-힣-]/g, "")
-    .toLowerCase();
+export default function Content({ content }) {
+  return <div>{renderNodes(content)}</div>;
 }
 
-function solve(child) {
-  return child
-    .map((item) => {
-      if (typeof item === "string") return item;
-      return solve(item.props.children);
-    })
-    .join("");
-}
+function renderNodes(node) {
+  if (!node) return <></>;
 
-const components = {
-  h1: (props: any) => {
-    return (
-      <div css={{ display: "flex", marginBottom: "0.25rem" }}>
-        <h1
-          css={styledH1}
-          children={props.children}
-          id={getId(props.children)}
-        />
-        <hr
-          css={{
-            flexGrow: 1,
-            border: "none",
-            borderBottom: `2px solid ${color.border.light}`,
-          }}
-        />
-      </div>
-    );
-  },
-  h2: (props: any) => (
-    <h2 css={styledH2} children={props.children} id={getId(props.children)} />
-  ),
-  h3: (props: any) => (
-    <h3 css={styledH3} children={props.children} id={getId(props.children)} />
-  ),
-  h4: (props: any) => <h4 css={styledH3} children={props.children} />,
-  h5: (props: any) => <h5 css={styledH3} children={props.children} />,
-  h6: (props: any) => <h6 css={styledH3} children={props.children} />,
-  p: (props: any) => <p css={styledP} children={props.children} />,
-  a: (props: any) => {
-    if (props.href[0] === "#")
-      return <Link css={styledA} to={props.href} children={props.children} />;
+  if (node.type === "text") {
+    if (!node.value) return <></>;
+    return node.value;
+  }
 
+  if (node.type === "root") {
+    return node.children.map((child) => renderNodes(child));
+  }
+
+  if (node.tagName === "hr") {
+    return <hr />;
+  }
+
+  if (node.tagName === "h1") {
     return (
-      <Link
-        target="_blank"
-        css={styledA}
-        to={props.href}
-        children={props.children}
+      <H1
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
       />
     );
-  },
-  li: (props: any) => <li css={styledLi} children={props.children} />,
-  blockquote: (props: any) => (
-    <blockquote css={styledBlockquote} children={props.children} />
-  ),
-  img: (props: any) => <img css={styledImg} alt={props.alt} src={props.src} />,
-  pre: (props: any) => <pre children={props.children} />,
-  code: (props: any) => {
-    const match = /language-(\w+)/.exec(props.className || "");
-    return !props.inline && match ? (
+  }
+  if (node.tagName === "h2") {
+    return (
+      <H2
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
+      />
+    );
+  }
+  if (node.tagName === "h3") {
+    return (
+      <H3
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
+      />
+    );
+  }
+
+  if (node.tagName === "p") {
+    return (
+      <P
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
+      />
+    );
+  }
+
+  if (node.tagName === "img") {
+    return <Img {...node.properties} />;
+  }
+
+  if (node.tagName === "a") {
+    return (
+      <A
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
+      />
+    );
+  }
+
+  if (node.tagName === "blockquote") {
+    return (
+      <Blockquote
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
+      />
+    );
+  }
+
+  if (node.tagName === "li") {
+    return (
+      <Li
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
+      />
+    );
+  }
+
+  if (node.tagName === "strong") {
+    return (
+      <span
+        style={{ fontWeight: 800 }}
+        children={node.children.map((child) => renderNodes(child))}
+        {...node.properties}
+      />
+    );
+  }
+
+  if (node.tagName === "code") {
+    if (!node.properties?.className)
+      return (
+        <Code
+          children={node.children.map((child) => renderNodes(child))}
+          {...node.properties}
+        />
+      );
+
+    return (
       <div css={styledCodeWrapper}>
         <SyntaxHighlighter
-          children={String(props.children).replace(/\n$/, "")}
+          children={node.children.map((child) => renderNodes(child))}
           style={nord}
-          language={match[1]}
+          language={node.properties?.className[0]?.split("language-")[1]}
           PreTag="div"
-          {...props}
         />
       </div>
-    ) : (
-      <code css={styledCode} children={props.children} />
     );
-  },
-};
+  }
 
-export default function Content({ content }: { content: string }) {
+  if (node.type === "raw") return;
+
+  console.log(node);
+
+  const className = node?.properties?.className?.join(" ");
+  const style = node?.properties?.style;
   return (
-    <ReactMarkdown
-      remarkPlugins={[
-        [remarkMath],
-        [remarkGfm],
-        [remarkToc, { tight: true, maxDepth: 3, ordered: true }],
-      ]}
-      rehypePlugins={[rehypeKatex]}
-      components={components}
+    <node.tagName
+      className={className}
+      css={css`
+        ${style}
+      `}
     >
-      {"# Table of Contents\n" + content}
-    </ReactMarkdown>
+      {node.children?.map((child) => renderNodes(child))}
+    </node.tagName>
   );
 }
