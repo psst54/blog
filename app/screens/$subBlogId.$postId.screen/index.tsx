@@ -1,10 +1,8 @@
 import PostHeader from "@components/PostHeader";
 import Content from "@components/PostContent";
-import PostGrid from "@components/PostGrid";
-import PaginateNavigator from "@components/PaginateNavigator";
 import { size, mq } from "@styles/size";
 import { PlainCategory, Post, Tag } from "~/types";
-import usePagination from "~/hooks/usePagination";
+import Database from "./Database";
 
 export default function PostDetailPageScreen({
   content,
@@ -22,10 +20,6 @@ export default function PostDetailPageScreen({
   };
   plainCategoryData: PlainCategory[];
 }) {
-  const [currentPage, currentPagePosts, setPage] = usePagination({
-    data: content?.posts || [],
-  });
-
   return (
     <div css={container}>
       <PostHeader
@@ -37,18 +31,7 @@ export default function PostDetailPageScreen({
         plainCategoryData={plainCategoryData}
       />
       {content?.type === "post" && <Content content={content?.content} />}
-      {content?.type === "database" && (
-        <>
-          <PostGrid posts={currentPagePosts} />
-          <PaginateNavigator
-            currentPage={currentPage}
-            count={content?.posts.length}
-            onChangePage={(page) => {
-              setPage(page);
-            }}
-          />
-        </>
-      )}
+      {content?.type === "database" && <Database posts={content?.posts} />}
     </div>
   );
 }

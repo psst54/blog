@@ -122,8 +122,6 @@ function renderNodes(node) {
 
   if (node.type === "raw") return;
 
-  console.log(node);
-
   const className = node?.properties?.className?.join(" ");
   const style = node?.properties?.style;
   return (
