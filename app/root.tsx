@@ -11,8 +11,8 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import * as gtag from "~/utils/gtags.client";
+import { Fonts, GTag } from "~/components/root";
 
-import katexStyle from "katex/dist/katex.css";
 import { globalStyleCss } from "@styles/global";
 import { Env } from "~/types";
 
@@ -59,44 +59,12 @@ export default function App() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
-        <link
-          rel="stylesheet"
-          as="style"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css"
-          media={isInitialRender ? "print" : "all"}
-        />
-        <link
-          rel="stylesheet"
-          as="style"
-          href={katexStyle}
-          media={isInitialRender ? "print" : "all"}
-        />
+        <Fonts isInitialRender={isInitialRender} />
         <Links />
       </head>
-      <body css={globalStyleCss}>
-        {ENVIRONMENT === "PRODUCTION" && (
-          <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`}
-            />
-            <script
-              async
-              id="gtag-init"
-              dangerouslySetInnerHTML={{
-                __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
 
-                gtag('config', '${gaTrackingId}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-              }}
-            />
-          </>
-        )}
+      <body css={globalStyleCss}>
+        {ENVIRONMENT === "PRODUCTION" && <GTag gaTrackingId={gaTrackingId} />}
         <Outlet />
         <ScrollRestoration />
         <Scripts />
