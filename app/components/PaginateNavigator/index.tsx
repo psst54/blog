@@ -3,6 +3,7 @@ import RightChevronIcon from "~/assets/RightChevronIcon";
 import { color } from "~/styles/color";
 import { PER_PAGE_POST_COUNT } from "~/constants";
 import { getArray } from "./getArray";
+import { container, arrowButton, numberButton, selectedButton } from "./styles";
 
 export default function PaginateNavigator({
   currentPage,
@@ -21,9 +22,17 @@ export default function PaginateNavigator({
     setArray(getArray({ currentPage, maxPage }));
   }, [currentPage]);
 
+  function goPrev() {
+    if (1 <= currentPage - 1) onChangePage(currentPage - 1);
+  }
+
+  function goNext() {
+    if (currentPage + 1 <= maxPage) onChangePage(currentPage + 1);
+  }
+
   return (
     <div css={container}>
-      <button css={[arrowButton, { rotate: "180deg" }]}>
+      <button css={[arrowButton, { rotate: "180deg" }]} onClick={goPrev}>
         <RightChevronIcon size="1rem" color={color.background.standard} />
       </button>
 
@@ -39,50 +48,9 @@ export default function PaginateNavigator({
         );
       })}
 
-      <button css={arrowButton}>
+      <button css={arrowButton} onClick={goNext}>
         <RightChevronIcon size="1rem" color={color.background.standard} />
       </button>
     </div>
   );
 }
-
-const container = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-
-  width: "100%",
-};
-
-const button = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-
-  width: "2rem",
-  height: "2rem",
-  background: "transparent",
-
-  border: "none",
-  borderRadius: "100%",
-  outline: "none",
-
-  cursor: "pointer",
-};
-
-const arrowButton = {
-  ...button,
-  background: color.secondary.standard,
-};
-
-const numberButton = {
-  ...button,
-
-  "&:hover": {
-    background: color.background.toSecondary,
-  },
-};
-
-const selectedButton = {
-  background: color.background.toSecondary,
-};
