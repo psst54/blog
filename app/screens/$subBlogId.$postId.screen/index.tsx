@@ -23,7 +23,7 @@ export default function PostDetailPageScreen({
   plainCategoryData: PlainCategory[];
 }) {
   const [currentPage, currentPagePosts, setPage] = usePagination({
-    data: content?.posts,
+    data: content?.posts || [],
   });
 
   return (
