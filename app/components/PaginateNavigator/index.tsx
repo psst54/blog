@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import RightChevronIcon from "~/assets/RightChevronIcon";
 import { color } from "~/styles/color";
 import { PER_PAGE_POST_COUNT } from "~/constants";
+import { getArray } from "./getArray";
 
 export default function PaginateNavigator({
   currentPage,
@@ -13,18 +15,22 @@ export default function PaginateNavigator({
 }) {
   const maxPage = Math.ceil(count / PER_PAGE_POST_COUNT);
 
+  const [array, setArray] = useState<number[]>([]);
+
+  useEffect(() => {
+    setArray(getArray({ currentPage, maxPage }));
+  }, [currentPage]);
+
   return (
     <div css={container}>
       <button css={[arrowButton, { rotate: "180deg" }]}>
         <RightChevronIcon size="1rem" color={color.background.standard} />
       </button>
 
-      {[...Array(maxPage).keys()].map((_, index: number) => {
-        const page = index + 1;
-
+      {array.map((page: number) => {
         return (
           <button
-            key={index}
+            key={page}
             css={[numberButton, currentPage === page && selectedButton]}
             onClick={() => onChangePage(page)}
           >
