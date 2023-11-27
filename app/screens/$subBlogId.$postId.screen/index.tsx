@@ -1,28 +1,37 @@
 import PostHeader from "@components/PostHeader";
 import Content from "@components/PostContent";
-import PostGrid from "@components/PostGrid";
 import { size, mq } from "@styles/size";
-import { PlainCategory, Post } from "~/types";
+import { PlainCategory, Post, Tag } from "~/types";
+import Database from "./Database";
 
 export default function PostDetailPageScreen({
   content,
   plainCategoryData,
 }: {
-  content: Post;
+  content: {
+    id: string;
+    title: string;
+    subTitle?: string;
+    tags: Tag[];
+    created_at: string;
+    type: "post" | "database";
+    posts: Post[];
+    content: Post;
+  };
   plainCategoryData: PlainCategory[];
 }) {
   return (
     <div css={container}>
       <PostHeader
         id={content.id}
-        title={content?.title}
+        title={content.title}
         subTitle={content?.subTitle}
         tags={content?.tags}
         postDate={content?.created_at}
         plainCategoryData={plainCategoryData}
       />
       {content?.type === "post" && <Content content={content?.content} />}
-      {content?.type === "database" && <PostGrid posts={content?.posts} />}
+      {content?.type === "database" && <Database posts={content?.posts} />}
     </div>
   );
 }
