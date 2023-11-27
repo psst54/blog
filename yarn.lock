@@ -1682,6 +1682,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/loadable__component@^5.13.7":
+  version "5.13.7"
+  resolved "https://registry.npmjs.org/@types/loadable__component/-/loadable__component-5.13.7.tgz"
+  integrity sha512-/FTIqPHwA5FbtjdsxJl8NGByOKtH1dkH2A1BGNViGUPxCEsuckqC+XC7yPVuJWa3AV5webfopDWZ6df6cN0ZHA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/mdast@^3.0.0":
   version "3.0.14"
   resolved "https://registry.npmjs.org/@types/mdast/-/mdast-3.0.14.tgz"
