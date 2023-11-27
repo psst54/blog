@@ -7,6 +7,7 @@ export default function Content({ posts }: { posts: Post[] }) {
     <div css={contentContainer}>
       <div css={recentPostsConatiner}>
         <h1 css={title}>최근 포스트</h1>
+
         <PostGrid posts={posts} />
       </div>
     </div>

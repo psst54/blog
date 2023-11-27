@@ -2,10 +2,11 @@ import { mq } from "@styles/size";
 
 const POST_WIDTH = "18rem";
 
-export const Container = {
+export const container = {
   display: "grid",
   gridTemplateColumns: `repeat(auto-fit, ${POST_WIDTH})`,
   gap: "1.5rem",
+  paddingBottom: "1rem",
 
   [mq[0]]: {
     gridTemplateColumns: `repeat(auto-fill, minmax(${POST_WIDTH}, 1fr))`,
@@ -13,4 +14,4 @@ export const Container = {
   [mq[1]]: {},
 };
 
-export const LinkStyle = { textDecoration: "none", color: "initial" };
+export const linkStyle = { textDecoration: "none", color: "initial" };
