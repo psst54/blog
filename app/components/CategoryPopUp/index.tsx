@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, Suspense, lazy } from "react";
 import loadable from "@loadable/component";
 
-import CategoryList from "@components/CategoryList";
 import MenuIcon from "@components/MenuIcon";
 
 import RightChevronIcon from "@assets/RightChevronIcon";
@@ -13,6 +12,8 @@ import {
   CategorySlide,
 } from "./styles";
 import { Category, IsPostOpen } from "~/types";
+
+const LazyCategoryList = lazy(() => import("@components/CategoryList"));
 
 const HomeIcon = loadable(() => import("@assets/HomeIcon"));
 const CodeIcon = loadable(() => import("@assets/CodeIcon"));
@@ -74,11 +75,13 @@ export default function CategoroyPopUp({
             ))}
           </div>
 
-          <CategoryList
-            data={data}
-            isPostOpen={isPostOpen}
-            toggleCategory={toggleCategory}
-          />
+          <Suspense fallback="">
+            <LazyCategoryList
+              data={data}
+              isPostOpen={isPostOpen}
+              toggleCategory={toggleCategory}
+            />
+          </Suspense>
         </div>
       )}
     </div>
