@@ -1,6 +1,8 @@
-import CategoryList from "@components/CategoryList";
+import { Suspense, lazy } from "react";
 import { Category, IsPostOpen } from "~/types";
 import { container, categoryWrapper } from "./styles";
+
+const LazyCategoryList = lazy(() => import("@components/CategoryList"));
 
 export default function CategoryBar({
   data,
@@ -14,11 +16,13 @@ export default function CategoryBar({
   return (
     <div css={container}>
       <div css={categoryWrapper}>
-        <CategoryList
-          data={data}
-          isPostOpen={isPostOpen}
-          toggleCategory={toggleCategory}
-        />
+        <Suspense fallback="">
+          <LazyCategoryList
+            data={data}
+            isPostOpen={isPostOpen}
+            toggleCategory={toggleCategory}
+          />
+        </Suspense>
       </div>
     </div>
   );
