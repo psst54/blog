@@ -1,7 +1,7 @@
 import PostHeader from "@components/PostHeader";
 import Content from "@components/PostContent";
 import { size, mq } from "@styles/size";
-import { PlainCategory, Post, Tag } from "~/types";
+import type { PlainCategory, Post, Tag } from "~/types";
 import Database from "./Database";
 
 export default function PostDetailPageScreen({
@@ -40,7 +40,7 @@ const container = {
   width: "100%",
   padding: "1rem 1.5rem",
 
-  wordBreak: "break-word" as "break-word",
+  wordBreak: "break-word" as const,
 
   [mq[0]]: {
     paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,

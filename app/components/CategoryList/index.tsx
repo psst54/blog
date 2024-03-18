@@ -1,7 +1,7 @@
 import { useParams } from "@remix-run/react";
 import CategoryItem from "./CategoryItem";
 import { Container, Inner } from "./styles";
-import { Category, IsPostOpen } from "~/types";
+import type { Category, IsPostOpen } from "~/types";
 
 export default function CategoryList({
   data,

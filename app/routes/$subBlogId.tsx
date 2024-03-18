@@ -4,12 +4,12 @@ import { useLoaderData } from "@remix-run/react";
 import type { SitemapFunction } from "remix-sitemap";
 
 import { createClient } from "@supabase/supabase-js";
-import { Database } from "@supabase/types";
+import type { Database } from "@supabase/types";
 
 import SubBlogScreen from "@screens/$subBlogId.screen";
 import { getSubBlogId, buildTree, spread } from "@functions/category";
 import { getPostsByBlogId, getAllPosts } from "@functions/supabase";
-import { Env } from "~/types";
+import type { Env } from "~/types";
 
 export const meta: V2_MetaFunction = () => {
   return [

@@ -2,11 +2,11 @@ import type { LoaderArgs } from "@remix-run/cloudflare";
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 
 import { createClient } from "@supabase/supabase-js";
-import { Database } from "@supabase/types";
+import type { Database } from "@supabase/types";
 import { getRecentPosts } from "~/functions/supabase";
 
 import PostPageScreen from "@screens/$subBlogId._index.screen";
-import { Env, PlainCategory } from "~/types";
+import type { Env, PlainCategory } from "~/types";
 
 export const loader = async ({ context }: LoaderArgs) => {
   const supabase = createClient<Database>(

@@ -2,12 +2,12 @@ import { useState } from "react";
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import { createClient } from "@supabase/supabase-js";
-import { Database } from "@supabase/types";
+import type { Database } from "@supabase/types";
 
 import IndexScreen from "@screens/_index.screen";
 import { getSubBlogId, buildTree } from "@functions/category";
 import { getPostsByBlogId, getRecentPosts } from "@functions/supabase";
-import { Env, Post, Category, IsPostOpen } from "~/types";
+import type { Env, Post, Category, IsPostOpen } from "~/types";
 
 export const meta: V2_MetaFunction = () => {
   return [

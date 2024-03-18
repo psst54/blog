@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react";
 import { color } from "@styles/color";
-import { Menu } from "~/types";
+import type { Menu } from "~/types";
 
 export default function MenuBar({ item }: { item: Menu }) {
   return (

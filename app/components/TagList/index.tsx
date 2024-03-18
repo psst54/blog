@@ -1,5 +1,5 @@
 import TagItem from "@components/Tag";
-import { Tag } from "~/types";
+import type { Tag } from "~/types";
 
 export default function TagList({ data }: { data: Tag[] | null | undefined }) {
   if (!doesTagExist({ data })) return <></>;
@@ -23,7 +23,7 @@ export function doesTagExist({ data }: { data: Tag[] | null | undefined }) {
 
 export const TagListContainer = {
   display: "flex",
-  flexWrap: "wrap" as "wrap",
+  flexWrap: "wrap" as const,
   gap: "0.25rem",
   marginTop: "0.5rem",
 };

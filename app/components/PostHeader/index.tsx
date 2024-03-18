@@ -3,7 +3,7 @@ import TagList from "@components/TagList";
 import Breadcrumb from "./Breadcrumb";
 import { Title, SubTitle, DateText, DivideLine } from "./styles";
 
-import { Tag, PlainCategory } from "~/types";
+import type { Tag, PlainCategory } from "~/types";
 import { getAncestors, formatDate } from "./functions";
 
 export default function PostHeader({

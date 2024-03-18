@@ -1,7 +1,7 @@
 import PostHeader from "@components/PostHeader";
 import PostGrid from "@components/PostGrid";
 import PaginateNavigator from "@components/PaginateNavigator";
-import { Post, PlainCategory } from "~/types";
+import type { Post, PlainCategory } from "~/types";
 import { container } from "./styles";
 import usePagination from "~/hooks/usePagination";
 

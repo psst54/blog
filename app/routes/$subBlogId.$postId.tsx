@@ -11,12 +11,12 @@ import remarkToc from "remark-toc";
 import { VFile } from "vfile";
 
 import { createClient } from "@supabase/supabase-js";
-import { Database } from "@supabase/types";
+import type { Database } from "@supabase/types";
 import { getSubBlogId } from "@functions/category";
 import { getPostById, getPostsById } from "@functions/supabase";
 
 import PostDetailPageScreen from "@screens/$subBlogId.$postId.screen";
-import { Env, PlainCategory } from "~/types";
+import type { Env, PlainCategory } from "~/types";
 
 async function parse(content: string) {
   const processor = await unified()

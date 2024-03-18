@@ -4,7 +4,7 @@ import MenuBar from "@components/MenuBar";
 import TopBar from "@components/TopBar";
 import CategoryBar from "@components/CategoryBar";
 import { background, categoryContainer, contentContainer } from "@styles/main";
-import { Category, IsPostOpen, PlainCategory } from "~/types";
+import type { Category, IsPostOpen, PlainCategory } from "~/types";
 
 export default function SubBlogScreen({
   plainCategoryData,

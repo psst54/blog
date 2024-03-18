@@ -11,7 +11,7 @@ import {
   ButtonDescriptionText,
   CategorySlide,
 } from "./styles";
-import { Category, IsPostOpen } from "~/types";
+import type { Category, IsPostOpen } from "~/types";
 
 const LazyCategoryList = lazy(() => import("@components/CategoryList"));
 

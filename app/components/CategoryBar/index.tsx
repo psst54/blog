@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { Category, IsPostOpen } from "~/types";
+import type { Category, IsPostOpen } from "~/types";
 import { container, categoryWrapper } from "./styles";
 
 const LazyCategoryList = lazy(() => import("@components/CategoryList"));

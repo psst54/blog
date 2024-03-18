@@ -6,7 +6,7 @@ import CategoryBar from "@components/CategoryBar";
 import Content from "./Content";
 
 import { background, categoryContainer } from "@styles/main";
-import { Post, IsPostOpen, Category } from "~/types";
+import type { Post, IsPostOpen, Category } from "~/types";
 
 export const meta: V2_MetaFunction = () => {
   return [

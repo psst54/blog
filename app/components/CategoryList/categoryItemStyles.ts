@@ -21,9 +21,9 @@ export const Title = {
   fontWeight: 400,
 
   overflow: "hidden",
-  whiteSpace: "nowrap" as "nowrap",
+  whiteSpace: "nowrap" as const,
   textOverflow: "ellipsis",
-  wordBreak: "break-all" as "break-all",
+  wordBreak: "break-all" as const,
 };
 
 export const ToggleButton = {

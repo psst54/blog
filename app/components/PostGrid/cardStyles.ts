@@ -3,7 +3,7 @@ import { mq } from "@styles/size";
 
 export const Container = {
   display: "flex",
-  flexDirection: "column" as "column",
+  flexDirection: "column" as const,
 
   aspectRatio: "1/1.125",
 
@@ -55,7 +55,7 @@ export const TextArea = {
 export const Title = {
   fontSize: "1.4rem",
   fontWeight: 800,
-  wordBreak: "keep-all" as "keep-all",
+  wordBreak: "keep-all" as const,
 };
 
 export const SubTitle = {
@@ -63,5 +63,5 @@ export const SubTitle = {
   color: color.text.secondary,
   fontSize: "1rem",
   fontWeight: 300,
-  wordBreak: "keep-all" as "keep-all",
+  wordBreak: "keep-all" as const,
 };

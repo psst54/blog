@@ -1,4 +1,4 @@
-import { PlainCategory } from "~/types";
+import type { PlainCategory } from "~/types";
 
 export function getAncestors({
   categoryData,

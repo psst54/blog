@@ -1,7 +1,7 @@
 import PostGrid from "@components/PostGrid";
 import PaginateNavigator from "@components/PaginateNavigator";
 import usePagination from "~/hooks/usePagination";
-import { Post } from "~/types";
+import type { Post } from "~/types";
 
 export default function Database({ posts }: { posts: Post[] }) {
   const [currentPage, currentPagePosts, setPage] = usePagination({

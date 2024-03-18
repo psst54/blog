@@ -1,5 +1,5 @@
 import { Container, Text, SpoilerText } from "./styles";
-import { Tag } from "~/types";
+import type { Tag } from "~/types";
 
 export default function TagItem({ item }: { item: Tag }) {
   return (

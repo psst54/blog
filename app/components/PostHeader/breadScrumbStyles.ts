@@ -16,9 +16,9 @@ export const ItemContainer = {
 
 export const Text = {
   textDecoration: "none",
-  wordBreak: "keep-all" as "keep-all",
+  wordBreak: "keep-all" as const,
   overflow: "hidden",
-  whiteSpace: "nowrap" as "nowrap",
+  whiteSpace: "nowrap" as const,
   textOverflow: "ellipsis",
 
   "&:hover": {

@@ -1,6 +1,6 @@
 import CategoroyPopUp from "@components/CategoryPopUp";
 import { Container } from "./styles";
-import { IsPostOpen, Category } from "~/types";
+import type { IsPostOpen, Category } from "~/types";
 
 export default function TopBar({
   data,
