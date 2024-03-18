@@ -11,127 +11,135 @@ export default function Content({ content }) {
 function renderNodes(node) {
   if (!node) return <></>;
 
-  if (node.type === "text") {
-    if (!node.value) return <></>;
-    return node.value;
-  }
+  switch (node.type) {
+    case "text": {
+      if (!node.value) return <></>;
+      return node.value;
+    }
 
-  if (node.type === "root") {
-    return node.children.map((child) => renderNodes(child));
-  }
+    case "root": {
+      return node.children.map((child) => renderNodes(child));
+    }
 
-  if (node.tagName === "hr") {
-    return <hr />;
-  }
+    case "hr": {
+      return <hr />;
+    }
 
-  if (node.tagName === "h1") {
-    return (
-      <H1
-        children={node.children.map((child) => renderNodes(child))}
-        {...node.properties}
-      />
-    );
-  }
-  if (node.tagName === "h2") {
-    return (
-      <H2
-        children={node.children.map((child) => renderNodes(child))}
-        {...node.properties}
-      />
-    );
-  }
-  if (node.tagName === "h3") {
-    return (
-      <H3
-        children={node.children.map((child) => renderNodes(child))}
-        {...node.properties}
-      />
-    );
-  }
-
-  if (node.tagName === "p") {
-    return (
-      <P
-        children={node.children.map((child) => renderNodes(child))}
-        {...node.properties}
-      />
-    );
-  }
-
-  if (node.tagName === "img") {
-    return <Img {...node.properties} />;
-  }
-
-  if (node.tagName === "a") {
-    return (
-      <A
-        children={node.children.map((child) => renderNodes(child))}
-        {...node.properties}
-      />
-    );
-  }
-
-  if (node.tagName === "blockquote") {
-    return (
-      <Blockquote
-        children={node.children.map((child) => renderNodes(child))}
-        {...node.properties}
-      />
-    );
-  }
-
-  if (node.tagName === "li") {
-    return (
-      <Li
-        children={node.children.map((child) => renderNodes(child))}
-        {...node.properties}
-      />
-    );
-  }
-
-  if (node.tagName === "strong") {
-    return (
-      <span
-        style={{ fontWeight: 800 }}
-        children={node.children.map((child) => renderNodes(child))}
-        {...node.properties}
-      />
-    );
-  }
-
-  if (node.tagName === "code") {
-    if (!node.properties?.className)
+    case "h1": {
       return (
-        <Code
+        <H1
           children={node.children.map((child) => renderNodes(child))}
           {...node.properties}
         />
       );
+    }
 
-    return (
-      <div css={styledCodeWrapper}>
-        <SyntaxHighlighter
+    case "h2": {
+      return (
+        <H2
           children={node.children.map((child) => renderNodes(child))}
-          style={nord}
-          language={node.properties?.className[0]?.split("language-")[1]}
-          PreTag="div"
+          {...node.properties}
         />
-      </div>
-    );
+      );
+    }
+
+    case "h3": {
+      return (
+        <H3
+          children={node.children.map((child) => renderNodes(child))}
+          {...node.properties}
+        />
+      );
+    }
+
+    case "p": {
+      return (
+        <P
+          children={node.children.map((child) => renderNodes(child))}
+          {...node.properties}
+        />
+      );
+    }
+
+    case "img": {
+      return <Img {...node.properties} />;
+    }
+
+    case "a": {
+      return (
+        <A
+          children={node.children.map((child) => renderNodes(child))}
+          {...node.properties}
+        />
+      );
+    }
+
+    case "blockquote": {
+      return (
+        <Blockquote
+          children={node.children.map((child) => renderNodes(child))}
+          {...node.properties}
+        />
+      );
+    }
+
+    case "li": {
+      return (
+        <Li
+          children={node.children.map((child) => renderNodes(child))}
+          {...node.properties}
+        />
+      );
+    }
+
+    case "strong": {
+      return (
+        <span
+          style={{ fontWeight: 800 }}
+          children={node.children.map((child) => renderNodes(child))}
+          {...node.properties}
+        />
+      );
+    }
+
+    case "code": {
+      if (!node.properties?.className)
+        return (
+          <Code
+            children={node.children.map((child) => renderNodes(child))}
+            {...node.properties}
+          />
+        );
+
+      return (
+        <div css={styledCodeWrapper}>
+          <SyntaxHighlighter
+            children={node.children.map((child) => renderNodes(child))}
+            style={nord}
+            language={node.properties?.className[0]?.split("language-")[1]}
+            PreTag="div"
+          />
+        </div>
+      );
+    }
+
+    case "raw": {
+      return;
+    }
+
+    default: {
+      const className = node?.properties?.className?.join(" ");
+      const style = node?.properties?.style;
+      return (
+        <node.tagName
+          className={className}
+          css={css`
+            ${style}
+          `}
+        >
+          {node.children?.map((child) => renderNodes(child))}
+        </node.tagName>
+      );
+    }
   }
-
-  if (node.type === "raw") return;
-
-  const className = node?.properties?.className?.join(" ");
-  const style = node?.properties?.style;
-  return (
-    <node.tagName
-      className={className}
-      css={css`
-        ${style}
-      `}
-    >
-      {node.children?.map((child) => renderNodes(child))}
-    </node.tagName>
-  );
 }
