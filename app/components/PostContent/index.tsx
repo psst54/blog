@@ -21,125 +21,129 @@ function renderNodes(node) {
       return node.children.map((child) => renderNodes(child));
     }
 
-    case "hr": {
-      return <hr />;
-    }
-
-    case "h1": {
-      return (
-        <H1
-          children={node.children.map((child) => renderNodes(child))}
-          {...node.properties}
-        />
-      );
-    }
-
-    case "h2": {
-      return (
-        <H2
-          children={node.children.map((child) => renderNodes(child))}
-          {...node.properties}
-        />
-      );
-    }
-
-    case "h3": {
-      return (
-        <H3
-          children={node.children.map((child) => renderNodes(child))}
-          {...node.properties}
-        />
-      );
-    }
-
-    case "p": {
-      return (
-        <P
-          children={node.children.map((child) => renderNodes(child))}
-          {...node.properties}
-        />
-      );
-    }
-
-    case "img": {
-      return <Img {...node.properties} />;
-    }
-
-    case "a": {
-      return (
-        <A
-          children={node.children.map((child) => renderNodes(child))}
-          {...node.properties}
-        />
-      );
-    }
-
-    case "blockquote": {
-      return (
-        <Blockquote
-          children={node.children.map((child) => renderNodes(child))}
-          {...node.properties}
-        />
-      );
-    }
-
-    case "li": {
-      return (
-        <Li
-          children={node.children.map((child) => renderNodes(child))}
-          {...node.properties}
-        />
-      );
-    }
-
-    case "strong": {
-      return (
-        <span
-          style={{ fontWeight: 800 }}
-          children={node.children.map((child) => renderNodes(child))}
-          {...node.properties}
-        />
-      );
-    }
-
-    case "code": {
-      if (!node.properties?.className)
-        return (
-          <Code
-            children={node.children.map((child) => renderNodes(child))}
-            {...node.properties}
-          />
-        );
-
-      return (
-        <div css={styledCodeWrapper}>
-          <SyntaxHighlighter
-            children={node.children.map((child) => renderNodes(child))}
-            style={nord}
-            language={node.properties?.className[0]?.split("language-")[1]}
-            PreTag="div"
-          />
-        </div>
-      );
-    }
-
     case "raw": {
       return;
     }
 
     default: {
-      const className = node?.properties?.className?.join(" ");
-      const style = node?.properties?.style;
-      return (
-        <node.tagName
-          className={className}
-          css={css`
-            ${style}
-          `}
-        >
-          {node.children?.map((child) => renderNodes(child))}
-        </node.tagName>
-      );
+      switch (node.tagName) {
+        case "hr": {
+          return <hr />;
+        }
+
+        case "h1": {
+          return (
+            <H1
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "h2": {
+          return (
+            <H2
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "h3": {
+          return (
+            <H3
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "p": {
+          return (
+            <P
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "img": {
+          return <Img {...node.properties} />;
+        }
+
+        case "a": {
+          return (
+            <A
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "blockquote": {
+          return (
+            <Blockquote
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "li": {
+          return (
+            <Li
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "strong": {
+          return (
+            <span
+              style={{ fontWeight: 800 }}
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "code": {
+          if (!node.properties?.className)
+            return (
+              <Code
+                children={node.children.map((child) => renderNodes(child))}
+                {...node.properties}
+              />
+            );
+
+          return (
+            <div css={styledCodeWrapper}>
+              <SyntaxHighlighter
+                children={node.children.map((child) => renderNodes(child))}
+                style={nord}
+                language={node.properties?.className[0]?.split("language-")[1]}
+                PreTag="div"
+              />
+            </div>
+          );
+        }
+
+        default: {
+          const className = node?.properties?.className?.join(" ");
+          const style = node?.properties?.style;
+          return (
+            <node.tagName
+              className={className}
+              css={css`
+                ${style}
+              `}
+            >
+              {node.children?.map((child) => renderNodes(child))}
+            </node.tagName>
+          );
+        }
+      }
     }
   }
 }
