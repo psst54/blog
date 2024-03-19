@@ -1,16 +1,14 @@
 import { useParams } from "@remix-run/react";
 import CategoryItem from "./CategoryItem";
 import { Container, Inner } from "./styles";
-import type { Category, IsPostOpen } from "~/types";
+import type { Category } from "~/types";
 
 export default function CategoryList({
   data,
-  isPostOpen,
-  toggleCategory,
+  onToggleCategory,
 }: {
   data: any;
-  isPostOpen: IsPostOpen;
-  toggleCategory: (id: string) => void;
+  onToggleCategory: (id: string) => void;
 }) {
   const params = useParams();
 
@@ -21,8 +19,7 @@ export default function CategoryList({
           return renderTreeItem(
             datum,
             datumIdx,
-            isPostOpen,
-            toggleCategory,
+            onToggleCategory,
             0,
             params.postId || ""
           );
@@ -35,8 +32,7 @@ export default function CategoryList({
 const renderTreeItem = (
   item: Category,
   idx: number,
-  isPostOpen: IsPostOpen,
-  toggleCategory: (id: string) => void,
+  onToggleCategory: (id: string) => void,
   depth: number,
   postId: string
 ) => {
@@ -47,20 +43,13 @@ const renderTreeItem = (
         title={item?.title}
         href={`/${item?.sub_blog}/${item?.id}`}
         indent={depth}
-        isOpen={isPostOpen[item?.id]}
+        isOpen={item.isOpen}
         isSelected={postId === item?.id}
-        toggleCategory={toggleCategory}
+        onToggleCategory={onToggleCategory}
       />
-      {isPostOpen[item.id] &&
+      {item.isOpen &&
         item?.children.map((child, childIdx: number) =>
-          renderTreeItem(
-            child,
-            childIdx,
-            isPostOpen,
-            toggleCategory,
-            depth + 1,
-            postId
-          )
+          renderTreeItem(child, childIdx, onToggleCategory, depth + 1, postId)
         )}
     </div>
   );

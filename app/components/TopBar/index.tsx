@@ -1,23 +1,17 @@
 import CategoroyPopUp from "@components/CategoryPopUp";
 import { Container } from "./styles";
-import type { IsPostOpen, Category } from "~/types";
+import type { Category } from "~/types";
 
 export default function TopBar({
   data,
-  isPostOpen,
-  toggleCategory,
+  onToggleCategory,
 }: {
   data: Category[];
-  isPostOpen: IsPostOpen;
-  toggleCategory: (id: string) => void;
+  onToggleCategory: (id: string) => void;
 }) {
   return (
     <div css={Container}>
-      <CategoroyPopUp
-        data={data}
-        isPostOpen={isPostOpen}
-        toggleCategory={toggleCategory}
-      />
+      <CategoroyPopUp data={data} onToggleCategory={onToggleCategory} />
     </div>
   );
 }

@@ -8,7 +8,7 @@ export function buildTree(items: any) {
   const itemMap = {};
 
   for (const item of items) {
-    itemMap[item.id] = { ...item, children: [] };
+    itemMap[item.id] = { ...item, isOpen: false, children: [] };
   }
 
   const rootNodes = [];

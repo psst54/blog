@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import type { SitemapFunction } from "remix-sitemap";
@@ -9,7 +9,8 @@ import type { Database } from "@supabase/types";
 import SubBlogScreen from "@screens/$subBlogId.screen";
 import { getSubBlogId, buildTree, spread } from "@functions/category";
 import { getPostsByBlogId, getAllPosts } from "@functions/supabase";
-import type { Env } from "~/types";
+import type { Category, Env } from "~/types";
+import toggleCategory from "~/utils/toggleCategory";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -29,7 +30,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     const categoryRawData = await getPostsByBlogId({ supabase, subBlogId });
     return {
       plainCategoryData: spread(categoryRawData),
-      categoryData: buildTree(categoryRawData),
+      categoryData: categoryRawData,
     };
   } catch (err) {
     return { plainCategoryData: {}, categoryData: [] };
@@ -51,21 +52,19 @@ export const sitemap: SitemapFunction = async ({ config }) => {
 };
 
 export default function SubBlog() {
-  const { plainCategoryData, categoryData } = useLoaderData<typeof loader>();
-  const [isPostOpen, setIsPostOpen] = useState({});
+  const { categoryData: rawCategoryData, plainCategoryData } =
+    useLoaderData<typeof loader>();
+  const [categoryData, setCategoryData] = useState(buildTree(rawCategoryData));
 
-  const toggleCategory = (id: number) => {
-    const newData = { ...isPostOpen };
-    newData[id] = !newData[id];
-    setIsPostOpen({ ...newData });
+  const onToggleCategory = (id: string) => {
+    setCategoryData(toggleCategory(id, categoryData));
   };
 
   return (
     <SubBlogScreen
       plainCategoryData={plainCategoryData}
       data={categoryData}
-      isPostOpen={isPostOpen}
-      toggleCategory={toggleCategory}
+      onToggleCategory={onToggleCategory}
     />
   );
 }

@@ -6,7 +6,7 @@ import CategoryBar from "@components/CategoryBar";
 import Content from "./Content";
 
 import { background, categoryContainer } from "@styles/main";
-import type { Post, IsPostOpen, Category } from "~/types";
+import type { Post, Category } from "~/types";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -18,29 +18,19 @@ export const meta: V2_MetaFunction = () => {
 export default function Index({
   recentPosts,
   categoryData,
-  isPostOpen,
-  toggleCategory,
+  onToggleCategory,
 }: {
   recentPosts: Post[];
   categoryData: Category[];
-  isPostOpen: IsPostOpen;
-  toggleCategory: (id: string) => void;
+  onToggleCategory: (id: string) => void;
 }) {
   return (
     <main css={background}>
       <MenuBar />
-      <TopBar
-        data={categoryData}
-        isPostOpen={isPostOpen}
-        toggleCategory={toggleCategory}
-      />
+      <TopBar data={categoryData} onToggleCategory={onToggleCategory} />
 
       <div css={categoryContainer}>
-        <CategoryBar
-          data={categoryData}
-          isPostOpen={isPostOpen}
-          toggleCategory={toggleCategory}
-        />
+        <CategoryBar data={categoryData} onToggleCategory={onToggleCategory} />
         <Content posts={recentPosts} />
       </div>
     </main>
