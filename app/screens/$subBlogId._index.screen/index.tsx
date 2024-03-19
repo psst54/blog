@@ -1,7 +1,7 @@
 import PostHeader from "@components/PostHeader";
 import PostGrid from "@components/PostGrid";
 import PaginateNavigator from "@components/PaginateNavigator";
-import type { Post, PlainCategory } from "~/types";
+import type { Post, Category } from "~/types";
 import { container } from "./styles";
 import usePagination from "~/hooks/usePagination";
 
@@ -11,10 +11,10 @@ interface Database extends Post {
 
 export default function PostPageScreen({
   content,
-  plainCategoryData,
+  categoryData,
 }: {
   content: Database;
-  plainCategoryData: PlainCategory[];
+  categoryData: Category[];
 }) {
   const [currentPage, currentPagePosts, setPage] = usePagination({
     data: content?.posts,
@@ -29,7 +29,7 @@ export default function PostPageScreen({
           subTitle={content?.subTitle}
           tags={content?.tags}
           postDate={content?.created_at}
-          plainCategoryData={plainCategoryData}
+          categoryData={categoryData}
         />
 
         <PostGrid posts={currentPagePosts} />

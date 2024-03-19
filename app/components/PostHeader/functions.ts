@@ -1,18 +1,39 @@
-import type { PlainCategory } from "~/types";
+import type { Category } from "~/types";
 
-export function getAncestors({
+function findCategoryById(
+  category: Category,
+  id: string,
+  ret: Category[]
+): boolean {
+  if (category.id === id) {
+    return true;
+  }
+
+  const result = category.children.find((child) =>
+    findCategoryById(child, id, ret)
+  );
+
+  if (result) {
+    ret.unshift(result);
+    return true;
+  }
+
+  return false;
+}
+
+export function getBreadcrumbData({
   categoryData,
   id,
 }: {
-  categoryData: PlainCategory[];
+  categoryData: Category[];
   id: string;
-}) {
-  if (!id) return [];
-  let ret = [];
+}): Category[] {
+  const ret: Category[] = [];
 
-  while (id !== null) {
-    ret.unshift(categoryData[id]);
-    id = categoryData[id].parentId;
+  const result = categoryData.find((child) => findCategoryById(child, id, ret));
+
+  if (result) {
+    ret.unshift(result);
   }
 
   return ret;

@@ -3,8 +3,8 @@ import TagList from "@components/TagList";
 import Breadcrumb from "./Breadcrumb";
 import { Title, SubTitle, DateText, DivideLine } from "./styles";
 
-import type { Tag, PlainCategory } from "~/types";
-import { getAncestors, formatDate } from "./functions";
+import type { Tag, Category } from "~/types";
+import { getBreadcrumbData, formatDate } from "./functions";
 
 export default function PostHeader({
   id,
@@ -12,17 +12,17 @@ export default function PostHeader({
   subTitle,
   tags,
   postDate,
-  plainCategoryData,
+  categoryData,
 }: {
   id: string;
   title: string | null;
   subTitle: string | undefined;
   tags: Tag[] | null;
   postDate: string | null;
-  plainCategoryData: PlainCategory[];
+  categoryData: Category[];
 }) {
   const breadcrumbData = useMemo(() => {
-    return getAncestors({ categoryData: plainCategoryData, id });
+    return getBreadcrumbData({ categoryData: categoryData, id });
   }, [id]);
 
   return (

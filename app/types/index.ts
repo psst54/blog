@@ -31,12 +31,6 @@ export interface Category {
   isOpen: boolean;
 }
 
-export interface PlainCategory {
-  [key: string]: string | null;
-  id: string;
-  parentId: string | null;
-}
-
 export interface Menu {
   href: string;
   icon: JSX.Element;

@@ -4,14 +4,14 @@ import MenuBar from "@components/MenuBar";
 import TopBar from "@components/TopBar";
 import CategoryBar from "@components/CategoryBar";
 import { background, categoryContainer, contentContainer } from "@styles/main";
-import type { Category, PlainCategory } from "~/types";
+import type { Category } from "~/types";
 
 export default function SubBlogScreen({
-  plainCategoryData,
+  categoryData,
   data,
   onToggleCategory,
 }: {
-  plainCategoryData: PlainCategory[];
+  categoryData: Category[];
   data: Category[];
   onToggleCategory: (id: string) => void;
 }) {
@@ -24,7 +24,7 @@ export default function SubBlogScreen({
         <CategoryBar data={data} onToggleCategory={onToggleCategory} />
 
         <div css={contentContainer}>
-          <Outlet context={plainCategoryData} />
+          <Outlet context={categoryData} />
         </div>
       </div>
     </main>

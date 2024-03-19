@@ -6,7 +6,7 @@ import type { Database } from "@supabase/types";
 import { getRecentPosts } from "~/functions/supabase";
 
 import PostPageScreen from "@screens/$subBlogId._index.screen";
-import type { Env, PlainCategory } from "~/types";
+import type { Category, Env } from "~/types";
 
 export const loader = async ({ context }: LoaderArgs) => {
   const supabase = createClient<Database>(
@@ -39,9 +39,7 @@ export const loader = async ({ context }: LoaderArgs) => {
 
 export default function PostPage() {
   const { content } = useLoaderData<typeof loader>();
-  const plainCategoryData: PlainCategory[] = useOutletContext();
+  const categoryData: Category[] = useOutletContext();
 
-  return (
-    <PostPageScreen content={content} plainCategoryData={plainCategoryData} />
-  );
+  return <PostPageScreen content={content} categoryData={categoryData} />;
 }

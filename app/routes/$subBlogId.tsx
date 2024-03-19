@@ -29,11 +29,10 @@ export const loader = async ({ context, params }: LoaderArgs) => {
   try {
     const categoryRawData = await getPostsByBlogId({ supabase, subBlogId });
     return {
-      plainCategoryData: spread(categoryRawData),
       categoryData: categoryRawData,
     };
   } catch (err) {
-    return { plainCategoryData: {}, categoryData: [] };
+    return { categoryData: [] };
   }
 };
 
@@ -52,8 +51,7 @@ export const sitemap: SitemapFunction = async ({ config }) => {
 };
 
 export default function SubBlog() {
-  const { categoryData: rawCategoryData, plainCategoryData } =
-    useLoaderData<typeof loader>();
+  const { categoryData: rawCategoryData } = useLoaderData<typeof loader>();
   const [categoryData, setCategoryData] = useState(buildTree(rawCategoryData));
 
   const onToggleCategory = (id: string) => {
@@ -62,7 +60,7 @@ export default function SubBlog() {
 
   return (
     <SubBlogScreen
-      plainCategoryData={plainCategoryData}
+      categoryData={categoryData}
       data={categoryData}
       onToggleCategory={onToggleCategory}
     />
