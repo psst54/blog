@@ -1,12 +1,12 @@
 import PostHeader from "@components/PostHeader";
 import Content from "@components/PostContent";
 import { size, mq } from "@styles/size";
-import { PlainCategory, Post, Tag } from "~/types";
+import type { Category, Post, Tag } from "~/types";
 import Database from "./Database";
 
 export default function PostDetailPageScreen({
   content,
-  plainCategoryData,
+  categoryData,
 }: {
   content: {
     id: string;
@@ -18,7 +18,7 @@ export default function PostDetailPageScreen({
     posts: Post[];
     content: Post;
   };
-  plainCategoryData: PlainCategory[];
+  categoryData: Category[];
 }) {
   return (
     <div css={container}>
@@ -28,7 +28,7 @@ export default function PostDetailPageScreen({
         subTitle={content?.subTitle}
         tags={content?.tags}
         postDate={content?.created_at}
-        plainCategoryData={plainCategoryData}
+        categoryData={categoryData}
       />
       {content?.type === "post" && <Content content={content?.content} />}
       {content?.type === "database" && <Database posts={content?.posts} />}
@@ -40,7 +40,7 @@ const container = {
   width: "100%",
   padding: "1rem 1.5rem",
 
-  wordBreak: "break-word" as "break-word",
+  wordBreak: "break-word" as const,
 
   [mq[0]]: {
     paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,

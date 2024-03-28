@@ -3,7 +3,7 @@ import { Link } from "@remix-run/react";
 import PostCard from "./PostCard";
 import { Container, CardWrapper } from "./styles";
 
-import { Post } from "~/types";
+import type { Post } from "~/types";
 
 export default function PostList({ content }: { content: any }) {
   return (

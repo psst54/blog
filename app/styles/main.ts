@@ -17,7 +17,7 @@ export const contentContainer = {
   flexGrow: 1,
   width: "0px",
   display: "flex",
-  flexDirection: "column" as "column",
+  flexDirection: "column" as const,
 
   background: "transparent",
 };

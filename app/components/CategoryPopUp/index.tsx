@@ -11,7 +11,7 @@ import {
   ButtonDescriptionText,
   CategorySlide,
 } from "./styles";
-import { Category, IsPostOpen } from "~/types";
+import type { Category } from "~/types";
 
 const LazyCategoryList = lazy(() => import("@components/CategoryList"));
 
@@ -29,12 +29,10 @@ const titleWrapper = { display: "flex", alignItems: "center", gap: "0.5rem" };
 
 export default function CategoroyPopUp({
   data,
-  isPostOpen,
-  toggleCategory,
+  onToggleCategory,
 }: {
   data: Category[];
-  isPostOpen: IsPostOpen;
-  toggleCategory: (id: string) => void;
+  onToggleCategory: (id: string) => void;
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -76,11 +74,7 @@ export default function CategoroyPopUp({
           </div>
 
           <Suspense fallback="">
-            <LazyCategoryList
-              data={data}
-              isPostOpen={isPostOpen}
-              toggleCategory={toggleCategory}
-            />
+            <LazyCategoryList data={data} onToggleCategory={onToggleCategory} />
           </Suspense>
         </div>
       )}

@@ -10,7 +10,6 @@ import {
   styledLi,
   styledBlockquote,
   styledImg,
-  styledCodeWrapper,
 } from "@styles/markdown";
 
 export function H1({ children }) {

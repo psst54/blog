@@ -7,7 +7,7 @@ import {
   Title,
   SubTitle,
 } from "./cardStyles";
-import { Tag } from "~/types";
+import type { Tag } from "~/types";
 
 const Thumbnail = lazy(() => import("./Thumbnail"));
 

@@ -1,4 +1,5 @@
 import loadable from "@loadable/component";
+import { Container, Inner } from "./styles";
 
 import MenuIcon from "@components/MenuIcon";
 
@@ -12,11 +13,9 @@ const mainMenu = [
   { icon: HeartIcon, href: "/like", alt: "Like" },
 ];
 
-import { Container, Inner } from "./styles";
-
 const iconList = {
   display: "flex",
-  flexDirection: "column" as "column",
+  flexDirection: "column" as const,
   gap: "1rem",
 };
 

@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 import PostCard from "./PostCard";
 import { container, linkStyle } from "./styles";
 
-import { Post } from "~/types";
+import type { Post } from "~/types";
 
 export default function PostGrid({ posts }: { posts: any }) {
   return (

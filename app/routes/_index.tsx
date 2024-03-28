@@ -2,12 +2,13 @@ import { useState } from "react";
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import { createClient } from "@supabase/supabase-js";
-import { Database } from "@supabase/types";
+import type { Database } from "@supabase/types";
 
 import IndexScreen from "@screens/_index.screen";
 import { getSubBlogId, buildTree } from "@functions/category";
 import { getPostsByBlogId, getRecentPosts } from "@functions/supabase";
-import { Env, Post, Category, IsPostOpen } from "~/types";
+import type { Env, Post, Category } from "~/types";
+import toggleCategory from "~/utils/toggleCategory";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -28,7 +29,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
     const categoryRawData = await getPostsByBlogId({ supabase, subBlogId });
     return {
       recentPosts: recentPosts,
-      categoryData: buildTree(categoryRawData),
+      categoryData: categoryRawData,
     };
   } catch (err) {
     return { recentPosts: [], categoryData: [] };
@@ -38,23 +39,19 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 export default function Index() {
   const {
     recentPosts,
-    categoryData,
+    categoryData: rawCategoryData,
   }: { recentPosts: Post[]; categoryData: Category[] } =
     useLoaderData<typeof loader>();
-  const [isPostOpen, setIsPostOpen] = useState<IsPostOpen>({});
+  const [categoryData, setCategoryData] = useState(buildTree(rawCategoryData));
 
-  const toggleCategory = (id: string) => {
-    const newData = { ...isPostOpen };
-    newData[id] = !newData[id];
-    setIsPostOpen({ ...newData });
+  const onToggleCategory = (id: string) => {
+    setCategoryData(toggleCategory(id, categoryData));
   };
-
   return (
     <IndexScreen
       recentPosts={recentPosts}
       categoryData={categoryData}
-      isPostOpen={isPostOpen}
-      toggleCategory={toggleCategory}
+      onToggleCategory={onToggleCategory}
     />
   );
 }

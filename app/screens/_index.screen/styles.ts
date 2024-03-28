@@ -12,7 +12,7 @@ export const categoryArea = {
 };
 
 export const categoryWrapper = {
-  position: "fixed" as "fixed",
+  position: "fixed" as const,
   width: size.CATEGORY_WIDTH,
   height: "calc(100dvh - 1rem - 2rem)",
 };

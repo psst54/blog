@@ -5,7 +5,7 @@ export const container = {
   height: "100%",
   padding: "1rem 1.5rem",
 
-  wordBreak: "break-word" as "break-word",
+  wordBreak: "break-word" as const,
 
   [mq[0]]: {
     paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,

@@ -21,10 +21,6 @@ export interface Post {
   tags: Tag[];
 }
 
-export interface IsPostOpen {
-  [key: string]: boolean;
-}
-
 export interface Category {
   children: Category[];
   id: string;
@@ -32,12 +28,7 @@ export interface Category {
   sub_blog: string;
   title: string;
   type: "post" | "database";
-}
-
-export interface PlainCategory {
-  [key: string]: string | null;
-  id: string;
-  parentId: string | null;
+  isOpen: boolean;
 }
 
 export interface Menu {

@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { PER_PAGE_POST_COUNT } from "~/constants";
-import { Post } from "~/types";
+import type { Post } from "~/types";
 
 export default function usePagination({
   data,

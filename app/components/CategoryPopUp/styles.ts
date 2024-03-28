@@ -21,7 +21,7 @@ export const CloseButton = {
 export const ButtonDescriptionText = { fontSize: "1.25rem" };
 
 export const CategorySlide = {
-  position: "fixed" as "fixed",
+  position: "fixed" as const,
   width: "90vw",
   maxWidth: "400px",
   height: "100dvh",
@@ -29,7 +29,7 @@ export const CategorySlide = {
   right: 0,
 
   display: "flex",
-  flexDirection: "column" as "column",
+  flexDirection: "column" as const,
   gap: "1rem",
 
   background: color.background.standard,

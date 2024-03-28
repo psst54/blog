@@ -1,6 +1,6 @@
 import PostGrid from "@components/PostGrid";
 import { contentContainer, recentPostsConatiner, title } from "@styles/main";
-import { Post } from "~/types";
+import type { Post } from "~/types";
 
 export default function Content({ posts }: { posts: Post[] }) {
   return (

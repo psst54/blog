@@ -10,7 +10,7 @@ export default function CategoryItem({
   isSelected = false,
   isOpen = false,
   indent = 0,
-  toggleCategory,
+  onToggleCategory,
 }: {
   id: string;
   title: string;
@@ -18,7 +18,7 @@ export default function CategoryItem({
   isSelected: boolean;
   isOpen: boolean;
   indent: number;
-  toggleCategory: (id: string) => void;
+  onToggleCategory: (id: string) => void;
 }) {
   const handleAnchorClick = (event: MouseEvent) => {
     const target: HTMLElement | null = event.target as HTMLElement | null;
@@ -34,7 +34,7 @@ export default function CategoryItem({
   };
 
   const handleButtonClick = () => {
-    toggleCategory(id);
+    onToggleCategory(id);
   };
 
   return (
