@@ -1,7 +1,7 @@
-import { size, mq } from "@styles/size";
+import { SIZE, mq } from "~/constants/size";
 
 export const categoryArea = {
-  width: size.CATEGORY_WIDTH,
+  width: SIZE.CATEGORY_WIDTH,
   flexShrink: 0,
 
   paddingTop: "1rem",
@@ -13,6 +13,6 @@ export const categoryArea = {
 
 export const categoryWrapper = {
   position: "fixed" as const,
-  width: size.CATEGORY_WIDTH,
+  width: SIZE.CATEGORY_WIDTH,
   height: "calc(100dvh - 1rem - 2rem)",
 };

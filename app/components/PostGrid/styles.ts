@@ -1,4 +1,4 @@
-import { mq } from "@styles/size";
+import { mq } from "~/constants/size";
 
 const POST_WIDTH = "18rem";
 

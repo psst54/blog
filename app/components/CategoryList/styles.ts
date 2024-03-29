@@ -1,5 +1,5 @@
-import { color } from "@styles/color";
-import { mq } from "@styles/size";
+import { COLOR } from "~/constants/color";
+import { mq } from "~/constants/size";
 
 export const Container = {
   display: "flex",
@@ -9,9 +9,9 @@ export const Container = {
   padding: "0.5rem",
   paddingRight: 0,
 
-  border: `2px solid ${color.border.standard}`,
+  border: `2px solid ${COLOR.BORDER.STANDARD}`,
   borderRadius: "1rem",
-  boxShadow: `6px 6px 0px 0px ${color.primary.standard}`,
+  boxShadow: `6px 6px 0px 0px ${COLOR.PRIMARY.STANDARD}`,
 
   [mq[0]]: {
     border: "none",

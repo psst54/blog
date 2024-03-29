@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { color } from "@styles/color";
+import { COLOR } from "~/constants/color";
 import {
   styledH1,
   styledH2,
@@ -21,7 +21,7 @@ export function H1({ children }) {
         css={{
           flexGrow: 1,
           border: "none",
-          borderBottom: `2px solid ${color.border.light}`,
+          borderBottom: `2px solid ${COLOR.BORDER.LIGHT}`,
         }}
       />
     </div>

@@ -1,4 +1,4 @@
-import { mq } from "@styles/size";
+import { mq } from "~/constants/size";
 
 const MENU_WIDTH = "6rem";
 

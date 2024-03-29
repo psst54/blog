@@ -1,6 +1,6 @@
 import PostHeader from "@components/PostHeader";
 import Content from "@components/PostContent";
-import { size, mq } from "@styles/size";
+import { SIZE, mq } from "~/constants/size";
 import type { Category, Post, Tag } from "~/types";
 import Database from "./Database";
 
@@ -43,11 +43,11 @@ const container = {
   wordBreak: "break-word" as const,
 
   [mq[0]]: {
-    paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
+    paddingTop: `calc(${SIZE.TOPBAR_HEIGHT} + 1rem)`,
   },
 
   [mq[1]]: {
     padding: "1rem",
-    paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
+    paddingTop: `calc(${SIZE.TOPBAR_HEIGHT} + 1rem)`,
   },
 };

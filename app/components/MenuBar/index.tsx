@@ -2,6 +2,7 @@ import loadable from "@loadable/component";
 import { Container, Inner } from "./styles";
 
 import MenuIcon from "@components/MenuIcon";
+import { Link } from "@remix-run/react";
 
 const HomeIcon: JSX.Element = loadable(() => import("@assets/HomeIcon"));
 const CodeIcon: JSX.Element = loadable(() => import("@assets/CodeIcon"));
@@ -25,7 +26,9 @@ export default function MenuBar() {
       <div css={Inner}>
         <div css={iconList}>
           {mainMenu.map((menuItem, menuItemIndex) => (
-            <MenuIcon key={menuItemIndex} item={menuItem} />
+            <Link key={menuItemIndex} to={menuItem.href}>
+              <MenuIcon item={menuItem} />
+            </Link>
           ))}
         </div>
       </div>

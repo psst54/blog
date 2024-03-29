@@ -1,4 +1,4 @@
-import { color } from "~/styles/color";
+import { COLOR } from "~/constants/color";
 
 export const container = {
   display: "flex",
@@ -26,17 +26,17 @@ const button = {
 
 export const arrowButton = {
   ...button,
-  background: color.secondary.standard,
+  background: COLOR.SECONDARY.STANDARD,
 };
 
 export const numberButton = {
   ...button,
 
   "&:hover": {
-    background: color.background.toSecondary,
+    background: COLOR.BACKGROUND.TO_SECONDARY,
   },
 };
 
 export const selectedButton = {
-  background: color.background.toSecondary,
+  background: COLOR.BACKGROUND.TO_SECONDARY,
 };

@@ -1,5 +1,5 @@
-import { color } from "@styles/color";
-import { size, mq } from "@styles/size";
+import { COLOR } from "~/constants/color";
+import { SIZE, mq } from "~/constants/size";
 
 export const Container = {
   display: "none",
@@ -11,11 +11,11 @@ export const Container = {
     justifyContent: "flex-end",
 
     width: "100%",
-    height: size.TOPBAR_HEIGHT,
+    height: SIZE.TOPBAR_HEIGHT,
     padding: "0 1rem",
-    background: color.background.standard,
+    background: COLOR.BACKGROUND.STANDARD,
 
-    borderBottom: `2px solid ${color.border.standard}`,
+    borderBottom: `2px solid ${COLOR.BORDER.STANDARD}`,
 
     zIndex: 1,
   },

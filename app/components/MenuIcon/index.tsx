@@ -1,12 +1,12 @@
-import { Link } from "@remix-run/react";
-import { color } from "@styles/color";
+import { COLOR } from "~/constants/color";
+import { hoverUpwardMotion } from "~/styles/hover";
 import type { Menu } from "~/types";
 
-export default function MenuBar({ item }: { item: Menu }) {
+export default function MenuIcon({ item }: { item: Menu }) {
   return (
-    <Link to={item.href} css={Button}>
-      <item.icon size="2.5rem" color={color.border.standard} />
-    </Link>
+    <div css={[Button, hoverUpwardMotion]}>
+      <item.icon size="2.5rem" color={COLOR.BORDER.STANDARD} />
+    </div>
   );
 }
 
@@ -18,9 +18,9 @@ const Button = {
   width: "3.5rem",
   height: "3.5rem",
 
-  border: `2px solid ${color.border.standard}`,
+  border: `2px solid ${COLOR.BORDER.STANDARD}`,
   borderRadius: "1rem",
-  boxShadow: `4px 4px 0px 0px ${color.primary.standard}`,
+  boxShadow: `4px 4px 0px 0px ${COLOR.PRIMARY.STANDARD}`,
 
   cursor: "pointer",
 };

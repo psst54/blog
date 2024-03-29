@@ -1,4 +1,4 @@
-import { color } from "@styles/color";
+import { COLOR } from "~/constants/color";
 
 export const Container = {
   display: "flex",
@@ -22,6 +22,6 @@ export const Text = {
   textOverflow: "ellipsis",
 
   "&:hover": {
-    color: color.secondary.standard,
+    color: COLOR.SECONDARY.STANDARD,
   },
 };

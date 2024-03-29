@@ -1,11 +1,11 @@
-import { color } from "@styles/color";
-import { size, mq } from "@styles/size";
+import { COLOR } from "~/constants/color";
+import { SIZE, mq } from "~/constants/size";
 
 export const background = {
   display: "flex",
   width: "100%",
   height: "100%",
-  background: color.background.standard,
+  background: COLOR.BACKGROUND.STANDARD,
 };
 
 export const categoryContainer = {
@@ -29,12 +29,12 @@ export const recentPostsConatiner = {
   overflow: "auto",
 
   [mq[0]]: {
-    paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
+    paddingTop: `calc(${SIZE.TOPBAR_HEIGHT} + 1rem)`,
   },
 
   [mq[1]]: {
     padding: "1rem",
-    paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
+    paddingTop: `calc(${SIZE.TOPBAR_HEIGHT} + 1rem)`,
   },
 };
 export const title = {
