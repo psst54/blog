@@ -11,6 +11,8 @@ export const ItemContainer = (indent: number) => {
     paddingLeft: `calc(${indent} * 1rem + 0.2rem)`,
 
     borderRadius: "2rem",
+
+    "&:hover": { background: color.primary.shadow + "64" },
   };
 };
 
