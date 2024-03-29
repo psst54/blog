@@ -1,4 +1,4 @@
-import { color } from "@styles/color";
+import { COLOR } from "~/constants/color";
 
 export const ItemContainer = (indent: number) => {
   return {
@@ -12,7 +12,7 @@ export const ItemContainer = (indent: number) => {
 
     borderRadius: "2rem",
 
-    "&:hover": { background: color.primary.shadow + "64" },
+    "&:hover": { background: COLOR.PRIMARY.SHADOW + "64" },
   };
 };
 
@@ -42,6 +42,6 @@ export const ToggleButton = {
   border: "none",
   outline: "none",
 
-  "&:hover": { background: color.primary.shadow + "B2" },
+  "&:hover": { background: COLOR.PRIMARY.SHADOW + "B2" },
   cursor: "pointer",
 };

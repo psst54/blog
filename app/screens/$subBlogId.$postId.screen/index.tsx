@@ -1,6 +1,6 @@
 import PostHeader from "@components/PostHeader";
 import Content from "@components/PostContent";
-import { SIZE, mq } from "@styles/size";
+import { SIZE, mq } from "~/constants/size";
 import type { Category, Post, Tag } from "~/types";
 import Database from "./Database";
 

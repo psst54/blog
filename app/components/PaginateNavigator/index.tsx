@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import RightChevronIcon from "~/assets/RightChevronIcon";
-import { color } from "~/styles/color";
+import { COLOR } from "~/constants/color";
 import { PER_PAGE_POST_COUNT } from "~/constants";
 import { getArray } from "./getArray";
 import { container, arrowButton, numberButton, selectedButton } from "./styles";
@@ -33,7 +33,7 @@ export default function PaginateNavigator({
   return (
     <div css={container}>
       <button css={[arrowButton, { rotate: "180deg" }]} onClick={goPrev}>
-        <RightChevronIcon size="1rem" color={color.background.standard} />
+        <RightChevronIcon size="1rem" color={COLOR.BACKGROUND.STANDARD} />
       </button>
 
       {array.map((page: number) => {
@@ -49,7 +49,7 @@ export default function PaginateNavigator({
       })}
 
       <button css={arrowButton} onClick={goNext}>
-        <RightChevronIcon size="1rem" color={color.background.standard} />
+        <RightChevronIcon size="1rem" color={COLOR.BACKGROUND.STANDARD} />
       </button>
     </div>
   );

@@ -1,4 +1,4 @@
-import { color } from "@styles/color";
+import { COLOR } from "~/constants/color";
 
 export const OpenButton = {
   display: "flex",
@@ -32,10 +32,10 @@ export const CategorySlide = {
   flexDirection: "column" as const,
   gap: "1rem",
 
-  background: color.background.standard,
+  background: COLOR.BACKGROUND.STANDARD,
   borderWidth: "2px 0 2px 2px",
   borderStyle: "solid",
-  borderColor: color.border.standard,
+  borderColor: COLOR.BORDER.STANDARD,
   borderRadius: "1rem 0 0 1rem",
   padding: "1.25rem",
 

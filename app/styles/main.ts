@@ -1,11 +1,11 @@
-import { color } from "@styles/color";
-import { SIZE, mq } from "@styles/size";
+import { COLOR } from "~/constants/color";
+import { SIZE, mq } from "~/constants/size";
 
 export const background = {
   display: "flex",
   width: "100%",
   height: "100%",
-  background: color.background.standard,
+  background: COLOR.BACKGROUND.STANDARD,
 };
 
 export const categoryContainer = {

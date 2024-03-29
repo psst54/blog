@@ -1,5 +1,5 @@
-import { color } from "@styles/color";
-import { SIZE, mq } from "@styles/size";
+import { COLOR } from "~/constants/color";
+import { SIZE, mq } from "~/constants/size";
 
 export const Container = {
   display: "flex",
@@ -7,10 +7,10 @@ export const Container = {
 
   aspectRatio: "1/1.125",
 
-  background: `${color.background.standard}`,
-  border: `2px solid ${color.border.standard}`,
+  background: `${COLOR.BACKGROUND.STANDARD}`,
+  border: `2px solid ${COLOR.BORDER.STANDARD}`,
   borderRadius: SIZE.BORDER_RADIUS.POST_CARD,
-  boxShadow: `8px 8px 0px 0px ${color.secondary.standard}`,
+  boxShadow: `8px 8px 0px 0px ${COLOR.SECONDARY.STANDARD}`,
 
   [mq[0]]: {
     aspectRatio: "1/1.125",
@@ -47,7 +47,7 @@ export const TextArea = {
 
   "&:hover": {
     "&::-webkit-scrollbar-thumb": {
-      backgroundColor: color.border.light,
+      backgroundColor: COLOR.BORDER.LIGHT,
     },
   },
 };
@@ -60,7 +60,7 @@ export const Title = {
 
 export const SubTitle = {
   marginTop: "0.5rem",
-  color: color.text.secondary,
+  color: COLOR.TEXT.SECONDARY,
   fontSize: "1rem",
   fontWeight: 300,
   wordBreak: "keep-all" as const,

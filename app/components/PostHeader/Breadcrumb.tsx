@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { color } from "@styles/color";
+import { COLOR } from "~/constants/color";
 import RightChevronIcon from "@assets/RightChevronIcon";
 import { Container, ItemContainer, Text } from "./breadScrumbStyles";
 import type { Category } from "~/types";
@@ -33,7 +33,7 @@ function Arrow({ index }: { index: number }) {
   if (index !== 0)
     return (
       <div css={{ flexShrink: 0 }}>
-        <RightChevronIcon size="1rem" color={color.text.standard} />
+        <RightChevronIcon size="1rem" color={COLOR.TEXT.STANDARD} />
       </div>
     );
   return <></>;

@@ -1,5 +1,5 @@
-import { color } from "@styles/color";
-import { SIZE, mq } from "@styles/size";
+import { COLOR } from "~/constants/color";
+import { SIZE, mq } from "~/constants/size";
 
 export const styledH1 = {
   padding: "1rem 0 0 0",
@@ -24,7 +24,7 @@ export const styledP = {
   marginBottom: "0.25rem",
 };
 export const styledA = {
-  color: color.text.link,
+  color: COLOR.TEXT.LINK,
   textDecoration: "underline",
   lineHeight: 1.6,
 
@@ -33,7 +33,7 @@ export const styledA = {
 export const styledCode = {
   padding: "0 0.25rem",
   borderRadius: "0.3rem",
-  background: color.background.toSecondary,
+  background: COLOR.BACKGROUND.TO_SECONDARY,
 
   color: "inherit",
   fontFamily: "Pretendard",
@@ -55,16 +55,16 @@ export const styledImg = {
   display: "block",
 
   maxWidth: "100%",
-  border: `2px solid ${color.border.standard}`,
+  border: `2px solid ${COLOR.BORDER.STANDARD}`,
   borderRadius: "1rem",
-  boxShadow: `6px 6px 0px 0px ${color.border.standard}`,
+  boxShadow: `6px 6px 0px 0px ${COLOR.BORDER.STANDARD}`,
 };
 export const styledCodeWrapper = {
-  color: color.text.reverse,
-  span: { color: color.text.reverse },
+  color: COLOR.TEXT.REVERSE,
+  span: { color: COLOR.TEXT.REVERSE },
 };
 export const styledHr = {
   margin: "1.5rem 0",
   border: "none",
-  borderBottom: `1px solid ${color.border.light}`,
+  borderBottom: `1px solid ${COLOR.BORDER.LIGHT}`,
 };

@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { color } from "@styles/color";
+import { COLOR } from "~/constants/color";
 
 export const globalStyleCss = css`
   box-sizing: border-box;
@@ -15,7 +15,7 @@ export const globalStyleCss = css`
       BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
       "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    color: ${color.text.standard};
+    color: ${COLOR.TEXT.STANDARD};
 
     &::-webkit-scrollbar {
       background-color: transparent;
@@ -24,7 +24,7 @@ export const globalStyleCss = css`
       border-radius: 10px;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: ${color.border.light};
+      background-color: ${COLOR.BORDER.LIGHT};
       width: 10px;
       height: 10px;
       border-radius: 10px;

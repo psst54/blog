@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react";
 import RightChevronIcon from "@assets/RightChevronIcon";
-import { color } from "@styles/color";
+import { COLOR } from "~/constants/color";
 import { ItemContainer, Title, ToggleButton } from "./categoryItemStyles";
 
 export default function CategoryItem({
@@ -42,7 +42,7 @@ export default function CategoryItem({
       to={href}
       css={{
         textDecoration: "none",
-        "&:active": { color: color.text.standard },
+        "&:active": { color: COLOR.TEXT.STANDARD },
       }}
       onClick={handleAnchorClick}
     >
@@ -50,7 +50,7 @@ export default function CategoryItem({
         css={[
           ItemContainer(indent),
           isSelected && {
-            background: color.primary.standard,
+            background: COLOR.PRIMARY.STANDARD,
           },
         ]}
       >
@@ -64,7 +64,7 @@ export default function CategoryItem({
         >
           <RightChevronIcon
             size="1rem"
-            color={isSelected ? color.text.reverse : color.text.standard}
+            color={isSelected ? COLOR.TEXT.REVERSE : COLOR.TEXT.STANDARD}
           />
         </button>
 
@@ -72,7 +72,7 @@ export default function CategoryItem({
           css={[
             Title,
             {
-              color: isSelected ? color.text.reverse : color.text.standard,
+              color: isSelected ? COLOR.TEXT.REVERSE : COLOR.TEXT.STANDARD,
               fontWeight: isSelected ? 600 : 500,
             },
           ]}

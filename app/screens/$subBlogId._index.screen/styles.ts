@@ -1,4 +1,4 @@
-import { SIZE, mq } from "@styles/size";
+import { SIZE, mq } from "~/constants/size";
 
 export const container = {
   width: "100%",
