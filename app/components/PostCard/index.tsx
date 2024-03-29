@@ -2,12 +2,13 @@ import { lazy, Suspense } from "react";
 import TagList from "@components/TagList";
 import { Container, ThumbNailArea, TextArea, Title, SubTitle } from "./styles";
 import type { Tag } from "~/types";
+import { hoverUpwardMotion } from "~/styles/hover";
 
 const Thumbnail = lazy(() => import("./Thumbnail"));
 
 export default function PostCard({ postData }: { postData: any }) {
   return (
-    <div css={Container}>
+    <div css={[Container, hoverUpwardMotion]}>
       {postData.thumbnail && (
         <div css={ThumbNailArea}>
           <Suspense fallback={<></>}>

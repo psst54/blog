@@ -18,17 +18,6 @@ export const Container = {
   [mq[1]]: {
     aspectRatio: "1/1.125",
   },
-
-  "&:hover": {
-    transform: "translateY(-0.25rem)",
-    transition: "transform 0.1s ease-in-out",
-    zIndex: 2,
-  },
-
-  ":not(:hover)": {
-    transform: "translateY(0)",
-    transition: "transform 0.1s ease-in-out",
-  },
 };
 
 export const ThumbNailArea = {
