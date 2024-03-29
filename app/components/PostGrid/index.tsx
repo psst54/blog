@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import PostCard from "./PostCard";
+import PostCard from "@components/PostCard";
 import { container, linkStyle } from "./styles";
 
 import type { Post } from "~/types";

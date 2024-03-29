@@ -1,22 +1,22 @@
 import { color } from "@styles/color";
-import { size, mq } from "@styles/size";
+import { SIZE, mq } from "@styles/size";
 
 export const styledH1 = {
   padding: "1rem 0 0 0",
   [mq[0]]: {
-    scrollMarginTop: size.TOPBAR_HEIGHT,
+    scrollMarginTop: SIZE.TOPBAR_HEIGHT,
   },
 };
 export const styledH2 = {
   padding: "1rem 0 0.25rem 0",
   [mq[0]]: {
-    scrollMarginTop: size.TOPBAR_HEIGHT,
+    scrollMarginTop: SIZE.TOPBAR_HEIGHT,
   },
 };
 export const styledH3 = {
   padding: "0.8rem 0 0.25rem 0",
   [mq[0]]: {
-    scrollMarginTop: size.TOPBAR_HEIGHT,
+    scrollMarginTop: SIZE.TOPBAR_HEIGHT,
   },
 };
 export const styledP = {

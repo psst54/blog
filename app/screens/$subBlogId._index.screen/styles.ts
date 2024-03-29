@@ -1,4 +1,4 @@
-import { size, mq } from "@styles/size";
+import { SIZE, mq } from "@styles/size";
 
 export const container = {
   width: "100%",
@@ -8,11 +8,11 @@ export const container = {
   wordBreak: "break-word" as const,
 
   [mq[0]]: {
-    paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
+    paddingTop: `calc(${SIZE.TOPBAR_HEIGHT} + 1rem)`,
   },
 
   [mq[1]]: {
     padding: "1rem",
-    paddingTop: `calc(${size.TOPBAR_HEIGHT} + 1rem)`,
+    paddingTop: `calc(${SIZE.TOPBAR_HEIGHT} + 1rem)`,
   },
 };

@@ -1,5 +1,5 @@
 import { color } from "@styles/color";
-import { size, mq } from "@styles/size";
+import { SIZE, mq } from "@styles/size";
 
 export const Container = {
   display: "none",
@@ -11,7 +11,7 @@ export const Container = {
     justifyContent: "flex-end",
 
     width: "100%",
-    height: size.TOPBAR_HEIGHT,
+    height: SIZE.TOPBAR_HEIGHT,
     padding: "0 1rem",
     background: color.background.standard,
 

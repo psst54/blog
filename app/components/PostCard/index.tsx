@@ -1,12 +1,6 @@
 import { lazy, Suspense } from "react";
 import TagList from "@components/TagList";
-import {
-  Container,
-  ThumbNailArea,
-  TextArea,
-  Title,
-  SubTitle,
-} from "./cardStyles";
+import { Container, ThumbNailArea, TextArea, Title, SubTitle } from "./styles";
 import type { Tag } from "~/types";
 
 const Thumbnail = lazy(() => import("./Thumbnail"));

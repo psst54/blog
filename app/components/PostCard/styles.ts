@@ -1,5 +1,5 @@
 import { color } from "@styles/color";
-import { mq } from "@styles/size";
+import { SIZE, mq } from "@styles/size";
 
 export const Container = {
   display: "flex",
@@ -9,7 +9,7 @@ export const Container = {
 
   background: `${color.background.standard}`,
   border: `2px solid ${color.border.standard}`,
-  borderRadius: "1rem",
+  borderRadius: SIZE.BORDER_RADIUS.POST_CARD,
   boxShadow: `8px 8px 0px 0px ${color.secondary.standard}`,
 
   [mq[0]]: {
