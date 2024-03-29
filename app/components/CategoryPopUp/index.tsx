@@ -12,6 +12,7 @@ import {
   CategorySlide,
 } from "./styles";
 import type { Category } from "~/types";
+import { Link } from "@remix-run/react";
 
 const LazyCategoryList = lazy(() => import("@components/CategoryList"));
 
@@ -69,7 +70,9 @@ export default function CategoroyPopUp({
 
           <div css={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
             {mainMenu.map((menuItem, menuItemIndex) => (
-              <MenuIcon key={menuItemIndex} item={menuItem} />
+              <Link key={menuItemIndex} to={menuItem.href}>
+                <MenuIcon item={menuItem} />
+              </Link>
             ))}
           </div>
 
