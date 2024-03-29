@@ -63,3 +63,8 @@ export const styledCodeWrapper = {
   color: color.text.reverse,
   span: { color: color.text.reverse },
 };
+export const styledHr = {
+  margin: "1.5rem 0",
+  border: "none",
+  borderBottom: `1px solid ${color.border.light}`,
+};

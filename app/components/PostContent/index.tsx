@@ -1,7 +1,7 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { css } from "@emotion/react";
-import { H1, H2, H3, P, A, Img, Blockquote, Code, Li } from "./components";
+import { H1, H2, H3, P, A, Img, Blockquote, Code, Li, Hr } from "./components";
 import { styledCodeWrapper } from "@styles/markdown";
 
 export default function Content({ content }) {
@@ -28,7 +28,7 @@ function renderNodes(node) {
     default: {
       switch (node.tagName) {
         case "hr": {
-          return <hr />;
+          return <Hr />;
         }
 
         case "h1": {

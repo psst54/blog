@@ -10,6 +10,7 @@ import {
   styledLi,
   styledBlockquote,
   styledImg,
+  styledHr,
 } from "@styles/markdown";
 
 export function H1({ children }) {
@@ -59,6 +60,10 @@ export function Code({ children }) {
 
 export function Li({ children }) {
   return <li css={styledLi} children={children} />;
+}
+
+export function Hr() {
+  return <hr css={styledHr} />;
 }
 
 //--------------------
