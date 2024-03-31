@@ -42,7 +42,6 @@ export default function CategoryItem({
       to={href}
       css={{
         textDecoration: "none",
-        "&:active": { color: COLOR.TEXT.STANDARD },
       }}
       onClick={handleAnchorClick}
     >
@@ -51,16 +50,18 @@ export default function CategoryItem({
           ItemContainer(indent),
           isSelected && {
             background: COLOR.PRIMARY.STANDARD,
+            color: COLOR.TEXT.REVERSE,
+            fontWeight: 600,
+            "&:hover": {
+              background: COLOR.PRIMARY.DARK,
+            },
           },
         ]}
       >
         <button
           aria-label="toggle menu"
           onClick={handleButtonClick}
-          css={[
-            ToggleButton,
-            isOpen && { transform: isOpen ? "rotate(90deg)" : "" },
-          ]}
+          css={[ToggleButton, isOpen && { transform: "rotate(90deg)" }]}
         >
           <RightChevronIcon
             size="1rem"
@@ -68,17 +69,7 @@ export default function CategoryItem({
           />
         </button>
 
-        <h4
-          css={[
-            Title,
-            {
-              color: isSelected ? COLOR.TEXT.REVERSE : COLOR.TEXT.STANDARD,
-              fontWeight: isSelected ? 600 : 500,
-            },
-          ]}
-        >
-          {title}
-        </h4>
+        <p css={Title}>{title}</p>
       </div>
     </Link>
   );
