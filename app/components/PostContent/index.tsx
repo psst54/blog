@@ -3,6 +3,7 @@ import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { css } from "@emotion/react";
 import { H1, H2, H3, P, A, Img, Blockquote, Code, Li, Hr } from "./components";
 import { styledCodeWrapper } from "@styles/markdown";
+import { TBody, THead, Table, Td, Th } from "./Table";
 
 export default function Content({ content }) {
   return <div>{renderNodes(content)}</div>;
@@ -126,6 +127,60 @@ function renderNodes(node) {
                 PreTag="div"
               />
             </div>
+          );
+        }
+
+        case "table": {
+          return (
+            <Table
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "thead": {
+          return (
+            <THead
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "tbody": {
+          return (
+            <TBody
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "tr": {
+          return (
+            <tr
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "td": {
+          return (
+            <Td
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
+          );
+        }
+
+        case "th": {
+          return (
+            <Th
+              children={node.children.map((child) => renderNodes(child))}
+              {...node.properties}
+            />
           );
         }
 
