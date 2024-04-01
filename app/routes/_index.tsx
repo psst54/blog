@@ -25,23 +25,16 @@ export const loader = async ({ context, params }: LoaderArgs) => {
   );
 
   const subBlogId = getSubBlogId({ params });
+  let recentPosts: Category[] = [];
   try {
-    const recentPosts = await getRecentPosts({ supabase, showAll: false });
-
-    return {
-      recentPosts: recentPosts,
-      subBlogId,
-      supabaseUrl: (context.env as Env).SUPABASE_URL,
-      supabaseKey: (context.env as Env).SUPABASE_KEY,
-    };
-  } catch (err) {
-    return {
-      recentPosts: [],
-      subBlogId,
-      supabaseUrl: (context.env as Env).SUPABASE_URL,
-      supabaseKey: (context.env as Env).SUPABASE_KEY,
-    };
-  }
+    recentPosts = await getRecentPosts({ supabase, showAll: false });
+  } catch (err) {}
+  return {
+    recentPosts: recentPosts,
+    subBlogId,
+    supabaseUrl: (context.env as Env).SUPABASE_URL,
+    supabaseKey: (context.env as Env).SUPABASE_KEY,
+  };
 };
 
 export default function Index() {

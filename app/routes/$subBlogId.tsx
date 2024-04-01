@@ -22,19 +22,11 @@ export const meta: V2_MetaFunction = () => {
 
 export const loader = async ({ context, params }: LoaderArgs) => {
   const subBlogId = getSubBlogId({ params });
-  try {
-    return {
-      subBlogId,
-      supabaseUrl: (context.env as Env).SUPABASE_URL,
-      supabaseKey: (context.env as Env).SUPABASE_KEY,
-    };
-  } catch (err) {
-    return {
-      subBlogId,
-      supabaseUrl: (context.env as Env).SUPABASE_URL,
-      supabaseKey: (context.env as Env).SUPABASE_KEY,
-    };
-  }
+  return {
+    subBlogId,
+    supabaseUrl: (context.env as Env).SUPABASE_URL,
+    supabaseKey: (context.env as Env).SUPABASE_KEY,
+  };
 };
 
 export const sitemap: SitemapFunction = async ({ config }) => {
