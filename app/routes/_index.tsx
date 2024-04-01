@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 
 import IndexScreen from "@screens/_index.screen";
-import { getSubBlogId, buildTree } from "@functions/category";
-import { getPostsByBlogId, getRecentPosts } from "@functions/supabase";
+import { getSubBlogId } from "@functions/category";
+import { getRecentPosts } from "@functions/supabase";
 import type { Env, Post, Category } from "~/types";
 import toggleCategory from "~/utils/toggleCategory";
+import { fetchCategoryData } from "~/utils/fetchCategoryData";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -26,23 +27,41 @@ export const loader = async ({ context, params }: LoaderArgs) => {
   const subBlogId = getSubBlogId({ params });
   try {
     const recentPosts = await getRecentPosts({ supabase, showAll: false });
-    const categoryRawData = await getPostsByBlogId({ supabase, subBlogId });
+
     return {
       recentPosts: recentPosts,
-      categoryData: categoryRawData,
+      subBlogId,
+      supabaseUrl: (context.env as Env).SUPABASE_URL,
+      supabaseKey: (context.env as Env).SUPABASE_KEY,
     };
   } catch (err) {
-    return { recentPosts: [], categoryData: [] };
+    return {
+      recentPosts: [],
+      subBlogId,
+      supabaseUrl: (context.env as Env).SUPABASE_URL,
+      supabaseKey: (context.env as Env).SUPABASE_KEY,
+    };
   }
 };
 
 export default function Index() {
   const {
     recentPosts,
-    categoryData: rawCategoryData,
-  }: { recentPosts: Post[]; categoryData: Category[] } =
-    useLoaderData<typeof loader>();
-  const [categoryData, setCategoryData] = useState(buildTree(rawCategoryData));
+    subBlogId,
+    supabaseUrl,
+    supabaseKey,
+  }: {
+    recentPosts: Post[];
+    subBlogId: string;
+    supabaseUrl: string;
+    supabaseKey: string;
+  } = useLoaderData<typeof loader>();
+
+  const [categoryData, setCategoryData] = useState<Category[]>([]);
+
+  useEffect(() => {
+    fetchCategoryData(subBlogId, supabaseUrl, supabaseKey, setCategoryData);
+  }, [subBlogId, supabaseUrl, supabaseKey]);
 
   const onToggleCategory = (id: string) => {
     setCategoryData(toggleCategory(id, categoryData));

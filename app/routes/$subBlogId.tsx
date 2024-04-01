@@ -7,10 +7,11 @@ import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 
 import SubBlogScreen from "@screens/$subBlogId.screen";
-import { getSubBlogId, buildTree, spread } from "@functions/category";
-import { getPostsByBlogId, getAllPosts } from "@functions/supabase";
+import { getSubBlogId } from "@functions/category";
+import { getAllPosts } from "@functions/supabase";
 import type { Category, Env } from "~/types";
 import toggleCategory from "~/utils/toggleCategory";
+import { fetchCategoryData } from "~/utils/fetchCategoryData";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -20,19 +21,19 @@ export const meta: V2_MetaFunction = () => {
 };
 
 export const loader = async ({ context, params }: LoaderArgs) => {
-  const supabase = createClient<Database>(
-    (context.env as Env).SUPABASE_URL,
-    (context.env as Env).SUPABASE_KEY
-  );
-
   const subBlogId = getSubBlogId({ params });
   try {
-    const categoryRawData = await getPostsByBlogId({ supabase, subBlogId });
     return {
-      categoryData: categoryRawData,
+      subBlogId,
+      supabaseUrl: (context.env as Env).SUPABASE_URL,
+      supabaseKey: (context.env as Env).SUPABASE_KEY,
     };
   } catch (err) {
-    return { categoryData: [] };
+    return {
+      subBlogId,
+      supabaseUrl: (context.env as Env).SUPABASE_URL,
+      supabaseKey: (context.env as Env).SUPABASE_KEY,
+    };
   }
 };
 
@@ -51,8 +52,13 @@ export const sitemap: SitemapFunction = async ({ config }) => {
 };
 
 export default function SubBlog() {
-  const { categoryData: rawCategoryData } = useLoaderData<typeof loader>();
-  const [categoryData, setCategoryData] = useState(buildTree(rawCategoryData));
+  const { subBlogId, supabaseUrl, supabaseKey } =
+    useLoaderData<typeof loader>();
+  const [categoryData, setCategoryData] = useState<Category[]>([]);
+
+  useEffect(() => {
+    fetchCategoryData(subBlogId, supabaseUrl, supabaseKey, setCategoryData);
+  }, [subBlogId, supabaseUrl, supabaseKey]);
 
   const onToggleCategory = (id: string) => {
     setCategoryData(toggleCategory(id, categoryData));
