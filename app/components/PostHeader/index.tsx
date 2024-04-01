@@ -23,7 +23,7 @@ export default function PostHeader({
 }) {
   const breadcrumbData = useMemo(() => {
     return getBreadcrumbData({ categoryData: categoryData, id });
-  }, [id]);
+  }, [id, categoryData]);
 
   return (
     <div>
