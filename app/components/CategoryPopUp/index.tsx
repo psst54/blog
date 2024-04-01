@@ -1,7 +1,8 @@
-import { useState, Suspense, lazy } from "react";
+import { useState } from "react";
 import loadable from "@loadable/component";
 
 import MenuIcon from "@components/MenuIcon";
+import CategoryList from "@components/CategoryList";
 
 import RightChevronIcon from "@assets/RightChevronIcon";
 import ListIcon from "@assets/ListIcon";
@@ -13,8 +14,6 @@ import {
 } from "./styles";
 import type { Category } from "~/types";
 import { Link } from "@remix-run/react";
-
-const LazyCategoryList = lazy(() => import("@components/CategoryList"));
 
 const HomeIcon = loadable(() => import("@assets/HomeIcon"));
 const CodeIcon = loadable(() => import("@assets/CodeIcon"));
@@ -76,9 +75,7 @@ export default function CategoroyPopUp({
             ))}
           </div>
 
-          <Suspense fallback="">
-            <LazyCategoryList data={data} onToggleCategory={onToggleCategory} />
-          </Suspense>
+          <CategoryList data={data} onToggleCategory={onToggleCategory} />
         </div>
       )}
     </div>

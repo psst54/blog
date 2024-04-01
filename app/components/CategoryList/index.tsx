@@ -2,12 +2,13 @@ import { useParams } from "@remix-run/react";
 import CategoryItem from "./CategoryItem";
 import { Container, Inner } from "./styles";
 import type { Category } from "~/types";
+import CategoryListSkeleton from "./CategoryListSkeleton";
 
 export default function CategoryList({
   data,
   onToggleCategory,
 }: {
-  data: any;
+  data: Category[];
   onToggleCategory: (id: string) => void;
 }) {
   const params = useParams();
@@ -15,19 +16,25 @@ export default function CategoryList({
   return (
     <div css={Container}>
       <div css={Inner}>
-        {data.map((datum: Category, datumIdx: number) => {
-          return renderTreeItem(
-            datum,
-            datumIdx,
-            onToggleCategory,
-            0,
-            params.postId || ""
-          );
-        })}
+        {data.length === 0
+          ? renderSkeleton()
+          : data.map((datum: Category, datumIdx: number) => {
+              return renderTreeItem(
+                datum,
+                datumIdx,
+                onToggleCategory,
+                0,
+                params.postId || ""
+              );
+            })}
       </div>
     </div>
   );
 }
+
+const renderSkeleton = () => {
+  return <CategoryListSkeleton />;
+};
 
 const renderTreeItem = (
   item: Category,

@@ -15,6 +15,12 @@ export const COLOR = {
     LINK: "#247bff",
   },
 
-  PRIMARY: { STANDARD: "#fc81c7", SHADOW: "#F2D2DD", DARK: "#f76ab8" },
+  PRIMARY: {
+    STANDARD: "#fc81c7",
+    SHADOW: "#F2D2DD",
+    DARK: "#f76ab8",
+    LIGHT: "#ffc4e0",
+    VERY_LIGHT: "#ffe0ec",
+  },
   SECONDARY: { STANDARD: "#7eaef7" },
 };
