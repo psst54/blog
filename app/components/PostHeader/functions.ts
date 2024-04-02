@@ -27,7 +27,11 @@ export function getBreadcrumbData({
 }: {
   categoryData: Category[];
   id: string;
-}): Category[] {
+}): Category[] | null {
+  if (!id) {
+    return null;
+  }
+
   const ret: Category[] = [];
 
   const result = categoryData.find((child) => findCategoryById(child, id, ret));

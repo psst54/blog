@@ -21,9 +21,10 @@ export default function PostHeader({
   postDate: string | null;
   categoryData: Category[];
 }) {
+  console.log(categoryData);
   const breadcrumbData = useMemo(() => {
     return getBreadcrumbData({ categoryData: categoryData, id });
-  }, [id]);
+  }, [id, categoryData]);
 
   return (
     <div>

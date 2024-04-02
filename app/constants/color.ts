@@ -1,6 +1,6 @@
 export const COLOR = {
   BACKGROUND: {
-    STANDARD: "#fbf6f7",
+    STANDARD: "#f8f7f9",
     TO_SECONDARY: "#e1e7f0",
   },
   BORDER: {
@@ -11,10 +11,20 @@ export const COLOR = {
   TEXT: {
     STANDARD: "#000",
     SECONDARY: "#000",
-    REVERSE: "#F2F0F5",
-    LINK: "#247bff",
+    REVERSE: "#f8f7f9",
+    LINK: "#0e91f8",
   },
 
-  PRIMARY: { STANDARD: "#fc81c7", SHADOW: "#F2D2DD", DARK: "#f76ab8" },
-  SECONDARY: { STANDARD: "#7eaef7" },
+  PRIMARY: {
+    STANDARD: "#fc81c7",
+    SHADOW: "#f5cbe0",
+    DARK: "#ff61b2",
+    LIGHT: "#ffc4e0",
+    VERY_LIGHT: "#ffe0ec",
+  },
+  SECONDARY: {
+    STANDARD: "#69aefb",
+    LIGHT: "#99c6ff",
+    VERY_LIGHT: "#bddeff",
+  },
 };

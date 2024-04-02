@@ -1,13 +1,13 @@
 import { COLOR } from "~/constants/color";
 
-export const Container = {
+export const container = {
   display: "flex",
   gap: "0.5rem",
-  marginBottom: "0.5rem",
   alignItems: "center",
+  height: "1.5rem",
 };
 
-export const ItemContainer = {
+export const itemContainer = {
   display: "flex",
   gap: "0.5rem",
   alignItems: "center",
