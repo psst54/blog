@@ -8,8 +8,12 @@ import BreadcrumbSkeleton from "./BreadcrumbSkeleton";
 export default function Breadcrumb({
   breadcrumbData,
 }: {
-  breadcrumbData: Category[];
+  breadcrumbData?: Category[];
 }) {
+  if (!breadcrumbData) {
+    return <></>;
+  }
+
   return (
     <div css={container}>
       {breadcrumbData.length === 0 ? (
