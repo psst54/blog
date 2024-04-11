@@ -6,15 +6,15 @@ import { styledCodeWrapper } from "@styles/markdown";
 import { TBody, THead, Table, Td, Th } from "./Table";
 
 export default function Content({ content }) {
-  return <div>{renderNodes(content)}</div>;
+  return <div>{renderNodes(content, 0)}</div>;
 }
 
 function renderNodes(node, index) {
-  if (!node) return <></>;
+  if (!node) return;
 
   switch (node.type) {
     case "text": {
-      if (!node.value) return <></>;
+      if (!node.value) return;
       return node.value;
     }
 
@@ -117,6 +117,14 @@ function renderNodes(node, index) {
               )}
               {...node.properties}
             />
+          );
+        }
+
+        case "ul": {
+          return (
+            <ul key={index} {...node.properties}>
+              {node.children.map((child, index) => renderNodes(child, index))}
+            </ul>
           );
         }
 
