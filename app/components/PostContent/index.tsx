@@ -9,7 +9,7 @@ export default function Content({ content }) {
   return <div>{renderNodes(content)}</div>;
 }
 
-function renderNodes(node) {
+function renderNodes(node, index) {
   if (!node) return <></>;
 
   switch (node.type) {
@@ -19,7 +19,7 @@ function renderNodes(node) {
     }
 
     case "root": {
-      return node.children.map((child) => renderNodes(child));
+      return node.children.map((child, index) => renderNodes(child, index));
     }
 
     case "raw": {
@@ -29,13 +29,16 @@ function renderNodes(node) {
     default: {
       switch (node.tagName) {
         case "hr": {
-          return <Hr />;
+          return <Hr key={index} />;
         }
 
         case "h1": {
           return (
             <H1
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -44,7 +47,10 @@ function renderNodes(node) {
         case "h2": {
           return (
             <H2
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -53,7 +59,10 @@ function renderNodes(node) {
         case "h3": {
           return (
             <H3
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -62,20 +71,26 @@ function renderNodes(node) {
         case "p": {
           return (
             <P
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
         }
 
         case "img": {
-          return <Img {...node.properties} />;
+          return <Img key={index} {...node.properties} />;
         }
 
         case "a": {
           return (
             <A
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -84,7 +99,10 @@ function renderNodes(node) {
         case "blockquote": {
           return (
             <Blockquote
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -93,7 +111,10 @@ function renderNodes(node) {
         case "li": {
           return (
             <Li
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -102,8 +123,11 @@ function renderNodes(node) {
         case "strong": {
           return (
             <span
+              key={index}
               style={{ fontWeight: 800 }}
-              children={node.children.map((child) => renderNodes(child))}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -113,15 +137,20 @@ function renderNodes(node) {
           if (!node.properties?.className)
             return (
               <Code
-                children={node.children.map((child) => renderNodes(child))}
+                key={index}
+                children={node.children.map((child, index) =>
+                  renderNodes(child, index)
+                )}
                 {...node.properties}
               />
             );
 
           return (
-            <div css={styledCodeWrapper}>
+            <div key={index} css={styledCodeWrapper}>
               <SyntaxHighlighter
-                children={node.children.map((child) => renderNodes(child))}
+                children={node.children.map((child, index) =>
+                  renderNodes(child, index)
+                )}
                 style={nord}
                 language={node.properties?.className[0]?.split("language-")[1]}
                 PreTag="div"
@@ -133,7 +162,10 @@ function renderNodes(node) {
         case "table": {
           return (
             <Table
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -142,7 +174,10 @@ function renderNodes(node) {
         case "thead": {
           return (
             <THead
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -151,7 +186,10 @@ function renderNodes(node) {
         case "tbody": {
           return (
             <TBody
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -160,7 +198,10 @@ function renderNodes(node) {
         case "tr": {
           return (
             <tr
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -169,7 +210,10 @@ function renderNodes(node) {
         case "td": {
           return (
             <Td
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -178,7 +222,10 @@ function renderNodes(node) {
         case "th": {
           return (
             <Th
-              children={node.children.map((child) => renderNodes(child))}
+              key={index}
+              children={node.children.map((child, index) =>
+                renderNodes(child, index)
+              )}
               {...node.properties}
             />
           );
@@ -189,12 +236,13 @@ function renderNodes(node) {
           const style = node?.properties?.style;
           return (
             <node.tagName
+              key={index}
               className={className}
               css={css`
                 ${style}
               `}
             >
-              {node.children?.map((child) => renderNodes(child))}
+              {node.children?.map((child, index) => renderNodes(child, index))}
             </node.tagName>
           );
         }
