@@ -19,6 +19,7 @@ export interface Post {
   sub_blog: string;
   created_at: string;
   tags: Tag[];
+  thumbnail?: string;
 }
 
 export interface Category {

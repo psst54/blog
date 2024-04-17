@@ -1,4 +1,4 @@
-import type { LoaderArgs } from "@remix-run/cloudflare";
+import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 
 import { unified } from "unified";
@@ -16,7 +16,25 @@ import { getSubBlogId } from "@functions/category";
 import { getPostById, getPostsById } from "@functions/supabase";
 
 import PostDetailPageScreen from "@screens/$subBlogId.$postId.screen";
-import type { Category, Env } from "~/types";
+import type { Category, Env, Tag } from "~/types";
+
+export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
+  const content = data!.content;
+  return [
+    { title: `${content!.title} | PSST54's log` },
+    { name: "description", content: content!.sub_title },
+    {
+      name: "keywords",
+      content: content!.tags.map((tag: Tag) => tag.text).join(", "),
+    },
+    { name: "author", content: "psst54" },
+    { name: "og:site_name", content: "PSST54's log" },
+    { name: "og:title", content: content!.title },
+    { name: "og:description", content: content!.sub_title },
+    { name: "og:type", content: "website" },
+    content!.thumbnail && { name: "og:image", content: content!.thumbnail },
+  ];
+};
 
 async function parse(content: string) {
   const processor = await unified()
