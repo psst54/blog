@@ -13,13 +13,6 @@ import type { Category, Env } from "~/types";
 import toggleCategory from "~/utils/toggleCategory";
 import { fetchCategoryData } from "~/utils/fetchCategoryData";
 
-export const meta: V2_MetaFunction = () => {
-  return [
-    { title: "PSST54's log | sub blog" },
-    { name: "description", content: "여기는 서브 블로그" },
-  ];
-};
-
 export const loader = async ({ context, params }: LoaderArgs) => {
   const subBlogId = getSubBlogId({ params });
   return {

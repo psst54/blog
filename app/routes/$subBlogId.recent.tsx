@@ -1,4 +1,4 @@
-import type { LoaderArgs } from "@remix-run/cloudflare";
+import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 
 import { createClient } from "@supabase/supabase-js";
@@ -7,6 +7,16 @@ import { getRecentPosts } from "~/functions/supabase";
 
 import PostPageScreen from "@screens/$subBlogId._index.screen";
 import type { Category, Env } from "~/types";
+
+export const meta: V2_MetaFunction<typeof loader> = () => {
+  return [
+    { title: `최근 포스트 | PSST54's log` },
+    { name: "author", content: "psst54" },
+    { name: "og:site_name", content: "PSST54's log" },
+    { name: "og:title", content: "최근 포스트" },
+    { name: "og:type", content: "website" },
+  ];
+};
 
 export const loader = async ({ context }: LoaderArgs) => {
   const supabase = createClient<Database>(
