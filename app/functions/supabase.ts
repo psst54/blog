@@ -26,7 +26,7 @@ export async function getPostById({
 }) {
   const { data: postData, error: postError } = await supabase
     .from("posts")
-    .select("id, title, sub_title, content, tags, type, created_at")
+    .select("id, title, sub_title, content, tags, type, created_at, thumbnail")
     .eq("id", postId)
     .single();
 

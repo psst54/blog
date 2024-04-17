@@ -28,6 +28,11 @@ export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
       content: content!.tags.map((tag: Tag) => tag.text).join(", "),
     },
     { name: "author", content: "psst54" },
+    { name: "og:site_name", content: "PSST54's log" },
+    { name: "og:title", content: content!.title },
+    { name: "og:description", content: content!.sub_title },
+    { name: "og:type", content: "website" },
+    content!.thumbnail && { name: "og:image", content: content!.thumbnail },
   ];
 };
 
