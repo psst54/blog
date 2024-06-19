@@ -239,6 +239,10 @@ function renderNodes(node, index) {
           );
         }
 
+        case "br": {
+          return <br />;
+        }
+
         default: {
           const className = node?.properties?.className?.join(" ");
           const style = node?.properties?.style;
