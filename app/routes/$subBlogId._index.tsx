@@ -56,7 +56,6 @@ export const loader = async ({ context, params }: LoaderArgs) => {
 export default function PostPage() {
   const { content } = useLoaderData<typeof loader>();
 
-  console.log(content);
   const categoryData: Category[] = useOutletContext();
 
   return <PostPageScreen content={content} categoryData={categoryData} />;

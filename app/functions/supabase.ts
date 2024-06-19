@@ -1,5 +1,12 @@
-import { SupabaseClient } from "@supabase/supabase-js";
-import { Database } from "@supabase/types";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@supabase/types";
+
+function getTitle(emoji: string | null, title: string) {
+  if (!emoji) {
+    return title;
+  }
+  return emoji + " " + title;
+}
 
 export async function getAllPosts({
   supabase,
@@ -9,13 +16,16 @@ export async function getAllPosts({
   const { data: postData, error: postError } = await supabase
     .from("posts")
     .select(
-      "id, title, sub_title, content, tags, type, sub_blog, created_at, last_edited_at"
+      "id, title, sub_title, content, tags, type, sub_blog, created_at, last_edited_at, emoji"
     )
     .eq("type", "post");
 
   if (postError) throw new Error();
 
-  return postData;
+  return postData?.map((post) => ({
+    ...post,
+    title: getTitle(post.emoji, post.title),
+  }));
 }
 export async function getPostById({
   supabase,
@@ -26,12 +36,15 @@ export async function getPostById({
 }) {
   const { data: postData, error: postError } = await supabase
     .from("posts")
-    .select("id, title, sub_title, content, tags, type, created_at, thumbnail")
+    .select(
+      "id, title, sub_title, content, tags, type, created_at, thumbnail, emoji"
+    )
     .eq("id", postId)
     .single();
 
   if (postError) throw new Error();
 
+  postData.title = getTitle(postData.emoji, postData.title);
   return postData;
 }
 
@@ -44,13 +57,16 @@ export async function getPostsByBlogId({
 }) {
   const { data: postData, error: postError } = await supabase
     .from("posts")
-    .select("id, title, parent_id, type, sub_blog")
+    .select("id, title, parent_id, type, sub_blog, emoji")
     .order("created_at")
     .eq("sub_blog", subBlogId);
 
   if (postError) throw new Error();
 
-  return postData;
+  return postData?.map((post) => ({
+    ...post,
+    title: getTitle(post.emoji, post.title),
+  }));
 }
 
 export async function getPostsById({
@@ -64,14 +80,19 @@ export async function getPostsById({
 }) {
   const { data: postData, error: postError } = await supabase
     .from("posts")
-    .select("title, sub_title, tags, id, thumbnail, sub_blog, created_at")
+    .select(
+      "title, sub_title, tags, id, thumbnail, sub_blog, created_at, emoji"
+    )
     .eq("sub_blog", subBlogId)
     .eq("parent_id", postId)
     .order("created_at", { ascending: false });
 
   if (postError) throw new Error();
 
-  return postData;
+  return postData?.map((post) => ({
+    ...post,
+    title: getTitle(post.emoji, post.title),
+  }));
 }
 
 export async function getSubBlogMainPosts({
@@ -83,14 +104,19 @@ export async function getSubBlogMainPosts({
 }) {
   const { data: postData, error: postError } = await supabase
     .from("posts")
-    .select("title, sub_title, tags, id, thumbnail, sub_blog, created_at")
+    .select(
+      "title, sub_title, tags, id, thumbnail, sub_blog, created_at, emoji"
+    )
     .eq("sub_blog", subBlogId)
     .is("parent_id", null)
     .order("created_at", { ascending: false });
 
   if (postError) throw new Error();
 
-  return postData;
+  return postData?.map((post) => ({
+    ...post,
+    title: getTitle(post.emoji, post.title),
+  }));
 }
 
 export async function getRecentPosts({
@@ -107,7 +133,7 @@ export async function getRecentPosts({
   if (!subBlogId) {
     const { data: databaseData, error: databaseError } = await supabase
       .from("posts")
-      .select("title, sub_title, tags, id, thumbnail, sub_blog")
+      .select("title, sub_title, tags, id, thumbnail, sub_blog, emoji")
       .in("show_main", showAll ? [true, false] : [true])
       .eq("type", "post")
       .order("created_at", { ascending: false })
@@ -115,11 +141,14 @@ export async function getRecentPosts({
 
     if (databaseError) throw new Error();
 
-    return databaseData;
+    return databaseData?.map((post) => ({
+      ...post,
+      title: getTitle(post.emoji, post.title),
+    }));
   } else {
     const { data: databaseData, error: databaseError } = await supabase
       .from("posts")
-      .select("title, sub_title, tags, id, thumbnail, sub_blog")
+      .select("title, sub_title, tags, id, thumbnail, sub_blog, emoji")
       .in("show_main", showAll ? [true, false] : [true])
       .eq("sub_blog", subBlogId)
       .eq("type", "post")
@@ -128,10 +157,11 @@ export async function getRecentPosts({
 
     if (databaseError) throw new Error();
 
-    return databaseData;
+    return databaseData?.map((post) => ({
+      ...post,
+      title: getTitle(post.emoji, post.title),
+    }));
   }
-
-  return [];
 }
 
 export async function getSubBlogInfo({
