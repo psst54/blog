@@ -4,7 +4,7 @@ import { container, linkStyle } from "./styles";
 
 import type { Post } from "~/types";
 
-export default function PostGrid({ posts }: { posts: any }) {
+export default function PostListView({ posts }: { posts: any }) {
   return (
     <div css={container}>
       {posts?.map((post: Post, postIdx: number) => (
