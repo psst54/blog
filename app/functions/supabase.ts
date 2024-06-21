@@ -58,6 +58,7 @@ export async function getPostsByBlogId({
   const { data: postData, error: postError } = await supabase
     .from("posts")
     .select("id, title, parent_id, type, sub_blog, emoji")
+    .order("custom_order")
     .order("created_at")
     .eq("sub_blog", subBlogId);
 
