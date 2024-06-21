@@ -1,7 +1,7 @@
 export function getSubBlogId({ params }: { params: Params }) {
-  if (!params?.subBlogId) return "main";
+  if (!params?.subBlogId) return "cse";
   if (typeof params.subBlogId === "string") return params.subBlogId;
-  return "main";
+  return "cse";
 }
 
 export function buildTree(items: any) {
