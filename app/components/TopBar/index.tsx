@@ -1,4 +1,4 @@
-import CategoroyPopUp from "@components/CategoryPopUp";
+import CategoryPopUp from "@components/CategoryPopUp";
 import { Container } from "./styles";
 import type { Category } from "~/types";
 
@@ -11,7 +11,7 @@ export default function TopBar({
 }) {
   return (
     <div css={Container}>
-      <CategoroyPopUp data={data} onToggleCategory={onToggleCategory} />
+      <CategoryPopUp data={data} onToggleCategory={onToggleCategory} />
     </div>
   );
 }

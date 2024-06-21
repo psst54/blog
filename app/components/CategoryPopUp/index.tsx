@@ -27,7 +27,7 @@ const mainMenu = [
 
 const titleWrapper = { display: "flex", alignItems: "center", gap: "0.5rem" };
 
-export default function CategoroyPopUp({
+export default function CategoryPopUp({
   data,
   onToggleCategory,
 }: {
