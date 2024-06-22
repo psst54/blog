@@ -1,5 +1,5 @@
 export const SIZE = {
-  TOPBAR_HEIGHT: "3rem",
+  TOP_NAV_HEIGHT: "4rem",
   CATEGORY_WIDTH: "18rem",
 
   BORDER: {

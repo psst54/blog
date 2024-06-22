@@ -8,11 +8,11 @@ export const container = {
   wordBreak: "break-word" as const,
 
   [mq[0]]: {
-    paddingTop: `calc(${SIZE.TOPBAR_HEIGHT} + 1rem)`,
+    paddingTop: `calc(${SIZE.TOP_NAV_HEIGHT} + 1rem)`,
   },
 
   [mq[1]]: {
     padding: "1rem",
-    paddingTop: `calc(${SIZE.TOPBAR_HEIGHT} + 1rem)`,
+    paddingTop: `calc(${SIZE.TOP_NAV_HEIGHT} + 1rem)`,
   },
 };

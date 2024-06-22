@@ -1,7 +1,7 @@
 import { Outlet } from "@remix-run/react";
 
 import MenuBar from "@components/MenuBar";
-import TopBar from "@components/TopBar";
+import NavBar from "@components/NavBar";
 import CategoryBar from "@components/CategoryBar";
 import { background, categoryContainer, contentContainer } from "@styles/main";
 import type { Category } from "~/types";
@@ -18,7 +18,7 @@ export default function SubBlogScreen({
   return (
     <main css={background}>
       <MenuBar />
-      <TopBar data={data} onToggleCategory={onToggleCategory} />
+      <NavBar data={data} onToggleCategory={onToggleCategory} />
 
       <div css={categoryContainer}>
         <CategoryBar data={data} onToggleCategory={onToggleCategory} />

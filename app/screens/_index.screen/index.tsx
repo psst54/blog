@@ -1,7 +1,7 @@
 import type { V2_MetaFunction } from "@remix-run/cloudflare";
 
 import MenuBar from "@components/MenuBar";
-import TopBar from "@components/TopBar";
+import NavBar from "@components/NavBar";
 import CategoryBar from "@components/CategoryBar";
 import Content from "./Content";
 
@@ -27,7 +27,7 @@ export default function Index({
   return (
     <main css={background}>
       <MenuBar />
-      <TopBar data={categoryData} onToggleCategory={onToggleCategory} />
+      <NavBar data={categoryData} onToggleCategory={onToggleCategory} />
 
       <div css={categoryContainer}>
         <CategoryBar data={categoryData} onToggleCategory={onToggleCategory} />

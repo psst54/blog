@@ -6,6 +6,8 @@ export const background = {
   width: "100%",
   height: "100%",
   background: COLOR.BACKGROUND.STANDARD,
+
+  paddingTop: SIZE.TOP_NAV_HEIGHT,
 };
 
 export const categoryContainer = {
