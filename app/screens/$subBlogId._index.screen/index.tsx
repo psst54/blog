@@ -1,5 +1,5 @@
 import PostHeader from "@components/PostHeader";
-import PostGrid from "@components/PostGrid";
+import PostListView from "@components/PostListView";
 import PaginateNavigator from "@components/PaginateNavigator";
 import type { Post, Category } from "~/types";
 import { container } from "./styles";
@@ -32,7 +32,7 @@ export default function PostPageScreen({
           categoryData={categoryData}
         />
 
-        <PostGrid posts={currentPagePosts} />
+        <PostListView posts={currentPagePosts} />
 
         <PaginateNavigator
           currentPage={currentPage}
