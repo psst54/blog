@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
+import { Post } from "~/types";
 
 export async function getAllPosts({
   supabase,
@@ -40,11 +41,11 @@ export async function getPostById({
   return postData;
 }
 
-export async function getPostsByBlogId({
+export async function getPostListByBlogId({
   supabase,
   subBlogId,
 }: {
-  supabase: SupabaseClient<Database, "public", any>;
+  supabase: SupabaseClient<Database>;
   subBlogId: string;
 }) {
   const { data: postData, error: postError } = await supabase

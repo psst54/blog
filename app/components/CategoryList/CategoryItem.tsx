@@ -4,15 +4,17 @@ import { COLOR } from "~/constants/color";
 import { ItemContainer, Title, ToggleButton } from "./categoryItemStyles";
 
 export default function CategoryItem({
-  id = "",
-  title = "",
-  href = "/",
+  id,
+  emoji,
+  title,
+  href,
   isSelected = false,
   isOpen = false,
   indent = 0,
   onToggleCategory,
 }: {
   id: string;
+  emoji?: string;
   title: string;
   href: string;
   isSelected: boolean;
@@ -69,7 +71,7 @@ export default function CategoryItem({
           />
         </button>
 
-        <p css={Title}>{title}</p>
+        <p css={Title}>{emoji + " " + title}</p>
       </div>
     </Link>
   );

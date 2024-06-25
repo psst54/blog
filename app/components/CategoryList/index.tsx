@@ -1,6 +1,6 @@
 import { useParams } from "@remix-run/react";
 import CategoryItem from "./CategoryItem";
-import { Container, Inner } from "./styles";
+import { container, inner } from "./styles";
 import type { Category } from "~/types";
 import CategoryListSkeleton from "./CategoryListSkeleton";
 
@@ -14,8 +14,8 @@ export default function CategoryList({
   const params = useParams();
 
   return (
-    <div css={Container}>
-      <div css={Inner}>
+    <div css={container}>
+      <div css={inner}>
         {data.length === 0
           ? renderSkeleton()
           : data.map((datum: Category, datumIdx: number) => {
@@ -47,8 +47,9 @@ const renderTreeItem = (
     <div key={idx}>
       <CategoryItem
         id={item?.id}
-        title={item?.title}
-        href={`/${item?.sub_blog}/${item?.id}`}
+        emoji={item?.emoji}
+        title={item.title}
+        href={`/${item.sub_blog}/${item.id}`}
         indent={depth}
         isOpen={item.isOpen}
         isSelected={postId === item?.id}

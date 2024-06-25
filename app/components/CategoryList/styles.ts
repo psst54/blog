@@ -1,7 +1,7 @@
 import { COLOR } from "~/constants/color";
 import { mq } from "~/constants/size";
 
-export const Container = {
+export const container = {
   display: "flex",
 
   width: "100%",
@@ -19,7 +19,7 @@ export const Container = {
   },
 };
 
-export const Inner = {
+export const inner = {
   flexGrow: 1,
   overflow: "auto",
   width: "100%",
