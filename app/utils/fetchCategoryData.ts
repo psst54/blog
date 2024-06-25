@@ -1,9 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 import type { Dispatch, SetStateAction } from "react";
 import { buildTree } from "~/functions/category";
-import { getPostsByBlogId } from "~/functions/supabase";
+import { getPostListByBlogId } from "~/functions/supabase";
 import type { Database } from "~/supabase/types";
-import type { Category } from "~/types";
+import type { Category, Post } from "~/types";
 
 export async function fetchCategoryData(
   subBlogId: string,
@@ -12,9 +12,10 @@ export async function fetchCategoryData(
   setCategoryData: Dispatch<SetStateAction<Category[]>>
 ) {
   const supabase = createClient<Database>(supabaseUrl, supabaseKey);
-  const categoryRawData = await getPostsByBlogId({
+  const postList: Post[] = await getPostListByBlogId({
     supabase,
     subBlogId,
   });
-  setCategoryData(buildTree(categoryRawData));
+
+  setCategoryData(buildTree(postList));
 }
