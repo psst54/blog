@@ -44,7 +44,7 @@ export default function NavBar({
       <div css={[container, pcContainer]}>
         <Link to="/">
           <img
-            src="profile.webp"
+            src="/profile.webp"
             alt="logo"
             css={{ width: "2rem", height: "2rem", borderRadius: "100%" }}
           />
@@ -58,7 +58,7 @@ export default function NavBar({
       <div css={[container, mobileContainer]}>
         <Link to="/">
           <img
-            src="profile.webp"
+            src="/profile.webp"
             alt="logo"
             css={{ width: "2rem", height: "2rem", borderRadius: "100%" }}
           />
