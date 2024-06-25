@@ -1,19 +1,20 @@
 import { Link } from "@remix-run/react";
-import PostCard from "@components/PostCard";
-import { container, linkStyle } from "./styles";
+import PostCard from "./PostCard";
+import { container, linkStyle, divideLine } from "./styles";
 
 import type { Post } from "~/types";
 
 export default function PostListView({ posts }: { posts: any }) {
   return (
     <div css={container}>
-      {posts?.map((post: Post, postIdx: number) => (
+      {posts?.map((post: Post, postIndex: number) => (
         <Link
-          key={postIdx}
+          key={postIndex}
           aria-label={post.title}
           to={`/${post.sub_blog}/${post.id}`}
           css={linkStyle}
         >
+          {postIndex !== 0 && <hr css={divideLine} />}
           <PostCard postData={post} />
         </Link>
       ))}

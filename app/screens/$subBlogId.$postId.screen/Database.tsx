@@ -1,4 +1,3 @@
-import PostGridView from "@components/PostGridView";
 import PostListView from "@components/PostListView";
 import PaginateNavigator from "@components/PaginateNavigator";
 import usePagination from "~/hooks/usePagination";
@@ -11,8 +10,7 @@ export default function Database({ posts }: { posts: Post[] }) {
 
   return (
     <>
-      <PostGridView posts={currentPagePosts} />
-      {/* <PostListView posts={currentPagePosts} /> */}
+      <PostListView posts={currentPagePosts} />
       <PaginateNavigator
         currentPage={currentPage}
         count={posts.length}
