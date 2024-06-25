@@ -4,19 +4,19 @@ import { SIZE, mq } from "~/constants/size";
 export const styledH1 = {
   padding: "1rem 0 0 0",
   [mq[0]]: {
-    scrollMarginTop: SIZE.TOPBAR_HEIGHT,
+    scrollMarginTop: SIZE.TOP_NAV_HEIGHT,
   },
 };
 export const styledH2 = {
   padding: "1rem 0 0.25rem 0",
   [mq[0]]: {
-    scrollMarginTop: SIZE.TOPBAR_HEIGHT,
+    scrollMarginTop: SIZE.TOP_NAV_HEIGHT,
   },
 };
 export const styledH3 = {
   padding: "0.8rem 0 0.25rem 0",
   [mq[0]]: {
-    scrollMarginTop: SIZE.TOPBAR_HEIGHT,
+    scrollMarginTop: SIZE.TOP_NAV_HEIGHT,
   },
 };
 export const styledP = {
