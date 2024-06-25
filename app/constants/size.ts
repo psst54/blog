@@ -1,6 +1,7 @@
 export const SIZE = {
   TOP_NAV_HEIGHT: "4rem",
   CATEGORY_WIDTH: "18rem",
+  CONTENT_MAX_WIDTH: "60rem",
 
   BORDER: {
     POST_CARD: "2px",

@@ -1,12 +1,9 @@
 import type { V2_MetaFunction } from "@remix-run/cloudflare";
 
-import MenuBar from "@components/MenuBar";
-import NavBar from "@components/NavBar";
-import CategoryBar from "@components/CategoryBar";
 import Content from "./Content";
 
-import { background, categoryContainer } from "@styles/main";
-import type { Post, Category } from "~/types";
+import { background } from "@styles/main";
+import type { Post } from "~/types";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -15,24 +12,10 @@ export const meta: V2_MetaFunction = () => {
   ];
 };
 
-export default function Index({
-  recentPosts,
-  categoryData,
-  onToggleCategory,
-}: {
-  recentPosts: Post[];
-  categoryData: Category[];
-  onToggleCategory: (id: string) => void;
-}) {
+export default function Index({ recentPosts }: { recentPosts: Post[] }) {
   return (
     <main css={background}>
-      <MenuBar />
-      <NavBar data={categoryData} onToggleCategory={onToggleCategory} />
-
-      <div css={categoryContainer}>
-        <CategoryBar data={categoryData} onToggleCategory={onToggleCategory} />
-        <Content posts={recentPosts} />
-      </div>
+      <Content posts={recentPosts} />
     </main>
   );
 }

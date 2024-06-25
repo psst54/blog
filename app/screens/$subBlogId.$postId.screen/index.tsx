@@ -37,12 +37,5 @@ export default function PostDetailPageScreen({
 }
 
 const container = {
-  width: "100%",
-  padding: "1rem 1.5rem",
-
   wordBreak: "break-word" as const,
-
-  [mq[1]]: {
-    padding: "1rem",
-  },
 };

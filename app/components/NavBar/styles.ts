@@ -23,6 +23,8 @@ export const pcContainer = {
   [mq[0]]: { display: "none" },
 
   display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
 
   padding: "0 1rem",
 };
@@ -32,7 +34,6 @@ export const mobileContainer = {
 
   [mq[0]]: {
     display: "flex",
-
     alignItems: "center",
     justifyContent: "flex-end",
 

@@ -7,7 +7,7 @@ export const container = {
   justifyContent: "space-between",
   gap: "1rem",
 
-  padding: "2rem 0",
+  padding: "1.5rem 0",
 };
 
 export const textArea = {

@@ -9,8 +9,8 @@ export default function NavBar({
   data,
   onToggleCategory,
 }: {
-  data: Category[];
-  onToggleCategory: (id: string) => void;
+  data?: Category[];
+  onToggleCategory?: (id: string) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -40,7 +40,9 @@ export default function NavBar({
   return (
     <nav css={navbar} ref={ref}>
       {/* pc */}
-      <div css={[container, pcContainer]}></div>
+      <div css={[container, pcContainer]}>
+        <CategoryPopUp data={data} onToggleCategory={onToggleCategory} />
+      </div>
 
       {/* mobile */}
       <div css={[container, mobileContainer]}>
