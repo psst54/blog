@@ -1,5 +1,5 @@
 import { COLOR } from "~/constants/color";
-import { SIZE } from "~/constants/size";
+import { SIZE, mq } from "~/constants/size";
 
 export const background = {
   display: "flex",
@@ -19,7 +19,11 @@ export const contentContainer = {
   width: "100%",
   maxWidth: SIZE.CONTENT_MAX_WIDTH,
   background: "transparent",
-  padding: "1rem",
+  padding: "1.5rem",
+
+  [mq[1]]: {
+    padding: "1rem",
+  },
 };
 
 export const title = {
