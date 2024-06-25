@@ -15,7 +15,7 @@ export default function PostHeader({
   categoryData,
 }: {
   id: string;
-  title: string | null;
+  title: string;
   subTitle: string | undefined;
   tags: Tag[] | null;
   postDate: string | null;
@@ -26,7 +26,7 @@ export default function PostHeader({
   }, [id, categoryData]);
 
   return (
-    <div>
+    <div css={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
       <Breadcrumb breadcrumbData={breadcrumbData} />
 
       <h1 css={Title}>{title}</h1>

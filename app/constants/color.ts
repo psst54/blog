@@ -10,7 +10,7 @@ export const COLOR = {
   },
   TEXT: {
     STANDARD: "#000",
-    SECONDARY: "#000",
+    SECONDARY: "#484561",
     REVERSE: "#f8f7f9",
     LINK: "#0e91f8",
   },
