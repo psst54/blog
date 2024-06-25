@@ -16,27 +16,10 @@ export const navbar = {
 
 export const container = {
   display: "flex",
-  width: "100%",
-  height: "100%",
-
   alignItems: "center",
   justifyContent: "space-between",
-};
 
-export const pcContainer = {
-  [mq[0]]: { display: "none" },
-
-  display: "flex",
-
+  width: "100%",
+  height: "100%",
   padding: "0 1rem",
-};
-
-export const mobileContainer = {
-  display: "none",
-
-  [mq[0]]: {
-    display: "flex",
-
-    padding: "0 1rem",
-  },
 };

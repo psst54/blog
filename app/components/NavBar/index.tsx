@@ -1,10 +1,10 @@
 import { useRef } from "react";
 
 import CategoryPopUp from "@components/CategoryPopUp";
-import { navbar, container, mobileContainer, pcContainer } from "./styles";
+import { navbar, container } from "./styles";
 import type { Category } from "~/types";
 import { SIZE } from "~/constants/size";
-import { Link } from "@remix-run/react";
+import Logo from "./Logo";
 
 export default function NavBar({
   data,
@@ -40,29 +40,8 @@ export default function NavBar({
 
   return (
     <nav css={navbar} ref={ref}>
-      {/* pc */}
-      <div css={[container, pcContainer]}>
-        <Link to="/">
-          <img
-            src="/profile.webp"
-            alt="logo"
-            css={{ width: "2rem", height: "2rem", borderRadius: "100%" }}
-          />
-        </Link>
-        {data && onToggleCategory && (
-          <CategoryPopUp data={data} onToggleCategory={onToggleCategory} />
-        )}
-      </div>
-
-      {/* mobile */}
-      <div css={[container, mobileContainer]}>
-        <Link to="/">
-          <img
-            src="/profile.webp"
-            alt="logo"
-            css={{ width: "2rem", height: "2rem", borderRadius: "100%" }}
-          />
-        </Link>
+      <div css={container}>
+        <Logo />
         {data && onToggleCategory && (
           <CategoryPopUp data={data} onToggleCategory={onToggleCategory} />
         )}
