@@ -1,11 +1,13 @@
+import type { Category, Post } from "~/types";
+
 export function getSubBlogId({ params }: { params: Params }) {
   if (!params?.subBlogId) return "cse";
   if (typeof params.subBlogId === "string") return params.subBlogId;
   return "cse";
 }
 
-export function buildTree(items: any) {
-  const itemMap = {};
+export function buildTree(items: Post[]) {
+  const itemMap: { [key: string]: Category } = {};
 
   for (const item of items) {
     itemMap[item.id] = { ...item, isOpen: false, children: [] };
@@ -26,8 +28,8 @@ export function buildTree(items: any) {
   return rootNodes;
 }
 
-export function spread(items) {
-  const ret = {};
+export function spread(items: Post[]) {
+  const ret: { [key: string]: any } = {}; // fix any
 
   for (const item of items) {
     ret[item.id] = {

@@ -15,11 +15,12 @@ export interface Post {
   title: string;
   subTitle?: string;
   parent_id: string;
-  type: string;
+  type: "post" | "database";
   sub_blog: string;
-  created_at: string;
-  tags: Tag[];
+  created_at?: string;
+  tags?: Tag[];
   thumbnail?: string;
+  emoji?: string;
 }
 
 export interface Category {
@@ -28,6 +29,7 @@ export interface Category {
   parent_id: string | null;
   sub_blog: string;
   title: string;
+  emoji?: string;
   type: "post" | "database";
   isOpen: boolean;
 }

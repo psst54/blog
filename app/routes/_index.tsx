@@ -25,7 +25,7 @@ export const loader = async ({ context, params }: LoaderArgs) => {
   );
 
   const subBlogId = getSubBlogId({ params });
-  let recentPosts: Category[] = [];
+  let recentPosts: Post[] = [];
   try {
     recentPosts = await getRecentPosts({ supabase, showAll: false });
   } catch (err) {}
@@ -59,6 +59,7 @@ export default function Index() {
   const onToggleCategory = (id: string) => {
     setCategoryData(toggleCategory(id, categoryData));
   };
+
   return (
     <IndexScreen
       recentPosts={recentPosts}

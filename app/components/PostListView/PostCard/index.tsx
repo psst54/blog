@@ -10,7 +10,7 @@ export default function PostCard({ postData }: { postData: any }) {
     <div css={container}>
       <div css={textArea}>
         <div css={titleArea}>
-          <h2 css={title}>{postData.title}</h2>
+          <h2 css={title}>{postData.emoji + " " + postData.title}</h2>
           <p css={subTitle}>{postData.sub_title}</p>
         </div>
 

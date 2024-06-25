@@ -22,7 +22,10 @@ export default function Breadcrumb({
         breadcrumbData.map((item, index) => (
           <div key={index} css={itemContainer}>
             <Arrow index={index} />
-            <Item link={`/${item.sub_blog}/${item.id}`} title={item.title} />
+            <Item
+              link={`/${item.sub_blog}/${item.id}`}
+              title={item.emoji + " " + item.title}
+            />
           </div>
         ))
       )}
