@@ -1,13 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 
-function getTitle(emoji: string | null, title: string) {
-  if (!emoji) {
-    return title;
-  }
-  return emoji + " " + title;
-}
-
 export async function getAllPosts({
   supabase,
 }: {
@@ -24,7 +17,7 @@ export async function getAllPosts({
 
   return postData?.map((post) => ({
     ...post,
-    title: getTitle(post.emoji, post.title),
+    title: post.title,
   }));
 }
 export async function getPostById({
@@ -44,7 +37,6 @@ export async function getPostById({
 
   if (postError) throw new Error();
 
-  postData.title = getTitle(postData.emoji, postData.title);
   return postData;
 }
 
@@ -64,10 +56,7 @@ export async function getPostsByBlogId({
 
   if (postError) throw new Error();
 
-  return postData?.map((post) => ({
-    ...post,
-    title: getTitle(post.emoji, post.title),
-  }));
+  return postData;
 }
 
 export async function getPostsById({
@@ -90,10 +79,7 @@ export async function getPostsById({
 
   if (postError) throw new Error();
 
-  return postData?.map((post) => ({
-    ...post,
-    title: getTitle(post.emoji, post.title),
-  }));
+  return postData;
 }
 
 export async function getSubBlogMainPosts({
@@ -114,10 +100,7 @@ export async function getSubBlogMainPosts({
 
   if (postError) throw new Error();
 
-  return postData?.map((post) => ({
-    ...post,
-    title: getTitle(post.emoji, post.title),
-  }));
+  return postData;
 }
 
 export async function getRecentPosts({
@@ -142,10 +125,7 @@ export async function getRecentPosts({
 
     if (databaseError) throw new Error();
 
-    return databaseData?.map((post) => ({
-      ...post,
-      title: getTitle(post.emoji, post.title),
-    }));
+    return databaseData;
   } else {
     const { data: databaseData, error: databaseError } = await supabase
       .from("posts")
@@ -158,10 +138,7 @@ export async function getRecentPosts({
 
     if (databaseError) throw new Error();
 
-    return databaseData?.map((post) => ({
-      ...post,
-      title: getTitle(post.emoji, post.title),
-    }));
+    return databaseData;
   }
 }
 
