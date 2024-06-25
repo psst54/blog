@@ -25,5 +25,4 @@ export const TagListContainer = {
   display: "flex",
   flexWrap: "wrap" as const,
   gap: "0.25rem",
-  marginTop: "0.5rem",
 };
