@@ -4,6 +4,7 @@ import Content from "./Content";
 
 import { background } from "@styles/main";
 import type { Post } from "~/types";
+import NavBar from "~/components/NavBar";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -15,6 +16,7 @@ export const meta: V2_MetaFunction = () => {
 export default function Index({ recentPosts }: { recentPosts: Post[] }) {
   return (
     <main css={background}>
+      <NavBar />
       <Content posts={recentPosts} />
     </main>
   );
