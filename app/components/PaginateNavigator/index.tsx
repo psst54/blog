@@ -20,14 +20,20 @@ export default function PaginateNavigator({
 
   useEffect(() => {
     setArray(getArray({ currentPage, maxPage }));
-  }, [currentPage]);
+  }, [currentPage, maxPage]);
 
   function goPrev() {
-    if (1 <= currentPage - 1) onChangePage(currentPage - 1);
+    const prevPage = currentPage - 1;
+    if (1 <= prevPage) {
+      onChangePage(prevPage);
+    }
   }
 
   function goNext() {
-    if (currentPage + 1 <= maxPage) onChangePage(currentPage + 1);
+    const nextPage = currentPage + 1;
+    if (nextPage <= maxPage) {
+      onChangePage(nextPage);
+    }
   }
 
   if (maxPage === 1) {
@@ -37,7 +43,7 @@ export default function PaginateNavigator({
   return (
     <div css={container}>
       <button css={[arrowButton, { rotate: "180deg" }]} onClick={goPrev}>
-        <RightChevronIcon size="1rem" color={COLOR.BACKGROUND.STANDARD} />
+        <Icon />
       </button>
 
       {array.map((page: number) => {
@@ -53,8 +59,12 @@ export default function PaginateNavigator({
       })}
 
       <button css={arrowButton} onClick={goNext}>
-        <RightChevronIcon size="1rem" color={COLOR.BACKGROUND.STANDARD} />
+        <Icon />
       </button>
     </div>
   );
+}
+
+function Icon() {
+  return <RightChevronIcon size="1rem" color={COLOR.BACKGROUND.STANDARD} />;
 }
