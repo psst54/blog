@@ -33,11 +33,9 @@ export const CategorySlide = {
   gap: "1rem",
 
   background: COLOR.BACKGROUND.STANDARD,
-  borderWidth: "2px 0 2px 2px",
-  borderStyle: "solid",
-  borderColor: COLOR.BORDER.STANDARD,
-  borderRadius: "1rem 0 0 1rem",
   padding: "1.25rem",
+
+  borderLeft: "1px solid black",
 
   zIndex: 10,
 };

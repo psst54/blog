@@ -30,6 +30,10 @@ export default function PaginateNavigator({
     if (currentPage + 1 <= maxPage) onChangePage(currentPage + 1);
   }
 
+  if (maxPage === 1) {
+    return <></>;
+  }
+
   return (
     <div css={container}>
       <button css={[arrowButton, { rotate: "180deg" }]} onClick={goPrev}>

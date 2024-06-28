@@ -13,21 +13,19 @@ export default function CategoryList({
 }) {
   const params = useParams();
 
+  if (data.length === 0) return renderSkeleton();
+
   return (
-    <div css={container}>
-      <div css={inner}>
-        {data.length === 0
-          ? renderSkeleton()
-          : data.map((datum: Category, datumIdx: number) => {
-              return renderTreeItem(
-                datum,
-                datumIdx,
-                onToggleCategory,
-                0,
-                params.postId || ""
-              );
-            })}
-      </div>
+    <div>
+      {data.map((datum: Category, datumIdx: number) => {
+        return renderTreeItem(
+          datum,
+          datumIdx,
+          onToggleCategory,
+          0,
+          params.postId || ""
+        );
+      })}
     </div>
   );
 }
