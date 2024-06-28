@@ -9,12 +9,10 @@ import NavBar from "~/components/NavBar";
 import Content from "./Content";
 
 import { background } from "@styles/main";
+import getMetaData from "@utils/getMetaData";
 
 export const meta: V2_MetaFunction = () => {
-  return [
-    { title: "PSST54's log" },
-    { name: "description", content: "PSST54의 블로그" },
-  ];
+  return getMetaData({});
 };
 
 export const loader = async ({ context }: LoaderArgs) => {

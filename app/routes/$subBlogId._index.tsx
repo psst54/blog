@@ -3,22 +3,19 @@ import { useLoaderData, useOutletContext } from "@remix-run/react";
 
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import { getSubBlogMainPosts, getSubBlogInfo } from "~/functions/supabase";
+import { getSubBlogMainPosts, getSubBlogInfo } from "@functions/supabase";
+import getMetaData from "@utils/getMetaData";
 
 import PostPageScreen from "@screens/$subBlogId._index.screen";
 import type { Category, Env } from "~/types";
 
 export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
   const content = data!.content;
-  return [
-    { title: `${content!.title} | PSST54's log` },
-    { name: "description", content: content!.subTitle },
-    { name: "author", content: "psst54" },
-    { name: "og:site_name", content: "PSST54's log" },
-    { name: "og:title", content: content!.title },
-    { name: "og:description", content: content!.subTitle },
-    { name: "og:type", content: "website" },
-  ];
+
+  return getMetaData({
+    title: content!.title,
+    subTitle: content!.subTitle,
+  });
 };
 
 export const loader = async ({ context, params }: LoaderArgs) => {

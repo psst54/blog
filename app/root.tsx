@@ -10,17 +10,16 @@ import {
   useLocation,
   useLoaderData,
 } from "@remix-run/react";
-import * as gtag from "~/utils/gtags.client";
-import { Fonts, GTag } from "~/components/root";
+import type { Env } from "~/types";
 
+import * as gtag from "@utils/gtags.client";
+import getMetaData from "@utils/getMetaData";
+
+import { Fonts, GTag } from "@components/root";
 import { globalStyleCss } from "@styles/global";
-import { Env } from "~/types";
 
 export const meta: V2_MetaFunction = () => {
-  return [
-    { title: "PSST54's log" },
-    { name: "description", content: "PSST54의 블로그" },
-  ];
+  return getMetaData({});
 };
 
 let isInitialRender = true;
