@@ -106,13 +106,13 @@ export async function getSubBlogMainPosts({
 
 export async function getRecentPosts({
   supabase,
-  subBlogId,
+  subBlogId = "cse",
   count = 10,
   showAll = true,
 }: {
   supabase: SupabaseClient<Database, "public", any>;
-  subBlogId?: string | undefined;
-  count?: number | undefined;
+  subBlogId?: string;
+  count?: number;
   showAll?: boolean;
 }) {
   if (!subBlogId) {

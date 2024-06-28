@@ -2,10 +2,13 @@ import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-
-import IndexScreen from "@screens/_index.screen";
 import { getRecentPosts } from "@functions/supabase";
 import type { Env, Post } from "~/types";
+
+import NavBar from "~/components/NavBar";
+import Content from "./Content";
+
+import { background } from "@styles/main";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -20,21 +23,23 @@ export const loader = async ({ context }: LoaderArgs) => {
     (context.env as Env).SUPABASE_KEY
   );
 
-  let recentPosts: Post[] = [];
+  let recentPostList: Post[] = [];
   try {
-    recentPosts = await getRecentPosts({ supabase, showAll: false });
+    recentPostList = await getRecentPosts({ supabase, showAll: false });
   } catch (err) {}
   return {
-    recentPosts: recentPosts,
+    recentPostList: recentPostList,
   };
 };
 
 export default function Index() {
-  const {
-    recentPosts,
-  }: {
-    recentPosts: Post[];
-  } = useLoaderData<typeof loader>();
+  const { recentPostList }: { recentPostList: Post[] } =
+    useLoaderData<typeof loader>();
 
-  return <IndexScreen recentPosts={recentPosts} />;
+  return (
+    <main css={background}>
+      <NavBar />
+      <Content posts={recentPostList} />
+    </main>
+  );
 }
