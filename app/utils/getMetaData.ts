@@ -1,3 +1,4 @@
+import { P } from "~/components/PostContent/components";
 import type { Tag } from "~/types";
 
 const SITE_NAME = "PSST54's log";
@@ -21,8 +22,11 @@ export default function getMetaData({
   data.push({ name: "og:type", content: "website" });
 
   if (title) {
-    data.push({ name: "title", content: `${title} | ${SITE_NAME}` });
+    data.push({ title: `${title} | ${SITE_NAME}` });
     data.push({ name: "og:title", content: title });
+  } else {
+    data.push({ title: SITE_NAME });
+    data.push({ name: "og:title", content: SITE_NAME });
   }
 
   if (subTitle) {
