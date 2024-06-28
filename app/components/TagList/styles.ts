@@ -1,6 +1,12 @@
 import { COLOR } from "~/constants/color";
 
-export const Container = {
+export const tagListContainer = {
+  display: "flex",
+  flexWrap: "wrap" as const,
+  gap: "0.25rem",
+};
+
+export const tagContainer = {
   padding: "0.1rem 0.75rem",
   background: COLOR.BORDER.DARK,
 
@@ -11,10 +17,13 @@ export const Container = {
   fontWeight: 500,
 };
 
-export const Text = { color: COLOR.TEXT.REVERSE };
+export const tagText = {
+  color: COLOR.TEXT.REVERSE,
+};
 
-export const SpoilerText = {
+export const spoiler = {
   filter: "blur(0.25rem)",
+
   "&:hover": {
     color: COLOR.TEXT.REVERSE,
     filter: "none",

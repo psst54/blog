@@ -1,28 +1,22 @@
-import TagItem from "@components/Tag";
 import type { Tag } from "~/types";
 
+import TagItem from "./Tag";
+import { tagListContainer } from "./styles";
+
 export default function TagList({ data }: { data: Tag[] | null | undefined }) {
-  if (!doesTagExist({ data })) return <></>;
+  if (isEmpty({ data })) return <></>;
 
   return (
-    <div css={TagListContainer}>
-      {(data as Tag[]).map(
-        (tag: { text: string; isSpoiler: boolean }, tagIndex: number) => (
-          <TagItem key={tagIndex} item={tag} />
-        )
-      )}
+    <div css={tagListContainer}>
+      {(data as Tag[]).map((tag: Tag) => (
+        <TagItem key={tag.text} item={tag} />
+      ))}
     </div>
   );
 }
 
-export function doesTagExist({ data }: { data: Tag[] | null | undefined }) {
-  if (!data) return false;
-  if (data.length === 0) return false;
-  return true;
+export function isEmpty({ data }: { data: Tag[] | null | undefined }) {
+  if (!data) return true;
+  if (data.length === 0) return true;
+  return false;
 }
-
-export const TagListContainer = {
-  display: "flex",
-  flexWrap: "wrap" as const,
-  gap: "0.25rem",
-};
