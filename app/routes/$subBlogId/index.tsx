@@ -6,7 +6,7 @@ import type { SitemapFunction } from "remix-sitemap";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 
-import { getAllPosts, getSubBlogId } from "@functions/index";
+import { getAllPosts } from "@functions/index";
 import toggleCategory from "./toggleCategory";
 import fetchCategoryData from "./fetchCategoryData";
 
@@ -16,7 +16,7 @@ import NavBar from "~/components/NavBar";
 import { background, contentContainer } from "@styles/main";
 
 export const loader = async ({ context, params }: LoaderArgs) => {
-  const subBlogId = getSubBlogId({ params });
+  const subBlogId = params.subBlogId!;
   return {
     subBlogId,
     supabaseUrl: (context.env as Env).SUPABASE_URL,

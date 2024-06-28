@@ -1,4 +1,4 @@
-export { getSubBlogId, buildTree, spread } from "./category";
+export { buildTree, spread } from "./category";
 export {
   getAllPosts,
   getPostById,
