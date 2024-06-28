@@ -7,7 +7,8 @@ export default function toggleCategory(
   return categoryData.map((category: Category) => {
     if (category.id === categoryId) {
       return { ...category, isOpen: !category.isOpen };
-    } else if (category.children && category.children.length > 0) {
+    }
+    if (category.children && category.children.length > 0) {
       return {
         ...category,
         children: toggleCategory(categoryId, category.children),
