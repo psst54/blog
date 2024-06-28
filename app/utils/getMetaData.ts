@@ -21,13 +21,8 @@ export default function getMetaData({
   data.push({ name: "og:site_name", content: SITE_NAME });
   data.push({ name: "og:type", content: "website" });
 
-  if (title) {
-    data.push({ title: `${title} | ${SITE_NAME}` });
-    data.push({ name: "og:title", content: title });
-  } else {
-    data.push({ title: SITE_NAME });
-    data.push({ name: "og:title", content: SITE_NAME });
-  }
+  data.push({ title: title ? `${title} | ${SITE_NAME}` : SITE_NAME });
+  data.push({ name: "og:title", content: title || SITE_NAME });
 
   if (subTitle) {
     data.push({ name: "description", content: subTitle });
