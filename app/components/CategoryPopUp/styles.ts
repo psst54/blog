@@ -35,5 +35,7 @@ export const CategorySlide = {
   background: COLOR.BACKGROUND.STANDARD,
   padding: "1.25rem",
 
+  borderLeft: "1px solid black",
+
   zIndex: 10,
 };
