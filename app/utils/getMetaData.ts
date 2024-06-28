@@ -1,4 +1,3 @@
-import { P } from "~/components/PostContent/components";
 import type { Tag } from "~/types";
 
 const SITE_NAME = "PSST54's log";
