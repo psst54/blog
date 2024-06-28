@@ -21,7 +21,8 @@
       "@supabase/*": ["./app/supabase/*"],
       "@screens/*": ["./app/screens/*"],
       "@functions/*": ["./app/functions/*"],
-      "@types/*": ["./app/types/*"]
+      "@types/*": ["./app/types/*"],
+      "@utils/*": ["./app/utils/*"]
     },
     "jsxImportSource": "@emotion/react",
 

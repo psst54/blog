@@ -1,6 +1,5 @@
 import { useParams } from "@remix-run/react";
 import CategoryItem from "./CategoryItem";
-import { container, inner } from "./styles";
 import type { Category } from "~/types";
 import CategoryListSkeleton from "./CategoryListSkeleton";
 
@@ -16,7 +15,7 @@ export default function CategoryList({
   if (data.length === 0) return renderSkeleton();
 
   return (
-    <div>
+    <div css={{ overflow: "auto" }}>
       {data.map((datum: Category, datumIdx: number) => {
         return renderTreeItem(
           datum,

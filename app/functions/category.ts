@@ -1,11 +1,5 @@
 import type { Category, Post } from "~/types";
 
-export function getSubBlogId({ params }: { params: Params }) {
-  if (!params?.subBlogId) return "cse";
-  if (typeof params.subBlogId === "string") return params.subBlogId;
-  return "cse";
-}
-
 export function buildTree(items: Post[]) {
   const itemMap: { [key: string]: Category } = {};
 

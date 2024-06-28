@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
-import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
-import { useLoaderData } from "@remix-run/react";
+import type { LoaderArgs } from "@remix-run/cloudflare";
+import { Outlet, useLoaderData } from "@remix-run/react";
 import type { SitemapFunction } from "remix-sitemap";
 
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 
-import SubBlogScreen from "@screens/$subBlogId.screen";
-import { getSubBlogId } from "@functions/category";
-import { getAllPosts } from "@functions/supabase";
+import { getAllPosts } from "@functions/index";
+import toggleCategory from "./toggleCategory";
+import fetchCategoryData from "./fetchCategoryData";
+
 import type { Category, Env } from "~/types";
-import toggleCategory from "~/utils/toggleCategory";
-import { fetchCategoryData } from "~/utils/fetchCategoryData";
+
+import NavBar from "~/components/NavBar";
+import { background, contentContainer } from "@styles/main";
 
 export const loader = async ({ context, params }: LoaderArgs) => {
-  const subBlogId = getSubBlogId({ params });
+  const subBlogId = params.subBlogId!;
   return {
     subBlogId,
     supabaseUrl: (context.env as Env).SUPABASE_URL,
@@ -42,7 +44,12 @@ export default function SubBlog() {
   const [categoryData, setCategoryData] = useState<Category[]>([]);
 
   useEffect(() => {
-    fetchCategoryData(subBlogId, supabaseUrl, supabaseKey, setCategoryData);
+    async function fetchData() {
+      const data = await fetchCategoryData(subBlogId, supabaseUrl, supabaseKey);
+      setCategoryData(data);
+    }
+
+    fetchData();
   }, [subBlogId, supabaseUrl, supabaseKey]);
 
   const onToggleCategory = (id: string) => {
@@ -50,10 +57,12 @@ export default function SubBlog() {
   };
 
   return (
-    <SubBlogScreen
-      categoryData={categoryData}
-      data={categoryData}
-      onToggleCategory={onToggleCategory}
-    />
+    <main css={background}>
+      <NavBar data={categoryData} onToggleCategory={onToggleCategory} />
+
+      <div css={contentContainer}>
+        <Outlet context={categoryData} />
+      </div>
+    </main>
   );
 }
