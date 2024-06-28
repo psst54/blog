@@ -2,7 +2,7 @@ import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import { getRecentPosts } from "@functions/supabase";
+import { getRecentPostList } from "@functions/supabase";
 import type { Env, Post } from "~/types";
 
 import NavBar from "~/components/NavBar";
@@ -25,7 +25,7 @@ export const loader = async ({ context }: LoaderArgs) => {
 
   let recentPostList: Post[] = [];
   try {
-    recentPostList = await getRecentPosts({ supabase, showAll: false });
+    recentPostList = await getRecentPostList({ supabase, showAll: false });
   } catch (err) {}
   return {
     recentPostList: recentPostList,
