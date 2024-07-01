@@ -14,7 +14,7 @@ export const itemContainer = {
   overflow: "hidden",
 };
 
-export const Text = {
+export const breadcrumbText = {
   textDecoration: "none",
   wordBreak: "keep-all" as const,
   overflow: "hidden",
