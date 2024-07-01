@@ -31,11 +31,13 @@ export function getArray({
 
   while (prev > 0 && arrayCount > 0) {
     ret.unshift(prev);
-    prev--, arrayCount--;
+    prev--;
+    arrayCount--;
   }
   while (next <= maxPage && arrayCount > 0) {
     ret.push(next);
-    next++, arrayCount--;
+    next++;
+    arrayCount--;
   }
 
   return ret;
