@@ -4,10 +4,10 @@ import { container, linkStyle, divideLine } from "./styles";
 
 import type { Post } from "~/types";
 
-export default function PostListView({ posts }: { posts: any }) {
+export default function PostListView({ posts }: { posts: Post[] }) {
   return (
     <div css={container}>
-      {posts?.map((post: Post, postIndex: number) => (
+      {posts.map((post: Post, postIndex: number) => (
         <Link
           key={postIndex}
           aria-label={post.title}
