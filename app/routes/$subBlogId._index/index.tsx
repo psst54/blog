@@ -26,11 +26,9 @@ export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
 };
 
 export const loader = async ({ context, params }: LoaderArgs) => {
-  const supabase = createClient<Database>(
-    (context.env as Env).SUPABASE_URL,
-    (context.env as Env).SUPABASE_KEY
-  );
   const subBlogId = params.subBlogId!;
+  const { SUPABASE_URL, SUPABASE_KEY } = context.env as Env;
+  const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_KEY);
 
   const databaseData = await getSubBlogMainPosts({ supabase, subBlogId });
   const blogData = await getSubBlogInfo({ supabase, subBlogId });

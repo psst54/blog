@@ -17,10 +17,13 @@ import { background, contentContainer } from "@styles/main";
 
 export const loader = async ({ context, params }: LoaderArgs) => {
   const subBlogId = params.subBlogId!;
+  const { SUPABASE_URL: supabaseUrl, SUPABASE_KEY: supabaseKey } =
+    context.env as Env;
+
   return {
     subBlogId,
-    supabaseUrl: (context.env as Env).SUPABASE_URL,
-    supabaseKey: (context.env as Env).SUPABASE_KEY,
+    supabaseUrl,
+    supabaseKey,
   };
 };
 

@@ -16,10 +16,8 @@ export const meta: V2_MetaFunction = () => {
 };
 
 export const loader = async ({ context }: LoaderArgs) => {
-  const supabase = createClient<Database>(
-    (context.env as Env).SUPABASE_URL,
-    (context.env as Env).SUPABASE_KEY
-  );
+  const { SUPABASE_URL, SUPABASE_KEY } = context.env as Env;
+  const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_KEY);
 
   let recentPostList: Post[] = [];
   try {
