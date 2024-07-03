@@ -9,7 +9,7 @@ export { loader } from "./utils/loader";
 export { meta } from "./utils/meta";
 
 export default function PostPage() {
-  const postData = useLoaderData();
+  const { postData, parsedContent, childPostList } = useLoaderData();
   const categoryData: Category[] = useOutletContext();
 
   if (!postData) {
@@ -30,11 +30,9 @@ export default function PostPage() {
         postDate={postData?.created_at}
         categoryData={categoryData}
       />
-      {postData.type === NORMAL_PAGE && (
-        <PostContent content={postData.content} />
-      )}
+      {postData.type === NORMAL_PAGE && <PostContent content={parsedContent} />}
       {postData.type === DIRECTORY_PAGE && (
-        <PostDatabase posts={postData.posts} />
+        <PostDatabase posts={childPostList} />
       )}
     </div>
   );
