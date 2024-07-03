@@ -19,6 +19,7 @@ type DIRECTORY_PAGE_TYPE = typeof DIRECTORY_PAGE;
 export interface Post {
   id: string;
   title: string;
+  sub_title?: string; // [todo] fix this
   subTitle?: string;
   parent_id: string;
   type: NORMAL_PAGE_TYPE | DIRECTORY_PAGE_TYPE;

@@ -1,11 +1,11 @@
 import { lazy, Suspense } from "react";
 import TagList from "@components/TagList";
 import { container, textArea, titleArea, title, subTitle } from "./styles";
-import type { Tag } from "~/types";
+import type { Post, Tag } from "~/types";
 
 const Thumbnail = lazy(() => import("./Thumbnail"));
 
-export default function PostCard({ postData }: { postData: any }) {
+export default function PostCard({ postData }: { postData: Post }) {
   return (
     <div css={container}>
       <div css={textArea}>
@@ -19,7 +19,7 @@ export default function PostCard({ postData }: { postData: any }) {
 
       {postData.thumbnail && (
         <Suspense fallback={<></>}>
-          <Thumbnail thumbnail={postData.thumbnail} title={postData.title} />
+          <Thumbnail thumbnail={postData.thumbnail} />
         </Suspense>
       )}
     </div>

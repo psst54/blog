@@ -21,7 +21,7 @@ export async function loader({ context, params }: LoaderArgs) {
   const postData = await getPostById({ supabaseClient, postId });
 
   if (!postData) {
-    return null;
+    return { postData: null };
   }
 
   if (isNormalPost(postData)) {
