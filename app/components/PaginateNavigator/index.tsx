@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import RightChevronIcon from "~/assets/RightChevronIcon";
-import { COLOR } from "~/constants/color";
-import { PER_PAGE_POST_COUNT } from "~/constants";
+import RightChevronIcon from "@assets/RightChevronIcon";
+import { COLOR } from "@constants/color";
+import { PER_PAGE_POST_COUNT } from "@constants/index";
 import { getArray } from "./getArray";
 import { container, arrowButton, numberButton, selectedButton } from "./styles";
 

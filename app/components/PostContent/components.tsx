@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { COLOR } from "~/constants/color";
+import { COLOR } from "@constants/color";
 import {
   styledH1,
   styledH2,

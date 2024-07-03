@@ -1,4 +1,4 @@
-import { SIZE, mq } from "~/constants/size";
+import { SIZE, mq } from "@constants/size";
 
 export const categoryArea = {
   width: SIZE.CATEGORY_WIDTH,

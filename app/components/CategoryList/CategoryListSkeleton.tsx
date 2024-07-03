@@ -1,4 +1,4 @@
-import { COLOR } from "~/constants/color";
+import { COLOR } from "@constants/color";
 import { keyframes } from "@emotion/react";
 
 const shine = keyframes`
