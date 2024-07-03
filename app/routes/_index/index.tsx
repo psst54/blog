@@ -19,12 +19,8 @@ export const loader = async ({ context }: LoaderArgs) => {
   const { SUPABASE_URL, SUPABASE_KEY } = context.env as Env;
   const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_KEY);
 
-  let recentPostList: Post[] = [];
-  try {
-    recentPostList = await getRecentPostList({ supabase, showAll: false });
-  } catch (err) {}
   return {
-    recentPostList: recentPostList,
+    recentPostList: await getRecentPostList({ supabase, showAll: false }),
   };
 };
 
