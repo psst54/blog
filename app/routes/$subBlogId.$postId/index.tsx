@@ -1,50 +1,15 @@
-import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData, useOutletContext } from "@remix-run/react";
-import type { Category, Env } from "~/types";
-
-import { createClient } from "@supabase/supabase-js";
-import type { Database } from "@supabase/types";
-import { getPostById, getPostsById } from "@functions/supabase";
-import getMetaData from "@utils/getMetaData";
-import parse from "./parse";
+import type { Category } from "~/types";
 
 import PostHeader from "~/components/PostHeader";
 import PostContent from "~/components/PostContent";
 import PostDatabase from "./PostDatabase";
 
-export const meta: V2_MetaFunction<typeof loader> = ({ data: postData }) => {
-  return getMetaData({
-    title: postData?.title,
-    subTitle: postData?.sub_title,
-    tagList: postData?.tags,
-    thumbnail: postData?.thumbnail,
-  });
-};
-
-export const loader = async ({ context, params }: LoaderArgs) => {
-  const { SUPABASE_URL, SUPABASE_KEY } = context.env as Env;
-  const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_KEY);
-
-  const subBlogId = params.subBlogId!;
-  const postId = params.postId!;
-
-  const postData = await getPostById({ supabase, postId });
-
-  if (postData.type === "post") {
-    return {
-      ...postData,
-      content: await parse("# Table Of Contents\n" + postData.content),
-    };
-  }
-
-  return {
-    ...postData,
-    posts: await getPostsById({ supabase, subBlogId, postId }),
-  };
-};
+export { loader } from "./loader";
+export { meta } from "./meta";
 
 export default function PostPage() {
-  const postData = useLoaderData<typeof loader>();
+  const postData = useLoaderData();
   const categoryData: Category[] = useOutletContext();
 
   if (!postData) {
