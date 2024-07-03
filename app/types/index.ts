@@ -18,6 +18,7 @@ export interface Post {
   type: "post" | "database";
   sub_blog: string;
   created_at?: string;
+  last_edited_at?: string;
   tags?: Tag[];
   thumbnail?: string;
   emoji?: string;

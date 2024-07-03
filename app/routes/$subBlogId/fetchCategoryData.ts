@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { buildTree } from "@functions/category";
-import { getPostListByBlogId } from "@functions/supabase";
+import { getPostListByBlogId } from "@utils/supabase/getPostListByBlogId";
 import type { Database } from "@supabase/types";
 import type { Post } from "~/types";
 
