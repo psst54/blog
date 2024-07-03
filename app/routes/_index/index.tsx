@@ -1,37 +1,20 @@
-import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
-import { createClient } from "@supabase/supabase-js";
-import type { Database } from "@supabase/types";
-import { getRecentPostList } from "@functions/supabase";
-import type { Env, Post } from "~/types";
+import type { Post } from "~/types";
 
-import NavBar from "~/components/NavBar";
+import NavBar from "@components/NavBar";
 import Content from "./Content";
-
 import { background } from "@styles/main";
-import getMetaData from "@utils/getMetaData";
 
-export const meta: V2_MetaFunction = () => {
-  return getMetaData({});
-};
-
-export const loader = async ({ context }: LoaderArgs) => {
-  const { SUPABASE_URL, SUPABASE_KEY } = context.env as Env;
-  const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_KEY);
-
-  return {
-    recentPostList: await getRecentPostList({ supabase, showAll: false }),
-  };
-};
+export { loader } from "./loader";
+export { meta } from "./meta";
 
 export default function Index() {
-  const { recentPostList }: { recentPostList: Post[] } =
-    useLoaderData<typeof loader>();
+  const recentPostList: Post[] = useLoaderData();
 
   return (
     <main css={background}>
       <NavBar />
-      <Content posts={recentPostList} />
+      <Content postList={recentPostList} />
     </main>
   );
 }
