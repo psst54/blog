@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react";
 import RightChevronIcon from "@assets/RightChevronIcon";
-import { COLOR } from "~/constants/color";
+import { COLOR } from "@constants/color";
 import { ItemContainer, Title, ToggleButton } from "./categoryItemStyles";
 
 export default function CategoryItem({

@@ -6,7 +6,7 @@ import fetchCategoryData from "./fetchCategoryData";
 
 import type { Category } from "~/types";
 
-import NavBar from "~/components/NavBar";
+import NavBar from "@components/NavBar";
 import { background, contentContainer } from "@styles/main";
 
 export { loader } from "./utils/loader";

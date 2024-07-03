@@ -2,7 +2,7 @@ import type { Env, Post } from "~/types";
 import type { LoaderArgs } from "@remix-run/cloudflare";
 
 import { createClient } from "@supabase/supabase-js";
-import { getSubBlogInfo, getSubBlogMainPosts } from "~/functions";
+import { getSubBlogInfo, getSubBlogMainPosts } from "@functions/index";
 
 interface Database extends Post {
   posts: Post[];

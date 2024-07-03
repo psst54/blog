@@ -1,7 +1,7 @@
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 
 import type { Category } from "~/types";
-import usePagination from "~/hooks/usePagination";
+import usePagination from "@hooks/usePagination";
 
 import PostHeader from "@components/PostHeader";
 import PostListView from "@components/PostListView";

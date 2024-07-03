@@ -1,5 +1,5 @@
-import { COLOR } from "~/constants/color";
-import { SIZE, mq } from "~/constants/size";
+import { COLOR } from "@constants/color";
+import { SIZE, mq } from "@constants/size";
 
 export const styledH1 = {
   padding: "1rem 0 0 0",

@@ -1,4 +1,4 @@
-import { SIZE } from "~/constants/size";
+import { SIZE } from "@constants/size";
 
 export default function Thumbnail({ thumbnail }: { thumbnail: string }) {
   return (
