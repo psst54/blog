@@ -20,7 +20,6 @@ const Button = {
 
   border: `2px solid ${COLOR.BORDER.STANDARD}`,
   borderRadius: "1rem",
-  boxShadow: `4px 4px 0px 0px ${COLOR.PRIMARY.STANDARD}`,
 
   cursor: "pointer",
 };
