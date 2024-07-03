@@ -7,8 +7,8 @@ import PostHeader from "@components/PostHeader";
 import PostListView from "@components/PostListView";
 import PaginateNavigator from "@components/PaginateNavigator";
 
-export { loader } from "./loader";
-export { meta } from "./meta";
+export { loader } from "./utils/loader";
+export { meta } from "./utils/meta";
 
 export default function PostPage() {
   const { content } = useLoaderData();

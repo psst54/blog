@@ -1,12 +1,12 @@
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 import type { Category } from "~/types";
 
-import PostHeader from "~/components/PostHeader";
-import PostContent from "~/components/PostContent";
-import PostDatabase from "./PostDatabase";
+import PostHeader from "@components/PostHeader";
+import PostContent from "@components/PostContent";
+import PostDatabase from "./components/PostDatabase";
 
-export { loader } from "./loader";
-export { meta } from "./meta";
+export { loader } from "./utils/loader";
+export { meta } from "./utils/meta";
 
 export default function PostPage() {
   const postData = useLoaderData();

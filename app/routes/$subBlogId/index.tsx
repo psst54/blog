@@ -9,8 +9,8 @@ import type { Category } from "~/types";
 import NavBar from "~/components/NavBar";
 import { background, contentContainer } from "@styles/main";
 
-export { loader } from "./loader";
-export { sitemap } from "./sitemap";
+export { loader } from "./utils/loader";
+export { sitemap } from "./utils/sitemap";
 
 export default function SubBlog() {
   const { subBlogId, supabaseUrl, supabaseKey } = useLoaderData();

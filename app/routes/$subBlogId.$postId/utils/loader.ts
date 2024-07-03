@@ -4,7 +4,7 @@ import type { Env } from "~/types";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 import { getPostById, getPostsById } from "@functions/supabase";
-import parse from "./parse";
+import parse from "../parse";
 
 export async function loader({ context, params }: LoaderArgs) {
   const { SUPABASE_URL, SUPABASE_KEY } = context.env as Env;

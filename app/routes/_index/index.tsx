@@ -2,11 +2,11 @@ import { useLoaderData } from "@remix-run/react";
 import type { Post } from "~/types";
 
 import NavBar from "@components/NavBar";
-import Content from "./Content";
+import Content from "./components/Content";
 import { background } from "@styles/main";
 
-export { loader } from "./loader";
-export { meta } from "./meta";
+export { loader } from "./utils/loader";
+export { meta } from "./utils/meta";
 
 export default function Index() {
   const recentPostList: Post[] = useLoaderData();
