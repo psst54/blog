@@ -1,7 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import type { Post } from "~/types";
-import { POST_SUMMARY_ATTR_LIST, POST_TABLE } from ".";
+import { NORMAL_PAGE, type Post } from "~/types";
+import { POST_SUMMARY_ATTR, POST_TABLE } from ".";
 
 export async function getRecentPostList({
   supabaseClient,
@@ -14,17 +14,17 @@ export async function getRecentPostList({
   count?: number;
   showAll?: boolean;
 }): Promise<Post[]> {
-  const { data: databaseData, error: databaseError } = await supabaseClient
+  const { data, error } = await supabaseClient
     .from(POST_TABLE)
-    .select(POST_SUMMARY_ATTR_LIST.join(", "))
+    .select(POST_SUMMARY_ATTR)
     .in("show_main", showAll ? [true, false] : [true])
     .eq("sub_blog", subBlogId)
-    .eq("type", "post")
+    .eq("type", NORMAL_PAGE)
     .order("created_at", { ascending: false })
     .limit(count)
     .returns<Post[]>();
 
-  if (databaseError) return [];
+  if (error) return [];
 
-  return databaseData;
+  return data;
 }

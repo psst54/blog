@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import { POST_TABLE } from ".";
+import { POST_SUMMARY_ATTR, POST_TABLE } from ".";
 
 export async function getPostListByBlogId({
   supabase,
@@ -11,7 +11,7 @@ export async function getPostListByBlogId({
 }) {
   const { data: postData, error: postError } = await supabase
     .from(POST_TABLE)
-    .select("id, title, parent_id, type, sub_blog, emoji")
+    .select(POST_SUMMARY_ATTR)
     .order("custom_order")
     .order("created_at")
     .eq("sub_blog", subBlogId);

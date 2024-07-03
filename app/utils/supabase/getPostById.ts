@@ -1,23 +1,24 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import { POST_TABLE } from ".";
+import type { Post } from "~/types";
+import { POST_DETAIL_ATTR, POST_TABLE } from ".";
 
 export async function getPostById({
-  supabase,
+  supabaseClient,
   postId,
 }: {
-  supabase: SupabaseClient<Database, "public">;
+  supabaseClient: SupabaseClient<Database, "public">;
   postId: string;
 }) {
-  const { data: postData, error: postError } = await supabase
+  const { data, error } = await supabaseClient
     .from(POST_TABLE)
-    .select(
-      "id, title, sub_title, content, tags, type, created_at, thumbnail, emoji"
-    )
+    .select(POST_DETAIL_ATTR)
     .eq("id", postId)
     .single();
 
-  if (postError) throw new Error();
+  if (error) {
+    return null;
+  }
 
-  return postData;
+  return data as unknown as Post; // [todo] : fix unknown
 }

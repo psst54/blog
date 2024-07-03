@@ -1,21 +1,19 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import { POST_TABLE } from ".";
+import { POST_SUMMARY_ATTR, POST_TABLE } from ".";
 
 export async function getPostsById({
-  supabase,
+  supabaseClient,
   subBlogId,
   postId,
 }: {
-  supabase: SupabaseClient<Database, "public", any>;
+  supabaseClient: SupabaseClient<Database, "public", any>;
   subBlogId: string;
   postId: string;
 }) {
-  const { data: postData, error: postError } = await supabase
+  const { data: postData, error: postError } = await supabaseClient
     .from(POST_TABLE)
-    .select(
-      "title, sub_title, tags, id, thumbnail, sub_blog, created_at, emoji"
-    )
+    .select(POST_SUMMARY_ATTR)
     .eq("sub_blog", subBlogId)
     .eq("parent_id", postId)
     .order("created_at", { ascending: false });

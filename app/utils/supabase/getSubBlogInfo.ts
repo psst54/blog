@@ -2,13 +2,13 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 
 export async function getSubBlogInfo({
-  supabase,
+  supabaseClient,
   subBlogId,
 }: {
-  supabase: SupabaseClient<Database, "public", any>;
+  supabaseClient: SupabaseClient<Database, "public", any>;
   subBlogId: string;
 }) {
-  const { data: databaseData, error: databaseError } = await supabase
+  const { data: databaseData, error: databaseError } = await supabaseClient
     .from("subBlogs")
     .select("title, description")
     .eq("id", subBlogId)

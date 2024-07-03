@@ -1,5 +1,5 @@
 import { useLoaderData, useOutletContext } from "@remix-run/react";
-import type { Category } from "~/types";
+import { DIRECTORY_PAGE, NORMAL_PAGE, type Category } from "~/types";
 
 import PostHeader from "@components/PostHeader";
 import PostContent from "@components/PostContent";
@@ -30,8 +30,12 @@ export default function PostPage() {
         postDate={postData?.created_at}
         categoryData={categoryData}
       />
-      {postData.type === "post" && <PostContent content={postData.content} />}
-      {postData.type === "database" && <PostDatabase posts={postData.posts} />}
+      {postData.type === NORMAL_PAGE && (
+        <PostContent content={postData.content} />
+      )}
+      {postData.type === DIRECTORY_PAGE && (
+        <PostDatabase posts={postData.posts} />
+      )}
     </div>
   );
 }
