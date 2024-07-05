@@ -3,20 +3,22 @@ import type { Database } from "@supabase/types";
 import { POST_SUMMARY_ATTR, POST_TABLE } from ".";
 
 export async function getSubBlogMainPosts({
-  supabase,
+  supabaseClient,
   subBlogId,
 }: {
-  supabase: SupabaseClient<Database, "public", any>;
+  supabaseClient: SupabaseClient<Database, "public", any>;
   subBlogId: string;
 }) {
-  const { data: postData, error: postError } = await supabase
+  const { data: postData, error: postError } = await supabaseClient
     .from(POST_TABLE)
     .select(POST_SUMMARY_ATTR)
     .eq("sub_blog", subBlogId)
     .is("parent_id", null)
     .order("created_at", { ascending: false });
 
-  if (postError) throw new Error();
+  if (postError) {
+    return null;
+  }
 
   return postData;
 }
