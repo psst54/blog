@@ -2,14 +2,17 @@ import { useRef } from "react";
 
 import CategoryPopUp from "@components/CategoryPopUp";
 import { navbar, container } from "./styles";
-import type { Category } from "~/types";
+import type { Category, SupabaseKey } from "~/types";
 import { SIZE } from "@constants/size";
 import Logo from "./Logo";
+import Search from "./Search";
 
 export default function NavBar({
+  supabaseKey,
   data,
   onToggleCategory,
 }: {
+  supabaseKey: SupabaseKey;
   data?: Category[];
   onToggleCategory?: (id: string) => void;
 }) {
@@ -42,9 +45,13 @@ export default function NavBar({
     <nav css={navbar} ref={ref}>
       <div css={container}>
         <Logo />
-        {data && onToggleCategory && (
-          <CategoryPopUp data={data} onToggleCategory={onToggleCategory} />
-        )}
+
+        <div>
+          <Search supabaseKey={supabaseKey} />
+          {data && onToggleCategory && (
+            <CategoryPopUp data={data} onToggleCategory={onToggleCategory} />
+          )}
+        </div>
       </div>
     </nav>
   );
