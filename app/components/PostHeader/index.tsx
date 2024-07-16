@@ -30,7 +30,7 @@ export default function PostHeader({
       <Breadcrumb breadcrumbData={breadcrumbData} />
 
       <h1 css={Title}>{title}</h1>
-      {subTitle && <h2 css={SubTitle}>{subTitle}</h2>}
+      {subTitle && <p css={SubTitle}>{subTitle}</p>}
       <TagList data={tags} />
       {postDate && <p css={DateText}>{formatDate(postDate)}</p>}
 

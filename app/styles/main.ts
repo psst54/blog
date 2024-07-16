@@ -26,4 +26,4 @@ export const contentContainer = {
   },
 };
 
-export const title = {};
+export const title = { fontSize: "2rem" };

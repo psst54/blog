@@ -5,7 +5,6 @@ export const Title = {
 };
 
 export const SubTitle = {
-  marginTop: "0.5rem",
   color: COLOR.TEXT.SECONDARY,
   fontWeight: 500,
   wordBreak: "keep-all" as const,
