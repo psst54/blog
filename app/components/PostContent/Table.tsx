@@ -5,8 +5,7 @@ const tableWrapperStyle = {
   margin: "1rem",
 
   border: `2px solid ${COLOR.BORDER.STANDARD}`,
-  borderRadius: "1rem",
-  boxShadow: `6px 6px 0px 0px ${COLOR.SECONDARY.STANDARD}`,
+  borderRadius: "0.25rem",
 
   wordBreak: "keep-all" as const,
 };
