@@ -10,17 +10,26 @@ export interface Tag {
   isSpoiler: boolean;
 }
 
+export const NORMAL_PAGE = "post";
+export const DIRECTORY_PAGE = "database";
+
+type NORMAL_PAGE_TYPE = typeof NORMAL_PAGE;
+type DIRECTORY_PAGE_TYPE = typeof DIRECTORY_PAGE;
+
 export interface Post {
   id: string;
   title: string;
+  sub_title?: string; // [todo] fix this
   subTitle?: string;
   parent_id: string;
-  type: "post" | "database";
+  type: NORMAL_PAGE_TYPE | DIRECTORY_PAGE_TYPE;
   sub_blog: string;
   created_at?: string;
+  last_edited_at?: string;
   tags?: Tag[];
   thumbnail?: string;
   emoji?: string;
+  content: string;
 }
 
 export interface Category {
@@ -30,7 +39,7 @@ export interface Category {
   sub_blog: string;
   title: string;
   emoji?: string;
-  type: "post" | "database";
+  type: NORMAL_PAGE_TYPE | DIRECTORY_PAGE_TYPE;
   isOpen: boolean;
 }
 

@@ -1,10 +1,10 @@
-import { SIZE } from "~/constants/size";
+import { SIZE } from "@constants/size";
 
 export default function Thumbnail({ thumbnail }: { thumbnail: string }) {
   return (
     <img
       src={thumbnail}
-      alt="thumbnail" // todo: add alt text
+      alt="thumbnail" // [todo] add alt text
       css={{
         width: "9rem",
         height: "6rem",

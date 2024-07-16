@@ -1,10 +1,11 @@
 import { lazy, Suspense } from "react";
 import TagList from "@components/TagList";
 import { container, textArea, titleArea, title, subTitle } from "./styles";
+import type { Post } from "~/types";
 
 const Thumbnail = lazy(() => import("./Thumbnail"));
 
-export default function PostCard({ postData }: { postData: any }) {
+export default function PostCard({ postData }: { postData: Post }) {
   return (
     <div css={container}>
       <div css={textArea}>

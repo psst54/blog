@@ -1,4 +1,4 @@
-import { COLOR } from "~/constants/color";
+import { COLOR } from "@constants/color";
 
 export const tagListContainer = {
   display: "flex",

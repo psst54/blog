@@ -1,51 +1,17 @@
 import { useLoaderData, useOutletContext } from "@remix-run/react";
 
-import type { Post, Category, Env } from "~/types";
-import type { LoaderArgs, V2_MetaFunction } from "@remix-run/cloudflare";
-
-import { createClient } from "@supabase/supabase-js";
-import usePagination from "~/hooks/usePagination";
-import getMetaData from "@utils/getMetaData";
-import { getSubBlogInfo, getSubBlogMainPosts } from "~/functions";
+import type { Category } from "~/types";
+import usePagination from "@hooks/usePagination";
 
 import PostHeader from "@components/PostHeader";
 import PostListView from "@components/PostListView";
 import PaginateNavigator from "@components/PaginateNavigator";
 
-interface Database extends Post {
-  posts: Post[];
-}
-
-export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
-  const content = data!.content;
-
-  return getMetaData({
-    title: content!.title,
-    subTitle: content!.subTitle,
-  });
-};
-
-export const loader = async ({ context, params }: LoaderArgs) => {
-  const supabase = createClient<Database>(
-    (context.env as Env).SUPABASE_URL,
-    (context.env as Env).SUPABASE_KEY
-  );
-  const subBlogId = params.subBlogId!;
-
-  const databaseData = await getSubBlogMainPosts({ supabase, subBlogId });
-  const blogData = await getSubBlogInfo({ supabase, subBlogId });
-
-  return {
-    content: {
-      title: blogData.title,
-      subTitle: blogData.description,
-      posts: databaseData,
-    },
-  };
-};
+export { loader } from "./utils/loader";
+export { meta } from "./utils/meta";
 
 export default function PostPage() {
-  const { content } = useLoaderData<typeof loader>();
+  const { content } = useLoaderData();
 
   const categoryData: Category[] = useOutletContext();
 

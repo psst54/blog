@@ -3,7 +3,7 @@ import { useRef } from "react";
 import CategoryPopUp from "@components/CategoryPopUp";
 import { navbar, container } from "./styles";
 import type { Category } from "~/types";
-import { SIZE } from "~/constants/size";
+import { SIZE } from "@constants/size";
 import Logo from "./Logo";
 
 export default function NavBar({

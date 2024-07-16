@@ -1,5 +1,5 @@
-import { COLOR } from "~/constants/color";
-import { hoverUpwardMotion } from "~/styles/hover";
+import { COLOR } from "@constants/color";
+import { hoverUpwardMotion } from "@styles/hover";
 import type { Menu } from "~/types";
 
 export default function MenuIcon({ item }: { item: Menu }) {

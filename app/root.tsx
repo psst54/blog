@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { V2_MetaFunction, LoaderArgs } from "@remix-run/cloudflare";
+import type { LoaderArgs } from "@remix-run/cloudflare";
 import {
   Links,
   LiveReload,
@@ -18,7 +18,7 @@ import getMetaData from "@utils/getMetaData";
 import { Fonts, GTag } from "@components/root";
 import { globalStyleCss } from "@styles/global";
 
-export const meta: V2_MetaFunction = () => {
+export const meta = () => {
   return getMetaData({});
 };
 

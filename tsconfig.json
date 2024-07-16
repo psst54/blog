@@ -19,10 +19,11 @@
       "@components/*": ["./app/components/*"],
       "@assets/*": ["./app/assets/*"],
       "@supabase/*": ["./app/supabase/*"],
-      "@screens/*": ["./app/screens/*"],
       "@functions/*": ["./app/functions/*"],
       "@types/*": ["./app/types/*"],
-      "@utils/*": ["./app/utils/*"]
+      "@utils/*": ["./app/utils/*"],
+      "@constants/*": ["./app/constants/*"],
+      "@hooks/*": ["./app/hooks/*"]
     },
     "jsxImportSource": "@emotion/react",
 
