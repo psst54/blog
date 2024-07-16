@@ -33,7 +33,7 @@ export function H2({ children }) {
 }
 
 export function H3({ children }) {
-  return <h2 css={styledH3} children={children} id={getId(children)} />;
+  return <h3 css={styledH3} children={children} id={getId(children)} />;
 }
 
 export function P({ children }) {

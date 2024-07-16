@@ -3,13 +3,13 @@ import { COLOR } from "@constants/color";
 
 const shine = keyframes`
 0% {
-  background-color: ${COLOR.SECONDARY.LIGHT};
+  background-color: ${COLOR.PRIMARY.VERY_LIGHT};
 }
 50% {
-  background-color: ${COLOR.SECONDARY.VERY_LIGHT};
+  background-color: ${COLOR.PRIMARY.ULTRA_LIGHT};
 }
 100% {
-  background-color: ${COLOR.SECONDARY.LIGHT};
+  background-color: ${COLOR.PRIMARY.VERY_LIGHT};
 }`;
 
 export default function BreadcrumbSkeleton() {
