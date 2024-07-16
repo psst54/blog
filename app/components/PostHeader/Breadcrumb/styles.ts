@@ -22,6 +22,6 @@ export const breadcrumbText = {
   textOverflow: "ellipsis",
 
   "&:hover": {
-    color: COLOR.SECONDARY.STANDARD,
+    color: COLOR.TEXT.LINK,
   },
 };
