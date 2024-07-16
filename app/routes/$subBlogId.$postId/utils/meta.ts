@@ -1,10 +1,10 @@
 import getMetaData from "@utils/getMetaData";
 
-export function meta({ data: postData }) {
+export function meta({ data }) {
   return getMetaData({
-    title: postData?.title,
-    subTitle: postData?.sub_title,
-    tagList: postData?.tags,
-    thumbnail: postData?.thumbnail,
+    title: data.postData?.title,
+    subTitle: data.postData?.sub_title,
+    tagList: data.postData?.tags,
+    thumbnail: data.postData?.thumbnail,
   });
 }
