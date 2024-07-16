@@ -15,10 +15,10 @@ export const background = {
 export const contentContainer = {
   display: "flex",
   flexDirection: "column" as const,
+  gap: "1rem",
 
   width: "100%",
   maxWidth: SIZE.CONTENT_MAX_WIDTH,
-  background: "transparent",
   padding: "1.5rem",
 
   [mq[1]]: {
@@ -26,8 +26,4 @@ export const contentContainer = {
   },
 };
 
-export const title = {
-  marginBottom: "1rem",
-  fontSize: "2rem",
-  fontWeight: 800,
-};
+export const title = {};
