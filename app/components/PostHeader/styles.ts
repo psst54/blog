@@ -1,15 +1,11 @@
 import { COLOR } from "@constants/color";
 
 export const Title = {
-  // fontSize: "2rem",
-  // fontWeight: 600,
   wordBreak: "keep-all" as const,
 };
 
 export const SubTitle = {
-  marginTop: "0.5rem",
   color: COLOR.TEXT.SECONDARY,
-  fontSize: "1.2rem",
   fontWeight: 500,
   wordBreak: "keep-all" as const,
 };

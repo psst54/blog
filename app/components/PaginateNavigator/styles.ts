@@ -26,17 +26,17 @@ const button = {
 
 export const arrowButton = {
   ...button,
-  background: COLOR.SECONDARY.STANDARD,
+  background: COLOR.PRIMARY.STANDARD,
 };
 
 export const numberButton = {
   ...button,
 
   "&:hover": {
-    background: COLOR.BACKGROUND.TO_SECONDARY,
+    background: COLOR.PRIMARY.ULTRA_LIGHT,
   },
 };
 
 export const selectedButton = {
-  background: COLOR.BACKGROUND.TO_SECONDARY,
+  border: `1px solid ${COLOR.PRIMARY.VERY_LIGHT}`,
 };
