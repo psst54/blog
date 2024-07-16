@@ -1,6 +1,6 @@
 export const COLOR = {
   BACKGROUND: {
-    STANDARD: "#f8f7f9",
+    STANDARD: "#fcfcfd",
     TO_SECONDARY: "#e1e7f0",
   },
   BORDER: {
@@ -12,7 +12,7 @@ export const COLOR = {
     STANDARD: "#000",
     SECONDARY: "#484561",
     REVERSE: "#f8f7f9",
-    LINK: "#0e91f8",
+    LINK: "#0078ef",
   },
 
   PRIMARY: {

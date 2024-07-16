@@ -3,29 +3,21 @@ import { COLOR } from "~/constants/color";
 export const tagListContainer = {
   display: "flex",
   flexWrap: "wrap" as const,
-  gap: "0.25rem",
+  gap: "1rem",
 };
 
 export const tagContainer = {
-  padding: "0.1rem 0.75rem",
-  background: COLOR.BORDER.DARK,
-
-  border: `2px solid ${COLOR.BORDER.DARK}`,
-  borderRadius: "2rem",
-
-  color: COLOR.TEXT.REVERSE,
-  fontWeight: 500,
+  display: "flex",
 };
 
 export const tagText = {
-  color: COLOR.TEXT.REVERSE,
+  color: COLOR.TEXT.SECONDARY,
 };
 
 export const spoiler = {
   filter: "blur(0.25rem)",
 
   "&:hover": {
-    color: COLOR.TEXT.REVERSE,
     filter: "none",
   },
 };

@@ -8,6 +8,10 @@ export const container = {
   gap: "1rem",
 
   padding: "1.5rem 0",
+
+  "&:hover": {
+    h2: { color: COLOR.TEXT.LINK },
+  },
 };
 
 export const textArea = {
