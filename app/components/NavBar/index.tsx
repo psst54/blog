@@ -5,7 +5,7 @@ import { navbar, container } from "./styles";
 import type { Category, SupabaseKey } from "~/types";
 import { SIZE } from "@constants/size";
 import Logo from "./Logo";
-import Search from "./Search";
+import SearchPopUp from "./SearchPopUp";
 
 export default function NavBar({
   supabaseKey,
@@ -47,7 +47,7 @@ export default function NavBar({
         <Logo />
 
         <div>
-          <Search supabaseKey={supabaseKey} />
+          <SearchPopUp supabaseKey={supabaseKey} />
           {data && onToggleCategory && (
             <CategoryPopUp data={data} onToggleCategory={onToggleCategory} />
           )}
