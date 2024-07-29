@@ -66,7 +66,6 @@ export default function CategoryItem({
           css={[ToggleButton, isOpen && { transform: "rotate(90deg)" }]}
         >
           <RightChevronIcon
-            size="1rem"
             color={isSelected ? COLOR.TEXT.REVERSE : COLOR.TEXT.STANDARD}
           />
         </button>

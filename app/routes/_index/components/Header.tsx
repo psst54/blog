@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <Link to="all" css={header}>
       <h2 css={title}>모든 포스트</h2>
-      <RightChevronIcon size="1.5rem" color={COLOR.TEXT.STANDARD} />
+      <RightChevronIcon size="1.5rem" />
     </Link>
   );
 }
