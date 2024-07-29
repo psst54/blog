@@ -9,7 +9,7 @@ export default function Database({ posts }: { posts: Post[] }) {
   });
 
   return (
-    <>
+    <div css={container}>
       <PostListView posts={currentPagePosts} />
       <PaginateNavigator
         currentPage={currentPage}
@@ -18,6 +18,13 @@ export default function Database({ posts }: { posts: Post[] }) {
           setPage(page);
         }}
       />
-    </>
+    </div>
   );
 }
+
+const container = {
+  display: "flex",
+  flexDirection: "column" as const,
+
+  width: "100%",
+};
