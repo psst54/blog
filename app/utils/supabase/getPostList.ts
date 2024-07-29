@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import { NORMAL_PAGE, type Post } from "~/types";
+import { type Post } from "~/types";
 import { POST_SUMMARY_ATTR, POST_TABLE } from ".";
 
 export async function getPostList({
@@ -14,7 +14,6 @@ export async function getPostList({
     .from(POST_TABLE)
     .select(POST_SUMMARY_ATTR)
     .in("show_main", showAll ? [true, false] : [true])
-    .eq("type", NORMAL_PAGE)
     .order("created_at", { ascending: false })
     .returns<Post[]>();
 
