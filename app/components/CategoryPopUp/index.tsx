@@ -51,7 +51,7 @@ export default function CategoryPopUp({
         css={OpenButton}
         onClick={onOpen}
       >
-        <ListIcon size="1.5rem" color="#000" />
+        <ListIcon size="1.5rem" />
       </button>
 
       {isOpen && (
@@ -62,7 +62,7 @@ export default function CategoryPopUp({
               css={CloseButton}
               onClick={onClose}
             >
-              <RightChevronIcon size="1rem" color="#000" />
+              <RightChevronIcon />
             </button>
             <h2 css={ButtonDescriptionText}>접기</h2>
           </div>

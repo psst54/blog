@@ -1,12 +1,13 @@
 import type { Post } from "~/types";
 import PostListView from "@components/PostListView";
-import { contentContainer, title } from "@styles/main";
+import { contentContainer } from "@styles/main";
+import Header from "./Header";
 
 export default function Content({ postList }: { postList: Post[] }) {
   return (
     <div css={contentContainer}>
       <section>
-        <h2 css={title}>최근 포스트</h2>
+        <Header />
         <PostListView posts={postList} />
       </section>
     </div>

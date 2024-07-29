@@ -66,5 +66,5 @@ export default function PaginateNavigator({
 }
 
 function Icon() {
-  return <RightChevronIcon size="1rem" color={COLOR.BACKGROUND.STANDARD} />;
+  return <RightChevronIcon color={COLOR.BACKGROUND.STANDARD} />;
 }
