@@ -4,10 +4,13 @@ export const searchArea = {
   display: "flex",
   gap: "0.5rem",
   padding: "0.5rem 0",
+
+  width: "100%",
 };
 
 export const input = {
   flex: 1,
+  width: 0,
 
   padding: "0.25rem 1rem",
   borderRadius: "1.5rem",
