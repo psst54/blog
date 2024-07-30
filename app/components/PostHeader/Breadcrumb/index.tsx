@@ -48,7 +48,7 @@ function Item({ link, title }: { link: string; title: string }) {
 function Arrow() {
   return (
     <div css={{ display: "flex" }}>
-      <RightChevronIcon size="1rem" color={COLOR.TEXT.STANDARD} />
+      <RightChevronIcon color={COLOR.TEXT.STANDARD} />
     </div>
   );
 }

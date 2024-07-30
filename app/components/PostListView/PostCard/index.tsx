@@ -7,7 +7,7 @@ const Thumbnail = lazy(() => import("./Thumbnail"));
 
 export default function PostCard({ postData }: { postData: Post }) {
   return (
-    <div css={container}>
+    <article css={container}>
       <div css={textArea}>
         <div css={titleArea}>
           <h2 css={title}>{postData.title}</h2>
@@ -22,6 +22,6 @@ export default function PostCard({ postData }: { postData: Post }) {
           <Thumbnail thumbnail={postData.thumbnail} />
         </Suspense>
       )}
-    </div>
+    </article>
   );
 }

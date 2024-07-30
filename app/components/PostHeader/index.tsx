@@ -32,7 +32,11 @@ export default function PostHeader({
       <h1 css={Title}>{title}</h1>
       {subTitle && <p css={SubTitle}>{subTitle}</p>}
       <TagList data={tags} />
-      {postDate && <p css={DateText}>{formatDate(postDate)}</p>}
+      {postDate && (
+        <time dateTime={postDate} css={DateText}>
+          {formatDate(postDate)}
+        </time>
+      )}
 
       <hr css={DivideLine} />
     </div>

@@ -1,9 +1,11 @@
+import { COLOR } from "@constants/color";
+
 export default function ListIcon({
-  size,
-  color,
+  size = "1rem",
+  color = COLOR.BORDER.DARK,
 }: {
-  size: string;
-  color: string;
+  size?: string;
+  color?: string;
 }) {
   return (
     <svg

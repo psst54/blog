@@ -1,9 +1,11 @@
+import { COLOR } from "@constants/color";
+
 export default function FolderClosedColorIcon({
-  size,
-  color,
+  size = "1rem",
+  color = COLOR.TEXT.STANDARD,
 }: {
-  size: string;
-  color: string;
+  size?: string;
+  color?: string;
 }) {
   return (
     <svg
