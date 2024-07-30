@@ -5,11 +5,11 @@ import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 import { POST_SUMMARY_ATTR, POST_TABLE } from "~/utils/supabase";
 
-export async function loader({ context, params }: LoaderArgs) {
+export async function loader({ context, request }: LoaderArgs) {
   const { SUPABASE_URL, SUPABASE_KEY } = context.env as Env;
   const supabaseClient = createClient<Database>(SUPABASE_URL, SUPABASE_KEY);
 
-  const searchString = "remix";
+  const searchString = new URL(request.url).searchParams.get("string");
 
   const { data, error } = await supabaseClient
     .from(POST_TABLE)
