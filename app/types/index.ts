@@ -5,6 +5,11 @@ export interface Env {
   ENVIRONMENT: string;
 }
 
+export interface SupabaseKey {
+  SUPABASE_URL: string;
+  SUPABASE_KEY: string;
+}
+
 export interface Tag {
   text: string;
   isSpoiler: boolean;

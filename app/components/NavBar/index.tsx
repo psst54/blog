@@ -1,15 +1,20 @@
 import { useRef } from "react";
+import { Link } from "@remix-run/react";
 
-import CategoryPopUp from "@components/CategoryPopUp";
-import { navbar, container } from "./styles";
-import type { Category } from "~/types";
+import type { Category, SupabaseKey } from "~/types";
 import { SIZE } from "@constants/size";
+import CategoryPopUp from "@components/CategoryPopUp";
 import Logo from "./Logo";
+import SearchIcon from "@assets/SearchIcon";
+
+import { navbar, container } from "./styles";
 
 export default function NavBar({
+  supabaseKey,
   data,
   onToggleCategory,
 }: {
+  supabaseKey: SupabaseKey;
   data?: Category[];
   onToggleCategory?: (id: string) => void;
 }) {
@@ -42,9 +47,15 @@ export default function NavBar({
     <nav css={navbar} ref={ref}>
       <div css={container}>
         <Logo />
-        {data && onToggleCategory && (
-          <CategoryPopUp data={data} onToggleCategory={onToggleCategory} />
-        )}
+
+        <div css={{ display: "flex", gap: "1rem" }}>
+          <Link to="/search">
+            <SearchIcon size="1.5rem" />
+          </Link>
+          {data && onToggleCategory && (
+            <CategoryPopUp data={data} onToggleCategory={onToggleCategory} />
+          )}
+        </div>
       </div>
     </nav>
   );

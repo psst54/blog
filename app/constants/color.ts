@@ -12,11 +12,13 @@ export const COLOR = {
   BACKGROUND: {
     STANDARD: "#fcfcfd",
     TO_SECONDARY: "#e1e7f0",
+    HIGHLIGHT: PALETTE.PURPLE.STANDARD,
   },
   BORDER: {
     STANDARD: "#484561",
     LIGHT: "#C1BACC",
     DARK: "#000",
+    HIGHLIGHT: PALETTE.PURPLE.STANDARD,
   },
   TEXT: {
     STANDARD: "#000",
