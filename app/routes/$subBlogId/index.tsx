@@ -7,7 +7,7 @@ import fetchCategoryData from "./fetchCategoryData";
 import type { Category } from "~/types";
 
 import NavBar from "@components/NavBar";
-import { background, contentContainer } from "@styles/main";
+import Page from "@components/Page";
 
 export { loader } from "./utils/loader";
 export { sitemap } from "./utils/sitemap";
@@ -30,12 +30,11 @@ export default function SubBlog() {
   };
 
   return (
-    <main css={background}>
-      <NavBar data={categoryData} onToggleCategory={onToggleCategory} />
-
-      <div css={contentContainer}>
-        <Outlet context={categoryData} />
-      </div>
-    </main>
+    <Page
+      navbar={
+        <NavBar data={categoryData} onToggleCategory={onToggleCategory} />
+      }
+      body={<Outlet context={categoryData} />}
+    />
   );
 }
