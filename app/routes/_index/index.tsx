@@ -2,8 +2,8 @@ import { useLoaderData } from "@remix-run/react";
 import type { Post, SupabaseKey } from "~/types";
 
 import NavBar from "@components/NavBar";
+import Page from "@components/Page";
 import Content from "./components/Content";
-import { background } from "@styles/main";
 
 export { loader } from "./utils/loader";
 export { meta } from "./utils/meta";
@@ -15,9 +15,9 @@ export default function Index() {
   }: { recentPostList: Post[]; supabaseKey: SupabaseKey } = useLoaderData();
 
   return (
-    <main css={background}>
-      <NavBar supabaseKey={supabaseKey} />
-      <Content postList={recentPostList} />
-    </main>
+    <Page
+      navbar={<NavBar supabaseKey={supabaseKey} />}
+      body={<Content postList={recentPostList} />}
+    />
   );
 }
