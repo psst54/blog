@@ -16,9 +16,21 @@ export async function getPostById({
     .eq("id", postId)
     .single();
 
+  const { data: tagData, error: tagError } = await supabaseClient
+    .from("posts_tags")
+    .select("is_spoiler, tags ( id, title, content )")
+    .eq("post_id", postId)
+    .order("created_at", { ascending: true });
+
   if (error) {
     return null;
   }
 
-  return data as unknown as Post; // [todo] : fix unknown
+  return {
+    ...data,
+    tags: tagData?.map((tag) => ({
+      ...tag.tags,
+      isSpoiler: tag.is_spoiler,
+    })),
+  } as unknown as Post; // [todo] : fix unknown
 }

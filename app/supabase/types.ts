@@ -15,6 +15,14 @@ export interface Database {
           tags: any[] | null;
         };
       };
+      posts_tags: {
+        Row: {
+          post_id: string;
+          tag_id: string;
+          created_at: Date | null;
+          is_spoiler: boolean;
+        };
+      };
     };
   };
 }
