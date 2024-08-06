@@ -8,6 +8,13 @@ export const container = {
   width: "100%",
 };
 
+export const noPostText = {
+  textAlign: "center" as const,
+  padding: "5rem 0",
+  fontSize: "1.25rem",
+  color: COLOR.TEXT.SECONDARY,
+};
+
 const button = {
   display: "flex",
   alignItems: "center",
