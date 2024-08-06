@@ -7,7 +7,7 @@ import CategoryPopUp from "@components/CategoryPopUp";
 import Logo from "./Logo";
 import SearchIcon from "@assets/SearchIcon";
 
-import { navbar, container } from "./styles";
+import { navbar } from "./styles";
 
 export default function NavBar({
   supabaseKey,
@@ -45,17 +45,15 @@ export default function NavBar({
 
   return (
     <nav css={navbar} ref={ref}>
-      <div css={container}>
-        <Logo />
+      <Logo />
 
-        <div css={{ display: "flex", gap: "1rem" }}>
-          <Link to="/search">
-            <SearchIcon size="1.5rem" />
-          </Link>
-          {data && onToggleCategory && (
-            <CategoryPopUp data={data} onToggleCategory={onToggleCategory} />
-          )}
-        </div>
+      <div css={{ display: "flex", gap: "1rem" }}>
+        <Link to="/search">
+          <SearchIcon size="1.5rem" />
+        </Link>
+        {data && onToggleCategory && (
+          <CategoryPopUp data={data} onToggleCategory={onToggleCategory} />
+        )}
       </div>
     </nav>
   );

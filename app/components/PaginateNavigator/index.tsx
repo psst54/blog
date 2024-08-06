@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
-import RightChevronIcon from "@assets/RightChevronIcon";
+
 import { COLOR } from "@constants/color";
 import { PER_PAGE_POST_COUNT } from "@constants/index";
+
 import { getArray } from "./getArray";
-import { container, arrowButton, numberButton, selectedButton } from "./styles";
+import {
+  container,
+  noPostText,
+  arrowButton,
+  numberButton,
+  selectedButton,
+} from "./styles";
+
+import RightChevronIcon from "@assets/RightChevronIcon";
 
 export default function PaginateNavigator({
   currentPage,
@@ -34,6 +43,10 @@ export default function PaginateNavigator({
     if (nextPage <= maxPage) {
       onChangePage(nextPage);
     }
+  }
+
+  if (count === 0) {
+    return <p css={noPostText}>아직 작성된 글이 없어요!</p>;
   }
 
   if (maxPage === 1) {
