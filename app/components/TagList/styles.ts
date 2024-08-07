@@ -15,7 +15,8 @@ export const tagContainer = {
   cursor: "pointer",
 
   "&:hover": {
-    p: { filter: "none" },
+    background: COLOR.PRIMARY.STANDARD,
+    p: { filter: "none", color: COLOR.TEXT.REVERSE },
   },
 };
 
