@@ -13,6 +13,7 @@ export interface SupabaseKey {
 export interface Tag {
   title: string;
   isSpoiler: boolean;
+  content: string[];
 }
 
 export const NORMAL_PAGE = "post";
