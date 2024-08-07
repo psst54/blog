@@ -2,6 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 import type { Post } from "~/types";
 import { POST_DETAIL_ATTR, POST_TABLE } from ".";
+import getTagListFromPost from "./getTagListFromPost";
 
 export async function getPostById({
   supabaseClient,
@@ -16,11 +17,10 @@ export async function getPostById({
     .eq("id", postId)
     .single();
 
-  const { data: tagData, error: tagError } = await supabaseClient
-    .from("posts_tags")
-    .select("is_spoiler, tags ( id, title, content )")
-    .eq("post_id", postId)
-    .order("created_at", { ascending: true });
+  const tagData = await getTagListFromPost({
+    supabaseClient,
+    postId,
+  });
 
   if (error) {
     return null;
@@ -28,9 +28,6 @@ export async function getPostById({
 
   return {
     ...data,
-    tags: tagData?.map((tag) => ({
-      ...tag.tags,
-      isSpoiler: tag.is_spoiler,
-    })),
+    tags: tagData,
   } as unknown as Post; // [todo] : fix unknown
 }

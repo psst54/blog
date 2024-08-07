@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 import { POST_SUMMARY_ATTR, POST_TABLE } from ".";
+import addTagListToPostList from "./addTagListToPostList";
 
 export async function getSubBlogMainPosts({
   supabaseClient,
@@ -20,5 +21,8 @@ export async function getSubBlogMainPosts({
     return null;
   }
 
-  return postData;
+  return await addTagListToPostList({
+    supabaseClient,
+    postList: postData,
+  });
 }

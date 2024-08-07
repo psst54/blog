@@ -2,6 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 import { NORMAL_PAGE, type Post } from "~/types";
 import { POST_SUMMARY_ATTR, POST_TABLE } from ".";
+import addTagListToPostList from "./addTagListToPostList";
 
 export async function getRecentPostList({
   supabaseClient,
@@ -26,5 +27,8 @@ export async function getRecentPostList({
 
   if (error) return [];
 
-  return data;
+  return await addTagListToPostList({
+    supabaseClient,
+    postList: data,
+  });
 }
