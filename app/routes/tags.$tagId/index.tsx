@@ -1,11 +1,17 @@
 import { useLoaderData } from "@remix-run/react";
 import PostDatabase from "../$subBlogId.$postId/components/PostDatabase";
+import TagHeader from "./components/TagHeader";
 
 export { loader } from "./utils/loader";
 // export { sitemap } from "./utils/sitemap";
 
 export default function SubBlog() {
-  const { postList } = useLoaderData();
+  const { tagData, postList } = useLoaderData();
 
-  return <PostDatabase posts={postList} />;
+  return (
+    <>
+      <TagHeader tagData={tagData} />
+      <PostDatabase posts={postList} />
+    </>
+  );
 }
