@@ -8,8 +8,11 @@ export const tagListContainer = {
 
 export const tagContainer = {
   padding: "0.1rem 0.75rem",
+  background: "transparent",
   border: `1px solid ${COLOR.PRIMARY.STANDARD}`,
   borderRadius: "2rem",
+
+  cursor: "pointer",
 
   "&:hover": {
     p: { filter: "none" },
@@ -17,6 +20,7 @@ export const tagContainer = {
 };
 
 export const tagText = {
+  fontSize: "1rem",
   color: COLOR.TEXT.TAG,
 };
 

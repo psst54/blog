@@ -11,6 +11,7 @@ export interface SupabaseKey {
 }
 
 export interface Tag {
+  id: string;
   title: string;
   isSpoiler: boolean;
   content: string[];

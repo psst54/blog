@@ -3,8 +3,14 @@ import type { Tag } from "~/types";
 
 export default function TagItem({ item }: { item: Tag }) {
   return (
-    <div css={tagContainer}>
+    <button
+      onClick={(event) => {
+        event.preventDefault();
+        window.location.href = `/tags/${item.id}`;
+      }}
+      css={tagContainer}
+    >
       <p css={[tagText, item.isSpoiler && spoiler]}>{item.title}</p>
-    </div>
+    </button>
   );
 }
