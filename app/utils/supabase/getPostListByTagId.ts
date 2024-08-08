@@ -23,8 +23,8 @@ export async function getPostListByTagId({
   }
 
   const postIdList = data.map((datum) => datum.post_id);
-  const postPromiseList = postIdList?.map(
-    (postId) => getPostById({ supabaseClient, postId }) // [todo] get only summary data
+  const postPromiseList = postIdList?.map((postId) =>
+    getPostById({ supabaseClient, postId, isDetail: false })
   );
   const postList = (await Promise.all(postPromiseList)).filter(
     (post) => post !== null
