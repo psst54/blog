@@ -6,7 +6,6 @@ import addTagListToPostList from "./addTagListToPostList";
 
 export async function getRecentPostList({
   supabaseClient,
-  subBlogId = "cse",
   count = 10,
   showAll = true,
 }: {
@@ -19,7 +18,6 @@ export async function getRecentPostList({
     .from(POST_TABLE)
     .select(POST_SUMMARY_ATTR)
     .in("show_main", showAll ? [true, false] : [true])
-    // .eq("sub_blog", subBlogId)
     .eq("type", NORMAL_PAGE)
     .order("created_at", { ascending: false })
     .limit(count)

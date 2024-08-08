@@ -33,7 +33,7 @@ export interface Post {
   sub_blog: string;
   created_at?: string;
   last_edited_at?: string;
-  tags?: Tag[];
+  tags: Tag[];
   thumbnail?: string;
   emoji?: string;
   content: string;

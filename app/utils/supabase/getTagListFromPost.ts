@@ -1,5 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
+import type { Tag } from "~/types";
+
 import { POST_TAG_TABLE, TAG_JOIN_ATTR } from ".";
 
 export default async function getTagListFromPost({
@@ -8,15 +10,25 @@ export default async function getTagListFromPost({
 }: {
   supabaseClient: SupabaseClient<Database, "public">;
   postId: string;
-}) {
-  return (
-    await supabaseClient
-      .from(POST_TAG_TABLE)
-      .select(TAG_JOIN_ATTR)
-      .eq("post_id", postId)
-      .order("created_at", { ascending: true })
-  ).data?.map((tag) => ({
+}): Promise<Tag[]> {
+  const { data, error } = await supabaseClient
+    .from(POST_TAG_TABLE)
+    .select(TAG_JOIN_ATTR)
+    .eq("post_id", postId)
+    .order("created_at", { ascending: true })
+    .returns<RawTag[]>();
+
+  if (error || data === null) {
+    return [];
+  }
+
+  return data.map((tag) => ({
     ...tag.tags,
     isSpoiler: tag.is_spoiler,
   }));
+}
+
+interface RawTag {
+  is_spoiler: boolean;
+  tags: { id: string; title: string; content: string[] };
 }

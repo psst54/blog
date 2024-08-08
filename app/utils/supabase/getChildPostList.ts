@@ -21,7 +21,7 @@ export async function getChildPostList({
     .order("created_at", { ascending: false })
     .returns<Post[]>();
 
-  if (error) {
+  if (error || data === null) {
     return [];
   }
   return await addTagListToPostList({
