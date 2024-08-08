@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import { POST_TAG_TABLE, TAG_ATTR } from ".";
+import { POST_TAG_TABLE, TAG_JOIN_ATTR } from ".";
 
 export default async function getTagListFromPost({
   supabaseClient,
@@ -12,7 +12,7 @@ export default async function getTagListFromPost({
   return (
     await supabaseClient
       .from(POST_TAG_TABLE)
-      .select(TAG_ATTR)
+      .select(TAG_JOIN_ATTR)
       .eq("post_id", postId)
       .order("created_at", { ascending: true })
   ).data?.map((tag) => ({

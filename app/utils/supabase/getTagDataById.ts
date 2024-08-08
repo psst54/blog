@@ -1,7 +1,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
+import { TAG_ATTR, TAG_TABLE } from ".";
 
-export async function getTagData({
+export async function getTagDataById({
   supabaseClient,
   tagId,
 }: {
@@ -9,8 +10,8 @@ export async function getTagData({
   tagId: string;
 }) {
   const { data } = await supabaseClient
-    .from("tags")
-    .select()
+    .from(TAG_TABLE)
+    .select(TAG_ATTR)
     .eq("id", tagId)
     .single();
 
