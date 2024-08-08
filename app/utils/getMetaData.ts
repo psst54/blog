@@ -31,7 +31,7 @@ export default function getMetaData({
   if (tagList) {
     data.push({
       name: "keywords",
-      content: tagList.map((tag: Tag) => tag.text).join(", "),
+      content: tagList.map((tag: Tag) => tag.content.join(", ")).join(", "),
     });
   }
 

@@ -11,8 +11,10 @@ export interface SupabaseKey {
 }
 
 export interface Tag {
-  text: string;
+  id: string;
+  title: string;
   isSpoiler: boolean;
+  content: string[];
 }
 
 export const NORMAL_PAGE = "post";
@@ -31,7 +33,7 @@ export interface Post {
   sub_blog: string;
   created_at?: string;
   last_edited_at?: string;
-  tags?: Tag[];
+  tags: Tag[];
   thumbnail?: string;
   emoji?: string;
   content: string;

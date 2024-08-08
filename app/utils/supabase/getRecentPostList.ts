@@ -2,10 +2,10 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 import { NORMAL_PAGE, type Post } from "~/types";
 import { POST_SUMMARY_ATTR, POST_TABLE } from ".";
+import addTagListToPostList from "./addTagListToPostList";
 
 export async function getRecentPostList({
   supabaseClient,
-  subBlogId = "cse",
   count = 10,
   showAll = true,
 }: {
@@ -18,7 +18,6 @@ export async function getRecentPostList({
     .from(POST_TABLE)
     .select(POST_SUMMARY_ATTR)
     .in("show_main", showAll ? [true, false] : [true])
-    // .eq("sub_blog", subBlogId)
     .eq("type", NORMAL_PAGE)
     .order("created_at", { ascending: false })
     .limit(count)
@@ -26,5 +25,8 @@ export async function getRecentPostList({
 
   if (error) return [];
 
-  return data;
+  return await addTagListToPostList({
+    supabaseClient,
+    postList: data,
+  });
 }

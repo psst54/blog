@@ -1,6 +1,9 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
+import type { Post } from "~/types";
+
 import { POST_SUMMARY_ATTR, POST_TABLE } from ".";
+import addTagListToPostList from "./addTagListToPostList";
 
 export async function getSubBlogMainPosts({
   supabaseClient,
@@ -14,11 +17,15 @@ export async function getSubBlogMainPosts({
     .select(POST_SUMMARY_ATTR)
     .eq("sub_blog", subBlogId)
     .is("parent_id", null)
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .returns<Post[]>();
 
-  if (postError) {
-    return null;
+  if (postError || postData === null) {
+    return [];
   }
 
-  return postData;
+  return await addTagListToPostList({
+    supabaseClient,
+    postList: postData,
+  });
 }

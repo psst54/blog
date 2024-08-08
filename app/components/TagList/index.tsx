@@ -8,8 +8,8 @@ export default function TagList({ data }: { data: Tag[] | null | undefined }) {
 
   return (
     <div css={tagListContainer}>
-      {(data as Tag[]).map((tag: Tag) => (
-        <TagItem key={tag.text} item={tag} />
+      {(data as Tag[]).map((tag) => (
+        <TagItem key={tag.title} item={tag} />
       ))}
     </div>
   );
