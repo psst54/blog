@@ -13,14 +13,10 @@ import {
 import type { Env } from "~/types";
 
 import * as gtag from "@utils/gtags.client";
-import getMetaData from "@utils/getMetaData";
 
 import { Fonts, GTag } from "@components/root";
 import { globalStyleCss } from "@styles/global";
-
-export const meta = () => {
-  return getMetaData({});
-};
+export { meta } from "./meta";
 
 let isInitialRender = true;
 
