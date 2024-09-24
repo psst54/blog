@@ -26,7 +26,7 @@ export default function PostHeader({
   }, [id, categoryData]);
 
   return (
-    <div css={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+    <header css={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
       <Breadcrumb breadcrumbData={breadcrumbData} />
 
       <h1 css={Title}>{title}</h1>
@@ -39,6 +39,6 @@ export default function PostHeader({
       )}
 
       <hr css={DivideLine} />
-    </div>
+    </header>
   );
 }
