@@ -2,11 +2,13 @@ const SITE_NAME = "PSST54's log";
 const AUTHOR = "psst54";
 
 export default function getMetaData({
+  pathname,
   title,
   subTitle,
   tagList,
   thumbnail,
 }: {
+  pathname: string;
   title?: string;
   subTitle?: string;
   tagList?: string;
@@ -32,6 +34,18 @@ export default function getMetaData({
   if (thumbnail) {
     data.push({ name: "og:image", content: thumbnail });
   }
+
+  data.push({
+    tagName: "link",
+    rel: "canonical",
+    href: `https://blog.psst54.me${pathname}`,
+  });
+
+  data.push({ name: "robots", content: "index, follow" });
+  data.push({ name: "NaverBot", content: "All" });
+  data.push({ name: "NaverBot", content: "index,follow" });
+  data.push({ name: "Yeti", content: "All" });
+  data.push({ name: "Yeti", content: "index,follow" });
 
   return data;
 }
