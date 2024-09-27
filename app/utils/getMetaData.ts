@@ -1,5 +1,3 @@
-import type { Tag } from "~/types";
-
 const SITE_NAME = "PSST54's log";
 const AUTHOR = "psst54";
 
@@ -11,7 +9,7 @@ export default function getMetaData({
 }: {
   title?: string;
   subTitle?: string;
-  tagList?: Tag[];
+  tagList?: string;
   thumbnail?: string;
 }) {
   const data = [];
@@ -20,20 +18,16 @@ export default function getMetaData({
   data.push({ name: "og:site_name", content: SITE_NAME });
   data.push({ name: "og:type", content: "website" });
 
-  data.push({ title: title ? `${title} | ${SITE_NAME}` : SITE_NAME });
-  data.push({ name: "og:title", content: title || SITE_NAME });
+  const titleText = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+  data.push({ title: titleText });
+  data.push({ name: "og:title", content: titleText });
 
-  if (subTitle) {
-    data.push({ name: "description", content: subTitle });
-    data.push({ name: "og:description", content: subTitle });
-  }
+  const subTitleText = subTitle || "FE 개발자가 공부하는 이야기";
+  data.push({ name: "description", content: subTitleText });
+  data.push({ name: "og:description", content: subTitleText });
 
-  if (tagList) {
-    data.push({
-      name: "keywords",
-      content: tagList.map((tag: Tag) => tag.content.join(", ")).join(", "),
-    });
-  }
+  const tagText = tagList || "코딩";
+  data.push({ name: "keywords", content: tagText });
 
   if (thumbnail) {
     data.push({ name: "og:image", content: thumbnail });
