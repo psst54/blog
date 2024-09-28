@@ -11,13 +11,19 @@ export { meta } from "./utils/meta";
 export default function Index() {
   const {
     recentPostList,
+    pinnedPostList,
     supabaseKey,
   }: { recentPostList: Post[]; supabaseKey: SupabaseKey } = useLoaderData();
 
   return (
     <Page
       navbar={<NavBar supabaseKey={supabaseKey} />}
-      body={<Content postList={recentPostList} />}
+      body={
+        <Content
+          recentPostList={recentPostList}
+          pinnedPostList={pinnedPostList}
+        />
+      }
     />
   );
 }
