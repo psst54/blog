@@ -1,12 +1,16 @@
 import type { Post } from "~/types";
 import PostListView from "@components/PostListView";
-import Header from "./Header";
+import PinnedHeader from "./PinnedHeader";
+import LatestHeader from "./LatestHeader";
 
 export default function Content({ postList }: { postList: Post[] }) {
   return (
-    <section>
-      <Header />
+    <div>
+      {/* <PinnedHeader />
+      <PostListView posts={postList} /> */}
+
+      <LatestHeader />
       <PostListView posts={postList} />
-    </section>
+    </div>
   );
 }
