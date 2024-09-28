@@ -10,7 +10,7 @@ export default function Thumbnail({ thumbnail }: { thumbnail: string }) {
         height: "50%",
 
         objectFit: "cover",
-        borderRadius: `calc(${SIZE.BORDER_RADIUS.POST_CARD} - ${SIZE.BORDER.POST_CARD})`,
+        borderRadius: `calc(${SIZE.BORDER_RADIUS.POST_CARD} + ${SIZE.BORDER.POST_CARD})`,
       }}
     />
   );
