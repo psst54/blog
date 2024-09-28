@@ -8,7 +8,7 @@ export const SIZE = {
   },
 
   BORDER_RADIUS: {
-    POST_CARD: "1rem",
+    POST_CARD: "1.5rem",
   },
 };
 

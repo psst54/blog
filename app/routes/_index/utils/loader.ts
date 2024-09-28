@@ -4,6 +4,7 @@ import type { Database } from "@supabase/types";
 import type { Env } from "~/types";
 
 import { getRecentPostList } from "@utils/supabase/getRecentPostList";
+import { getPinnedPostList } from "~/utils/supabase/getPinnedPostList";
 
 export async function loader({ context }: LoaderArgs) {
   const { SUPABASE_URL, SUPABASE_KEY } = context.env as Env;
@@ -13,5 +14,13 @@ export async function loader({ context }: LoaderArgs) {
     supabaseClient,
     showAll: false,
   });
-  return { recentPostList, supabaseKey: { SUPABASE_URL, SUPABASE_KEY } };
+
+  const pinnedPostList = await getPinnedPostList({
+    supabaseClient,
+  });
+  return {
+    recentPostList,
+    pinnedPostList,
+    supabaseKey: { SUPABASE_URL, SUPABASE_KEY },
+  };
 }
