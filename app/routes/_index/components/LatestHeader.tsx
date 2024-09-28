@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react";
 import { link, header, title, border, line, img } from "./styles";
+import RightChevronIcon from "~/assets/RightChevronIcon";
 
 export default function latestHeader() {
   return (
@@ -13,11 +14,11 @@ export default function latestHeader() {
         </h1>
 
         <h1 css={title}>
-          <img src="ocean3.webp" alt="ocean" css={[img, { width: "5rem" }]} />
+          <img src="ocean1.webp" alt="ocean" css={[img, { width: "5rem" }]} />
           <div css={line} />
           <span css={border}>View</span>
           <span css={border}>All</span>
-          <img src="ocean1.webp" alt="ocean" css={[img, { width: "6rem" }]} />
+          <RightChevronIcon size="1.5rem" />
         </h1>
       </header>
     </Link>

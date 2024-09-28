@@ -24,7 +24,6 @@ export const title = {
   gap: "0.5rem",
   alignItems: "center",
 
-  color: COLOR.TEXT.STANDARD,
   fontSize: "1.75rem",
   fontWeight: 900,
 };
@@ -35,8 +34,10 @@ export const border = {
 
   height: "3rem",
   padding: "0 1rem",
+  background: COLOR.TEXT.STANDARD,
 
-  border: `3px solid ${COLOR.TEXT.STANDARD}`,
+  color: COLOR.TEXT.REVERSE,
+
   borderRadius: "1.5rem",
 };
 

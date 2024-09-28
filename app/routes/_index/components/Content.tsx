@@ -6,12 +6,16 @@ import LatestHeader from "./LatestHeader";
 
 export default function Content({ postList }: { postList: Post[] }) {
   return (
-    <div>
-      <PinnedHeader />
-      <PostGridView posts={postList} />
+    <div css={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+      <div>
+        <PinnedHeader />
+        <PostGridView posts={postList} />
+      </div>
 
-      <LatestHeader />
-      <PostListView posts={postList} />
+      <div>
+        <LatestHeader />
+        <PostListView posts={postList} />
+      </div>
     </div>
   );
 }
