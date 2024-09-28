@@ -1,4 +1,5 @@
 import { COLOR } from "@constants/color";
+import { SIZE } from "@constants/size";
 
 export const container = {
   display: "flex",
@@ -9,8 +10,8 @@ export const container = {
   width: "14rem",
   height: "18rem",
 
-  border: "3px solid black",
-  borderRadius: "1rem",
+  border: `${SIZE.BORDER.POST_CARD} solid black`,
+  borderRadius: SIZE.BORDER_RADIUS.POST_CARD,
 
   "&:hover": {
     h2: { color: COLOR.TEXT.LINK },

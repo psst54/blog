@@ -4,7 +4,7 @@ export const SIZE = {
   CONTENT_MAX_WIDTH: "60rem",
 
   BORDER: {
-    POST_CARD: "2px",
+    POST_CARD: "3px",
   },
 
   BORDER_RADIUS: {
