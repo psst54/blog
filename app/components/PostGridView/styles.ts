@@ -1,17 +1,29 @@
 import { COLOR } from "@constants/color";
+import { background } from "../Page/styles";
 
 export const container = {
   display: "flex",
-  width: "100%",
-  overflow: "auto",
   gap: "1rem",
 
+  width: "100%",
   margin: "1rem 0",
+
+  overflow: "auto",
+
+  "&::-webkit-scrollbar-thumb": {
+    background: "transparent",
+  },
+
+  "&:hover": {
+    "&::-webkit-scrollbar-thumb": {
+      background: COLOR.BORDER.LIGHT,
+    },
+  },
 };
 
 export const linkStyle = {
-  textDecoration: "none",
   color: "initial",
+  textDecoration: "none",
 };
 
 export const divideLine = {

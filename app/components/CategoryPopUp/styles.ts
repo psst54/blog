@@ -22,9 +22,6 @@ export const ButtonDescriptionText = { fontSize: "1.25rem" };
 
 export const CategorySlide = {
   position: "fixed" as const,
-  width: "90vw",
-  maxWidth: "400px",
-  height: "100dvh",
   top: 0,
   right: 0,
 
@@ -32,8 +29,11 @@ export const CategorySlide = {
   flexDirection: "column" as const,
   gap: "1rem",
 
-  background: COLOR.BACKGROUND.STANDARD,
+  width: "90vw",
+  maxWidth: "400px",
+  height: "100dvh",
   padding: "1.25rem",
+  background: COLOR.BACKGROUND.STANDARD,
 
   borderLeft: "1px solid black",
 
