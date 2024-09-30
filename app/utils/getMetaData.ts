@@ -38,7 +38,7 @@ export default function getMetaData({
   data.push({
     tagName: "link",
     rel: "canonical",
-    href: `https://blog.psst54.me${pathname}`,
+    href: `https://psst54.me${pathname}`,
   });
 
   data.push({ name: "robots", content: "index, follow" });
