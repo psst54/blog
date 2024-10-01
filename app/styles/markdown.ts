@@ -3,12 +3,24 @@ import { SIZE, mq } from "@constants/size";
 
 export const styledH1 = {
   padding: "1rem 0 0 0",
+
+  code: {
+    padding: "0 0.5rem",
+    borderRadius: "0.75rem",
+  },
+
   [mq[0]]: {
     scrollMarginTop: SIZE.TOP_NAV_HEIGHT,
   },
 };
 export const styledH2 = {
   padding: "1rem 0 0.25rem 0",
+
+  code: {
+    padding: "0 0.5rem",
+    borderRadius: "0.75rem",
+  },
+
   [mq[0]]: {
     scrollMarginTop: SIZE.TOP_NAV_HEIGHT,
   },
@@ -32,8 +44,9 @@ export const styledA = {
 };
 export const styledCode = {
   padding: "0 0.25rem",
-  borderRadius: "0.3rem",
-  background: COLOR.BACKGROUND.TO_SECONDARY,
+  background: COLOR.BACKGROUND.CODE,
+  border: "1px solid " + COLOR.BORDER.CODE,
+  borderRadius: "0.4rem",
 
   color: "inherit",
   fontFamily: "Pretendard",

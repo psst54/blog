@@ -1,24 +1,25 @@
 const PALETTE = {
   PURPLE: {
-    ULTRA_LIGHT: "#e5e1fc",
+    ULTRA_LIGHT: "#efebff",
     VERY_LIGHT: "#c1b4fc",
     LIGHT: "#ab94fe",
-    STANDARD: "#927bff",
-    DARK: "#6d52eb",
+    STANDARD: "#7a5eff",
+    DARK: "#5e42e3",
   },
 };
 
 export const COLOR = {
   BACKGROUND: {
-    STANDARD: "#fcfcfd",
-    TO_SECONDARY: "#e1e7f0",
+    STANDARD: "#ffffff",
     HIGHLIGHT: PALETTE.PURPLE.STANDARD,
+    CODE: PALETTE.PURPLE.ULTRA_LIGHT,
   },
   BORDER: {
     STANDARD: "#484561",
     LIGHT: "#C1BACC",
     DARK: "#000",
     HIGHLIGHT: PALETTE.PURPLE.STANDARD,
+    CODE: PALETTE.PURPLE.VERY_LIGHT + "55",
   },
   TEXT: {
     STANDARD: "#000",
