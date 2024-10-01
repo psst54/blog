@@ -65,7 +65,6 @@ export const styledBlockquote = {
 export const styledImg = {
   margin: "auto",
   marginBottom: "calc(6px + 0.25rem)",
-  display: "block",
 
   maxWidth: "100%",
   border: `2px solid ${COLOR.BORDER.STANDARD}`,

@@ -81,7 +81,8 @@ function renderNodes(node, index) {
         }
 
         case "img": {
-          return <Img key={index} {...node.properties} />;
+          const size = node.properties.alt?.split(" | ")[1];
+          return <Img key={index} size={size} {...node.properties} />;
         }
 
         case "a": {
