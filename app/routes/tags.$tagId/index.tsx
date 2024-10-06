@@ -3,7 +3,6 @@ import PostDatabase from "../$subBlogId.$postId/components/PostDatabase";
 import TagHeader from "./components/TagHeader";
 
 export { loader } from "./utils/loader";
-// export { sitemap } from "./utils/sitemap";
 
 export default function SubBlog() {
   const { tagData, postList } = useLoaderData();

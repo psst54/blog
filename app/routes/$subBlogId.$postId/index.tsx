@@ -7,6 +7,7 @@ import PostDatabase from "./components/PostDatabase";
 
 export { loader } from "./utils/loader";
 export { meta } from "./utils/meta";
+export { sitemap } from "./utils/sitemap";
 
 export default function PostPage() {
   const { postData, parsedContent, childPostList } = useLoaderData();

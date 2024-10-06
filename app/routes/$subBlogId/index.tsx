@@ -10,7 +10,6 @@ import NavBar from "@components/NavBar";
 import Page from "@components/Page";
 
 export { loader } from "./utils/loader";
-export { sitemap } from "./utils/sitemap";
 
 export default function SubBlog() {
   const { subBlogId, supabaseUrl, supabaseKey } = useLoaderData();
