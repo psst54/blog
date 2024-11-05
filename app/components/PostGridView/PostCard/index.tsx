@@ -1,7 +1,8 @@
 import { lazy, Suspense } from "react";
 import TagList from "@components/TagList";
-import { container, textArea, titleArea, title, subTitle } from "./styles";
+import { container, textArea, titleArea, subTitle } from "./styles";
 import type { Post } from "~/types";
+import Text from "~/components/atoms/Text";
 
 const Thumbnail = lazy(() => import("./Thumbnail"));
 
@@ -16,7 +17,7 @@ export default function PostCard({ postData }: { postData: Post }) {
 
       <div css={textArea}>
         <div css={titleArea}>
-          <h2 css={title}>{postData.title}</h2>
+          <Text.Title level={2}>{postData.title}</Text.Title>
           <p css={subTitle}>{postData.sub_title}</p>
         </div>
 

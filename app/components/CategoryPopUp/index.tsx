@@ -64,7 +64,7 @@ export default function CategoryPopUp({
             >
               <RightChevronIcon />
             </button>
-            <h2 css={ButtonDescriptionText}>접기</h2>
+            <p css={ButtonDescriptionText}>접기</p>
           </div>
 
           <div css={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>

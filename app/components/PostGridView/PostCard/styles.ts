@@ -14,7 +14,7 @@ export const container = {
   borderRadius: SIZE.BORDER_RADIUS.POST_CARD,
 
   "&:hover": {
-    h2: { color: COLOR.TEXT.LINK },
+    "*": { color: COLOR.TEXT.LINK },
   },
 };
 
@@ -31,10 +31,6 @@ export const titleArea = {
   display: "flex",
   flexDirection: "column" as const,
   gap: "0.25rem",
-};
-
-export const title = {
-  wordBreak: "keep-all" as const,
 };
 
 export const subTitle = {

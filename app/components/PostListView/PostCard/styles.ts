@@ -26,10 +26,6 @@ export const titleArea = {
   gap: "0.25rem",
 };
 
-export const title = {
-  wordBreak: "keep-all" as const,
-};
-
 export const subTitle = {
   color: COLOR.TEXT.SECONDARY,
   wordBreak: "keep-all" as const,
