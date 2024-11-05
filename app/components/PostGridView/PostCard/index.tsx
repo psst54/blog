@@ -18,7 +18,7 @@ export default function PostCard({ postData }: { postData: Post }) {
       <div css={textArea}>
         <div css={titleArea}>
           <Text.Title level={2}>{postData.title}</Text.Title>
-          <p css={subTitle}>{postData.sub_title}</p>
+          <Text.Body level={2}>{postData.sub_title}</Text.Body>
         </div>
 
         <TagList data={postData.tags} />

@@ -31,10 +31,7 @@ export const styledH3 = {
     scrollMarginTop: SIZE.TOP_NAV_HEIGHT,
   },
 };
-export const styledP = {
-  lineHeight: 1.6,
-  marginBottom: "0.25rem",
-};
+
 export const styledA = {
   color: COLOR.TEXT.LINK,
   textDecoration: "underline",

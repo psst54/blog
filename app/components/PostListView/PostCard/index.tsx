@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import TagList from "@components/TagList";
-import { container, textArea, titleArea, subTitle } from "./styles";
+import { container, textArea, titleArea } from "./styles";
 import type { Post } from "~/types";
 import Text from "~/components/atoms/Text";
 
@@ -12,7 +12,7 @@ export default function PostCard({ postData }: { postData: Post }) {
       <div css={textArea}>
         <div css={titleArea}>
           <Text.Title level={2}>{postData.title}</Text.Title>
-          <p css={subTitle}>{postData.sub_title}</p>
+          <Text.Body level={2}>{postData.sub_title}</Text.Body>
         </div>
 
         <TagList data={postData.tags} />

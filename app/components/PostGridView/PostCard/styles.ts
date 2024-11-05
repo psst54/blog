@@ -32,8 +32,3 @@ export const titleArea = {
   flexDirection: "column" as const,
   gap: "0.25rem",
 };
-
-export const subTitle = {
-  color: COLOR.TEXT.SECONDARY,
-  wordBreak: "keep-all" as const,
-};
