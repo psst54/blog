@@ -13,7 +13,11 @@ export default function Index() {
     recentPostList,
     pinnedPostList,
     supabaseKey,
-  }: { recentPostList: Post[]; supabaseKey: SupabaseKey } = useLoaderData();
+  }: {
+    recentPostList: Post[];
+    pinnedPostList: Post[];
+    supabaseKey: SupabaseKey;
+  } = useLoaderData();
 
   return (
     <Page
