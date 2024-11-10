@@ -20,7 +20,7 @@ export default function getMetaData({
   data.push({ name: "og:site_name", content: SITE_NAME });
   data.push({ name: "og:type", content: "website" });
 
-  const titleText = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+  const titleText = title || SITE_NAME;
   data.push({ title: titleText });
   data.push({ name: "og:title", content: titleText });
 
