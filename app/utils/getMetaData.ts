@@ -33,6 +33,7 @@ export default function getMetaData({
 
   if (thumbnail) {
     data.push({ name: "og:image", content: thumbnail });
+    data.push({ name: "twitter:image", content: thumbnail });
   }
 
   data.push({
@@ -46,6 +47,10 @@ export default function getMetaData({
   data.push({ name: "NaverBot", content: "index,follow" });
   data.push({ name: "Yeti", content: "All" });
   data.push({ name: "Yeti", content: "index,follow" });
+
+  data.push({ name: "twitter:card", content: "summary_large_image" });
+  data.push({ name: "twitter:title", content: titleText });
+  data.push({ name: "twitter:description", content: subTitleText });
 
   return data;
 }
