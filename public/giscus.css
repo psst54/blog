@@ -211,6 +211,7 @@ button:hover > svg,
 
 .form-control {
   background: transparent;
+  color: black;
 }
 
 .gsc-comment-content {
