@@ -85,6 +85,11 @@ main {
   --color-primer-shadow-inset: 0 0 transparent;
   --color-scale-gray-7: #373e47;
   --color-scale-blue-8: #143d79;
+  --color-purple-ultra-light: #efebff;
+  --color-purple-very-light: #c1b4fc;
+  --color-purple-light: #ab94fe;
+  --color-purple-standard: #7a5eff;
+  --color-purple-dark: #5e42e3;
 
   /*! Extensions from @primer/css/alerts/flash.scss */
   --color-social-reaction-bg-hover: var(--color-scale-gray-7);
@@ -109,17 +114,132 @@ main .pagination-loader-container {
   padding-bottom: 1rem;
 }
 
+.color-border-primary,
+.color-box-border-info,
+.gsc-reply-box,
+.form-control {
+  border-color: var(--color-purple-standard);
+}
+
+.color-text-primary {
+  color: var(--color-purple-standard);
+}
+
+.color-text-secondary {
+  color: var(--color-purple-light);
+}
+
+.link-primary {
+  color: var(--color-purple-standard);
+}
+
+button:hover > svg,
+.link-primary:hover,
+.link-secondary:hover {
+  color: var(--color-purple-dark);
+}
+
+.BtnGroup {
+  border: 1px solid var(--color-purple-standard);
+  border-radius: 5rem;
+  background: transparent;
+}
+.BtnGroup-item .btn {
+  border-radius: 5rem;
+  color: black;
+}
+.BtnGroup-item.BtnGroup-item--selected {
+  background-color: var(--color-purple-standard);
+  border: 1px solid var(--color-purple-standard);
+  border-radius: 5rem;
+}
+
+.BtnGroup-item--selected > .btn {
+  color: white;
+}
+
+.color-bg-primary {
+  background: white;
+}
+
+.color-bg-tertiary {
+  background: white;
+}
+
+.color-bg-canvas {
+  background: white;
+}
+
 .gsc-comments > .gsc-header {
   order: 1;
 }
 
+.gsc-comment-box-tabs {
+  border-start-end-radius: 0.25rem;
+  border-start-start-radius: 0.25rem;
+}
+
 .gsc-comments > .gsc-comment-box {
   order: 2;
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.25rem;
+  color: black;
+}
+
+.gsc-reactions-button,
+.gsc-social-reaction-summary-item {
+  background: transparent;
+  border-color: var(--color-purple-standard);
+  color: var(--color-purple-light);
+}
+.gsc-reactions-button > svg {
+  color: var(--color-purple-light);
+}
+.gsc-social-reaction-summary-item.has-reacted {
+  background: var(--color-purple-ultra-light);
+  border-color: var(--color-purple-standard);
+  color: var(--color-purple-dark);
+}
+
+.input-contrast {
+  background: transparent;
+}
+
+.input-contrast:focus {
+  background-color: transparent;
+}
+
+.form-control {
+  background: transparent;
+}
+
+.gsc-comment-content {
+  color: black;
 }
 
 .gsc-comments > .gsc-timeline {
   order: 3;
+}
+
+.btn {
+  background-color: var(--color-purple-light);
+  color: white;
+}
+.btn:hover {
+  background-color: var(--color-purple-very-light);
+  color: white;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--color-purple-dark);
+}
+.btn-primary:hover {
+  background-color: var(--color-purple-very-light);
+}
+.btn-primary:disabled {
+  background-color: var(--color-purple-ultra-light);
+  color: white;
 }
 
 .gsc-homepage-bg {
