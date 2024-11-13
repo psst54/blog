@@ -21,7 +21,7 @@ export default function Comment({ id }: { id: string | null }) {
       "data-reactions-enabled": "0",
       "data-emit-metadata": "0",
       "data-input-position": "bottom",
-      "data-theme": "light_high_contrast",
+      "data-theme": "https://psst54.me/giscus.css",
       "data-lang": "ko",
       crossOrigin: "anonymous",
       async: "true",

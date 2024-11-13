@@ -37,6 +37,7 @@ export default function PostPage() {
         <PostDatabase posts={childPostList} />
       )}
 
+      <hr css={{ margin: "2rem 0" }} />
       <Comment id={postData?.id} />
     </div>
   );
