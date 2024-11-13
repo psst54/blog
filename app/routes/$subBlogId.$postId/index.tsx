@@ -4,6 +4,7 @@ import { DIRECTORY_PAGE, NORMAL_PAGE, type Category } from "~/types";
 import PostHeader from "@components/PostHeader";
 import PostContent from "@components/PostContent";
 import PostDatabase from "./components/PostDatabase";
+import Comment from "./components/Comment";
 
 export { loader } from "./utils/loader";
 export { meta } from "./utils/meta";
@@ -35,6 +36,8 @@ export default function PostPage() {
       {postData.type === DIRECTORY_PAGE && (
         <PostDatabase posts={childPostList} />
       )}
+
+      <Comment id={postData?.id} />
     </div>
   );
 }
