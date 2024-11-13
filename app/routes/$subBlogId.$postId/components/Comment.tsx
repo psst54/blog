@@ -35,7 +35,7 @@ export default function Comment({ id }: { id: string | null }) {
     ref.current.appendChild(script);
 
     return () => {
-      ref.current.removeChild(script);
+      if (ref.current) ref.current.removeChild(script);
     };
   }, [id]);
 
