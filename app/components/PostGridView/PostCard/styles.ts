@@ -5,7 +5,6 @@ export const container = {
   display: "flex",
   flexDirection: "column" as const,
   justifyContent: "space-between",
-  gap: "1rem",
 
   width: "14rem",
   height: "18rem",
@@ -22,7 +21,7 @@ export const textArea = {
   display: "flex",
   flexDirection: "column" as const,
   gap: "0.5rem",
-  padding: "1rem",
+  margin: "1rem",
 
   overflow: "auto",
 };
