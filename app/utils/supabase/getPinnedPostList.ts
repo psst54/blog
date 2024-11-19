@@ -15,6 +15,7 @@ export async function getPinnedPostList({
     "cspg-design-system-text",
     "tanstack-query",
     "test-ssr-support",
+    "commit-message",
   ];
 
   const data = await Promise.all(
