@@ -12,8 +12,9 @@ export async function getPinnedPostList({
   const ID_LIST = [
     "awesome-resume-builder",
     "making-blog-with-remix",
-    "js-coding-test-1-input",
-    "cpp-std-sort",
+    "cspg-design-system-text",
+    "tanstack-query",
+    "test-ssr-support",
   ];
 
   const data = await Promise.all(
