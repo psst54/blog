@@ -11,7 +11,6 @@ export async function getPinnedPostList({
 }): Promise<Post[]> {
   const ID_LIST = [
     "awesome-resume-builder",
-    "making-blog-with-remix",
     "cspg-design-system-text",
     "tanstack-query",
     "test-ssr-support",
