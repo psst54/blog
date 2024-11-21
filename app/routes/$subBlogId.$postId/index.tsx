@@ -19,11 +19,7 @@ export default function PostPage() {
   }
 
   return (
-    <div
-      css={{
-        wordBreak: "break-word",
-      }}
-    >
+    <div>
       <PostHeader
         id={postData.id}
         title={postData.title}

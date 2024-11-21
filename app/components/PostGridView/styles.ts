@@ -1,12 +1,13 @@
 import { COLOR } from "@constants/color";
-import { background } from "../Page/styles";
+import { mq } from "~/constants/size";
 
 export const container = {
   display: "flex",
   gap: "1rem",
 
   width: "100%",
-  margin: "1rem 0",
+  marginTop: "1rem",
+  padding: "0 1rem",
 
   overflow: "auto",
 
@@ -19,6 +20,8 @@ export const container = {
       background: COLOR.BORDER.LIGHT,
     },
   },
+
+  [mq[1]]: { padding: "0 0.5rem" },
 };
 
 export const linkStyle = {

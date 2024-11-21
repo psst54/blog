@@ -18,10 +18,14 @@ export const contentWrapper = {
   gap: "1rem",
 
   width: "100%",
-  maxWidth: SIZE.CONTENT_MAX_WIDTH,
-  padding: "1.5rem",
+  maxWidth: "1280px",
+  padding: "1rem 0",
+
+  [mq[0]]: {
+    maxWidth: "100%",
+  },
 
   [mq[1]]: {
-    padding: "1rem",
+    padding: "0.5rem 0",
   },
 };

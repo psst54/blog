@@ -3,6 +3,7 @@ import PostListView from "@components/PostListView";
 import PostGridView from "@components/PostGridView";
 import PinnedHeader from "./PinnedHeader";
 import LatestHeader from "./LatestHeader";
+import { mq } from "~/constants/size";
 
 export default function Content({
   pinnedPostList,
@@ -12,7 +13,14 @@ export default function Content({
   recentPostList: Post[];
 }) {
   return (
-    <div css={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+    <div
+      css={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "2rem",
+        width: "100%",
+      }}
+    >
       <div>
         <PinnedHeader />
         <PostGridView posts={pinnedPostList} />
@@ -20,7 +28,9 @@ export default function Content({
 
       <div>
         <LatestHeader />
-        <PostListView posts={recentPostList} />
+        <div css={{ padding: "0 1rem", [mq[1]]: { padding: "0 0.5rem" } }}>
+          <PostListView posts={recentPostList} />
+        </div>
       </div>
     </div>
   );

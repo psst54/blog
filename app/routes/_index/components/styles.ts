@@ -1,4 +1,5 @@
 import { COLOR } from "@constants/color";
+import { mq } from "~/constants/size";
 
 export const link = {
   textDecoration: "none",
@@ -16,6 +17,12 @@ export const header = {
   display: "flex",
   flexDirection: "column",
   gap: "0.5rem",
+
+  padding: "0 1rem",
+
+  [mq[1]]: {
+    padding: "0 0.5rem",
+  },
 };
 
 export const title = {

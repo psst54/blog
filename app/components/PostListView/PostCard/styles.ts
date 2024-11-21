@@ -1,16 +1,21 @@
 import { COLOR } from "@constants/color";
+import { mq } from "~/constants/size";
 
 export const container = {
   width: "100%",
 
   display: "flex",
-  justifyContent: "space-between",
   gap: "1rem",
+  justifyContent: "space-between",
 
-  padding: "1.5rem 0",
+  padding: "1rem 0",
 
   "&:hover": {
     h2: { color: COLOR.TEXT.LINK },
+  },
+
+  [mq[1]]: {
+    gap: "0.5rem",
   },
 };
 
