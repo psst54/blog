@@ -21,6 +21,7 @@ export const POST_DETAIL_ATTR_LIST = [
   "created_at",
   "content",
   "type",
+  "thumbnail",
 ];
 
 export const POST_DETAIL_ATTR = POST_DETAIL_ATTR_LIST.join(", ");
