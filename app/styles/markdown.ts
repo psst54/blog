@@ -6,11 +6,6 @@ export const styledH1 = {
 
   fontWeight: 800,
 
-  code: {
-    padding: "0 0.5rem",
-    borderRadius: "0.75rem",
-  },
-
   [mq[0]]: {
     scrollMarginTop: SIZE.TOP_NAV_HEIGHT,
   },
@@ -19,11 +14,6 @@ export const styledH2 = {
   padding: "1.5rem 0 0.5rem 0",
 
   fontWeight: 900,
-
-  code: {
-    padding: "0 0.5rem",
-    borderRadius: "0.75rem",
-  },
 
   [mq[0]]: {
     scrollMarginTop: SIZE.TOP_NAV_HEIGHT,
@@ -39,13 +29,11 @@ export const styledH3 = {
   },
 };
 export const styledP = {
-  lineHeight: 1.6,
   marginBottom: "0.25rem",
 };
 export const styledA = {
   color: COLOR.TEXT.LINK,
   textDecoration: "underline",
-  lineHeight: 1.6,
 
   cursor: "pointer",
 };
@@ -56,7 +44,6 @@ export const styledCode = {
   borderRadius: "0.25rem",
 
   fontFamily: '"Pretendard Variable", Pretendard',
-  lineHeight: 1.6,
 };
 
 export const styledOl = {
@@ -68,15 +55,12 @@ export const styledUl = {
 export const styledLi = {
   margin: "0.3rem 0 0.3rem 1.5rem",
   marginLeft: "1.5rem",
-
-  lineHeight: 1.6,
 };
 
 export const styledBlockquote = {
   borderLeft: "3px solid black",
   margin: "0.5rem 0",
   padding: "0 1rem",
-  lineHeight: 1.6,
 };
 export const styledImg = {
   margin: "auto",

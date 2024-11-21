@@ -19,7 +19,7 @@ import { styledCodeWrapper } from "@styles/markdown";
 import { TBody, THead, Table, Td, Th } from "./Table";
 
 export default function Content({ content }) {
-  return <main>{renderNodes(content, 0)}</main>;
+  return <main css={{ lineHeight: 1.6 }}>{renderNodes(content, 0)}</main>;
 }
 
 function renderNodes(node, index) {
