@@ -4,6 +4,8 @@ import { SIZE, mq } from "@constants/size";
 export const styledH1 = {
   padding: "1.5rem 0 0 0",
 
+  fontWeight: 800,
+
   code: {
     padding: "0 0.5rem",
     borderRadius: "0.75rem",
@@ -16,6 +18,8 @@ export const styledH1 = {
 export const styledH2 = {
   padding: "1.5rem 0 0.5rem 0",
 
+  fontWeight: 900,
+
   code: {
     padding: "0 0.5rem",
     borderRadius: "0.75rem",
@@ -27,6 +31,9 @@ export const styledH2 = {
 };
 export const styledH3 = {
   padding: "1.25rem 0 0.5rem 0",
+
+  fontWeight: 900,
+
   [mq[0]]: {
     scrollMarginTop: SIZE.TOP_NAV_HEIGHT,
   },
