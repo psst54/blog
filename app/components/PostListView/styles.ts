@@ -1,16 +1,16 @@
-import { COLOR } from "@constants/color";
+import { mq } from "~/constants/size";
 
 export const container = {
-  display: "flex",
-  flexDirection: "column" as const,
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  columnGap: "3rem",
+
+  [mq[1]]: {
+    gridTemplateColumns: "1fr",
+  },
 };
 
 export const linkStyle = {
   textDecoration: "none",
   color: "initial",
-};
-
-export const divideLine = {
-  border: "none",
-  borderBottom: `1px solid ${COLOR.BORDER.LIGHT}`,
 };
