@@ -6,7 +6,6 @@ export const container = {
 
   display: "flex",
   gap: "1rem",
-  justifyContent: "space-between",
 
   padding: "1rem 0",
 

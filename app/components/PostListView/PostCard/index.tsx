@@ -8,6 +8,10 @@ const Thumbnail = lazy(() => import("./Thumbnail"));
 export default function PostCard({ postData }: { postData: Post }) {
   return (
     <article css={container}>
+      <Suspense fallback={<></>}>
+        <Thumbnail thumbnail={postData?.thumbnail} />
+      </Suspense>
+
       <div css={textArea}>
         <div css={titleArea}>
           <h2 css={title}>{postData.title}</h2>
@@ -16,12 +20,6 @@ export default function PostCard({ postData }: { postData: Post }) {
 
         <TagList data={postData.tags} />
       </div>
-
-      {postData.thumbnail && (
-        <Suspense fallback={<></>}>
-          <Thumbnail thumbnail={postData.thumbnail} />
-        </Suspense>
-      )}
     </article>
   );
 }
