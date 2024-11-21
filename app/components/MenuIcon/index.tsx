@@ -1,10 +1,9 @@
 import { COLOR } from "@constants/color";
-import { hoverUpwardMotion } from "@styles/hover";
 import type { Menu } from "~/types";
 
 export default function MenuIcon({ item }: { item: Menu }) {
   return (
-    <div css={[Button, hoverUpwardMotion]}>
+    <div css={Button}>
       <item.icon size="2.5rem" color={COLOR.BORDER.STANDARD} />
     </div>
   );
