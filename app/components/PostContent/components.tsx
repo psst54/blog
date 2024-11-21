@@ -11,11 +11,13 @@ import {
   styledBlockquote,
   styledImg,
   styledHr,
+  styledOl,
+  styledUl,
 } from "@styles/markdown";
 
 export function H1({ children }) {
   return (
-    <div css={{ display: "flex", marginBottom: "0.25rem" }}>
+    <div css={{ display: "flex", marginBottom: "0.5rem" }}>
       <h1 css={styledH1} children={children} id={getId(children)} />
       <hr
         css={{
@@ -56,6 +58,14 @@ export function Blockquote({ children }) {
 
 export function Code({ children }) {
   return <code css={styledCode} children={children} />;
+}
+
+export function Ol({ children }) {
+  return <ol css={styledOl} children={children} />;
+}
+
+export function Ul({ children }) {
+  return <ul css={styledUl} children={children} />;
 }
 
 export function Li({ children }) {

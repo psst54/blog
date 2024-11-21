@@ -1,7 +1,20 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { css } from "@emotion/react";
-import { H1, H2, H3, P, A, Img, Blockquote, Code, Li, Hr } from "./components";
+import {
+  H1,
+  H2,
+  H3,
+  P,
+  A,
+  Img,
+  Blockquote,
+  Code,
+  Li,
+  Hr,
+  Ul,
+  Ol,
+} from "./components";
 import { styledCodeWrapper } from "@styles/markdown";
 import { TBody, THead, Table, Td, Th } from "./Table";
 
@@ -123,9 +136,17 @@ function renderNodes(node, index) {
 
         case "ul": {
           return (
-            <ul key={index} {...node.properties}>
+            <Ul key={index} {...node.properties}>
               {node.children.map((child, index) => renderNodes(child, index))}
-            </ul>
+            </Ul>
+          );
+        }
+
+        case "ol": {
+          return (
+            <Ol key={index} {...node.properties}>
+              {node.children.map((child, index) => renderNodes(child, index))}
+            </Ol>
           );
         }
 

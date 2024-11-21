@@ -11,6 +11,8 @@ export const globalStyleCss = css`
     margin: 0;
     padding: 0;
 
+    word-break: keep-all;
+
     font-family: "Pretendard Variable", Pretendard, -apple-system,
       BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
       "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
