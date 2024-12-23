@@ -9,15 +9,15 @@ export default function latestHeader() {
         <h1 css={title}>
           <span css={border}>Latest</span>
           <img src="ocean2.webp" alt="ocean" css={img} />
-          <div css={line} />
           <span css={border}>Updates:</span>
+          <div css={line} />
         </h1>
 
         <h1 css={title}>
           <img src="ocean1.webp" alt="ocean" css={[img, { width: "5rem" }]} />
-          <div css={line} />
           <span css={border}>View</span>
           <span css={border}>All</span>
+          <div css={line} />
           <RightChevronIcon size="1.5rem" />
         </h1>
       </header>
