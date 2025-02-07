@@ -59,21 +59,40 @@ export const styledLi = {
 
 export const styledBlockquote = {
   borderLeft: "3px solid black",
-  margin: "0.5rem 0",
   padding: "0 1rem",
 };
+
 export const styledImg = {
-  margin: "auto",
+  margin: "0 auto",
   marginBottom: "calc(6px + 0.25rem)",
 
-  maxWidth: "100%",
+  maxWidth: "50%",
+
   border: `1px solid ${COLOR.BORDER.LIGHT}`,
   borderRadius: "0.5rem",
+
+  [mq[0]]: {
+    maxWidth: "60%",
+  },
+
+  [mq[1]]: {
+    maxWidth: "75%",
+  },
+
+  [mq[2]]: {
+    maxWidth: "90%",
+  },
+
+  [mq[3]]: {
+    maxWidth: "100%",
+  },
 };
+
 export const styledCodeWrapper = {
   color: COLOR.TEXT.REVERSE,
   span: { color: COLOR.TEXT.REVERSE },
 };
+
 export const styledHr = {
   margin: "1.5rem 0",
   border: "none",

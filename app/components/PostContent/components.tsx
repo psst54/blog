@@ -48,8 +48,8 @@ export function A({ href, children }) {
   return <Link target="_blank" css={styledA} to={href} children={children} />;
 }
 
-export function Img({ src, alt, size }) {
-  return <img css={[styledImg, { width: size }]} alt={alt} src={src} />;
+export function Img({ src, alt }) {
+  return <img css={styledImg} alt={alt} src={src} />;
 }
 
 export function Blockquote({ children }) {
