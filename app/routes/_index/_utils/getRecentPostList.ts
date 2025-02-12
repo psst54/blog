@@ -1,9 +1,9 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 
-import { POST_SUMMARY_ATTR, POST_TABLE } from ".";
-import addTagListToPostList from "./addTagListToPostList";
-import { type Post, DocumentType } from "~/types/post";
+import { POST_SUMMARY_ATTR, POST_TABLE } from "../../../utils/supabase";
+import addTagListToPostList from "../../../utils/supabase/addTagListToPostList";
+import { type Document, DocumentType } from "~/types/post";
 
 export async function getRecentPostList({
   supabaseClient,
@@ -14,7 +14,7 @@ export async function getRecentPostList({
   subBlogId?: string;
   count?: number;
   showAll?: boolean;
-}): Promise<Post[]> {
+}): Promise<Document[]> {
   const { data, error } = await supabaseClient
     .from(POST_TABLE)
     .select(POST_SUMMARY_ATTR)
@@ -22,7 +22,7 @@ export async function getRecentPostList({
     .eq("type", DocumentType.Post)
     .order("created_at", { ascending: false })
     .limit(count)
-    .returns<Post[]>();
+    .returns<Document[]>();
 
   if (error) return [];
 

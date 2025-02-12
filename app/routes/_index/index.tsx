@@ -6,11 +6,11 @@ import type { Category, Document } from "~/types/post";
 
 import NavBar from "@components/NavBar";
 import Page from "@components/Page";
-import Content from "./components/Content";
+import Content from "./_components/Content";
 import fetchCategoryData from "../$subBlogId/fetchCategoryData";
 import toggleCategory from "../$subBlogId/toggleCategory";
-import { getRecentPostList } from "~/utils/supabase/getRecentPostList";
-import { getPinnedPostList } from "~/utils/supabase/getPinnedPostList";
+import { getRecentPostList } from "./_utils/getRecentPostList";
+import { getPinnedPostList } from "./_utils/getPinnedPostList";
 
 export { meta } from "./_utils/meta";
 

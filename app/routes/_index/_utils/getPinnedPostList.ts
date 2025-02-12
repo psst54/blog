@@ -1,14 +1,15 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import { type Post } from "~/types";
-import addTagListToPostList from "./addTagListToPostList";
-import { getPostById } from "./getPostById";
+import { type Document } from "~/types/post";
+
+import addTagListToPostList from "../../../utils/supabase/addTagListToPostList";
+import { getPostById } from "../../../utils/supabase/getPostById";
 
 export async function getPinnedPostList({
   supabaseClient,
 }: {
   supabaseClient: SupabaseClient<Database, "public">;
-}): Promise<Post[]> {
+}): Promise<Document[]> {
   const PINNED_POST_LIST = [
     "connect-types-and-constants",
     "cspg-design-system-text",

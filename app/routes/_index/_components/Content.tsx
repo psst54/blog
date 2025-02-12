@@ -1,4 +1,4 @@
-import type { Post } from "~/types";
+import type { Document } from "~/types/post";
 import PostListView from "@components/PostListView";
 import PostGridView from "@components/PostGridView";
 import PinnedHeader from "./PinnedHeader";
@@ -9,8 +9,8 @@ export default function Content({
   pinnedPostList,
   recentPostList,
 }: {
-  pinnedPostList: Post[];
-  recentPostList: Post[];
+  pinnedPostList: Document[];
+  recentPostList: Document[];
 }) {
   return (
     <div
