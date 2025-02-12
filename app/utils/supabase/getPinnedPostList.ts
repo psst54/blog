@@ -9,16 +9,17 @@ export async function getPinnedPostList({
 }: {
   supabaseClient: SupabaseClient<Database, "public">;
 }): Promise<Post[]> {
-  const ID_LIST = [
-    "awesome-resume-builder",
+  const PINNED_POST_LIST = [
+    "connecting-types-and-constants",
     "cspg-design-system-text",
+    "awesome-resume-builder",
     "tanstack-query",
     "test-ssr-support",
     "commit-message",
   ];
 
   const data = await Promise.all(
-    ID_LIST.map(
+    PINNED_POST_LIST.map(
       async (id) =>
         await getPostById({
           supabaseClient,
