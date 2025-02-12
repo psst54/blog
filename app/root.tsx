@@ -16,7 +16,7 @@ export { meta } from "./_utils/meta";
 export { loader } from "./_utils/loader";
 
 export default function App() {
-  const { gaTrackingId, SupabaseCredential } = useLoaderData();
+  const { gaTrackingId, supabaseCredential } = useLoaderData();
 
   return (
     <html lang="ko">
@@ -29,7 +29,7 @@ export default function App() {
       </head>
 
       <body css={globalStyleCss}>
-        <Outlet context={{ SupabaseCredential }} />
+        <Outlet context={{ supabaseCredential }} />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

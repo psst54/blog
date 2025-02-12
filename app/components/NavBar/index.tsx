@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Link } from "@remix-run/react";
 
-import type { Category, SupabaseKey } from "~/types";
+import type { Category } from "~/types/post";
 import { SIZE } from "@constants/size";
 import CategoryPopUp from "@components/CategoryPopUp";
 import Logo from "./Logo";
@@ -10,11 +10,11 @@ import SearchIcon from "@assets/SearchIcon";
 import { navbar } from "./styles";
 
 export default function NavBar({
-  supabaseKey,
+  supabaseCredential,
   data,
   onToggleCategory,
 }: {
-  supabaseKey: SupabaseKey;
+  supabaseCredential: { url: string; key: string };
   data?: Category[];
   onToggleCategory?: (id: string) => void;
 }) {

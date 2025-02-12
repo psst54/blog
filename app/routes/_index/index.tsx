@@ -1,57 +1,50 @@
-import { useLoaderData } from "@remix-run/react";
-import type { Category, Post, SupabaseKey } from "~/types";
+import { useEffect, useState } from "react";
+import { useOutletContext } from "@remix-run/react";
+import { createClient } from "@supabase/supabase-js";
+
+import type { Category, Document } from "~/types/post";
 
 import NavBar from "@components/NavBar";
 import Page from "@components/Page";
 import Content from "./components/Content";
-import { useEffect, useState } from "react";
 import fetchCategoryData from "../$subBlogId/fetchCategoryData";
 import toggleCategory from "../$subBlogId/toggleCategory";
-import { createClient } from "@supabase/supabase-js";
 import { getRecentPostList } from "~/utils/supabase/getRecentPostList";
 import { getPinnedPostList } from "~/utils/supabase/getPinnedPostList";
 
-export { loader } from "./utils/loader";
-export { meta } from "./utils/meta";
+export { meta } from "./_utils/meta";
 
 export default function Index() {
-  const {
-    supabaseKey,
-  }: {
-    supabaseKey: SupabaseKey;
-  } = useLoaderData();
-  const [recentPostList, setRecentPostList] = useState<Post[]>([]);
-  const [pinnedPostList, setPinnedPostList] = useState<Post[]>([]);
+  const { supabaseCredential } = useOutletContext();
+  const [recentPostList, setRecentPostList] = useState<Document[]>([]);
+  const [pinnedPostList, setPinnedPostList] = useState<Document[]>([]);
   const [categoryData, setCategoryData] = useState<Category[]>([]);
 
   useEffect(() => {
     async function fetchData() {
       const supabaseClient = createClient(
-        supabaseKey.SUPABASE_URL,
-        supabaseKey.SUPABASE_KEY
+        supabaseCredential.url,
+        supabaseCredential.key
       );
 
-      const recentPostList = await getRecentPostList({
-        supabaseClient,
-        showAll: false,
-      });
-      setRecentPostList(recentPostList);
-
-      const pinnedPostList = await getPinnedPostList({
-        supabaseClient,
-      });
-      setPinnedPostList(pinnedPostList);
-
-      const data = await fetchCategoryData(
-        "cse",
-        supabaseKey.SUPABASE_URL,
-        supabaseKey.SUPABASE_KEY
+      setRecentPostList(
+        await getRecentPostList({
+          supabaseClient,
+          showAll: false,
+        })
       );
-      setCategoryData(data);
+      setPinnedPostList(
+        await getPinnedPostList({
+          supabaseClient,
+        })
+      );
+      setCategoryData(
+        await fetchCategoryData({ supabaseClient, subBlogId: "cse" })
+      );
     }
 
     fetchData();
-  }, [supabaseKey]);
+  }, [supabaseCredential]);
 
   const onToggleCategory = (id: string) => {
     setCategoryData(toggleCategory(id, categoryData));
@@ -63,7 +56,7 @@ export default function Index() {
         <NavBar
           data={categoryData}
           onToggleCategory={onToggleCategory}
-          supabaseKey={supabaseKey}
+          supabaseCredential={supabaseCredential}
         />
       }
       body={

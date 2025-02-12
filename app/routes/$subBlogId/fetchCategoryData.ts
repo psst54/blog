@@ -1,19 +1,20 @@
-import { createClient } from "@supabase/supabase-js";
-import { buildTree } from "@functions/category";
-import { getSubBlogCategory } from "@utils/supabase/getSubBlogCategory";
-import type { Database } from "@supabase/types";
-import type { Post } from "~/types";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
-export default async function fetchCategoryData(
-  subBlogId: string,
-  supabaseUrl: string,
-  supabaseKey: string
-) {
-  const supabaseClient = createClient<Database>(supabaseUrl, supabaseKey);
-  const postList: Post[] = await getSubBlogCategory({
+import type { Document } from "~/types/post";
+import { buildTree } from "~/functions/category";
+import { getSubBlogCategory } from "~/utils/supabase/getSubBlogCategory";
+
+export default async function fetchCategoryData({
+  supabaseClient,
+  subBlogId,
+}: {
+  supabaseClient: SupabaseClient;
+  subBlogId: string;
+}) {
+  const documentList: Document[] = await getSubBlogCategory({
     supabaseClient,
     subBlogId,
   });
 
-  return buildTree(postList);
+  return buildTree(documentList);
 }
