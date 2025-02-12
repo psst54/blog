@@ -1,5 +1,7 @@
 import type { LoaderArgs } from "@remix-run/cloudflare";
-import { NORMAL_PAGE, type Env, type Post } from "~/types";
+
+import type { Env } from "~/types";
+import { type Post, DocumentType } from "~/types/post";
 
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
@@ -8,7 +10,7 @@ import { getChildPostList } from "@utils/supabase/getChildPostList";
 import parse from "../parse";
 
 function isNormalPost(data: Post) {
-  return data.type === NORMAL_PAGE;
+  return data.type === DocumentType.Post;
 }
 
 export async function loader({ context, params }: LoaderArgs) {

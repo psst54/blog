@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import type { Tag } from "~/types";
+import type { Tag } from "~/types/post";
 
 import { POST_TAG_TABLE, TAG_JOIN_ATTR } from ".";
 
