@@ -10,7 +10,7 @@ export async function getPinnedPostList({
   supabaseClient: SupabaseClient<Database, "public">;
 }): Promise<Post[]> {
   const PINNED_POST_LIST = [
-    "connecting-types-and-constants",
+    "connect-types-and-constants",
     "cspg-design-system-text",
     "awesome-resume-builder",
     "tanstack-query",
