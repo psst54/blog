@@ -31,6 +31,6 @@ export async function getPinnedPostList({
 
   return await addTagListToPostList({
     supabaseClient,
-    postList: data,
+    postList: data.filter((post) => post !== null),
   });
 }
