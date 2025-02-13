@@ -1,23 +1,14 @@
 import { useRef } from "react";
 import { Link } from "@remix-run/react";
 
-import type { Category } from "~/types/post";
-import { SIZE } from "@constants/size";
+import { SIZE } from "~/constants/size";
 import CategoryPopUp from "@components/CategoryPopUp";
 import Logo from "./Logo";
 import SearchIcon from "@assets/SearchIcon";
 
 import { navbar } from "./styles";
 
-export default function NavBar({
-  supabaseCredential,
-  data,
-  onToggleCategory,
-}: {
-  supabaseCredential: { url: string; key: string };
-  data?: Category[];
-  onToggleCategory?: (id: string) => void;
-}) {
+export default function NavBar() {
   const ref = useRef<HTMLDivElement>(null);
 
   if (typeof window !== "undefined") {
@@ -51,9 +42,8 @@ export default function NavBar({
         <Link to="/search">
           <SearchIcon size="1.5rem" />
         </Link>
-        {data && onToggleCategory && (
-          <CategoryPopUp data={data} onToggleCategory={onToggleCategory} />
-        )}
+
+        <CategoryPopUp />
       </div>
     </nav>
   );

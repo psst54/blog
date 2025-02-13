@@ -12,7 +12,6 @@ import {
   ButtonDescriptionText,
   CategorySlide,
 } from "./styles";
-import type { Category } from "~/types";
 import { Link } from "@remix-run/react";
 
 const HomeIcon = loadable(() => import("@assets/HomeIcon"));
@@ -27,13 +26,7 @@ const mainMenu = [
 
 const titleWrapper = { display: "flex", alignItems: "center", gap: "0.5rem" };
 
-export default function CategoryPopUp({
-  data,
-  onToggleCategory,
-}: {
-  data: Category[];
-  onToggleCategory: (id: string) => void;
-}) {
+export default function CategoryPopUp() {
   const [isOpen, setIsOpen] = useState(false);
 
   function onOpen() {
