@@ -16,34 +16,30 @@ export default function CategoryList() {
 
   return (
     <div css={{ overflow: "auto" }}>
-      {categoryList.map((datum: Category, datumIdx: number) => {
-        return renderTreeItem(datum, datumIdx, 0, params.postId || "");
+      {categoryList.map((datum: Category) => {
+        return renderTreeItem(datum, 0, params.postId || "");
       })}
     </div>
   );
 }
 
-const renderTreeItem = (
-  item: Category,
-  idx: number,
-  depth: number,
-  postId: string
-) => {
+const renderTreeItem = (item: Category, depth: number, postId: string) => {
+  const { id, emoji, title, sub_blog, isOpen, children } = item;
+
   return (
-    <div key={idx}>
+    <div key={id}>
       <CategoryItem
-        id={item?.id}
-        emoji={item?.emoji}
-        title={item.title}
-        href={`/${item.sub_blog}/${item.id}`}
+        id={id}
+        emoji={emoji}
+        title={title}
+        href={`/${sub_blog}/${id}`}
         indent={depth}
-        isOpen={item.isOpen}
-        isSelected={postId === item?.id}
+        isOpen={isOpen}
+        isSelected={postId === id}
+        hasChildren={children.length !== 0}
       />
-      {item.isOpen &&
-        item?.children.map((child, childIdx: number) =>
-          renderTreeItem(child, childIdx, depth + 1, postId)
-        )}
+      {isOpen &&
+        children?.map((child) => renderTreeItem(child, depth + 1, postId))}
     </div>
   );
 };

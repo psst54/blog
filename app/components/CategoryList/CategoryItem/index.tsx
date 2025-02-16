@@ -14,6 +14,7 @@ export default function CategoryItem({
   isSelected = false,
   isOpen = false,
   indent = 0,
+  hasChildren = false,
 }: {
   id: string;
   emoji?: string;
@@ -22,6 +23,7 @@ export default function CategoryItem({
   isSelected: boolean;
   isOpen: boolean;
   indent: number;
+  hasChildren: boolean;
 }) {
   const { toggleCategory } = useCategoryStore();
 
@@ -66,7 +68,11 @@ export default function CategoryItem({
         <button
           aria-label="toggle menu"
           onClick={handleButtonClick}
-          css={[ToggleButton, isOpen && { transform: "rotate(90deg)" }]}
+          css={[
+            ToggleButton,
+            isOpen && { transform: "rotate(90deg)" },
+            !hasChildren && { opacity: 0 },
+          ]}
         >
           <RightChevronIcon
             color={isSelected ? COLOR.TEXT.REVERSE : COLOR.TEXT.STANDARD}
