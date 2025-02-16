@@ -15,7 +15,7 @@ export default function PostListView({ postList }: { postList: Document[] }) {
           to={`/${post.sub_blog}/${post.id}`}
           css={linkStyle}
         >
-          <PostCard postData={post} />
+          <PostCard post={post} />
         </Link>
       ))}
     </div>

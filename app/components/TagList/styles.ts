@@ -2,16 +2,16 @@ import { COLOR } from "@constants/color";
 
 export const tagListContainer = {
   display: "flex",
-  gap: "0.5rem",
+  gap: "0.25rem 0.4rem",
   flexWrap: "wrap" as const,
 };
 
 export const tagContainer = {
   maxWidth: "100%",
-  padding: "0.1rem 0.75rem",
-  background: "transparent",
+  padding: "0.2rem 0.75rem",
+  background: COLOR.TEXT.SECONDARY,
 
-  border: `1px solid ${COLOR.PRIMARY.STANDARD}`,
+  border: "none",
   borderRadius: "2rem",
 
   cursor: "pointer",
@@ -24,10 +24,10 @@ export const tagContainer = {
 
 export const tagText = {
   fontSize: "1rem",
-  color: COLOR.TEXT.TAG,
-  wordBreak: "keep-all",
+  color: COLOR.TEXT.REVERSE,
+  wordBreak: "keep-all" as const,
   overflow: "hidden",
-  whiteSpace: "nowrap",
+  whiteSpace: "nowrap" as const,
   textOverflow: "ellipsis",
 };
 

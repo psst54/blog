@@ -1,10 +1,12 @@
-import type { Tag } from "~/types";
+import type { Tag } from "~/types/post";
 
 import TagItem from "./Tag";
 import { tagListContainer } from "./styles";
 
 export default function TagList({ data }: { data: Tag[] | null | undefined }) {
-  if (isEmpty({ data })) return <></>;
+  if (isEmpty({ data })) {
+    return <></>;
+  }
 
   return (
     <div css={tagListContainer}>
@@ -15,8 +17,11 @@ export default function TagList({ data }: { data: Tag[] | null | undefined }) {
   );
 }
 
+// [todo] fix this
 export function isEmpty({ data }: { data: Tag[] | null | undefined }) {
-  if (!data) return true;
-  if (data.length === 0) return true;
+  if (!data || data.length === 0) {
+    return true;
+  }
+
   return false;
 }

@@ -1,26 +1,55 @@
 import { lazy, Suspense } from "react";
-import TagList from "@components/TagList";
-import { container, textArea, titleArea, title, subTitle } from "./styles";
-import type { Post } from "~/types";
+
+import type { Document } from "~/types/post";
+import TagList from "~/components/TagList";
+
+import { container, textArea, titleArea, text, subText } from "./styles";
+import { COLOR } from "~/constants/color";
+import { SIZE } from "~/constants/size";
 
 const Thumbnail = lazy(() => import("./Thumbnail"));
 
-export default function PostCard({ postData }: { postData: Post }) {
+const overlay = {
+  position: "absolute" as const,
+  inset: 0,
+
+  width: "100%",
+  height: "100%",
+
+  borderRadius: SIZE.BORDER_RADIUS.POST_CARD,
+};
+
+const thumbnailArea = {
+  ...overlay,
+  opacity: 0.2,
+};
+
+const gradientArea = {
+  ...overlay,
+  background: `linear-gradient(to bottom, ${COLOR.BACKGROUND.STANDARD} 0%, transparent 100%)`,
+};
+
+export default function PostCard({ post }: { post: Document }) {
+  const { thumbnail, title, sub_title, tags } = post;
+
   return (
     <article css={container}>
-      {postData.thumbnail && (
+      {thumbnail && (
         <Suspense fallback={<></>}>
-          <Thumbnail thumbnail={postData.thumbnail} />
+          <div css={thumbnailArea}>
+            <Thumbnail src={thumbnail} />
+          </div>
+          <div css={gradientArea} />
         </Suspense>
       )}
 
       <div css={textArea}>
         <div css={titleArea}>
-          <h2 css={title}>{postData.title}</h2>
-          <p css={subTitle}>{postData.sub_title}</p>
+          <h2 css={text}>{title}</h2>
+          <p css={subText}>{sub_title}</p>
         </div>
 
-        <TagList data={postData.tags} />
+        <TagList data={tags} />
       </div>
     </article>
   );

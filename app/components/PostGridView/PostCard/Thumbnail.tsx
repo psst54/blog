@@ -1,18 +1,15 @@
-import { SIZE } from "@constants/size";
+import { SIZE } from "~/constants/size";
 
-export default function Thumbnail({ thumbnail }: { thumbnail: string }) {
+export default function Thumbnail({ src }: { src: string }) {
   return (
     <img
-      src={thumbnail}
+      src={src}
       alt="thumbnail" // [todo] add alt text
       css={{
         width: "100%",
-        minHeight: "50%",
-        maxHeight: "50%",
-
+        height: "100%",
         objectFit: "cover",
-        borderTopLeftRadius: `calc(${SIZE.BORDER_RADIUS.POST_CARD} - ${SIZE.BORDER.POST_CARD})`,
-        borderTopRightRadius: `calc(${SIZE.BORDER_RADIUS.POST_CARD} - ${SIZE.BORDER.POST_CARD})`,
+        borderRadius: SIZE.BORDER_RADIUS.POST_CARD,
       }}
     />
   );

@@ -1,9 +1,9 @@
 import { COLOR } from "~/constants/color";
 
-export default function Thumbnail({ thumbnail }: { thumbnail?: string }) {
+export default function Thumbnail({ src }: { src?: string }) {
   return (
     <img
-      src={thumbnail || "/ocean6.webp"}
+      src={src || "/ocean6.webp"}
       alt="thumbnail" // [todo] add alt text
       css={{
         flexShrink: 0,

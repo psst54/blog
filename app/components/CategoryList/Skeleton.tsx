@@ -1,16 +1,4 @@
-import { COLOR } from "@constants/color";
-import { keyframes } from "@emotion/react";
-
-const pulse = keyframes`
-0% {
-  background-color: ${COLOR.PRIMARY.LIGHT};
-}
-50% {
-  background-color: ${COLOR.PRIMARY.VERY_LIGHT};
-}
-100% {
-  background-color: ${COLOR.PRIMARY.LIGHT};
-}`;
+import { backgroundPulse } from "~/styles/pulse";
 
 const icon = {
   flexShrink: 0,
@@ -21,7 +9,7 @@ const icon = {
   borderRadius: "100%",
   marginRight: "0.5rem",
 
-  animation: `${pulse} 2s infinite`,
+  ...backgroundPulse,
 };
 
 const title = (width: number) => ({
@@ -30,7 +18,7 @@ const title = (width: number) => ({
 
   borderRadius: "2rem",
 
-  animation: `${pulse} 2s infinite`,
+  ...backgroundPulse,
 });
 
 function Row({ width }: { width: number }) {

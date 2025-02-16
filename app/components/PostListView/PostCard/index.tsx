@@ -1,24 +1,28 @@
 import { lazy, Suspense } from "react";
-import TagList from "@components/TagList";
-import { container, textArea, titleArea, title, subTitle } from "./styles";
-import type { Post } from "~/types";
+
+import type { Document } from "~/types/post";
+import TagList from "~/components/TagList";
+
+import { container, textArea, titleArea, text, subText } from "./styles";
 
 const Thumbnail = lazy(() => import("./Thumbnail"));
 
-export default function PostCard({ postData }: { postData: Post }) {
+export default function PostCard({ post }: { post: Document }) {
+  const { thumbnail, title, sub_title, tags } = post;
+
   return (
     <article css={container}>
       <Suspense fallback={<></>}>
-        <Thumbnail thumbnail={postData?.thumbnail} />
+        <Thumbnail src={thumbnail} />
       </Suspense>
 
       <div css={textArea}>
         <div css={titleArea}>
-          <h2 css={title}>{postData.title}</h2>
-          <p css={subTitle}>{postData.sub_title}</p>
+          <h2 css={text}>{title}</h2>
+          <p css={subText}>{sub_title}</p>
         </div>
 
-        <TagList data={postData.tags} />
+        <TagList data={tags} />
       </div>
     </article>
   );
