@@ -1,7 +1,11 @@
 import { Outlet } from "@remix-run/react";
-import Page from "@components/Page";
-import NavBar from "@components/NavBar";
+
+import Page from "~/components/Page";
 
 export default function TagsPage() {
-  return <Page navbar={<NavBar />} body={<Outlet />} />;
+  return (
+    <Page>
+      <Outlet />
+    </Page>
+  );
 }
