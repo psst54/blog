@@ -1,7 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@supabase/types";
 
 import type { Tag } from "~/types/post";
+import type { Database } from "~/types/supabase";
 import { POST_TAG_TABLE, TAG_JOIN_ATTR } from "~/constants/supabase";
 
 export default async function getTagListFromPost({

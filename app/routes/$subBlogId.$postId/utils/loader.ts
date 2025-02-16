@@ -1,15 +1,15 @@
 import type { LoaderArgs } from "@remix-run/cloudflare";
-
-import type { Env } from "~/types";
-import { type Post, DocumentType } from "~/types/post";
-
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
+
+import type { Env } from "~/types";
+import { type Document, DocumentType } from "~/types/post";
+
 import { getPostById } from "@utils/supabase/getPostById";
 import { getChildPostList } from "@utils/supabase/getChildPostList";
 import parse from "../parse";
 
-function isNormalPost(data: Post) {
+function isNormalPost(data: Document) {
   return data.type === DocumentType.Post;
 }
 

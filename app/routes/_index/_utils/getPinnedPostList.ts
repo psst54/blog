@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@supabase/types";
-import { type Document } from "~/types/post";
+import type { Document } from "~/types/post";
+import type { Database } from "~/types/supabase";
 
 import addTagListToPostList from "../../../utils/supabase/addTagListToPostList";
 import { getPostById } from "../../../utils/supabase/getPostById";

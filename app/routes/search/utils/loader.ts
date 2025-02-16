@@ -1,9 +1,9 @@
 import type { LoaderArgs } from "@remix-run/cloudflare";
 import { createClient } from "@supabase/supabase-js";
-import type { Database } from "@supabase/types";
 
 import type { Env } from "~/types";
 import type { Document } from "~/types/post";
+import type { Database } from "~/types/supabase";
 import { POST_SUMMARY_ATTR, POST_TABLE } from "~/constants/supabase";
 
 import addTagListToPostList from "@utils/supabase/addTagListToPostList";
