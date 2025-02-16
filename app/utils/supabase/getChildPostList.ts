@@ -1,7 +1,9 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import type { Post } from "~/types";
-import { POST_SUMMARY_ATTR, POST_TABLE } from ".";
+
+import type { Document } from "~/types/post";
+import { POST_SUMMARY_ATTR, POST_TABLE } from "~/constants/supabase";
+
 import addTagListToPostList from "./addTagListToPostList";
 
 export async function getChildPostList({
@@ -19,7 +21,7 @@ export async function getChildPostList({
     .eq("sub_blog", subBlogId)
     .eq("parent_id", parentId)
     .order("created_at", { ascending: false })
-    .returns<Post[]>();
+    .returns<Document[]>();
 
   if (error || data === null) {
     return [];

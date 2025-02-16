@@ -1,7 +1,9 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import { type Post } from "~/types";
-import { POST_SUMMARY_ATTR, POST_TABLE } from ".";
+
+import type { Document } from "~/types/post";
+import { POST_SUMMARY_ATTR, POST_TABLE } from "~/constants/supabase";
+
 import addTagListToPostList from "./addTagListToPostList";
 
 export async function getPostList({
@@ -10,13 +12,13 @@ export async function getPostList({
 }: {
   supabaseClient: SupabaseClient<Database, "public">;
   showAll?: boolean;
-}): Promise<Post[]> {
+}): Promise<Document[]> {
   const { data, error } = await supabaseClient
     .from(POST_TABLE)
     .select(POST_SUMMARY_ATTR)
     .in("show_main", showAll ? [true, false] : [true])
     .order("created_at", { ascending: false })
-    .returns<Post[]>();
+    .returns<Document[]>();
 
   if (error) return [];
 

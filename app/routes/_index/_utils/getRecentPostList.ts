@@ -1,9 +1,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
 
-import { POST_SUMMARY_ATTR, POST_TABLE } from "../../../utils/supabase";
-import addTagListToPostList from "../../../utils/supabase/addTagListToPostList";
 import { type Document, DocumentType } from "~/types/post";
+import { POST_SUMMARY_ATTR, POST_TABLE } from "~/constants/supabase";
+
+import addTagListToPostList from "../../../utils/supabase/addTagListToPostList";
 
 export async function getRecentPostList({
   supabaseClient,

@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import { TAG_ATTR, TAG_TABLE } from ".";
+
+import { TAG_ATTR, TAG_TABLE } from "~/constants/supabase";
 
 export async function getTagDataById({
   supabaseClient,

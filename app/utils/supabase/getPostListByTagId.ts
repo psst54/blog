@@ -1,8 +1,9 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@supabase/types";
-import type { Post } from "~/types";
 
-import { POST_TAG_TABLE } from ".";
+import type { Document } from "~/types/post";
+import { POST_TAG_TABLE } from "~/constants/supabase";
+
 import { getPostById } from "./getPostById";
 
 export async function getPostListByTagId({
@@ -11,7 +12,7 @@ export async function getPostListByTagId({
 }: {
   supabaseClient: SupabaseClient<Database, "public">;
   tagId: string;
-}): Promise<Post[]> {
+}): Promise<Document[]> {
   const { data, error } = await supabaseClient
     .from(POST_TAG_TABLE)
     .select("post_id")

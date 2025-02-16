@@ -1,8 +1,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type { Document } from "~/types/post";
+import { POST_SUMMARY_ATTR, POST_TABLE } from "~/constants/supabase";
 import { buildTree } from "~/_utils/buildTree";
-import { POST_SUMMARY_ATTR, POST_TABLE } from "~/utils/supabase";
 
 export default async function fetchCategoryData({
   supabaseClient,
