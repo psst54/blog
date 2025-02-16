@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Link } from "@remix-run/react";
 
 import { SIZE } from "~/constants/size";
+import ROUTE from "~/constants/route";
 import CategoryPopUp from "~/components/CategoryPopUp";
 import SearchIcon from "~/assets/SearchIcon";
 
@@ -39,7 +40,7 @@ export default function NavBar() {
       <Logo />
 
       <div css={{ display: "flex", gap: "1rem" }}>
-        <Link to="/search">
+        <Link to={ROUTE.SEARCH}>
           <SearchIcon size="1.5rem" />
         </Link>
 

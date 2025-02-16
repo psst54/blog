@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react";
 
+import ROUTE from "~/constants/route";
 import RightChevronIcon from "~/assets/RightChevronIcon";
 import {
   link,
@@ -20,7 +21,7 @@ const HEADER_TEXT = [
 
 export default function RecentHeader() {
   return (
-    <Link to="/all" css={link}>
+    <Link to={ROUTE.ALL} css={link}>
       <header css={header}>
         <h1 css={title}>
           <span css={borderedBlock}>{HEADER_TEXT[0][0]}</span>

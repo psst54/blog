@@ -1,4 +1,5 @@
 import { Link } from "@remix-run/react";
+import ROUTE from "~/constants/route";
 
 const container = {
   display: "flex",
@@ -21,7 +22,7 @@ const text = {
 
 export default function Logo() {
   return (
-    <Link to="/" css={container}>
+    <Link to={ROUTE.BASE} css={container}>
       <img src="/profile.webp" alt="logo" css={image} />
       <p css={text}>PSST54</p>
     </Link>
