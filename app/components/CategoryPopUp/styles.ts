@@ -37,5 +37,5 @@ export const CategorySlide = {
 
   borderLeft: "1px solid black",
 
-  zIndex: 10,
+  zIndex: 60,
 };

@@ -14,7 +14,7 @@ export const navbar = {
   background: COLOR.BACKGROUND.STANDARD,
   padding: "0 1rem",
 
-  zIndex: 1,
+  zIndex: 50,
 
   boxShadow: "0 0 1rem " + COLOR.BORDER.LIGHT,
 };
