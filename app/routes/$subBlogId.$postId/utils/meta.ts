@@ -1,4 +1,4 @@
-import getMetaData from "@utils/getMetaData";
+import getMetaData from "~/_utils/getMetaData";
 import type { Tag } from "~/types";
 
 export function meta({ data, location }) {

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "@remix-run/react";
 
-import * as gtag from "@utils/gtags.client";
+import * as gtag from "~/_utils/gtags.client";
 
 export default function GTag({
   gaTrackingId,
