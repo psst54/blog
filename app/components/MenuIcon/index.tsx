@@ -1,5 +1,5 @@
 import type { Menu } from "~/types/menu";
-import { COLOR } from "@constants/color";
+import { COLOR } from "~/constants/color";
 
 export default function MenuIcon({ item }: { item: Menu }) {
   return (

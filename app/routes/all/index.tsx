@@ -1,7 +1,7 @@
 import { useLoaderData } from "@remix-run/react";
 import type { Document } from "~/types/post";
 
-import Page from "@components/Page";
+import Page from "~/components/Page";
 import PostDatabase from "../$subBlogId.$postId/components/PostDatabase";
 import { mq } from "~/constants/size";
 

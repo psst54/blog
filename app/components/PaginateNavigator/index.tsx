@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 
-import { COLOR } from "@constants/color";
-import { PER_PAGE_POST_COUNT } from "@constants/index";
+import { COLOR } from "~/constants/color";
+import { PER_PAGE_POST_COUNT } from "~/constants/index";
+
+import RightChevronIcon from "~/assets/RightChevronIcon";
 
 import { getArray } from "./getArray";
 import {
@@ -11,8 +13,6 @@ import {
   numberButton,
   selectedButton,
 } from "./styles";
-
-import RightChevronIcon from "@assets/RightChevronIcon";
 
 export default function PaginateNavigator({
   currentPage,

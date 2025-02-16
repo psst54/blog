@@ -1,4 +1,4 @@
-import { COLOR } from "@constants/color";
+import { COLOR } from "~/constants/color";
 
 export default function ListIcon({
   size = "1rem",

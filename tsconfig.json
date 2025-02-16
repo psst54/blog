@@ -14,16 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"],
-      "@styles/*": ["./app/styles/*"],
-      "@components/*": ["./app/components/*"],
-      "@assets/*": ["./app/assets/*"],
-      "@supabase/*": ["./app/supabase/*"],
-      "@functions/*": ["./app/functions/*"],
-      "@types/*": ["./app/types/*"],
-      "@utils/*": ["./app/utils/*"],
-      "@constants/*": ["./app/constants/*"],
-      "@hooks/*": ["./app/hooks/*"]
+      "~/*": ["./app/*"]
     },
     "jsxImportSource": "@emotion/react",
 

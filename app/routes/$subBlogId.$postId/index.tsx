@@ -2,8 +2,8 @@ import { useLoaderData, useOutletContext } from "@remix-run/react";
 
 import { type Category, DocumentType } from "~/types/post";
 
-import PostHeader from "@components/PostHeader";
-import PostContent from "@components/PostContent";
+import PostHeader from "~/components/PostHeader";
+import PostContent from "~/components/PostContent";
 import PostDatabase from "./components/PostDatabase";
 import Comment from "./components/Comment";
 

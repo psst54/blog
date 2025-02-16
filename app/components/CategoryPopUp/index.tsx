@@ -1,11 +1,11 @@
 import { useState } from "react";
 import loadable from "@loadable/component";
 
-import MenuIcon from "@components/MenuIcon";
-import CategoryList from "@components/CategoryList";
+import MenuIcon from "~/components/MenuIcon";
+import CategoryList from "~/components/CategoryList";
 
-import RightChevronIcon from "@assets/RightChevronIcon";
-import ListIcon from "@assets/ListIcon";
+import RightChevronIcon from "~/assets/RightChevronIcon";
+import ListIcon from "~/assets/ListIcon";
 import {
   OpenButton,
   CloseButton,
@@ -14,9 +14,9 @@ import {
 } from "./styles";
 import { Link } from "@remix-run/react";
 
-const HomeIcon = loadable(() => import("@assets/HomeIcon"));
-const CodeIcon = loadable(() => import("@assets/CodeIcon"));
-const HeartIcon = loadable(() => import("@assets/HeartIcon"));
+const HomeIcon = loadable(() => import("~/assets/HomeIcon"));
+const CodeIcon = loadable(() => import("~/assets/CodeIcon"));
+const HeartIcon = loadable(() => import("~/assets/HeartIcon"));
 
 const mainMenu = [
   { icon: HomeIcon, href: "/", alt: "Home" },

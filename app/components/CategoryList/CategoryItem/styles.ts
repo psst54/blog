@@ -1,4 +1,4 @@
-import { COLOR } from "@constants/color";
+import { COLOR } from "~/constants/color";
 
 export const ItemContainer = (indent: number) => {
   return {

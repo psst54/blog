@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import { COLOR } from "@constants/color";
+import { COLOR } from "~/constants/color";
 import {
   styledH1,
   styledH2,
@@ -13,7 +13,7 @@ import {
   styledHr,
   styledOl,
   styledUl,
-} from "@styles/markdown";
+} from "~/styles/markdown";
 
 export function H1({ children }) {
   return (

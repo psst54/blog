@@ -1,5 +1,5 @@
-import { COLOR } from "@constants/color";
-import { mq } from "@constants/size";
+import { COLOR } from "~/constants/color";
+import { mq } from "~/constants/size";
 
 export const container = {
   display: "flex",

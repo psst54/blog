@@ -5,8 +5,8 @@ import type { Database } from "@supabase/types";
 import type { Env } from "~/types";
 import { type Document, DocumentType } from "~/types/post";
 
-import { getPostById } from "@utils/supabase/getPostById";
-import { getChildPostList } from "@utils/supabase/getChildPostList";
+import { getPostById } from "~/utils/supabase/getPostById";
+import { getChildPostList } from "~/utils/supabase/getChildPostList";
 import parse from "../parse";
 
 function isNormalPost(data: Document) {

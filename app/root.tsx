@@ -9,7 +9,7 @@ import {
   useParams,
 } from "@remix-run/react";
 
-import { globalStyleCss } from "@styles/global";
+import { globalStyleCss } from "~/styles/global";
 import GTag from "./_components/Gtag";
 import Font from "./_components/Font";
 import { useEffect } from "react";

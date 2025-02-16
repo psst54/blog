@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import TagList from "@components/TagList";
+import TagList from "~/components/TagList";
 import Breadcrumb from "./Breadcrumb";
 import { Title, SubTitle, DateText, DivideLine } from "./styles";
 

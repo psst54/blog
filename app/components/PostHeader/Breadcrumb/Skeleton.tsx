@@ -1,5 +1,5 @@
 import { keyframes } from "@emotion/react";
-import { COLOR } from "@constants/color";
+import { COLOR } from "~/constants/color";
 
 const shine = keyframes`
 0% {

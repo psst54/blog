@@ -1,4 +1,4 @@
-import { COLOR } from "@constants/color";
+import { COLOR } from "~/constants/color";
 import { mq } from "~/constants/size";
 
 export const container = {

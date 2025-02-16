@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { PER_PAGE_POST_COUNT } from "@constants/index";
+import { PER_PAGE_POST_COUNT } from "~/constants/index";
 import type { Post } from "~/types";
 
 export default function usePagination({

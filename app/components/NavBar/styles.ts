@@ -1,5 +1,5 @@
-import { COLOR } from "@constants/color";
-import { SIZE } from "@constants/size";
+import { COLOR } from "~/constants/color";
+import { SIZE } from "~/constants/size";
 
 export const navbar = {
   position: "fixed" as const,

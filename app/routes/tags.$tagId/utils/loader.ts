@@ -4,7 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 import type { Env } from "~/types";
 import type { Database } from "~/types/supabase";
 
-import { getPostListByTagId } from "@utils/supabase/getPostListByTagId";
+import { getPostListByTagId } from "~/utils/supabase/getPostListByTagId";
 import { getTagDataById } from "~/_utils/tag/getTagDataById";
 
 export async function loader({ context, params }: LoaderArgs) {

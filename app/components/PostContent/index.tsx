@@ -15,7 +15,7 @@ import {
   Ul,
   Ol,
 } from "./components";
-import { styledCodeWrapper } from "@styles/markdown";
+import { styledCodeWrapper } from "~/styles/markdown";
 import { TBody, THead, Table, Td, Th } from "./Table";
 
 export default function Content({ content }) {
