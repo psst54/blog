@@ -1,8 +1,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type { Document } from "~/types/post";
-import { buildTree } from "~/functions/category";
-import { getSubBlogCategory } from "~/utils/supabase/getSubBlogCategory";
+import { buildTree } from "~/_utils/buildTree";
+import { POST_SUMMARY_ATTR, POST_TABLE } from "~/utils/supabase";
 
 export default async function fetchCategoryData({
   supabaseClient,
@@ -11,10 +11,17 @@ export default async function fetchCategoryData({
   supabaseClient: SupabaseClient;
   subBlogId: string;
 }) {
-  const documentList: Document[] = await getSubBlogCategory({
-    supabaseClient,
-    subBlogId,
-  });
+  const { data, error } = await supabaseClient
+    .from(POST_TABLE)
+    .select(POST_SUMMARY_ATTR + ", parent_id") // [todo] 어디서 호출되는지 보고 고치기
+    .order("custom_order")
+    .order("created_at")
+    .eq("sub_blog", subBlogId)
+    .returns<Document[]>();
 
-  return buildTree(documentList);
+  if (error) {
+    return [];
+  }
+
+  return buildTree(data);
 }
