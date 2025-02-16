@@ -1,13 +1,22 @@
-import { header, title, border, line, img } from "../styles";
+import {
+  header,
+  title,
+  filledBlock,
+  borderedBlock,
+  divideLine,
+  image,
+} from "../styles";
+
+const long = { width: "5rem" };
 
 export default function PinnedHeader() {
   return (
     <header css={header}>
       <h1 css={title}>
-        <div css={line} />
-        <span css={border}>Pinned</span>
-        <span css={border}>Posts</span>
-        <img src="ocean4.webp" alt="ocean" css={[img, { width: "5rem" }]} />
+        <img src="ocean4.webp" alt="ocean" css={[image, long]} />
+        <div css={divideLine} />
+        <span css={filledBlock}>Pinned</span>
+        <span css={borderedBlock}>Posts</span>
       </h1>
     </header>
   );

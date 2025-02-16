@@ -4,8 +4,6 @@ import { mq } from "~/constants/size";
 export const link = {
   textDecoration: "none",
 
-  outline: "none",
-
   "&:hover": {
     "*": {
       color: COLOR.TEXT.LINK,
@@ -37,26 +35,35 @@ export const title = {
   fontWeight: 900,
 };
 
-export const border = {
+const block = {
   display: "flex",
   alignItems: "center",
 
   height: "3rem",
   padding: "0 1rem",
-  background: COLOR.TEXT.STANDARD,
-
-  color: COLOR.TEXT.REVERSE,
-
   borderRadius: "1.5rem",
 };
 
-export const line = {
+export const filledBlock = {
+  ...block,
+
+  background: COLOR.TEXT.STANDARD,
+  color: COLOR.TEXT.REVERSE,
+};
+
+export const borderedBlock = {
+  ...block,
+
+  border: `2px solid ${COLOR.TEXT.STANDARD}`,
+};
+
+export const divideLine = {
   flex: 1,
   height: "3px",
   background: "black",
 };
 
-export const img = {
+export const image = {
   width: "3rem",
   height: "3rem",
 
