@@ -15,7 +15,7 @@ export const link = {
 
 export const header = {
   display: "flex",
-  flexDirection: "column",
+  flexDirection: "column" as const,
   gap: "0.5rem",
 
   padding: "0 1rem",

@@ -1,4 +1,4 @@
-import type { Category } from "~/types";
+import type { Category } from "~/types/post";
 
 function findCategoryById(
   category: Category,
@@ -22,19 +22,19 @@ function findCategoryById(
 }
 
 export function getBreadcrumbData({
-  categoryData,
+  categoryList,
   id,
 }: {
-  categoryData: Category[];
+  categoryList: Category[];
   id: string;
-}): Category[] | null {
+}): Category[] | undefined {
   if (!id) {
-    return null;
+    return;
   }
 
   const ret: Category[] = [];
 
-  const result = categoryData.find((child) => findCategoryById(child, id, ret));
+  const result = categoryList.find((child) => findCategoryById(child, id, ret));
 
   if (result) {
     ret.unshift(result);

@@ -1,6 +1,6 @@
-import type { Category, Post } from "~/types";
+import type { Category, Document } from "~/types/post";
 
-export function buildTree(items: Post[]) {
+export function buildTree(items: Document[]) {
   const itemMap: { [key: string]: Category } = {};
 
   for (const item of items) {
@@ -20,18 +20,4 @@ export function buildTree(items: Post[]) {
   }
 
   return rootNodes;
-}
-
-export function spread(items: Post[]) {
-  const ret: { [key: string]: any } = {}; // fix any
-
-  for (const item of items) {
-    ret[item.id] = {
-      id: item.id,
-      parentId: item.parent_id,
-      title: item.title,
-      subBlog: item.sub_blog,
-    };
-  }
-  return ret;
 }

@@ -3,8 +3,9 @@ import TagList from "@components/TagList";
 import Breadcrumb from "./Breadcrumb";
 import { Title, SubTitle, DateText, DivideLine } from "./styles";
 
-import type { Tag, Category } from "~/types";
+import type { Tag } from "~/types/post";
 import { getBreadcrumbData, formatDate } from "./functions";
+import useCategoryStore from "~/stores/category";
 
 export default function PostHeader({
   id,
@@ -12,18 +13,18 @@ export default function PostHeader({
   subTitle,
   tags,
   postDate,
-  categoryData,
 }: {
   id: string;
   title: string;
   subTitle: string | undefined;
   tags: Tag[] | null;
   postDate: string | null;
-  categoryData: Category[];
 }) {
+  const { categoryList } = useCategoryStore();
+
   const breadcrumbData = useMemo(() => {
-    return getBreadcrumbData({ categoryData: categoryData, id });
-  }, [id, categoryData]);
+    return getBreadcrumbData({ categoryList, id });
+  }, [id, categoryList]);
 
   return (
     <header css={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>

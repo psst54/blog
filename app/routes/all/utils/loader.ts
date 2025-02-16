@@ -1,7 +1,8 @@
 import type { LoaderArgs } from "@remix-run/cloudflare";
 import { createClient } from "@supabase/supabase-js";
-import type { Database } from "@supabase/types";
+
 import type { Env } from "~/types";
+import type { Database } from "~/types/supabase";
 
 import { getPostList } from "~/utils/supabase/getPostList";
 

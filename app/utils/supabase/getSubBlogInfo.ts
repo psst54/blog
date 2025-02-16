@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@supabase/types";
+
+import type { Database } from "~/types/supabase";
 
 export async function getSubBlogInfo({
   supabaseClient,

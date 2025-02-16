@@ -1,42 +1,31 @@
 import { useParams } from "@remix-run/react";
+
+import type { Category } from "~/types/post";
+import useCategoryStore from "~/stores/category";
+
 import CategoryItem from "./CategoryItem";
-import type { Category } from "~/types";
-import CategoryListSkeleton from "./CategoryListSkeleton";
+import CategoryListSkeleton from "./Skeleton";
 
-export default function CategoryList({
-  data,
-  onToggleCategory,
-}: {
-  data: Category[];
-  onToggleCategory: (id: string) => void;
-}) {
+export default function CategoryList() {
   const params = useParams();
+  const { categoryList } = useCategoryStore();
 
-  if (data.length === 0) return renderSkeleton();
+  if (categoryList.length === 0) {
+    return <CategoryListSkeleton />;
+  }
 
   return (
     <div css={{ overflow: "auto" }}>
-      {data.map((datum: Category, datumIdx: number) => {
-        return renderTreeItem(
-          datum,
-          datumIdx,
-          onToggleCategory,
-          0,
-          params.postId || ""
-        );
+      {categoryList.map((datum: Category, datumIdx: number) => {
+        return renderTreeItem(datum, datumIdx, 0, params.postId || "");
       })}
     </div>
   );
 }
 
-const renderSkeleton = () => {
-  return <CategoryListSkeleton />;
-};
-
 const renderTreeItem = (
   item: Category,
   idx: number,
-  onToggleCategory: (id: string) => void,
   depth: number,
   postId: string
 ) => {
@@ -50,11 +39,10 @@ const renderTreeItem = (
         indent={depth}
         isOpen={item.isOpen}
         isSelected={postId === item?.id}
-        onToggleCategory={onToggleCategory}
       />
       {item.isOpen &&
         item?.children.map((child, childIdx: number) =>
-          renderTreeItem(child, childIdx, onToggleCategory, depth + 1, postId)
+          renderTreeItem(child, childIdx, depth + 1, postId)
         )}
     </div>
   );

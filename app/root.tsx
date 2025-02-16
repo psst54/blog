@@ -1,5 +1,3 @@
-import { useEffect, useRef, useState } from "react";
-import type { LoaderArgs } from "@remix-run/cloudflare";
 import {
   Links,
   LiveReload,
@@ -7,46 +5,43 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLocation,
   useLoaderData,
+  useParams,
 } from "@remix-run/react";
-import type { Env } from "~/types";
 
-import * as gtag from "@utils/gtags.client";
-
-import { Fonts, GTag } from "@components/root";
 import { globalStyleCss } from "@styles/global";
-export { meta } from "./meta";
+import GTag from "./_components/Gtag";
+import Font from "./_components/Font";
+import { useEffect } from "react";
+import useCategoryStore from "./stores/category";
+import { createClient } from "@supabase/supabase-js";
+import fetchCategoryData from "./_utils/fetchCategoryData";
 
-let isInitialRender = true;
-
-export const loader = async ({ context }: LoaderArgs) => {
-  return {
-    gaTrackingId: (context.env as Env).GA_TRACKING_ID,
-    ENVIRONMENT: (context.env as Env).ENVIRONMENT,
-  };
-};
+export { meta } from "./_utils/meta";
+export { loader } from "./_utils/loader";
 
 export default function App() {
-  const location = useLocation();
-  const { gaTrackingId, ENVIRONMENT } = useLoaderData<typeof loader>();
+  const { gaTrackingId, supabaseCredential } = useLoaderData();
+  const params = useParams();
+  const { setCategory } = useCategoryStore();
 
   useEffect(() => {
-    if (gaTrackingId?.length) {
-      gtag.pageview(location.pathname, gaTrackingId);
+    if (!supabaseCredential || !setCategory) {
+      return;
     }
-  }, [location, gaTrackingId]);
 
-  const isInitialRenderRef = useRef(true);
-  const [, rerender] = useState(false);
+    const subBlogId = params.subBlogId || "cse";
 
-  useEffect(() => {
-    if (isInitialRenderRef.current) {
-      isInitialRender = false;
-      isInitialRenderRef.current = false;
-      rerender(true);
+    async function fetchData() {
+      const supabaseClient = createClient(
+        supabaseCredential.url,
+        supabaseCredential.key
+      );
+      setCategory(await fetchCategoryData({ supabaseClient, subBlogId }));
     }
-  }, []);
+
+    fetchData();
+  }, [params.subBlogId, supabaseCredential, setCategory]);
 
   return (
     <html lang="ko">
@@ -54,16 +49,16 @@ export default function App() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
-        <Fonts isInitialRender={isInitialRender} />
+        <Font />
         <Links />
       </head>
 
       <body css={globalStyleCss}>
-        {ENVIRONMENT === "PRODUCTION" && <GTag gaTrackingId={gaTrackingId} />}
-        <Outlet />
+        <Outlet context={{ supabaseCredential }} />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <GTag gaTrackingId={gaTrackingId} />
       </body>
     </html>
   );
