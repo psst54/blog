@@ -1,4 +1,4 @@
-import { header, title, border, line, img } from "./styles";
+import { header, title, border, line, img } from "../styles";
 
 export default function PinnedHeader() {
   return (

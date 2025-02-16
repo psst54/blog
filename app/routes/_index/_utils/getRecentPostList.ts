@@ -6,7 +6,7 @@ import { POST_SUMMARY_ATTR, POST_TABLE } from "~/constants/supabase";
 
 import addTagListToPostList from "../../../utils/supabase/addTagListToPostList";
 
-export async function getRecentPostList({
+export default async function getRecentPostList({
   supabaseClient,
   count = 10,
   showAll = true,

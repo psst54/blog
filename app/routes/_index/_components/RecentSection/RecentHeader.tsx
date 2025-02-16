@@ -1,10 +1,11 @@
 import { Link } from "@remix-run/react";
-import { link, header, title, border, line, img } from "./styles";
-import RightChevronIcon from "~/assets/RightChevronIcon";
 
-export default function latestHeader() {
+import RightChevronIcon from "~/assets/RightChevronIcon";
+import { link, header, title, border, line, img } from "../styles";
+
+export default function RecentHeader() {
   return (
-    <Link to="all" css={link}>
+    <Link to="/all" css={link}>
       <header css={header}>
         <h1 css={title}>
           <span css={border}>Latest</span>

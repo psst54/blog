@@ -13,6 +13,8 @@ export const link = {
   },
 };
 
+// ---------- header style ----------
+
 export const header = {
   display: "flex",
   flexDirection: "column" as const,
@@ -61,3 +63,5 @@ export const img = {
   objectFit: "cover" as const,
   borderRadius: "1.5rem",
 };
+
+// ---------- header style ----------

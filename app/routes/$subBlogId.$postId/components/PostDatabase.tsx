@@ -1,16 +1,16 @@
-import PostListView from "@components/PostListView";
-import PaginateNavigator from "@components/PaginateNavigator";
-import usePagination from "@hooks/usePagination";
-import type { Post } from "~/types";
+import type { Document } from "~/types/post";
+import PostListView from "~/components/PostListView";
+import PaginateNavigator from "~/components/PaginateNavigator";
+import usePagination from "~/hooks/usePagination";
 
-export default function Database({ posts }: { posts: Post[] }) {
+export default function Database({ posts }: { posts: Document[] }) {
   const [currentPage, currentPagePosts, setPage] = usePagination({
     data: posts,
   });
 
   return (
     <main css={container}>
-      <PostListView posts={currentPagePosts} />
+      <PostListView postList={currentPagePosts} />
       <PaginateNavigator
         currentPage={currentPage}
         count={posts.length}

@@ -1,13 +1,14 @@
 import { Link } from "@remix-run/react";
+
+import type { Document } from "~/types/post";
+
 import PostCard from "./PostCard";
 import { container, linkStyle } from "./styles";
 
-import type { Post } from "~/types";
-
-export default function PostListView({ posts }: { posts: Post[] }) {
+export default function PostListView({ postList }: { postList: Document[] }) {
   return (
     <div css={container}>
-      {posts.map((post: Post, postIndex: number) => (
+      {postList.map((post: Document, postIndex: number) => (
         <Link
           key={postIndex}
           aria-label={post.title}

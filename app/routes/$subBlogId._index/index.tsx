@@ -1,19 +1,15 @@
-import { useLoaderData, useOutletContext } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 
-import type { Category } from "~/types";
-import usePagination from "@hooks/usePagination";
-
-import PostHeader from "@components/PostHeader";
-import PostListView from "@components/PostListView";
-import PaginateNavigator from "@components/PaginateNavigator";
+import usePagination from "~/hooks/usePagination";
+import PostHeader from "~/components/PostHeader";
+import PostListView from "~/components/PostListView";
+import PaginateNavigator from "~/components/PaginateNavigator";
 
 export { loader } from "./utils/loader";
 export { meta } from "./utils/meta";
 
 export default function PostPage() {
   const { content } = useLoaderData();
-
-  const categoryData: Category[] = useOutletContext();
 
   const [currentPage, currentPagePosts, setPage] = usePagination({
     data: content?.posts,
@@ -27,10 +23,9 @@ export default function PostPage() {
         subTitle={content?.subTitle}
         tags={content?.tags}
         postDate={content?.created_at}
-        categoryData={categoryData}
       />
 
-      <PostListView posts={currentPagePosts} />
+      <PostListView postList={currentPagePosts} />
 
       <PaginateNavigator
         currentPage={currentPage}

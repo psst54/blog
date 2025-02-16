@@ -5,7 +5,7 @@ import type { Database } from "~/types/supabase";
 import addTagListToPostList from "../../../utils/supabase/addTagListToPostList";
 import { getPostById } from "../../../utils/supabase/getPostById";
 
-export async function getPinnedPostList({
+export default async function getPinnedPostList({
   supabaseClient,
 }: {
   supabaseClient: SupabaseClient<Database, "public">;
