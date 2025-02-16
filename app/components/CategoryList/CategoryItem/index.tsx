@@ -1,7 +1,10 @@
 import { Link } from "@remix-run/react";
-import RightChevronIcon from "@assets/RightChevronIcon";
-import { COLOR } from "@constants/color";
-import { ItemContainer, Title, ToggleButton } from "./categoryItemStyles";
+
+import useCategoryStore from "~/stores/category";
+import { COLOR } from "~/constants/color";
+import RightChevronIcon from "~/assets/RightChevronIcon";
+
+import { ItemContainer, Title, ToggleButton } from "./styles";
 
 export default function CategoryItem({
   id,
@@ -11,7 +14,6 @@ export default function CategoryItem({
   isSelected = false,
   isOpen = false,
   indent = 0,
-  onToggleCategory,
 }: {
   id: string;
   emoji?: string;
@@ -20,8 +22,9 @@ export default function CategoryItem({
   isSelected: boolean;
   isOpen: boolean;
   indent: number;
-  onToggleCategory: (id: string) => void;
 }) {
+  const { toggleCategory } = useCategoryStore();
+
   const handleAnchorClick = (event: MouseEvent) => {
     const target: HTMLElement | null = event.target as HTMLElement | null;
     if (!target) return;
@@ -36,7 +39,7 @@ export default function CategoryItem({
   };
 
   const handleButtonClick = () => {
-    onToggleCategory(id);
+    toggleCategory(id);
   };
 
   return (

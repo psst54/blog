@@ -68,7 +68,7 @@ export default function CategoryPopUp() {
             ))}
           </div>
 
-          <CategoryList data={data} onToggleCategory={onToggleCategory} />
+          <CategoryList />
         </div>
       )}
     </div>

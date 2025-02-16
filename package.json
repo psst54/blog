@@ -28,7 +28,8 @@
     "remark-rehype": "^11.0.0",
     "remark-toc": "^9.0.0",
     "remix-sitemap": "^3.1.0",
-    "unified": "^11.0.4"
+    "unified": "^11.0.4",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.19.0",
