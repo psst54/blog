@@ -2,10 +2,10 @@ import { useRef } from "react";
 import { Link } from "@remix-run/react";
 
 import { SIZE } from "~/constants/size";
-import CategoryPopUp from "@components/CategoryPopUp";
-import Logo from "./Logo";
-import SearchIcon from "@assets/SearchIcon";
+import CategoryPopUp from "~/components/CategoryPopUp";
+import SearchIcon from "~/assets/SearchIcon";
 
+import Logo from "./Logo";
 import { navbar } from "./styles";
 
 export default function NavBar() {

@@ -1,5 +1,24 @@
 import { Link } from "@remix-run/react";
 
+const container = {
+  display: "flex",
+  alignItems: "center",
+  gap: "0.5rem",
+
+  textDecoration: "none",
+};
+
+const image = {
+  width: "2.5rem",
+  height: "2.5rem",
+  borderRadius: "100%",
+};
+
+const text = {
+  fontSize: "1.25rem",
+  fontWeight: 900,
+};
+
 export default function Logo() {
   return (
     <Link to="/" css={container}>
@@ -8,13 +27,3 @@ export default function Logo() {
     </Link>
   );
 }
-
-const container = {
-  display: "flex",
-  alignItems: "center",
-  gap: "0.5rem",
-
-  textDecoration: "none",
-};
-const image = { width: "2.5rem", height: "2.5rem", borderRadius: "100%" };
-const text = { fontSize: "1.25rem", fontWeight: 900 };
