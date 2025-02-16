@@ -2,7 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Document } from "~/types/post";
 import type { Database } from "~/types/supabase";
 
-import addTagListToPostList from "../../../utils/supabase/addTagListToPostList";
+import addTagListToPostList from "../../../_utils/tag/addTagListToPostList";
 import { getPostById } from "../../../utils/supabase/getPostById";
 
 export default async function getPinnedPostList({

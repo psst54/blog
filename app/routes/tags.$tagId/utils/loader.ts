@@ -5,7 +5,7 @@ import type { Env } from "~/types";
 import type { Database } from "~/types/supabase";
 
 import { getPostListByTagId } from "@utils/supabase/getPostListByTagId";
-import { getTagDataById } from "~/utils/supabase/getTagDataById";
+import { getTagDataById } from "~/_utils/tag/getTagDataById";
 
 export async function loader({ context, params }: LoaderArgs) {
   const tagId = params.tagId!;

@@ -5,8 +5,7 @@ import type { Env } from "~/types";
 import type { Document } from "~/types/post";
 import type { Database } from "~/types/supabase";
 import { POST_SUMMARY_ATTR, POST_TABLE } from "~/constants/supabase";
-
-import addTagListToPostList from "@utils/supabase/addTagListToPostList";
+import addTagListToPostList from "~/_utils/tag/addTagListToPostList";
 
 export async function loader({ context, request }: LoaderArgs) {
   const { SUPABASE_URL, SUPABASE_KEY } = context.env as Env;
@@ -24,7 +23,7 @@ export async function loader({ context, request }: LoaderArgs) {
 
   const searchResult = await addTagListToPostList({
     supabaseClient,
-    postList: data,
+    postList: data || [],
   });
 
   return { searchResult };

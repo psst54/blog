@@ -8,7 +8,7 @@ import {
   POST_TABLE,
 } from "~/constants/supabase";
 
-import getTagListFromPost from "./getTagListFromPost";
+import getTagListFromPost from "../../_utils/tag/getTagListFromPost";
 
 export async function getPostById({
   supabaseClient,

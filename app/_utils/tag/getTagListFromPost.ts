@@ -4,6 +4,11 @@ import type { Tag } from "~/types/post";
 import type { Database } from "~/types/supabase";
 import { POST_TAG_TABLE, TAG_JOIN_ATTR } from "~/constants/supabase";
 
+interface RawTag {
+  is_spoiler: boolean;
+  tags: { id: string; title: string; content: string[] };
+}
+
 export default async function getTagListFromPost({
   supabaseClient,
   postId,
@@ -26,9 +31,4 @@ export default async function getTagListFromPost({
     ...tag.tags,
     isSpoiler: tag.is_spoiler,
   }));
-}
-
-interface RawTag {
-  is_spoiler: boolean;
-  tags: { id: string; title: string; content: string[] };
 }
