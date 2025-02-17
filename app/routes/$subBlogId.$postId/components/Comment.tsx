@@ -22,7 +22,7 @@ export default function Comment({ id }: { id: string | null }) {
       "data-emit-metadata": "0",
       "data-input-position": "bottom",
       "data-theme": "https://psst54.me/giscus.css",
-      //   "data-theme": "http://localhost:8788/giscus.css",
+      // "data-theme": "http://localhost:8788/giscus.css",
       "data-lang": "ko",
       crossOrigin: "anonymous",
       async: "true",

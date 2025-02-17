@@ -170,6 +170,14 @@ button:hover > svg,
   background: white;
 }
 
+.color-bg-inset {
+  background: white;
+}
+
+.gsc-tl-line {
+  background: var(--color-purple-very-light);
+}
+
 .gsc-comments > .gsc-header {
   order: 1;
 }
