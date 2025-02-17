@@ -60,15 +60,15 @@ export default function CategoryPopUp() {
             <h2 css={ButtonDescriptionText}>접기</h2>
           </div>
 
-          <div css={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+          <CategoryList />
+
+          <div css={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
             {mainMenu.map((menuItem, menuItemIndex) => (
               <Link key={menuItemIndex} to={menuItem.href}>
                 <MenuIcon item={menuItem} />
               </Link>
             ))}
           </div>
-
-          <CategoryList />
         </div>
       )}
     </div>

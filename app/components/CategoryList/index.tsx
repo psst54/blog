@@ -15,7 +15,7 @@ export default function CategoryList() {
   }
 
   return (
-    <div css={{ overflow: "auto" }}>
+    <div css={{ flex: 1, overflow: "auto" }}>
       {categoryList.map((datum: Category) => {
         return renderTreeItem(datum, 0, params.postId || "");
       })}
