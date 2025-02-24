@@ -9,7 +9,7 @@ export const tagListContainer = {
 export const tagContainer = {
   maxWidth: "100%",
   padding: "0.2rem 0.75rem",
-  background: COLOR.TEXT.SECONDARY,
+  background: COLOR.TEXT.LITTLE_LIGHT,
 
   border: "none",
   borderRadius: "2rem",

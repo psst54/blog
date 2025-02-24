@@ -31,10 +31,12 @@ export const titleArea = {
 };
 
 export const text = {
+  fontSize: "1.25rem",
   wordBreak: "keep-all" as const,
 };
 
 export const subText = {
   ...text,
-  color: COLOR.TEXT.SECONDARY,
+  fontSize: "1rem",
+  color: COLOR.TEXT.LITTLE_LIGHT,
 };

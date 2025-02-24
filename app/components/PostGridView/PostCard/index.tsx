@@ -26,7 +26,7 @@ const thumbnailArea = {
 
 const gradientArea = {
   ...overlay,
-  background: `linear-gradient(to bottom, ${COLOR.BACKGROUND.STANDARD} 0%, transparent 100%)`,
+  background: `linear-gradient(to bottom, ${COLOR.BACKGROUND.REVERSE} 0%, transparent 80%)`,
 };
 
 export default function PostCard({ post }: { post: Document }) {

@@ -9,7 +9,7 @@ const container = {
 
   width: CARD_SIZE,
   height: CARD_SIZE,
-  padding: "0.6rem 0.75rem",
+  padding: "0.75rem 0.8rem",
 
   border: "2px solid",
   borderRadius: SIZE.BORDER_RADIUS.POST_CARD,

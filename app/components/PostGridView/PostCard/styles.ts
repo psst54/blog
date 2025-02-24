@@ -9,8 +9,9 @@ export const container = {
 
   width: CARD_SIZE,
   height: CARD_SIZE,
-  padding: "0.6rem 0.75rem",
+  padding: "0.75rem 0.8rem",
 
+  background: COLOR.BACKGROUND.REVERSE,
   border: `${SIZE.BORDER.POST_CARD} solid black`,
   borderRadius: SIZE.BORDER_RADIUS.POST_CARD,
 
@@ -35,10 +36,13 @@ export const titleArea = {
 };
 
 export const text = {
+  color: COLOR.TEXT.REVERSE,
+  fontSize: "1.25rem",
   wordBreak: "keep-all" as const,
 };
 
 export const subText = {
   ...text,
-  color: COLOR.TEXT.SECONDARY,
+  fontSize: "1rem",
+  color: COLOR.TEXT.LIGHT,
 };

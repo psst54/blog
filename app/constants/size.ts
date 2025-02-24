@@ -3,7 +3,7 @@ export const SIZE = {
   CATEGORY_WIDTH: "18rem",
 
   BORDER: {
-    POST_CARD: "2px",
+    POST_CARD: "1px",
   },
 
   BORDER_RADIUS: {
