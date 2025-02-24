@@ -4,13 +4,13 @@ import PaginateNavigator from "~/components/PaginateNavigator";
 import usePagination from "~/hooks/usePagination";
 
 export default function Database({ posts }: { posts: Document[] }) {
-  const [currentPage, currentPagePosts, setPage] = usePagination({
-    data: posts,
+  const { currentPage, currentPostList, setPage } = usePagination({
+    data: posts || [],
   });
 
   return (
     <main css={container}>
-      <PostListView postList={currentPagePosts} />
+      <PostListView postList={currentPostList} />
       <PaginateNavigator
         currentPage={currentPage}
         count={posts.length}

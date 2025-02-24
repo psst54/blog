@@ -11,8 +11,8 @@ export { meta } from "./utils/meta";
 export default function PostPage() {
   const { content } = useLoaderData();
 
-  const [currentPage, currentPagePosts, setPage] = usePagination({
-    data: content?.posts,
+  const { currentPage, currentPostList, setPage } = usePagination({
+    data: content.posts || [],
   });
 
   return (
@@ -25,7 +25,7 @@ export default function PostPage() {
         postDate={content?.created_at}
       />
 
-      <PostListView postList={currentPagePosts} />
+      <PostListView postList={currentPostList} />
 
       <PaginateNavigator
         currentPage={currentPage}

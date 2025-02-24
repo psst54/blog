@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { COLOR } from "~/constants/color";
-import { PER_PAGE_POST_COUNT } from "~/constants/index";
 
+import { PER_PAGE_POST_COUNT } from "~/hooks/usePagination";
 import RightChevronIcon from "~/assets/RightChevronIcon";
 
 import { getArray } from "./getArray";
