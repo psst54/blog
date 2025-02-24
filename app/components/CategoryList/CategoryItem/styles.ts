@@ -16,7 +16,7 @@ export const ItemContainer = (indent: number) => {
     fontWeight: 500,
 
     "&:hover": {
-      background: COLOR.PRIMARY.VERY_LIGHT + "64",
+      background: COLOR.PRIMARY.VERY_LIGHT + "80", // 50%
     },
   };
 };
@@ -47,6 +47,8 @@ export const ToggleButton = {
   border: "none",
   outline: "none",
 
-  "&:hover": { background: COLOR.PRIMARY.VERY_LIGHT + "B2" },
+  "&:hover": {
+    background: COLOR.PRIMARY.LIGHT + "80", // 50%
+  },
   cursor: "pointer",
 };

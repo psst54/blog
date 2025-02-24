@@ -24,8 +24,6 @@ const mainMenu = [
   { icon: HeartIcon, href: "/like", alt: "Like" },
 ];
 
-const titleWrapper = { display: "flex", alignItems: "center", gap: "0.5rem" };
-
 export default function CategoryPopUp() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -49,16 +47,14 @@ export default function CategoryPopUp() {
 
       {isOpen && (
         <div css={CategorySlide}>
-          <div css={titleWrapper}>
-            <button
-              aria-label="toggle category menu"
-              css={CloseButton}
-              onClick={onClose}
-            >
-              <RightChevronIcon />
-            </button>
+          <button
+            aria-label="toggle category menu"
+            css={CloseButton}
+            onClick={onClose}
+          >
+            <RightChevronIcon />
             <h2 css={ButtonDescriptionText}>접기</h2>
-          </div>
+          </button>
 
           <CategoryList />
 
