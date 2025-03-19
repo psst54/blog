@@ -3,7 +3,8 @@ const TITLE = "프론트엔드 개발자의 기술 블로그";
 const AUTHOR = "psst54";
 const DESCRIPTION =
   "개발하면서 배운 것들을 정리합니다 | 프로젝트 회고와 트러블 슈팅 | JS/TS, React, Git";
-const DEFAULT_IMAGE = "https://psst54.me/default-thumbnail.jpg"; // 기본 썸네일
+const DEFAULT_IMAGE =
+  "hhttps://tnzycdohhtvupgagmwfx.supabase.co/storage/v1/object/public/postImages/cspg-design-system-text/6.%20project%20structure.webp?t=2024-11-19T08%3A23%3A08.115Z"; // 기본 썸네일
 
 export default function getMetaData({
   pathname,
