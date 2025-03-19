@@ -18,7 +18,7 @@ import {
 export function H1({ children }) {
   return (
     <div css={{ display: "flex", marginBottom: "0.5rem" }}>
-      <h1 css={styledH1} children={children} id={getId(children)} />
+      <h2 css={styledH1} children={children} id={getId(children)} />
       <hr
         css={{
           flexGrow: 1,
@@ -31,11 +31,11 @@ export function H1({ children }) {
 }
 
 export function H2({ children }) {
-  return <h2 css={styledH2} children={children} id={getId(children)} />;
+  return <h3 css={styledH2} children={children} id={getId(children)} />;
 }
 
 export function H3({ children }) {
-  return <h3 css={styledH3} children={children} id={getId(children)} />;
+  return <h4 css={styledH3} children={children} id={getId(children)} />;
 }
 
 export function P({ children }) {

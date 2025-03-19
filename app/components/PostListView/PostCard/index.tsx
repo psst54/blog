@@ -18,7 +18,7 @@ export default function PostCard({ post }: { post: Document }) {
 
       <div css={textArea}>
         <div css={titleArea}>
-          <h2 css={text}>{title}</h2>
+          <h3 css={text}>{title}</h3>
           <p css={subText}>{sub_title}</p>
         </div>
 

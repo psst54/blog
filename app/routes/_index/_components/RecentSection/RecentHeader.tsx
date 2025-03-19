@@ -10,6 +10,7 @@ import {
   borderedBlock,
   divideLine,
   image,
+  titleArea,
 } from "../styles";
 
 const long = { width: "5rem" };
@@ -23,20 +24,24 @@ export default function RecentHeader() {
   return (
     <Link to={ROUTE.ALL} css={link}>
       <header css={header}>
-        <h1 css={title}>
-          <span css={borderedBlock}>{HEADER_TEXT[0][0]}</span>
-          <span css={filledBlock}>{HEADER_TEXT[0][1]}</span>
+        <div css={titleArea}>
+          <p css={title}>
+            <span css={borderedBlock}>{HEADER_TEXT[0][0]}</span>
+            <span css={filledBlock}>{HEADER_TEXT[0][1]}</span>
+          </p>
           <div css={divideLine} />
           <img src="ocean2.webp" alt="ocean" css={image} />
-        </h1>
+        </div>
 
-        <h1 css={title}>
+        <div css={titleArea}>
           <img src="ocean1.webp" alt="ocean" css={[image, long]} />
-          <span css={borderedBlock}>{HEADER_TEXT[1][0]}</span>
-          <span css={filledBlock}>{HEADER_TEXT[1][1]}</span>
+          <p css={title}>
+            <span css={borderedBlock}>{HEADER_TEXT[1][0]}</span>
+            <span css={filledBlock}>{HEADER_TEXT[1][1]}</span>
+          </p>
           <div css={divideLine} />
           <RightChevronIcon size="1.5rem" />
-        </h1>
+        </div>
       </header>
     </Link>
   );
