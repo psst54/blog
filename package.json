@@ -17,6 +17,7 @@
     "@remix-run/css-bundle": "^1.19.1",
     "@remix-run/react": "^1.19.1",
     "@supabase/supabase-js": "^2.32.0",
+    "@tanstack/react-query": "^5.69.0",
     "isbot": "^3.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
