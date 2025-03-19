@@ -7,13 +7,6 @@ export const loader = async ({ context }: LoaderArgs) => {
     key: (context.env as unknown as Env).SUPABASE_KEY,
   };
 
-  if (context.env !== "PRODUCTION") {
-    return {
-      gaTrackingId: null,
-      supabaseCredential,
-    };
-  }
-
   return {
     gaTrackingId: (context.env as unknown as Env).GA_TRACKING_ID,
     supabaseCredential,
