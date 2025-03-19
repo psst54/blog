@@ -1,5 +1,8 @@
-const SITE_NAME = "PSST54's log";
+const SITE_NAME = "PSST54's Log";
+const TITLE = "프론트엔드 개발자의 기술 블로그";
 const AUTHOR = "psst54";
+const DESCRIPTION =
+  "개발하면서 배운 것들을 정리합니다 | 프로젝트 회고와 트러블 슈팅 | JS/TS, React, Git";
 
 export default function getMetaData({
   pathname,
@@ -20,11 +23,11 @@ export default function getMetaData({
   data.push({ name: "og:site_name", content: SITE_NAME });
   data.push({ name: "og:type", content: "website" });
 
-  const titleText = title || SITE_NAME;
+  const titleText = `${SITE_NAME} | ${title || TITLE}`;
   data.push({ title: titleText });
   data.push({ name: "og:title", content: titleText });
 
-  const subTitleText = subTitle || "FE 개발자가 공부하는 이야기";
+  const subTitleText = subTitle || DESCRIPTION;
   data.push({ name: "description", content: subTitleText });
   data.push({ name: "og:description", content: subTitleText });
 
