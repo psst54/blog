@@ -25,11 +25,19 @@ export const header = {
   },
 };
 
-export const title = {
+export const titleArea = {
   display: "flex",
   flex: 1,
   gap: "0.5rem",
   alignItems: "center",
+};
+
+export const title = {
+  display: "flex",
+  gap: "0.5rem",
+  alignItems: "center",
+
+  width: "fit-content",
 
   fontSize: "1.75rem",
   fontWeight: 900,
