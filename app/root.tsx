@@ -10,7 +10,8 @@ import {
 } from "@remix-run/react";
 
 import { globalStyleCss } from "~/styles/global";
-import GTag from "./_components/Gtag";
+import GtagHead from "./_components/GtagHead";
+import GtagBody from "./_components/GtagBody";
 import Font from "./_components/Font";
 import { useEffect } from "react";
 import useCategoryStore from "./stores/category";
@@ -51,6 +52,7 @@ export default function App() {
         <Meta />
         <Font />
         <Links />
+        <GtagHead gaTrackingId={gaTrackingId} />
       </head>
 
       <body css={globalStyleCss}>
@@ -58,7 +60,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
-        <GTag gaTrackingId={gaTrackingId} />
+        <GtagBody gaTrackingId={gaTrackingId} />
       </body>
     </html>
   );
