@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /ocean1.webp
+Disallow: /ocean2.webp
+Disallow: /ocean4.webp
+Disallow: /ocean6.webp
+Disallow: /profile.webp
+
+# Host
+Host: https://psst54.me
+
+# Sitemaps
+Sitemap: https://psst54.me/sitemap.xml

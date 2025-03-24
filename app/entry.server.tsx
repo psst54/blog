@@ -19,7 +19,6 @@ export default async function handleRequest(
 ) {
   const { isSitemapUrl, sitemap } = createSitemapGenerator({
     siteUrl: "https://psst54.me",
-    generateRobotsTxt: true,
     SUPABASE_URL: loadContext.env.SUPABASE_URL,
     SUPABASE_KEY: loadContext.env.SUPABASE_KEY,
   });
