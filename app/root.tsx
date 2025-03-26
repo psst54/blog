@@ -53,6 +53,7 @@ export default function App() {
         <Font />
         <Links />
         <GtagHead gaTrackingId={gaTrackingId} />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </head>
 
       <body css={globalStyleCss}>
