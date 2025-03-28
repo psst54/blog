@@ -8,6 +8,9 @@ import {
   useLoaderData,
   useParams,
 } from "@remix-run/react";
+import type { LinksFunction } from "@remix-run/cloudflare";
+
+import stylesheet from "~/tailwind.css?url";
 
 import { globalStyleCss } from "~/styles/global";
 import GtagHead from "./_components/GtagHead";
@@ -20,6 +23,9 @@ import fetchCategoryData from "./_utils/fetchCategoryData";
 
 export { meta } from "./_utils/meta";
 export { loader } from "./_utils/loader";
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesheet },
+];
 
 export default function App() {
   const { gaTrackingId, supabaseCredential } = useLoaderData();
