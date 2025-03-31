@@ -1,5 +1,3 @@
-import { COLOR } from "./app/constants";
-
 module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}"],
   theme: {

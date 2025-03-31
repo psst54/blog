@@ -1,82 +1,10 @@
-import { COLOR } from "~/constants/color";
-import { mq } from "~/constants/size";
+export const header = "flex flex-col gap-2 px-2 sm:px-4";
+export const titleArea = "flex flex-1 gap-2 items-center";
+export const title = "flex gap-2 items-center w-fit text-[1.75rem] font-bold";
 
-export const link = {
-  textDecoration: "none",
+export const divideLine = "flex-1 h-[3px] bg-bg-reverse";
+export const image = "size-12 object-cover rounded-full";
 
-  "&:hover": {
-    "*": {
-      color: COLOR.TEXT.LINK,
-    },
-  },
-};
-
-// ---------- header style ----------
-
-export const header = {
-  display: "flex",
-  flexDirection: "column" as const,
-  gap: "0.5rem",
-
-  padding: "0 1rem",
-
-  [mq[1]]: {
-    padding: "0 0.5rem",
-  },
-};
-
-export const titleArea = {
-  display: "flex",
-  flex: 1,
-  gap: "0.5rem",
-  alignItems: "center",
-};
-
-export const title = {
-  display: "flex",
-  gap: "0.5rem",
-  alignItems: "center",
-
-  width: "fit-content",
-
-  fontSize: "1.75rem",
-  fontWeight: 900,
-};
-
-const block = {
-  display: "flex",
-  alignItems: "center",
-
-  height: "3rem",
-  padding: "0 1rem",
-  borderRadius: "1.5rem",
-};
-
-export const filledBlock = {
-  ...block,
-
-  background: COLOR.TEXT.STANDARD,
-  color: COLOR.TEXT.REVERSE,
-};
-
-export const borderedBlock = {
-  ...block,
-
-  border: `2px solid ${COLOR.TEXT.STANDARD}`,
-};
-
-export const divideLine = {
-  flex: 1,
-  height: "3px",
-  background: "black",
-};
-
-export const image = {
-  width: "3rem",
-  height: "3rem",
-
-  objectFit: "cover" as const,
-  borderRadius: "1.5rem",
-};
-
-// ---------- header style ----------
+const block = "flex items-center h-12 px-4 rounded-full";
+export const borderedBlock = `${block} border-2 border-text-standard`;
+export const filledBlock = `${block} bg-bg-reverse text-text-reverse`;

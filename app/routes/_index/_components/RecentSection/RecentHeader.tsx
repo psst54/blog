@@ -3,43 +3,35 @@ import { Link } from "@remix-run/react";
 import ROUTE from "~/constants/route";
 import RightChevronIcon from "~/assets/RightChevronIcon";
 import {
-  link,
-  header,
-  title,
-  filledBlock,
   borderedBlock,
   divideLine,
+  filledBlock,
+  header,
   image,
+  title,
   titleArea,
 } from "../styles";
 
-const long = { width: "5rem" };
-
-const HEADER_TEXT = [
-  ["Latest", "Updates:"],
-  ["View", "All"],
-];
-
 export default function RecentHeader() {
   return (
-    <Link to={ROUTE.ALL} css={link}>
-      <header css={header}>
-        <div css={titleArea}>
-          <p css={title}>
-            <span css={borderedBlock}>{HEADER_TEXT[0][0]}</span>
-            <span css={filledBlock}>{HEADER_TEXT[0][1]}</span>
+    <Link to={ROUTE.ALL} className="hover:text-text-link">
+      <header className={header}>
+        <div className={titleArea}>
+          <p className={title}>
+            <span className={borderedBlock}>Latest</span>
+            <span className={filledBlock}>Updates:</span>
           </p>
-          <div css={divideLine} />
-          <img src="ocean2.webp" alt="ocean" css={image} />
+          <div className={divideLine} />
+          <img src="ocean2.webp" alt="ocean" className={image} />
         </div>
 
-        <div css={titleArea}>
-          <img src="ocean1.webp" alt="ocean" css={[image, long]} />
-          <p css={title}>
-            <span css={borderedBlock}>{HEADER_TEXT[1][0]}</span>
-            <span css={filledBlock}>{HEADER_TEXT[1][1]}</span>
+        <div className={titleArea}>
+          <img src="ocean1.webp" alt="ocean" className={`${image} w-20`} />
+          <p className={title}>
+            <span className={borderedBlock}>View</span>
+            <span className={filledBlock}>All</span>
           </p>
-          <div css={divideLine} />
+          <div className={divideLine} />
           <RightChevronIcon size="1.5rem" />
         </div>
       </header>
