@@ -1,14 +1,11 @@
-import type { LoaderArgs } from "@remix-run/cloudflare";
-import type { Env } from "~/types";
-
-export const loader = async ({ context }: LoaderArgs) => {
+export const loader = async () => {
   const supabaseCredential = {
-    url: (context.env as unknown as Env).SUPABASE_URL,
-    key: (context.env as unknown as Env).SUPABASE_KEY,
+    url: process.env.SUPABASE_URL,
+    key: process.env.SUPABASE_KEY,
   };
 
   return {
-    gaTrackingId: (context.env as unknown as Env).GA_TRACKING_ID,
+    gaTrackingId: process.env.GA_TRACKING_ID,
     supabaseCredential,
   };
 };

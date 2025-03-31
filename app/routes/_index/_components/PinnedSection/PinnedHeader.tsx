@@ -17,7 +17,7 @@ export default function PinnedHeader() {
         <img src="ocean4.webp" alt="ocean" css={[image, long]} />
         <div css={divideLine} />
         <h1 css={title}>
-          <span css={filledBlock}>Pinned</span>
+          <span className="underline">Pinned</span>
           <span css={borderedBlock}>Posts</span>
         </h1>
       </div>
