@@ -9,7 +9,7 @@ import { getSubBlogInfo } from "~/utils/supabase/getSubBlogInfo";
 
 export async function loader({ context, params }: LoaderArgs) {
   const subBlogId = params.subBlogId!;
-  const { SUPABASE_URL, SUPABASE_KEY } = context.env as Env;
+  const { SUPABASE_URL, SUPABASE_KEY } = process.env as Env;
   const supabaseClient = createClient<Directory>(SUPABASE_URL, SUPABASE_KEY);
 
   const databaseData = await getSubBlogMainPosts({ supabaseClient, subBlogId });

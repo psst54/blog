@@ -14,7 +14,7 @@ function isNormalPost(data: Document) {
 }
 
 export async function loader({ context, params }: LoaderArgs) {
-  const { SUPABASE_URL, SUPABASE_KEY } = context.env as Env;
+  const { SUPABASE_URL, SUPABASE_KEY } = process.env as Env;
   const supabaseClient = createClient<Database>(SUPABASE_URL, SUPABASE_KEY);
 
   const subBlogId = params.subBlogId!;
