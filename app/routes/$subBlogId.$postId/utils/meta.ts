@@ -1,3 +1,4 @@
+import getJsonLd from "~/_utils/getJsonLd";
 import getMetaData from "~/_utils/getMetaData";
 import type { Tag } from "~/types";
 
@@ -10,5 +11,10 @@ export function meta({ data, location }) {
       .map((tag: Tag) => tag.content.join(", "))
       .join(", "),
     thumbnail: data.postData?.thumbnail,
-  });
+  }).concat(
+    getJsonLd({
+      pathname: location.pathname,
+      postData: data.postData,
+    })
+  );
 }
