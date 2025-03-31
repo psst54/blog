@@ -8,8 +8,8 @@ import {
   useLoaderData,
   useParams,
 } from "@remix-run/react";
+import { cssBundleHref } from "@remix-run/css-bundle";
 
-import { globalStyleCss } from "~/styles/global";
 import GtagHead from "./_components/GtagHead";
 import GtagBody from "./_components/GtagBody";
 import Font from "./_components/Font";
@@ -20,6 +20,11 @@ import fetchCategoryData from "./_utils/fetchCategoryData";
 
 export { meta } from "./_utils/meta";
 export { loader } from "./_utils/loader";
+export function links() {
+  return [
+    ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  ];
+}
 
 export default function App() {
   const { gaTrackingId, supabaseCredential } = useLoaderData();
@@ -55,7 +60,7 @@ export default function App() {
         <GtagHead gaTrackingId={gaTrackingId} />
       </head>
 
-      <body css={globalStyleCss}>
+      <body>
         <Outlet context={{ supabaseCredential }} />
         <ScrollRestoration />
         <Scripts />

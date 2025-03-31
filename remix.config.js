@@ -10,9 +10,7 @@ export default {
   serverMinify: true,
   serverModuleFormat: "esm",
   serverPlatform: "neutral",
-  // appDirectory: "app",
-  // assetsBuildDirectory: "public/build",
-  // publicPath: "/build/",
+
   future: {
     v2_dev: true,
     v2_errorBoundary: true,
@@ -21,4 +19,6 @@ export default {
     v2_normalizeFormMethod: true,
     v2_routeConvention: true,
   },
+  cssBundle: true,
+  postcss: true,
 };
