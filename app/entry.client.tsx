@@ -4,11 +4,19 @@
  * For more information, see https://remix.run/file-conventions/entry.client
  */
 
-import "./tailwind.css";
+import styles from "./tailwind.css";
 
 import { RemixBrowser } from "@remix-run/react";
 import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
+import { cssBundleHref } from "@remix-run/css-bundle";
+
+export function links() {
+  return [
+    ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+    { rel: "stylesheet", href: styles }, // tailwind.css import
+  ];
+}
 
 startTransition(() => {
   hydrateRoot(

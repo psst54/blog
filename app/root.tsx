@@ -8,7 +8,6 @@ import {
   useLoaderData,
   useParams,
 } from "@remix-run/react";
-import { cssBundleHref } from "@remix-run/css-bundle";
 
 import GtagHead from "./_components/GtagHead";
 import GtagBody from "./_components/GtagBody";
@@ -20,11 +19,6 @@ import fetchCategoryData from "./_utils/fetchCategoryData";
 
 export { meta } from "./_utils/meta";
 export { loader } from "./_utils/loader";
-export function links() {
-  return [
-    ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-  ];
-}
 
 export default function App() {
   const { gaTrackingId, supabaseCredential } = useLoaderData();
