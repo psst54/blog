@@ -33,7 +33,15 @@ export default function PostCard({ post }: { post: Document }) {
   const { thumbnail, title, sub_title, tags } = post;
 
   return (
-    <article css={container}>
+    <article
+      className="
+        relative
+        flex flex-col
+        size-60 p-3 bg-bg-reverse
+        border border-bg-reverse rounded-4
+        hover:text-text-link
+        "
+    >
       {thumbnail && (
         <Suspense fallback={<></>}>
           <div css={thumbnailArea}>

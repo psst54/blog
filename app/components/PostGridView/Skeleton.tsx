@@ -1,14 +1,13 @@
 import { SIZE } from "~/constants/size";
 import { backgroundPulse, borderPulse } from "~/styles/pulse";
-import { CARD_SIZE } from "./styles";
 
 const container = {
   display: "flex",
   flexDirection: "column" as const,
   flexShrink: 0,
 
-  width: CARD_SIZE,
-  height: CARD_SIZE,
+  width: 60,
+  height: 60,
   padding: "0.75rem 0.8rem",
 
   border: "2px solid",
